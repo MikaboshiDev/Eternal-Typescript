@@ -1,12 +1,13 @@
-import { Manager } from "./structure/client";
-import { join } from "path";
-
+import { logWithLabel } from './utils/console';
+import { Manager } from './structure/client';
 import { config } from 'dotenv';
-import { logWithLabel } from "./utils/console";
-config({ path: join(__dirname, '..', '.env')});
+import { join } from 'path';
 
-const client = new Manager();
-client.start(process.env.token!).then(() => {
-    logWithLabel("info", `The bot user ${client.user?.username} is ready!`)
-}).catch(console.error);
-export default client;
+config({ path: join(__dirname, '..', '.env') });
+export const client = new Manager();
+client.start().then(() => {
+   logWithLabel(
+      'discord',
+      `The bot has been logged in correctly as ${client.user?.tag}!`
+   );
+});
