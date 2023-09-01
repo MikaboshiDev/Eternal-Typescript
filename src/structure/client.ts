@@ -6,6 +6,7 @@ import {
    Events,
    Options,
 } from 'discord.js';
+import { ExpressServer } from '../../server/express';
 export class Manager extends Client {
    constructor() {
       super({
@@ -20,6 +21,8 @@ export class Manager extends Client {
    }
 
    async start(token: string) {
+      const express = new ExpressServer();
       await super.login(token);
+      express.start(3000);
    }
 }
