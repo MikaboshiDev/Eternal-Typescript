@@ -20,8 +20,18 @@ export class Manager extends Client {
             parse: ['users', 'roles'],
             repliedUser: false,
          },
-         intents: [GatewayIntentBits.GuildMessages, GatewayIntentBits.Guilds],
-         partials: [Partials.GuildMember, Partials.Message],
+         makeCache: Options.cacheWithLimits({
+            MessageManager: 200,
+            // overwrite custom config client
+         }),
+         intents: [
+            GatewayIntentBits.GuildMessages, 
+            GatewayIntentBits.Guilds
+         ],
+         partials: [
+            Partials.GuildMember, 
+            Partials.Message
+         ],
       });
 
       this.events = new Collection();
