@@ -1,6 +1,6 @@
 import { Strategy } from 'passport-discord';
-import { client } from '../index';
 import passport from 'passport';
+import 'dotenv/config';
 import fs from 'fs';
 
 passport.serializeUser((user: any, done: any) => {

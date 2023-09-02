@@ -1,6 +1,7 @@
 interface IUser extends Document {
    username: string;
    user_id: number;
+   email: string;
    products: Array<string>;
    warnings: number;
    banned: boolean;

@@ -1,9 +1,10 @@
-import IUser from '../typings/model.interface';
+import IUser from '../../server/interface/model.interface';
 import mongoose from 'mongoose';
 
 const model = new mongoose.Schema({
    username: { type: String, default: '' },
    user_id: { type: Number, unique: true },
+   email: { type: String, default: '' },
    products: { type: Array, default: [] },
    warnings: { type: Number, default: 0 },
    banned: { type: Boolean, default: false },
