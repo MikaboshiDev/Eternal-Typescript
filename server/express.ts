@@ -4,13 +4,11 @@ import { router } from '../src/utils/request';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import express from 'express';
-import morgan from 'morgan';
 
 export class ExpressServer {
    app: any;
    constructor() {
       this.app = express();
-      this.app.use(morgan('dev'));
       this.app.use(cookieParser());
    }
 

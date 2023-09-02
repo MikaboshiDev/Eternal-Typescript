@@ -20,7 +20,6 @@
     "express-session": "^1.17.3",
     "glob": "^10.3.4",
     "mongoose": "^7.5.0",
-    "morgan": "^1.10.0",
     "passport": "^0.6.0",
     "passport-discord": "^0.1.4"
   },

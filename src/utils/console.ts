@@ -6,6 +6,7 @@ type Labels =
    | 'shards'
    | 'express'
    | 'info'
+   | 'routes'
    | 'discord';
 function logWithLabel(label: Labels, message: string) {
    const labels: Record<Labels, string> = {
@@ -16,6 +17,7 @@ function logWithLabel(label: Labels, message: string) {
       express: '[EXPRESS]'.magenta,
       info: '[INFO]'.cyan,
       discord: '[DISCORD]'.black,
+      routes: '[ROUTES]'.white,
    };
 
    const formattedLabel = labels[label] || label || '';
