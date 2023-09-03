@@ -1,10 +1,9 @@
 import { logMiddleware } from '../middleware/logs.middlware';
 import { getUser } from '../controllers/login.controllers';
-import model from '../../src/models/model';
-import { Router } from 'express';
 import { getFile } from '../controllers/upload.controllers';
 import { checkJwt } from '../middleware/session.middlware';
 import multerMiddleware from '../middleware/file.middlware';
+import { Router } from 'express';
 const router = Router();
 
 /**
@@ -12,7 +11,7 @@ const router = Router();
  * /api/users/{user}:
  *  get:
  *   tags:
- *     - api
+ *     - apiUsers
  *   summary: Get your profile information within the api
  *   description: Obtain the information of your profile within the api for the validation of technical data of use
  *   operationId: getProfile
@@ -42,6 +41,42 @@ const router = Router();
  *     - night_auth: 
  *        - 'write:night'
  *        - 'read:night'  
+ * 
+ * /api/archives/upload:
+ *   post:
+ *    tags:
+ *      - apiArchive
+ *    summary: Upload files via requests
+ *    description: Upload files via requests to the host's local files
+ *    operationId: postUpload
+ *    requestBody:
+ *      description: File to upload to the host's local files
+ *      content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/api_upload'
+ *        application/xml:
+ *          schema:
+ *            $ref: '#/components/schemas/api_upload'
+ *        application/x-www-form-urlencoded:
+ *          schema:
+ *            $ref: '#/components/schemas/api_upload'
+ *    responses:
+ *      '200':
+ *        description: File uploaded successfully to the host's local files
+ *        content:
+ *        application/json:
+ *          schema:
+ *            $ref: '#/components/schemas/api_upload'
+ *        application/xml:
+ *          schema:
+ *            $ref: '#/components/schemas/api_upload'
+ *        application/x-www-form-urlencoded:
+ *          schema:
+ *            $ref: '#/components/schemas/api_upload'
+ *      "404":
+ *        description: Error in upload file keys or source code please try again later
+ *        
  */
 
 router.get('/api/users/:user', logMiddleware, getUser);

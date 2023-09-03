@@ -61,6 +61,36 @@ const swaggerDefinition: OAS3Definition = {
                data_guild: { type: 'array', example: ['data1', 'data2'] },
             },
          },
+         api_auth: {
+            type: "object",
+            required: [
+               "name",
+               "password",
+               "email",
+            ],
+            properties: {
+               name: { type: "string", example: "manhwas_web" },
+               password: { type: "string", example: "123456789" },
+               email: { type: "string", example: "example@gamil.com" },
+               timestamp: { type: "string", example: "2021-08-01T00:00:00.000Z" },
+               versionKey: { type: "boolean", example: false },
+            }
+         },
+         api_upload: {
+            type: 'object',
+            required: [
+               'fileName',
+               'idUser',
+               'path',
+            ],
+            properties: {
+               fileName: { type: 'string', example: 'example.png' },
+               idUser: { type: 'string', example: '123456789' },
+               path: { type: 'string', example: 'https://example.com/example.png' },
+               timestamp: { type: 'string', example: '2021-08-01T00:00:00.000Z' },
+               versionKey: { type: 'boolean', example: false },
+            }
+         }
       },
    },
    securitySchemes: {
