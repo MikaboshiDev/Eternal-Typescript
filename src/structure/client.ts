@@ -53,8 +53,6 @@ export class Manager extends Client {
    }
 
    async start() {
-      await this.loadEvents();
-
       await super.login(process.env.token!);
       const express = new ExpressServer();
       express.start(3000);

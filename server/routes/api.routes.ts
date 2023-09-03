@@ -11,7 +11,7 @@ const router = Router();
  * /api/users/{user}:
  *  get:
  *   tags:
- *     - apiUsers
+ *     - Users
  *   summary: Get your profile information within the api
  *   description: Obtain the information of your profile within the api for the validation of technical data of use
  *   operationId: getProfile
@@ -45,7 +45,7 @@ const router = Router();
  * /api/archives/upload:
  *   post:
  *    tags:
- *      - apiArchive
+ *      - Api
  *    summary: Upload files via requests
  *    description: Upload files via requests to the host's local files
  *    operationId: postUpload
@@ -76,6 +76,8 @@ const router = Router();
  *            $ref: '#/components/schemas/api_upload'
  *      "404":
  *        description: Error in upload file keys or source code please try again later
+ *      "500":
+ *       description: Web server is down at the moment, try again later
  *        
  */
 

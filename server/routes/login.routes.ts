@@ -11,7 +11,7 @@ const router = Router();
  * /auth/login:
  *  get:
  *   tags:
- *     - Weblogin
+ *     - Website
  *   summary: Log in the control website
  *   description: Log in the control website to be able to access different data and methods
  *   operationId: getLogin
@@ -30,7 +30,7 @@ const router = Router();
  * /auth/logout:
  *  get:
  *   tags:
- *     - Weblogin
+ *     - Website
  *   summary: Log out of the control rest api
  *   description: Log out of the control rest api to be able to access different data and methods
  *   operationId: getLogout
@@ -45,7 +45,7 @@ const router = Router();
  * /api/register:
  *  post:
  *    tags:
- *      - ApiAuth
+ *      - Auth
  *    summary: Register inside the control api
  *    description: Register within the control api to access its functions
  *    operationId: postRegister
@@ -79,7 +79,7 @@ const router = Router();
  * /api/login:
  *  post:
  *   tags:
- *     - ApiAuth
+ *     - Auth
  *   summary: Log in the control rest api
  *   description: Log in the control rest api to be able to access different data and methods
  *   operationId: postLogin
@@ -109,7 +109,7 @@ const router = Router();
  * /api/login/user:
  *    post:
  *      tags:
- *        - ApiAuth
+ *        - Users
  *      summary: Log in the control rest api
  *      description: register your discord server user for your products, data and statistics control
  *      operationId: postUser
