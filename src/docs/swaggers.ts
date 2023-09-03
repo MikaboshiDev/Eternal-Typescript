@@ -90,7 +90,30 @@ const swaggerDefinition: OAS3Definition = {
                timestamp: { type: 'string', example: '2021-08-01T00:00:00.000Z' },
                versionKey: { type: 'boolean', example: false },
             }
-         }
+         },
+         api_product: {
+            type: "object",
+            required: [
+               "name",
+               "id",
+               "price",
+               "description",
+               "image",
+               "category",
+               "quantity",
+               "date",
+            ],
+            properties: {
+               name: { type: "string", example: "bot_discord" },
+               id: { type: "number", example: 123456789 },
+               price: { type: "number", example: 100 },
+               description: { type: "string", example: "example the bot discord app" },
+               image: { type: "string", example: "https://example.com/example.png" },
+               category: { type: "string", example: "discord" },
+               quantity: { type: "number", example: 1 },
+               date: { type: "string", example: "2021-08-01T00:00:00.000Z" },
+            }
+         } 
       },
    },
    securitySchemes: {

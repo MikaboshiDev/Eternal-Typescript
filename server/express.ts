@@ -1,11 +1,12 @@
 import { logWithLabel } from '../src/utils/console';
 import { passport } from '../src/utils/passport';
-import { router } from '../src/utils/request';
 import swaggerSetup from '../src/docs/swaggers';
+import { router } from '../src/utils/request';
 import swaggerUi from 'swagger-ui-express';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import express from 'express';
+import path from 'node:path';
 
 export class ExpressServer {
    app: any;
@@ -25,6 +26,7 @@ export class ExpressServer {
       );
       this.app.use(express.urlencoded({ extended: true }));
       this.app.use(passport.initialize());
+      this.app.set('view engine', 'ejs');
       this.app.use(passport.session());
       this.app.use(express.json());
       this.app.use(router);
@@ -44,5 +46,13 @@ export class ExpressServer {
             saveUninitialized: false,
          })
       );
+
+      this.app.set('views', path.join(__dirname, 'views'));
+      const staticDirs = ['css', 'js', 'fonts', 'images'];
+
+      staticDirs.forEach((dir) => {
+         const staticPath = path.join(__dirname, `views/public/${dir}`);
+         this.app.use(`/${dir}`, express.static(staticPath));
+      });
    }
 }

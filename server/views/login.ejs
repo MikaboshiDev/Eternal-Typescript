@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="/images/logo.jpg" type="image/gif" />
+      <title>Welcome</title>
+      <link
+         href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+         rel="stylesheet"
+      />
+      <%- include("./partials/meta.ejs") %>
+      <style>
+         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600&display=swap');
+
+         :root {
+            --color-primary: #7380ec;
+            --color-danger: #ff4d4d;
+            --color-success: #41f1b6;
+            --color-warning: #fb5;
+            --color-white: #fff;
+            --color-info-dark: #7b8da1;
+            --color-info-light: #dce1eb;
+            --color-dark: #292929;
+            --color-light: rgba(132, 139, 200, 0.18);
+            --color-primary-variant: #111e88;
+            --color-dark-variant: #677483;
+            --color-background: #f6f6f9;
+
+            --card-border-radius: 2rem;
+            --border-radius-1: 0.4rem;
+            --border-radius-2: 1rem;
+            --border-radius-3: 1.2rem;
+
+            --card-padding: 2.5rem;
+            --padding-1: 1.2rem;
+
+            --box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+         }
+
+         .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: var(--color-background);
+         }
+
+         .welcome-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 45rem;
+            padding: var(--card-padding);
+            background-color: var(--color-white);
+            border-radius: var(--card-border-radius);
+            box-shadow: var(--box-shadow);
+         }
+
+         .welcome-title {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+               sans-serif;
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--color-dark);
+            margin-bottom: 10px;
+         }
+
+         .welcome-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            color: var(--color-dark-variant);
+            margin-bottom: 20px;
+            text-align: center;
+         }
+
+         .login-button {
+            display: flex;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: var(--color-white);
+            background-color: var(--color-primary);
+            border: none;
+            border-radius: var(--border-radius-2);
+            padding: var(--padding-1);
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            text-decoration: none;
+         }
+
+         .discord-icon {
+            font-size: 2rem;
+            margin-right: 20px;
+         }
+
+         .login-button:hover {
+            background-color: var(--color-primary-variant);
+         }
+
+         @media screen and (max-width: 1200px) {
+            .welcome-card {
+               width: 70%;
+            }
+
+            .welcome-title {
+               font-size: 2.5rem;
+            }
+
+            .welcome-text {
+               font-size: 1.6rem;
+            }
+
+            .discord-icon {
+               font-size: 2rem;
+            }
+         }
+
+         @media screen and (max-width: 768px) {
+            .welcome-card {
+               width: 90%;
+               padding: 2rem;
+            }
+
+            .welcome-title {
+               font-size: 2.2rem;
+               margin-bottom: 5px;
+            }
+
+            .welcome-text {
+               font-size: 1.4rem;
+               margin-bottom: 15px;
+            }
+
+            .discord-icon {
+               font-size: 1.8rem;
+               margin-right: 10px;
+            }
+         }
+      </style>
+   </head>
+   <body>
+      <div class="container">
+         <div class="welcome-card">
+            <h1 class="welcome-title">Welcome the Night Support</h1>
+            <p class="welcome-text">
+               Welcome to the Night API control panel
+            </p>
+            <a class="login-button" href="/auth/login">
+               <i class="material-icons-sharp discord-icon">discord</i>
+               Login Discord
+            </a>
+         </div>
+      </div>
+   </body>
+</html>

@@ -59,6 +59,7 @@ const router = Router();
  *             schema:
  *                $ref: '#/components/schemas/api_auth'
  *          application/x-www-form-urlencoded:
+ *             schema:
  *                $ref: '#/components/schemas/api_auth'
  *    responses:
  *      '200':
@@ -103,6 +104,9 @@ const router = Router();
  *         application/xml:
  *           schema:
  *            $ref: '#/components/schemas/api_auth'
+ *         application/x-www-form-urlencoded:
+ *           schema:
+ *            $ref: '#/components/schemas/api_auth'
  *     "404":
  *       description: Error in login keys or source code please try again later
  *
@@ -141,14 +145,9 @@ const router = Router();
 
 //? Auth Routes Web //
 router.get('/auth/logout', authInspection, logMiddleware, authLogout);
-router.get(
-   '/auth/login',
-   logMiddleware,
-   passport.authenticate('discord', {
+router.get('/auth/login', logMiddleware, passport.authenticate('discord', {
       failureRedirect: '/auth/logout',
-   }),
-   (req: Request, res: Response) => {
-      res.redirect('/');
+   }), (req: Request, res: Response) => { res.redirect('/');
    }
 );
 
