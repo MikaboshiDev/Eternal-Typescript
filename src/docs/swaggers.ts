@@ -40,7 +40,7 @@ const swaggerDefinition: OAS3Definition = {
          },
       },
       schemas: {
-         register: {
+         api_register: {
             type: 'object',
             required: [
                'username',

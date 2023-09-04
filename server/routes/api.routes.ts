@@ -1,12 +1,23 @@
+import {
+   addProduct,
+   deleteProduct,
+   editProduct,
+   getProduct,
+   getProducts,
+   recomendProduct,
+} from '../controllers/product.controllers';
 import { getFile, getFiles } from '../controllers/upload.controllers';
 import { logMiddleware } from '../middleware/logs.middlware';
 import { getUser } from '../controllers/login.controllers';
 import { checkJwt } from '../middleware/session.middlware';
 import multerMiddleware from '../middleware/file.middlware';
-import { Router } from 'express';
 import { devMiddlware } from '../middleware/dev.middlware';
-import { addProduct, deleteProduct, editProduct, getProduct, getProducts } from '../controllers/product.controllers';
+import { Router } from 'express';
+import { authInspection } from '../middleware/auth.middleware';
+import { checkSegurity } from '../middleware/segurity.middlware';
+
 const router = Router();
+router.use(checkSegurity, checkJwt, logMiddleware);
 
 /**
  * @openapi
@@ -22,24 +33,24 @@ const router = Router();
  *     content:
  *       application/json:
  *         schema:
- *          $ref: '#/components/schemas/register'
+ *          $ref: '#/components/schemas/api_register'
  *       application/xml:
- *          $ref: '#/components/schemas/register'
+ *          $ref: '#/components/schemas/api_register'
  *       application/x-www-form-urlencoded:
- *          $ref: '#/components/schemas/register'
+ *          $ref: '#/components/schemas/api_register'
  *   responses:
  *     '200':
  *       description: User exist in database and return the information of your profile
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/register'
+ *             $ref: '#/components/schemas/api_register'
  *         application/xml:
  *           schema:
- *             $ref: '#/components/schemas/register'
+ *             $ref: '#/components/schemas/api_register'
  *         application/x-www-form-urlencoded:
  *           schema:
- *             $ref: '#/components/schemas/register'
+ *             $ref: '#/components/schemas/api_register'
  *     "404":
  *       description: User not found in database and return the message of error
  *   security:
@@ -83,7 +94,7 @@ const router = Router();
  *        description: Error in upload file keys or source code please try again later
  *      "500":
  *       description: Web server is down at the moment, try again later
- * 
+ *
  * /api/archives:
  *   get:
  *    tags:
@@ -100,7 +111,7 @@ const router = Router();
  *        description: Error in upload file keys or source code please try again later
  *      "500":
  *        description: Web server is down at the moment, try again later
- * 
+ *
  * /api/products/{product}:
  *   get:
  *    tags:
@@ -116,7 +127,7 @@ const router = Router();
  *               $ref: '#/components/schemas/api_product'
  *        application/xml:
  *            schema:
- *              $ref: '#/components/schemas/api_product'    
+ *              $ref: '#/components/schemas/api_product'
  *        application/x-www-form-urlencoded:
  *            schema:
  *              $ref: '#/components/schemas/api_product'
@@ -131,7 +142,7 @@ const router = Router();
  *         description: Product not found in database and return the message of error
  *      "500":
  *         description: Web server is down at the moment, try again later
- * 
+ *
  * /api/products:
  *   get:
  *     tags:
@@ -148,7 +159,7 @@ const router = Router();
  *        description: Product not found in database and return the message of error
  *      "500":
  *        description: Web server is down at the moment, try again later
- * 
+ *
  * /api/products/add-product:
  *   post:
  *     tags:
@@ -164,7 +175,7 @@ const router = Router();
  *               $ref: '#/components/schemas/api_product'
  *          application/xml:
  *            schema:
- *              $ref: '#/components/schemas/api_product'    
+ *              $ref: '#/components/schemas/api_product'
  *          application/x-www-form-urlencoded:
  *            schema:
  *              $ref: '#/components/schemas/api_product'
@@ -177,7 +188,7 @@ const router = Router();
  *               $ref: '#/components/schemas/api_product'
  *          application/xml:
  *            schema:
- *              $ref: '#/components/schemas/api_product'    
+ *              $ref: '#/components/schemas/api_product'
  *          application/x-www-form-urlencoded:
  *            schema:
  *              $ref: '#/components/schemas/api_product'
@@ -185,7 +196,7 @@ const router = Router();
  *         description: Product not found in database and return the message of error
  *      "500":
  *         description: Web server is down at the moment, try again later
- * 
+ *
  * /api/products/edit-product/{product}:
  *   put:
  *     tags:
@@ -202,7 +213,7 @@ const router = Router();
  *          description: Product not found in database and return the message of error
  *       "500":
  *          description: Web server is down at the moment, try again later
- * 
+ *
  * /api/products/delete-product/{product}:
  *   delete:
  *     tags:
@@ -211,28 +222,51 @@ const router = Router();
  *     description: Delete information on the products so far registered by the association by id product
  *     operationId: deleteProduct
  *     requestBody:
- *         description: Delete product information so far by id
+ *        description: Delete product information so far by id
  *     responses:
  *       '200':
  *         description: Product exist in database and return the information of your profile
  *       "404":
- *         description: Product not found in database and return the message of error   
+ *         description: Product not found in database and return the message of error
  *       "500":
  *         description: Web server is down at the moment, try again later
+ *
+ * /api/products/recommendation:
+ *   post:
+ *     tags:
+ *       - Products
+ *     summary: Get product recommendation
+ *     description: Obtain information on the products so far registered by the association
+ *     operationId: recomendProduct
+ *     requestBody:
+ *       description: Product id to obtain the information of your profile
+ *     responses:
+ *       '200':
+ *          description: Product exist in database and return the information of your profile
+ *       "404":
+ *          description: Product not found in database and return the message of error
+ *       "500":
+ *          description: Web server is down at the moment, try again later
  */
 
 //? Api Archives //
-router.post('/api/archives/upload', checkJwt, multerMiddleware.single('myfile'), getFile);
-router.get('/api/archives', logMiddleware, getFiles, devMiddlware);
+router.post(
+   '/api/archives/upload',
+   checkJwt,
+   multerMiddleware.single('myfile'),
+   getFile
+);
+router.get('/api/archives', getFiles, devMiddlware);
 
 //? Api Products //
 router.delete('/api/products/delete-product/:product', deleteProduct);
 router.put('/api/products/edit-product/:product', editProduct);
+router.post('/api/products/recommendation', recomendProduct);
 router.post('/api/products/add-product', addProduct);
 router.get('/api/products/:product', getProduct);
 router.get('/api/products', getProducts);
 
 //? Api Users //
-router.get('/api/users/:user', logMiddleware, getUser);
+router.get('/api/users/:user', getUser);
 
 export { router };

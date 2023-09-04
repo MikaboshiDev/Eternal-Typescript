@@ -5,7 +5,7 @@ import { logMiddleware } from '../middleware/logs.middlware';
 import { Router, Response, Request } from 'express';
 import { passport } from '../../src/utils/passport';
 const router = Router();
-
+router.use(logMiddleware);
 /**
  * @openapi
  * /auth/login:
@@ -122,38 +122,42 @@ const router = Router();
  *        content:
  *          application/json:
  *            schema:
- *              $ref: '#/components/schemas/register'
+ *              $ref: '#/components/schemas/api_register'
  *          application/xml:
- *              $ref: '#/components/schemas/register'
+ *              $ref: '#/components/schemas/api_register'
  *          application/x-www-form-urlencoded:
- *              $ref: '#/components/schemas/register'
+ *              $ref: '#/components/schemas/api_register'
  *      responses:
  *        '200':
  *           description: The user has successfully logged into the api rest
  *           content:
  *             application/json:
  *               schema:
- *                 $ref: '#/components/schemas/register'
+ *                 $ref: '#/components/schemas/api_register'
  *             application/xml:
- *                 $ref: '#/components/schemas/register'
+ *                 $ref: '#/components/schemas/api_register'
  *             application/x-www-form-urlencoded:
- *                 $ref: '#/components/schemas/register'
+ *                 $ref: '#/components/schemas/api_register'
  *        "404":
  *          description: Error in login keys or source code please try again later
  *
  */
 
 //? Auth Routes Web //
-router.get('/auth/logout', authInspection, logMiddleware, authLogout);
-router.get('/auth/login', logMiddleware, passport.authenticate('discord', {
+router.get('/auth/logout', authInspection, authLogout);
+router.get(
+   '/auth/login',
+   passport.authenticate('discord', {
       failureRedirect: '/auth/logout',
-   }), (req: Request, res: Response) => { res.redirect('/');
+   }),
+   (req: Request, res: Response) => {
+      res.redirect('/');
    }
 );
 
 //? Auth Routes Api //
-router.post('/api/register', logMiddleware, registerCtrl);
-router.post('/api/login/user', logMiddleware, postUser);
-router.post('/api/login', logMiddleware, loginCtrl);
+router.post('/api/register', registerCtrl);
+router.post('/api/login/user', postUser);
+router.post('/api/login', loginCtrl);
 
 export { router };

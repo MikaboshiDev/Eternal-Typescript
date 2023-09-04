@@ -73,4 +73,9 @@ const deleteProduct = async (req: Request, res: Response) => {
     return res.status(200).json({ message: "OK" });
 }
 
-export { getProducts, getProduct, addProduct, editProduct, deleteProduct };
+const recomendProduct = async (req: Request, res: Response) => {
+    const { name, price, description, image, category, quantity, date } = req.body;
+    return res.status(200).json({ message: "OK" });
+}
+
+export { getProducts, getProduct, addProduct, editProduct, deleteProduct, recomendProduct };
