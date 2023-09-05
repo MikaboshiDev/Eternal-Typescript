@@ -1,37 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url = env("MONGO_URL")
+}
+
+model Infraction {
+  id          String  @id @map("_id")
+  guildId     String
+  userId      String
+  moderatorId String
+  reason      String? @default("No reason was provided")
+  type        String  @default("Warn")
+  since       BigInt
+  expires     BigInt?
+}
+
+model AutomodInfraction {
+  id      String  @id @map("_id")
+  guildId String
+  userId  String
+  reason  String? @default("No reason was provided")
+  since   BigInt
+  expires BigInt?
+}
+
+model Note {
+  id       String  @id @map("_id")
+  guildId  String
+  userId   String
+  authorId String
+  message  String
+  since    BigInt
+  edited   Boolean? @default(false)
+}
+
+model CustomCommand {
+  id          String  @id @map("_id")
+  guildId     String
+  name        String
+  description String
+  content     String
+}
+
 model Guild {
-    id        String  @id @default(uuid())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    members   User[]
-    channels  Channel[]
-}
-model User {
-    id        String  @id @default(uuid())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    guilds    Guild[]
-    messages  Message[]
-}
-
-model Channel {
-    id        String  @id @default(uuid())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    guild     Guild   @relation(fields: [guildId], references: [id])
-    guildId   String
-    messages  Message[]
-}
-
-model Message {
-    id        String  @id @default(uuid())
-    content   String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    user      User    @relation(fields: [userId], references: [id])
-    userId    String
-    channel   Channel @relation(fields: [channelId], references: [id])
-    channelId String
+  id             String  @id @default(uuid()) @map("_id")
+  prefix         String? @default("!")
+  weblogChannel  String?
+  modlogChannel  String?
+  automodChannel String?
+  automodEnabled Boolean @default(false)
+  automodInvites Boolean @default(false)
 }

@@ -13,6 +13,7 @@
   "dependencies": {
     "@prisma/client": "^5.2.0",
     "bcryptjs": "^2.4.3",
+    "child_process": "^1.0.2",
     "colors": "^1.4.0",
     "cookie-parser": "^1.4.6",
     "discord.js": "^14.13.0",

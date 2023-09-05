@@ -8,3 +8,5 @@ export const client = new Manager();
 client.start().then(() => {
    logWithLabel('discord', `The bot has been logged in correctly as ${client.user?.tag}!`);
 });
+
+export { Manager };
