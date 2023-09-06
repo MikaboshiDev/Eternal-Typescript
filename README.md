@@ -9,9 +9,8 @@
 
 ## 📢 Project Description.
 
-**Neko - Manager** is a multifunction bot for Discord, with which you can manage your server in an easier and simpler way, with moderation commands, fun, usefulness and more.
-we attach advanced level systems to complement the servers in different areas from `minecraft, pterodactyl, study, game, anime and much more`, always looking for the
-user has a unique and pleasant experience.
+**Neko - Api Control** Una api controlada por un bot de discord con el fin de dar soporte a gran cantidad de usuarios de discordd y de la comunidad de **Neko**.
+recuerda dar creditos del proyecto a **Hanzel** y **Horus**.
 
 ### Custom Packages:
 

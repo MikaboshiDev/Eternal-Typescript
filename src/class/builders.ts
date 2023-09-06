@@ -7,8 +7,6 @@ import {
 } from 'discord.js';
 import { Manager } from '../index';
 
-// FIXME: Fix the typings for the slash command builders
-
 export interface CommandOptions {
    ownerOnly?: boolean;
    autocomplete?: (
