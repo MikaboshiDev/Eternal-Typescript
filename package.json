@@ -1,7 +1,7 @@
 {
-  "name": "neko---typescript",
+  "name": "temple-discord-bot",
   "version": "0.0.1",
-  "description": "",
+  "description": "bot de discord escrito en typescript para el soporte en distintas areas de un servidor de discord",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^5.2.0",
+    "bcryptjs": "^2.4.3",
     "child_process": "^1.0.2",
     "colors": "^1.4.0",
     "cookie-parser": "^1.4.6",
@@ -31,6 +32,7 @@
     "swagger-ui-express": "^5.0.0"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.3",
     "@types/cookie-parser": "^1.4.3",
     "@types/express": "^4.17.17",
     "@types/express-session": "^1.17.7",

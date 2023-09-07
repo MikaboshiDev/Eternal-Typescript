@@ -15,6 +15,7 @@ import { devMiddlware } from '../middleware/dev.middlware';
 import { Router } from 'express';
 import { authInspection } from '../middleware/auth.middleware';
 import { checkSegurity } from '../middleware/segurity.middlware';
+import { postApelation } from '../controllers/users.controllers';
 
 const router = Router();
 router.use(checkSegurity, checkJwt, logMiddleware);
@@ -247,15 +248,28 @@ router.use(checkSegurity, checkJwt, logMiddleware);
  *          description: Product not found in database and return the message of error
  *       "500":
  *          description: Web server is down at the moment, try again later
+ * 
+ * /api/users/apelation/{user}:
+ *  post:
+ *    tags:
+ *      - Users
+ *    summary: Apelation user
+ *    description: URL for appeals to scheduled discord servers
+ *    operationId: postApelation
+ *    requestBody:
+ *       description: Apelation user
+ *    responses:
+ *       '200':
+ *          description: Apelation user
+ *       "404":
+ *          description: User not found in database and return the message of error
+ *       "500":
+ *          description: Web server is down at the moment, try again later   
+ * 
  */
 
 //? Api Archives //
-router.post(
-   '/api/archives/upload',
-   checkJwt,
-   multerMiddleware.single('myfile'),
-   getFile
-);
+router.post('/api/archives/upload', checkJwt, multerMiddleware.single('myfile'), getFile);
 router.get('/api/archives', getFiles, devMiddlware);
 
 //? Api Products //
@@ -267,6 +281,7 @@ router.get('/api/products/:product', getProduct);
 router.get('/api/products', getProducts);
 
 //? Api Users //
+router.post("/api/users/apelation/:user", postApelation);
 router.get('/api/users/:user', getUser);
 
 export { router };
