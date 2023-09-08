@@ -1,12 +1,15 @@
-import { Router, Request, Response } from "express";
-import { logMiddleware } from "../middleware/logs.middlware";
-import { authInspection } from "../middleware/auth.middleware";
-import { devMiddlware } from "../middleware/dev.middlware";
-import { getAllUsers, getBans, getStatus } from "../controllers/dev.controllers";
-import { checkJwt } from "../middleware/session.middlware";
-import { checkSegurity } from "../middleware/segurity.middlware";
+import { Router, Request, Response } from 'express';
+import { logMiddleware } from '../middleware/logs.middlware';
+import { authInspection } from '../middleware/auth.middleware';
+import { devMiddlware } from '../middleware/dev.middlware';
+import {
+   getAllUsers,
+   getBans,
+   getStatus,
+} from '../controllers/dev.controllers';
+import { checkJwt } from '../middleware/session.middlware';
+import { checkSegurity } from '../middleware/segurity.middlware';
 const router = Router();
-router.use(logMiddleware, authInspection, devMiddlware, checkJwt, checkSegurity);
 /**
  * @openapi
  * /api/status:
@@ -25,7 +28,7 @@ router.use(logMiddleware, authInspection, devMiddlware, checkJwt, checkSegurity)
  *          description: Unauthorized and return the message of error
  *       "500":
  *          description: Internal Server Error and return the message of error
- * 
+ *
  * /api/status/users:
  *   get:
  *     tags:
@@ -33,7 +36,7 @@ router.use(logMiddleware, authInspection, devMiddlware, checkJwt, checkSegurity)
  *     summary: Get all users (only for developers)
  *     description: Get all users registered in the database (only for developers) for the dashboard
  *     operationId: getAllUsers
- *     requestBody: 
+ *     requestBody:
  *        description: Get all users registered in the database (only for developers) for the dashboard (only for developers)
  *        content:
  *           application/json:
@@ -61,8 +64,8 @@ router.use(logMiddleware, authInspection, devMiddlware, checkJwt, checkSegurity)
  *       "401":
  *          description: Unauthorized and return the message of error
  *       "500":
- *          description: Internal Server Error and return the message of error 
- * 
+ *          description: Internal Server Error and return the message of error
+ *
  * /api/status/bans:
  *   get:
  *    tags:
@@ -70,7 +73,7 @@ router.use(logMiddleware, authInspection, devMiddlware, checkJwt, checkSegurity)
  *    summary: Get all bans.
  *    description: Get all bans from the server is the bot is in (only for developers) for the dashboard
  *    operationId: getBans
- *    requestBody: 
+ *    requestBody:
  *      description: Get all bans from the server is the bot is in (only for developers) for the dashboard (only for developers)
  *    responses:
  *      '200':
@@ -79,11 +82,24 @@ router.use(logMiddleware, authInspection, devMiddlware, checkJwt, checkSegurity)
  *         description: Unauthorized and return the message of error
  *      "500":
  *         description: Internal Server Error and return the message of error
- *   
+ *
  */
 
-router.get("/api/status", getStatus);
-router.get("/api/status/users", getAllUsers);
-router.get("/api/status/bans", getBans);
+router.get(
+   '/api/status/users',
+   getAllUsers,
+   devMiddlware,
+   checkJwt,
+);
+router.get(
+   '/api/status/bans',
+   getBans,
+   checkJwt,
+);
+router.get(
+   '/api/status',
+   getStatus,
+   checkJwt,
+);
 
-export { router }
+export { router };

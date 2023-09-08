@@ -16,9 +16,7 @@ import { Router } from 'express';
 import { authInspection } from '../middleware/auth.middleware';
 import { checkSegurity } from '../middleware/segurity.middlware';
 import { postApelation } from '../controllers/users.controllers';
-
 const router = Router();
-router.use(checkSegurity, checkJwt, logMiddleware);
 
 /**
  * @openapi
@@ -248,7 +246,7 @@ router.use(checkSegurity, checkJwt, logMiddleware);
  *          description: Product not found in database and return the message of error
  *       "500":
  *          description: Web server is down at the moment, try again later
- * 
+ *
  * /api/users/apelation/{user}:
  *  post:
  *    tags:
@@ -264,24 +262,90 @@ router.use(checkSegurity, checkJwt, logMiddleware);
  *       "404":
  *          description: User not found in database and return the message of error
  *       "500":
- *          description: Web server is down at the moment, try again later   
- * 
+ *          description: Web server is down at the moment, try again later
+ *
+ * /api/users/report:
+ *  post:
+ *    tags:
+ *       - Users
+ *    summary: Report user
+ *    description: URL for reports to scheduled discord servers the user is in the server and the bot has access to the server
+ *    operationId: postReport
+ *    requestBody:
+ *       description: Report user in the server
+ *    responses:
+ *       '200':
+ *          description: Report user in the server
+ *       "404":
+ *          description: User not found in database and return the message of error
+ *       "500":
+ *          description: Web server is down at the moment, try again later
+ *
  */
 
 //? Api Archives //
-router.post('/api/archives/upload', checkJwt, multerMiddleware.single('myfile'), getFile);
-router.get('/api/archives', getFiles, devMiddlware);
+router.post(
+   '/api/archives/upload',
+   checkJwt,
+   multerMiddleware.single('myfile'),
+   getFile
+);
+router.get(
+   '/api/archives',
+   getFiles,
+   checkJwt,
+);
 
 //? Api Products //
-router.delete('/api/products/delete-product/:product', deleteProduct);
-router.put('/api/products/edit-product/:product', editProduct);
-router.post('/api/products/recommendation', recomendProduct);
-router.post('/api/products/add-product', addProduct);
-router.get('/api/products/:product', getProduct);
-router.get('/api/products', getProducts);
+router.delete(
+   '/api/products/delete-product/:product',
+   checkJwt,
+   devMiddlware,
+   deleteProduct
+);
+router.put(
+   '/api/products/edit-product/:product',
+   editProduct,
+   devMiddlware,
+   checkJwt
+);
+router.post(
+   '/api/products/recommendation',
+   recomendProduct,
+   checkJwt,
+);
+router.post(
+   '/api/products/add-product',
+   addProduct,
+   devMiddlware,
+   checkJwt
+);
+router.get(
+   '/api/products/:product',
+   getProduct,
+   checkJwt,
+);
+router.get(
+   '/api/products',
+   getProducts,
+   checkJwt,
+);
 
 //? Api Users //
-router.post("/api/users/apelation/:user", postApelation);
-router.get('/api/users/:user', getUser);
+router.post(
+   '/api/users/apelation/:user',
+   postApelation,
+   checkJwt,
+);
+router.post(
+   '/api/users/report',
+   postApelation,
+   checkJwt,
+);
+router.get(
+   '/api/users/:user', 
+   getUser, 
+   checkJwt, 
+);
 
 export { router };

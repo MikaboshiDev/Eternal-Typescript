@@ -7,6 +7,8 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import express from 'express';
 import path from 'node:path';
+import morgan from 'morgan';
+import { logMiddleware } from './middleware/logs.middlware';
 
 export class ExpressServer {
    app: any;
@@ -29,6 +31,8 @@ export class ExpressServer {
       this.app.set('view engine', 'ejs');
       this.app.use(passport.session());
       this.app.use(express.json());
+      this.app.use(morgan('dev'));
+      this.app.use(logMiddleware);
       this.app.use(router);
    }
 

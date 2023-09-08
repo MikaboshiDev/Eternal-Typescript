@@ -4,8 +4,9 @@ import { authInspection } from '../middleware/auth.middleware';
 import { logMiddleware } from '../middleware/logs.middlware';
 import { Router, Response, Request } from 'express';
 import { passport } from '../../src/utils/passport';
+import { checkJwt } from '../middleware/session.middlware';
+import { checkSegurity } from '../middleware/segurity.middlware';
 const router = Router();
-router.use(logMiddleware);
 /**
  * @openapi
  * /auth/login:
@@ -144,7 +145,12 @@ router.use(logMiddleware);
  */
 
 //? Auth Routes Web //
-router.get('/auth/logout', authInspection, authLogout);
+router.get(
+   '/auth/logout', 
+   logMiddleware, 
+   authInspection, 
+   authLogout
+);
 router.get(
    '/auth/login',
    passport.authenticate('discord', {
@@ -156,8 +162,18 @@ router.get(
 );
 
 //? Auth Routes Api //
-router.post('/api/register', registerCtrl);
-router.post('/api/login/user', postUser);
-router.post('/api/login', loginCtrl);
+router.post(
+   '/api/register', 
+   registerCtrl
+);
+router.post(
+   '/api/login/user', 
+   postUser,
+   checkJwt,
+);
+router.post(
+   '/api/login', 
+   loginCtrl
+);
 
 export { router };

@@ -29,12 +29,13 @@ const getAllUsers = async (req: Request, res: Response) => {
    });
 };
 
-const getBans = async (req: Request, res: Response) => { 
+const getBans = async (req: Request, res: Response) => {
    const guild = client.guilds.cache.get(process.env.guild_id!);
-   if (!guild) return res.status(500).json({ message: 'Internal Server Error' });
+   if (!guild)
+      return res.status(500).json({ message: 'Internal Server Error' });
 
    const bans = await guild?.bans.fetch();
    return res.status(200).json({ message: 'OK', data: bans });
-}
+};
 
 export { getStatus, getAllUsers, getBans };
