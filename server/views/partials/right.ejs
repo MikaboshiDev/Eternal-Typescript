@@ -1,0 +1,103 @@
+<div class="right">
+   <div class="top">
+      <button id="menu-btn"></button>
+      <div class="theme-toggler">
+         <i class="material-icons-sharp active">light_mode</i>
+         <i class="material-icons-sharp">dark_mode</i>
+      </div>
+      <div class="profile">
+         <div class="info">
+            <p>Hey, <b><%= user.username %></b></p>
+            <small class="text-muted">
+               <% const member =
+               r_client.guilds.cache.get("1099013284889370696").members.cache.get(user.id);
+               let role = ""; %> <% if (member) { %>
+               <% if (member.permissions.has("ManageGuild")) { %> <% role =
+               "Owner"; %> <% } else if
+               (member.permissions.has("Administrator")) { %> <% role =
+               "Administrator"; %> <% } else { %> <% role = "User"; %> <% } %>
+               <% } else { %>
+               Sin Registrar <% } %> <%= role %>
+            </small>
+         </div>
+         <div class="profile-photo">
+            <img src="<%= avatarURL(user.id) %>" alt="profile" />
+         </div>
+      </div>
+   </div>
+   <div class="recent-updates">
+      <h2><a href="#">Reviews Discord</a></h2>
+      <div class="updates">
+         <% messages.forEach((msg) => { %>
+         <div class="update">
+            <div class="profile-photo">
+               <img src="<%= msg.userimage %>" alt="<%= msg.username %>" />
+            </div>
+            <div class="message">
+               <p>
+                  <b><%= msg.username %></b>
+                  <% if
+                  (msg.message.startsWith('https://cdn.discordapp.com/attachments'))
+                  { %>
+                  <a href="<%= msg.message %>">Ir a imagen</a>
+                  <% } else if (msg.message.startsWith('https://') ||
+                  msg.message.startsWith('http://')) { %> Mensaje bloqueado <% }
+                  else { %> <%= msg.message %> <% } %>
+               </p>
+               <small class="text-muted"><%= timeAgo(msg.createdAt) %></small>
+            </div>
+         </div>
+         <% }); %>
+      </div>
+   </div>
+   <div class="sales-analytics">
+      <h2><a href="#">Sales Analytics</a></h2>
+      <div class="item online">
+         <div class="icon">
+            <i class="material-icons-sharp">shopping_cart</i>
+         </div>
+         <div class="right">
+            <div class="info">
+               <h3>ONLINE ORDERS</h3>
+               <small class="text-muted">Last 24 Hours</small>
+            </div>
+            <h5 class="success">+39%</h5>
+            <h3>3849</h3>
+         </div>
+      </div>
+      <div class="item offline">
+         <div class="icon">
+            <i class="material-icons-sharp">local_mall</i>
+         </div>
+         <div class="right">
+            <div class="info">
+               <h3>OFFLINE ORDERS</h3>
+               <small class="text-muted">Last 24 Hours</small>
+            </div>
+            <h5 class="danger">-17%</h5>
+            <h3>1100</h3>
+         </div>
+      </div>
+      <div class="item customers">
+         <div class="icon">
+            <i class="material-icons-sharp">person</i>
+         </div>
+         <div class="right">
+            <div class="info">
+               <h3>NEW CUSTOMERS</h3>
+               <small class="text-muted">Last 24 Hours</small>
+            </div>
+            <h5 class="success">+25%</h5>
+            <h3>849</h3>
+         </div>
+      </div>
+      <div class="item add-product">
+         <div>
+            <i class="material-icons-sharp">add</i>
+            <h3>
+               <a href="/add-product" id="show-form">Add Product</a>
+            </h3>
+         </div>
+      </div>
+   </div>
+</div>

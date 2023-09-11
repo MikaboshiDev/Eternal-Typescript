@@ -145,35 +145,20 @@ const router = Router();
  */
 
 //? Auth Routes Web //
-router.get(
-   '/auth/logout', 
-   logMiddleware, 
-   authInspection, 
-   authLogout
-);
+router.get('/auth/logout', logMiddleware, authInspection, authLogout);
 router.get(
    '/auth/login',
    passport.authenticate('discord', {
       failureRedirect: '/auth/logout',
    }),
    (req: Request, res: Response) => {
-      res.redirect('/');
+      res.redirect('/dashboard');
    }
 );
 
 //? Auth Routes Api //
-router.post(
-   '/api/register', 
-   registerCtrl
-);
-router.post(
-   '/api/login/user', 
-   postUser,
-   checkJwt,
-);
-router.post(
-   '/api/login', 
-   loginCtrl
-);
+router.post('/api/register', registerCtrl);
+router.post('/api/login/user', postUser, checkJwt);
+router.post('/api/login', loginCtrl);
 
 export { router };

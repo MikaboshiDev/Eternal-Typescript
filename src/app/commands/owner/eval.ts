@@ -1,6 +1,7 @@
 import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
-import { Command } from '../../../class/builders';
 import { logWithLabel } from '../../../utils/console';
+import emojis from "../../../../config/emojis.json";
+import { Command } from '../../../class/builders';
 
 export default new Command(
    new SlashCommandBuilder()
@@ -15,7 +16,12 @@ export default new Command(
         ),
    async (client, interaction) => {
     const code = interaction.options.getString('code');
-    if (!code) return interaction.reply('Please provide a code to evaluate!');
+    if (!code) return interaction.reply({
+        content: [
+            `${emojis.error} Please provide code to evaluate ${interaction.user}`,
+            `Example: \`/eval 1 + 1\``,
+        ].join('\n'),
+    });
 
     try {
         const evaluated = await eval(code);
@@ -27,7 +33,12 @@ export default new Command(
         await interaction.reply({ embeds: [embed] });
     } catch (err) {
         logWithLabel("error", `${err}`)
-        return interaction.reply(`Error while evaluating: \`${err}\``);
+        return interaction.reply({
+            content: [
+                `${emojis.error} An error occured while evaluating the code ${interaction.user}`,
+                `\`\`\`js\n${err}\`\`\``,
+            ].join('\n'),
+        });
     }
    }
 );

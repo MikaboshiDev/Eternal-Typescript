@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link
+         href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+         rel="stylesheet"
+      />
+      <link href="/css/welcome.css" rel="stylesheet" />
+      <link rel="shortcut icon" href="/images/logo.jpg" type="image/gif" />
+      <title><%= r_client.user.username %> - Home</title>
+      <%- include("./partials/meta.ejs") %>
+   </head>
+   <body>
+      <div class="container">
+         <aside>
+            <%- include('./partials/aside.ejs'); %>
+         </aside>
+         <main>
+            <h1>Manager Control</h1>
+            <div class="date">
+               <input type="date" />
+            </div>
+         </main>
+         <%- include("./partials/right.ejs") %>
+      </div>
+      <footer class="footer-credits">
+         <%- include('./partials/footer.ejs'); %>
+      </footer>
+      <script src="/js/dark.theme.js"></script>
+   </body>
+</html>

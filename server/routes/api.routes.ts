@@ -16,6 +16,7 @@ import { Router } from 'express';
 import { authInspection } from '../middleware/auth.middleware';
 import { checkSegurity } from '../middleware/segurity.middlware';
 import { postApelation } from '../controllers/users.controllers';
+import { postMessages } from '../controllers/dev.controllers';
 const router = Router();
 
 /**
@@ -281,6 +282,43 @@ const router = Router();
  *       "500":
  *          description: Web server is down at the moment, try again later
  *
+ * /api/messages:
+ *  post:
+ *    tags:
+ *      - Api
+ *    summary: Post messages to the server
+ *    description: Post messages to the server for the user to see the messages in the chat
+ *    operationId: postMessages
+ *    requestBody:
+ *       description: Post messages to the server for the user to see the messages in the chat
+ *       content:
+ *          application/json:
+ *             schema:
+ *                $ref: '#/components/schemas/api_message'
+ *          application/xml:
+ *             schema:
+ *                $ref: '#/components/schemas/api_message'
+ *          application/x-www-form-urlencoded:
+ *             schema:
+ *                $ref: '#/components/schemas/api_message'
+ *    responses:
+ *      '200':
+ *          description: Post messages to the server for the user to see the messages in the chat
+ *          content:
+ *             application/json:
+ *                schema:
+ *                   $ref: '#/components/schemas/api_message'
+ *             application/xml:
+ *                schema:
+ *                   $ref: '#/components/schemas/api_message'
+ *             application/x-www-form-urlencoded:
+ *                schema:
+ *                   $ref: '#/components/schemas/api_message'
+ *      "404":
+ *          description: Error in upload file keys or source code please try again later
+ *      "500":
+ *          description: Web server is down at the moment, try again later
+ *
  */
 
 //? Api Archives //
@@ -290,11 +328,7 @@ router.post(
    multerMiddleware.single('myfile'),
    getFile
 );
-router.get(
-   '/api/archives',
-   getFiles,
-   checkJwt,
-);
+router.get('/api/archives', getFiles, checkJwt);
 
 //? Api Products //
 router.delete(
@@ -309,43 +343,18 @@ router.put(
    devMiddlware,
    checkJwt
 );
-router.post(
-   '/api/products/recommendation',
-   recomendProduct,
-   checkJwt,
-);
-router.post(
-   '/api/products/add-product',
-   addProduct,
-   devMiddlware,
-   checkJwt
-);
-router.get(
-   '/api/products/:product',
-   getProduct,
-   checkJwt,
-);
-router.get(
-   '/api/products',
-   getProducts,
-   checkJwt,
-);
+
+router.post('/api/products/recommendation', recomendProduct, checkJwt);
+router.post('/api/products/add-product', addProduct, devMiddlware, checkJwt);
+router.get('/api/products/:product', getProduct, checkJwt);
+router.get('/api/products', getProducts, checkJwt);
 
 //? Api Users //
-router.post(
-   '/api/users/apelation/:user',
-   postApelation,
-   checkJwt,
-);
-router.post(
-   '/api/users/report',
-   postApelation,
-   checkJwt,
-);
-router.get(
-   '/api/users/:user', 
-   getUser, 
-   checkJwt, 
-);
+router.post('/api/users/apelation/:user', postApelation, checkJwt);
+router.post('/api/users/report', postApelation, checkJwt);
+router.get('/api/users/:user', getUser, checkJwt);
+
+//? Api Website Config //
+router.post('/api/messages', checkJwt, postMessages, devMiddlware);
 
 export { router };

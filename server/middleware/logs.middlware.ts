@@ -8,7 +8,7 @@ const logMiddleware = async (
    const header = req.headers;
    const userAuth = header['user-agent'];
    const user = req.params.user;
-   logWithLabel('routes', `User: ${user} | User-Agent: ${userAuth}`);
+   logWithLabel('routes', `Accessing with ${userAuth}, IP: ${req.ip}`);
    next();
 };
 

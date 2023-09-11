@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link
+         href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+         rel="stylesheet"
+      />
+      <link href="/css/add-product.css" rel="stylesheet" />
+      <link rel="shortcut icon" href="/images/logo.jpg" type="image/gif" />
+      <title><%= r_client.user.username %> - Products</title>
+      <%- include("./partials/meta.ejs") %>
+   </head>
+   <body>
+      <div class="container">
+         <aside>
+            <%- include('./partials/aside.ejs'); %>
+         </aside>
+         <main>
+            <h1>Add Product</h1>
+            <div class="date">
+               <input type="date" />
+            </div>
+            <div class="overlay" id="form-overlay">
+               <div class="form-container" id="form-product">
+                  <div
+                     class="material-icons-sharp close-button"
+                     id="close-button"
+                  >
+                     close
+                  </div>
+                  <form
+                     class="form-card"
+                     action="#"
+                     method="POST"
+                  >
+                     <h2>Enter Product Data</h2>
+
+                     <div class="form-field">
+                        <label for="nombre">Name:</label>
+                        <input type="text" id="nombre" name="nombre" required />
+                     </div>
+
+                     <div class="form-field">
+                        <label for="id">ID:</label>
+                        <input type="text" id="id" name="id" required />
+                     </div>
+
+                     <div class="form-field">
+                        <label for="payment">Payment:</label>
+                        <input
+                           type="text"
+                           id="payment"
+                           name="payment"
+                           required
+                        />
+                     </div>
+
+                     <div class="form-field">
+                        <label for="status">Status:</label>
+                        <input type="text" id="status" name="status" required />
+                     </div>
+
+                     <div class="form-field">
+                        <label for="description">Descriptión:</label>
+                        <input
+                           type="text"
+                           id="description"
+                           name="description"
+                           required
+                        />
+                     </div>
+
+                     <div class="form-field">
+                        <label for="imageURL">Image URL:</label>
+                        <input
+                           type="text"
+                           id="imageURL"
+                           name="imageURL"
+                           required
+                        />
+                     </div>
+                     <button type="button">
+                        <input type="submit" value="Agregar Producto" />
+                     </button>
+                  </form>
+               </div>
+            </div>
+            <script>
+               document
+                  .querySelector('.close-button')
+                  .addEventListener('click', function () {
+                     window.location.href = '/products';
+                  });
+            </script>
+         </main>
+            <%- include("./partials/right.ejs") %>
+      </div>
+      <footer class="footer-credits">
+         <%- include('./partials/footer.ejs'); %>
+      </footer>
+      <script src="/js/dark.theme.js"></script>
+   </body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/luxon@2.0.2/build/global/luxon.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon/dist/chartjs-adapter-luxon.min.js"></script>
+      <title><%= r_client.user.username %> - Status</title>
+      <link
+         href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+         rel="stylesheet"
+      />
+      <link href="/css/client.css" rel="stylesheet" />
+      <link href="/images/logo.jpg" rel="icon" type="image/png" />
+      <%- include("./partials/meta.ejs") %>
+   </head>
+   <body>
+      <div class="container">
+         <aside><%- include('./partials/aside.ejs'); %></aside>
+         <main>
+            <h1>Discord Bot Status</h1>
+            <div class="date">
+               <input type="date" />
+            </div>
+            <div class="graficas">
+               <div class="media-users" id="botUsers">
+                  <p>
+                     Last update: <%= new Date(clientPing).toLocaleString() %>
+                  </p>
+                  <canvas id="botChart" width="400" height="200"></canvas>
+               </div>
+               <div class="status-bot" id="botStatus">
+                  <p>
+                     Last update: <%= new Date(clientPing).toLocaleString() %>
+                  </p>
+                  <canvas id="statusBot" width="400" height="200"></canvas>
+               </div>
+            </div>
+            <div class="table-logs">
+               <table>
+                  <thead>
+                     <tr>
+                        <th>Archive</th>
+                        <th>Download</th>
+                        <th>Actions</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <% archives.forEach(archive => { %>
+                     <tr>
+                        <td><%= archive.name %></td>
+                        <td>
+                           <a href="/download/<%= archive.name %>">Download</a>
+                        </td>
+                        <td>
+                           <a
+                              href="#"
+                              class="delete-link"
+                              data-filename="<%= archive.name %>"
+                              >Delete</a
+                           >
+                        </td>
+                     </tr>
+                     <% }); %>
+                  </tbody>
+               </table>
+               <div class="pagination">
+                  <button id="prevButton" class="pagination-button">
+                     <i class="material-icons-sharp">chevron_left</i>
+                  </button>
+                  <button id="nextButton" class="pagination-button">
+                     <i class="material-icons-sharp">chevron_right</i>
+                  </button>
+               </div>
+            </div>
+            <script>
+               const archives = <% JSON.stringify(archives) %>;
+               const table = document.querySelector('.table-logs table tbody');
+               const prevButton = document.getElementById('prevButton');
+               const nextButton = document.getElementById('nextButton');
+               const itemsPerPage = 10;
+               let currentPage = 0;
+
+               function updateTable() {
+                   const startIndex = currentPage * itemsPerPage;
+                   const endIndex = startIndex + itemsPerPage;
+                   const maxPage = Math.ceil(archives.length / itemsPerPage);
+
+                   let tableHTML = '';
+
+                   for (let i = startIndex; i < Math.min(endIndex, archives.length); i++) {
+                       tableHTML += `
+                           <tr>
+                               <td>${archives[i].name}</td>
+                               <td>
+                                   <a href="/download/${archives[i].name}">Descargar</a>
+                               </td>
+                               <td>
+                                   <a href="/delete/${archives[i].name}">Eliminar</a>
+                               </td>
+                           </tr>
+                       `;
+                   }
+
+                   table.innerHTML = tableHTML;
+
+                   prevButton.disabled = currentPage === 0;
+                   nextButton.disabled = currentPage === maxPage - 1;
+               }
+
+               prevButton.addEventListener('click', () => {
+                   if (currentPage > 0) {
+                       currentPage--;
+                       updateTable();
+                   }
+               });
+
+               nextButton.addEventListener('click', () => {
+                   const maxPage = Math.ceil(archives.length / itemsPerPage);
+                   if (currentPage < maxPage - 1) {
+                       currentPage++;
+                       updateTable();
+                   }
+               });
+
+               updateTable();
+            </script>
+         </main>
+         <%- include("./partials/right.ejs") %>
+      </div>
+      <footer class="footer-credits">
+         <%- include('./partials/footer.ejs'); %>
+      </footer>
+      <script src="/js/dark.theme.js"></script>
+      <script src="/js/method.delete.js"></script>
+      <script src="/js/grafic.users.js"></script>
+      <script src="/js/grafic.ping.js"></script>
+   </body>
+</html>

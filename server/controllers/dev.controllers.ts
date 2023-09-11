@@ -1,4 +1,5 @@
 import UserModel from '../../src/models/auth';
+import MsgModel from "../../src/models/messages";
 import { Request, Response } from 'express';
 import { client } from '../../src/index';
 import moment from 'moment';
@@ -38,4 +39,21 @@ const getBans = async (req: Request, res: Response) => {
    return res.status(200).json({ message: 'OK', data: bans });
 };
 
-export { getStatus, getAllUsers, getBans };
+const postMessages = async (req: Request, res: Response) => {
+   const { username, userid, userimage, message, messageid } = req.body;
+   const data = await MsgModel.findOne({ messageid: messageid });
+   if (data) return res.status(200).json({ message: 'OK', data: data });
+
+   const newMsg = new MsgModel({
+      username: username,
+      userid: userid,
+      userimage: userimage,
+      message: message,
+      messageid: messageid,
+   });
+
+   await newMsg.save();
+   return res.status(200).json({ message: 'OK', data: newMsg });
+};
+
+export { getStatus, getAllUsers, getBans, postMessages };

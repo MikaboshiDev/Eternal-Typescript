@@ -113,7 +113,24 @@ const swaggerDefinition: OAS3Definition = {
                quantity: { type: "number", example: 1 },
                date: { type: "string", example: "2021-08-01T00:00:00.000Z" },
             }
-         } 
+         },
+         api_message: {
+            type: "object",
+            required: [
+               "username",
+               "userid",
+               "userimage",
+               "message",
+               "messageid",
+            ],
+            properties: {
+               username: { type: "string", example: "manhwas_web" },
+               userid: { type: "number", example: 123456789 },
+               userimage: { type: "string", example: "https://example.com/example.png" },
+               message: { type: "string", example: "example the bot discord app in the server discord where the bot is in terminal console" },
+               messageid: { type: "string", example: "123456789" },
+            }
+         }
       },
    },
    securitySchemes: {

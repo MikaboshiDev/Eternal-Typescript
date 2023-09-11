@@ -1,0 +1,73 @@
+{
+   "anger": "🤬",
+   "arrow": "➡️",
+   "bank": "�",
+   "bear": "🐻",
+   "box": "📦",
+   "building": "🏪",
+   "casino": "🎰",
+   "clock": "⌛",
+   "coin": "🪙",
+   "commands": "�",
+   "correct": "✅",
+   "counter": "🌐",
+   "danger": "☢️",
+   "error": "❌",
+   "fire": "�",
+   "folders": "�",
+   "globe": "�",
+   "house": "🎍",
+   "ice": "❄️",
+   "landscape": "�",
+   "members": "🫂",
+   "menus": {
+      "manager": {
+         "option_1": "🌍",
+         "option_2": "�",
+         "option_3": "❄️",
+         "option_4": "🎍",
+         "option_5": "🌊"
+      },
+      "quest": {
+         "negative": "❌",
+         "positive": "✅"
+      },
+      "tickets": {
+         "option_1": "🌍",
+         "option_2": "💵",
+         "option_3": "🤖",
+         "option_4": "🤬",
+         "option_5": "☢️",
+         "option_6": "🌄",
+         "option_7": "☀️",
+         "option_8": "❔"
+      }
+   },
+   "moderation": "🔐",
+   "money": "💵",
+   "music": "�",
+   "network": "🌐",
+   "note": "�",
+   "perfil": {
+      "allianzas": "☣️",
+      "bug": "🔊",
+      "dev": "�",
+      "owner": "👑",
+      "premium": "🎮",
+      "staff": "🍄",
+      "supported": "☃️"
+   },
+   "question": "❔",
+   "ranking": "📈",
+   "robot": "🤖",
+   "scroll": "📜",
+   "settings": "⚙️",
+   "shield": "🔰",
+   "star": "⭐",
+   "store": "🏪",
+   "sun": "�",
+   "timer": "⏳",
+   "tree": "�",
+   "wallet": "👛",
+   "wave": "🌊"
+}

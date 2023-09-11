@@ -85,21 +85,8 @@ const router = Router();
  *
  */
 
-router.get(
-   '/api/status/users',
-   getAllUsers,
-   devMiddlware,
-   checkJwt,
-);
-router.get(
-   '/api/status/bans',
-   getBans,
-   checkJwt,
-);
-router.get(
-   '/api/status',
-   getStatus,
-   checkJwt,
-);
+router.get('/api/status/users', getAllUsers, devMiddlware, checkJwt);
+router.get('/api/status/bans', getBans, checkJwt);
+router.get('/api/status', getStatus, checkJwt);
 
 export { router };
