@@ -1,12 +1,20 @@
 import { logWithLabel } from '../utils/console';
+import config from "../../config/gmail.json";
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
-   service: "gmail",
+   host: 'smtp.gmail.com',
+   port: 587, 
+   secure: false, 
    auth: {
-      user: '',
-      pass: "",
+      user: config[1].gmail,
+      pass: config[1].password,
    },
+});
+
+transporter.verify((error: any, success: any) => {
+   if (error) logWithLabel('error', `Error in the email: ${error}`);
+   else logWithLabel('success', `Server is ready to take our messages: ${success}`);
 });
 
 const enviarCorreo = (
@@ -15,17 +23,17 @@ const enviarCorreo = (
    mensaje: string
 ) => {
    const opcionesCorreo = {
-      from: '',
+      from: config[1].gmail,
       to: destinatario,
       subject: asunto,
       text: mensaje,
    };
 
-   transporter.sendMail(opcionesCorreo, (error: any, info: { response: any; }) => {
-        if (error) logWithLabel("error", `Error in the email: ${error}`);
-        else logWithLabel("success", `Email sent: ${info.response}`);
-   });
+   transporter.sendMail( opcionesCorreo, (error: any, info: { response: any }) => {
+         if (error) logWithLabel('error', `Error in the email: ${error}`);
+         else logWithLabel('success', `Email sent: ${info.response}`);
+      }
+   );
 };
 
-export { enviarCorreo }
-
+export { enviarCorreo };

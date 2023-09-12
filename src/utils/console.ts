@@ -7,6 +7,7 @@ type Labels =
    | 'express'
    | 'info'
    | 'routes'
+   | "websocket"
    | 'discord';
 function logWithLabel(label: Labels, message: string) {
    const labels: Record<Labels, string> = {
@@ -18,6 +19,7 @@ function logWithLabel(label: Labels, message: string) {
       info: '[INFO]'.cyan,
       discord: '[DISCORD]'.black,
       routes: '[ROUTES]'.white,
+      websocket: '[WEBSOCKET]'.cyan
    };
 
    const formattedLabel = labels[label] || label || '';

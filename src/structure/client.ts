@@ -126,7 +126,8 @@ export class Manager extends Client {
       await this.deploy();
 
       const express = new ExpressServer();
-      express.start(3000);
+      const port = process.env.port_api!;
+      express.start(port ? parseInt(port) : 3000);
       db();
    }
 }
