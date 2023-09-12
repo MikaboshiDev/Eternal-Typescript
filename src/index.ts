@@ -1,7 +1,7 @@
 import { logWithLabel } from './utils/console';
 import { Manager } from './structure/client';
-import '../server/websocket';
 import { config } from 'dotenv';
+import '../server/websocket';
 import { join } from 'path';
 
 config({ path: join(__dirname, '..', '.env') });

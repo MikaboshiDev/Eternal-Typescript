@@ -4,11 +4,11 @@ import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
    host: 'smtp.gmail.com',
-   port: 587, 
-   secure: false, 
+   port: 587,
+   secure: false,
    auth: {
-      user: config[1].gmail,
-      pass: config[1].password,
+      user: 'sn4083495@gmail.com', //config[1].gmail
+      pass: 'hbxssyaaqjtencvi', //config[1].password
    },
 });
 
@@ -23,7 +23,7 @@ const enviarCorreo = (
    mensaje: string
 ) => {
    const opcionesCorreo = {
-      from: config[1].gmail,
+      from: 'sn4083495@gmail.com', //config[1].gmail
       to: destinatario,
       subject: asunto,
       text: mensaje,

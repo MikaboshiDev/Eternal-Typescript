@@ -56,11 +56,11 @@
    "homepage": "http://www.night-support.xyz/",
    "keywords": [],
    "license": "ISC",
-   "main": "index.js",
+   "main": "shards.js",
    "name": "temple-discord-bot",
    "readme": "README.md",
    "scripts": {
-      "night": "nodemon ./src/index.ts",
+      "night": "nodemon ./src/shards.ts",
       "test": "echo \"Error: no test specified\" && exit 1"
    },
    "version": "0.0.1"

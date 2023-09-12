@@ -1,3 +1,5 @@
+import { EmbedBuilder } from 'discord.js';
+import { client } from '../../src/index';
 import model from '../../src/models/products';
 import { Request, Response } from 'express';
 
@@ -79,8 +81,43 @@ const deleteProduct = async (req: Request, res: Response) => {
 };
 
 const recomendProduct = async (req: Request, res: Response) => {
-   const { name, price, description, image, category, quantity, date } =
-      req.body;
+   const channel = client.channels.cache.get(process.env.channel_web!);
+   if (!channel?.isTextBased())
+      return res.status(404).json({ message: 'NOT_FOUND' });
+
+   channel
+      .send({
+         embeds: [
+            new EmbedBuilder()
+               .setColor('Green')
+               .setAuthor({
+                  name: 'Product - Recomendation',
+                  iconURL: client.user?.displayAvatarURL(),
+                  url: 'https://discord.js.org',
+               })
+               .setTitle('Product - Recomendation')
+               .setDescription('A new product has been added to the store')
+               .setThumbnail(req.body.image)
+               .addFields(
+                  { name: 'Name', value: req.body.name, inline: true },
+                  {
+                     name: 'Day',
+                     value: `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
+                     inline: true,
+                  },
+                  {
+                     name: 'Description',
+                     value: req.body.description,
+                     inline: false,
+                  },
+                  { name: 'Category', value: req.body.category, inline: true },
+                  { name: 'User Owner', value: req.body.user, inline: true }
+               ),
+         ],
+      })
+      .catch((err) => {
+         res.status(500).json({ message: 'INTERNAL_SERVER_ERROR' });
+      });
    return res.status(200).json({ message: 'OK' });
 };
 

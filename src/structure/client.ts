@@ -23,6 +23,7 @@ export class Manager extends Client {
    //public db: PrismaClient = new PrismaClient();
    constructor() {
       super({
+         shards: 'auto',
          failIfNotExists: false,
          allowedMentions: {
             parse: ['users', 'roles'],

@@ -240,6 +240,16 @@ const router = Router();
  *     operationId: recomendProduct
  *     requestBody:
  *       description: Product id to obtain the information of your profile
+ *       content:
+ *         application/json:
+ *             schema:
+ *                $ref: '#/components/schemas/api_recommend_product'
+ *         application/xml:
+ *             schema:
+ *                $ref: '#/components/schemas/api_recommend_product'
+ *         application/x-www-form-urlencoded:
+ *             schema:
+ *                $ref: '#/components/schemas/api_recommend_product'
  *     responses:
  *       '200':
  *          description: Product exist in database and return the information of your profile

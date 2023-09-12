@@ -1,0 +1,9 @@
+POST "http://localhost:3000/api/products/recommendation"
+Content-Type: application/json
+{
+    "name": "product1",
+    "user" : "pepito",
+    "description": "product1 description",
+    "image": "https://cdn.discordapp.com/attachments/1134529955330535487/1141973128940097547/profile.jpg",
+    "category": "category1"
+}

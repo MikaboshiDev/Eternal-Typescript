@@ -44,7 +44,7 @@ router.get(
             timeAgo: function (date: Date) {
                return require('moment')(date).fromNow();
             },
-            messages: messages,
+            messages: messages
          });
       } catch (err) {
          console.error(err);

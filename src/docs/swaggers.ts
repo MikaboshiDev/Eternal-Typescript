@@ -130,6 +130,23 @@ const swaggerDefinition: OAS3Definition = {
                message: { type: "string", example: "example the bot discord app in the server discord where the bot is in terminal console" },
                messageid: { type: "string", example: "123456789" },
             }
+         },
+         api_recommend_product: {
+            type: "object",
+            required: [
+               "name",
+               "description",
+               "image",
+               "category",
+               "user"
+            ],
+            properties: {
+               name: { type: "string", example: "bot_discord" },
+               description: { type: "string", example: "example the bot discord app" },
+               image: { type: "string", example: "https://example.com/example.png" },
+               category: { type: "string", example: "discord" },
+               user: { type: "string", example: "manhwas_web" },
+            }
          }
       },
    },
