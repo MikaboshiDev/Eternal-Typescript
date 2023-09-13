@@ -12,7 +12,7 @@ import { checkSegurity } from '../middleware/segurity.middlware';
 const router = Router();
 /**
  * @openapi
- * /api/status:
+ * /api/v1/status:
  *   get:
  *     tags:
  *        - Dev
@@ -29,7 +29,7 @@ const router = Router();
  *       "500":
  *          description: Internal Server Error and return the message of error
  *
- * /api/status/users:
+ * /api/v1/status/users:
  *   get:
  *     tags:
  *       - Dev
@@ -66,7 +66,7 @@ const router = Router();
  *       "500":
  *          description: Internal Server Error and return the message of error
  *
- * /api/status/bans:
+ * /api/v1/status/bans:
  *   get:
  *    tags:
  *      - Dev
@@ -85,8 +85,8 @@ const router = Router();
  *
  */
 
-router.get('/api/status/users', getAllUsers, devMiddlware, checkJwt);
-router.get('/api/status/bans', getBans, checkJwt);
-router.get('/api/status', getStatus, checkJwt);
+router.get('/api/v1/status/users', getAllUsers, devMiddlware, checkJwt);
+router.get('/api/v1/status/bans', getBans, checkJwt);
+router.get('/api/v1/status', getStatus, checkJwt);
 
 export { router };

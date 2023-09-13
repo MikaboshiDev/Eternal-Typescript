@@ -10,6 +10,8 @@ export default new Event('interactionCreate', async (interaction) => {
    if (command.options?.ownerOnly && interaction.user.id !== process.env.owner_id) return interaction.reply({ 
     embeds: [embed('This command is owner only!', "error")] 
    });
+
+   
    
    command.run(client, interaction, /*client.db*/);
 });

@@ -43,7 +43,7 @@ const router = Router();
  *     "404":
  *        description: Error in logout keys or source code please try again later
  *
- * /api/register:
+ * /api/v1/register:
  *  post:
  *    tags:
  *      - Auth
@@ -97,13 +97,13 @@ const router = Router();
  *      "404":
  *        description: Error in register keys or source code please try again later
  *
- * /api/login:
+ * /api/v1/login:
  *  post:
  *   tags:
  *     - Auth
  *   summary: Log in the control rest api
  *   description: Log in the control rest api to be able to access different data and methods
- *   parameters: 
+ *   parameters:
  *       - name: password
  *         in: query
  *         description: The password of the user to register
@@ -143,7 +143,7 @@ const router = Router();
  *     "404":
  *       description: Error in login keys or source code please try again later
  *
- * /api/login/user:
+ * /api/v1/login/user:
  *    post:
  *      tags:
  *        - Users
@@ -189,8 +189,8 @@ router.get(
 );
 
 //? Auth Routes Api //
-router.post('/api/register', registerCtrl);
-router.post('/api/login/user', postUser, checkJwt);
-router.post('/api/login', loginCtrl);
+router.post('/api/v1/register', registerCtrl);
+router.post('/api/v1/login/user', postUser, checkJwt);
+router.post('/api/v1/login', loginCtrl);
 
 export { router };

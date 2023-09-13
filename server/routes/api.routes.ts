@@ -21,7 +21,7 @@ const router = Router();
 
 /**
  * @openapi
- * /api/users/{user}:
+ * /api/v1/users/{user}:
  *  get:
  *   tags:
  *     - Users
@@ -67,7 +67,7 @@ const router = Router();
  *        - 'write:night'
  *        - 'read:night'
  *
- * /api/archives/upload:
+ * /api/v1/archives/upload:
  *   post:
  *    tags:
  *      - Api
@@ -120,7 +120,7 @@ const router = Router();
  *      "500":
  *       description: Web server is down at the moment, try again later
  *
- * /api/archives:
+ * /api/v1/archives:
  *   get:
  *    tags:
  *      - Api
@@ -137,7 +137,7 @@ const router = Router();
  *      "500":
  *        description: Web server is down at the moment, try again later
  *
- * /api/products/{product}:
+ * /api/v1/products/{product}:
  *   get:
  *    tags:
  *      - Products
@@ -227,7 +227,7 @@ const router = Router();
  *      "500":
  *         description: Web server is down at the moment, try again later
  *
- * /api/products:
+ * /api/v1/products:
  *   get:
  *     tags:
  *       - Products
@@ -244,7 +244,7 @@ const router = Router();
  *      "500":
  *        description: Web server is down at the moment, try again later
  *
- * /api/products/add-product:
+ * /api/v1/products/add-product:
  *   post:
  *     tags:
  *       - Products
@@ -340,7 +340,7 @@ const router = Router();
  *      "500":
  *         description: Web server is down at the moment, try again later
  *
- * /api/products/edit-product/{product}:
+ * /api/v1/products/edit-product/{product}:
  *   put:
  *     tags:
  *       - Products
@@ -416,7 +416,7 @@ const router = Router();
  *       "500":
  *          description: Web server is down at the moment, try again later
  *
- * /api/products/delete-product/{product}:
+ * /api/v1/products/delete-product/{product}:
  *   delete:
  *     tags:
  *       - Products
@@ -492,7 +492,7 @@ const router = Router();
  *       "500":
  *         description: Web server is down at the moment, try again later
  *
- * /api/products/recommendation:
+ * /api/v1/products/recommendation:
  *   post:
  *     tags:
  *       - Products
@@ -549,7 +549,7 @@ const router = Router();
  *       "500":
  *          description: Web server is down at the moment, try again later
  *
- * /api/users/apelation/{user}:
+ * /api/v1/users/apelation/{user}:
  *  post:
  *    tags:
  *      - Users
@@ -566,7 +566,7 @@ const router = Router();
  *       "500":
  *          description: Web server is down at the moment, try again later
  *
- * /api/users/report:
+ * /api/v1/users/report:
  *  post:
  *    tags:
  *       - Users
@@ -583,7 +583,7 @@ const router = Router();
  *       "500":
  *          description: Web server is down at the moment, try again later
  *
- * /api/messages:
+ * /api/v1/messages:
  *  post:
  *    tags:
  *      - Api
@@ -624,38 +624,38 @@ const router = Router();
 
 //? Api Archives //
 router.post(
-   '/api/archives/upload',
+   '/api/v1/archives/upload',
    checkJwt,
    multerMiddleware.single('myfile'),
    getFile
 );
-router.get('/api/archives', getFiles, checkJwt);
+router.get('/api/v1/archives', getFiles, checkJwt);
 
 //? Api Products //
 router.delete(
-   '/api/products/delete-product/:product',
+   '/api/v1/products/delete-product/:product',
    checkJwt,
    devMiddlware,
    deleteProduct
 );
 router.put(
-   '/api/products/edit-product/:product',
+   '/api/v1/products/edit-product/:product',
    editProduct,
    devMiddlware,
    checkJwt
 );
 
-router.post('/api/products/recommendation', recomendProduct, checkJwt);
-router.post('/api/products/add-product', addProduct, devMiddlware, checkJwt);
-router.get('/api/products/:product', getProduct, checkJwt);
-router.get('/api/products', getProducts, checkJwt);
+router.post('/api/v1/products/recommendation', recomendProduct, checkJwt);
+router.post('/api/v1/products/add-product', addProduct, devMiddlware, checkJwt);
+router.get('/api/v1/products/:product', getProduct, checkJwt);
+router.get('/api/v1/products', getProducts, checkJwt);
 
 //? Api Users //
-router.post('/api/users/apelation/:user', postApelation, checkJwt);
-router.post('/api/users/report', postApelation, checkJwt);
-router.get('/api/users/:user', getUser, checkJwt);
+router.post('/api/v1/users/apelation/:user', postApelation, checkJwt);
+router.post('/api/v1/users/report', postApelation, checkJwt);
+router.get('/api/v1/users/:user', getUser, checkJwt);
 
 //? Api Website Config //
-router.post('/api/messages', checkJwt, postMessages, devMiddlware);
+router.post('/api/v1/messages', checkJwt, postMessages, devMiddlware);
 
 export { router };

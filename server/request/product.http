@@ -1,4 +1,4 @@
-POST "http://localhost:3000/api/products/recommendation"
+POST "http://localhost:3000/api/v1/products/recommendation"
 Content-Type: application/json
 {
     "name": "product1",
@@ -8,7 +8,7 @@ Content-Type: application/json
     "category": "category1"
 }
 
-PUT "http://localhost:3000/api/products/edit-product/:product"
+PUT "http://localhost:3000/api/v1/products/edit-product/:product"
 Content-Type: application/json
 {
     "name": "product 1",
@@ -21,7 +21,7 @@ Content-Type: application/json
 
 }
 
-DELETE "http://localhost:3000/api/products/delete-product/:product"
+DELETE "http://localhost:3000/api/v1/products/delete-product/:product"
 Content-Type: application/json
 {
     "id": "product1"
