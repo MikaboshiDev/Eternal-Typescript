@@ -7,3 +7,22 @@ Content-Type: application/json
     "image": "https://cdn.discordapp.com/attachments/1134529955330535487/1141973128940097547/profile.jpg",
     "category": "category1"
 }
+
+PUT "http://localhost:3000/api/products/edit-product/:product"
+Content-Type: application/json
+{
+    "name": "product 1",
+    "price": 100,
+    "description": "product 1 description",
+    "image": "https://cdn.discordapp.com/attachments/1134529955330535487/1141973128940097547/profile.jpg",
+    "category": "category 1",
+    "quantity": 10,
+    "date": "2021-09-01"
+
+}
+
+DELETE "http://localhost:3000/api/products/delete-product/:product"
+Content-Type: application/json
+{
+    "id": "product1"
+}

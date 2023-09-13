@@ -24,7 +24,15 @@ const swaggerDefinition: OAS3Definition = {
    servers: [
       {
          url: 'http://localhost:3000',
-         api: 'https://api-horus.herokuapp.com',
+         description: 'local host personal development api',
+      },
+      {
+         url: 'https://api.night-support.xyz',
+         description: 'server production api',
+      },
+      {
+         url: 'https://api.night-support.cloud',
+         description: 'server production api private manager',
       },
    ],
    components: {
@@ -62,92 +70,106 @@ const swaggerDefinition: OAS3Definition = {
             },
          },
          api_auth: {
-            type: "object",
-            required: [
-               "name",
-               "password",
-               "email",
-            ],
+            type: 'object',
+            required: ['name', 'password', 'email'],
             properties: {
-               name: { type: "string", example: "manhwas_web" },
-               password: { type: "string", example: "123456789" },
-               email: { type: "string", example: "example@gamil.com" },
-               timestamp: { type: "string", example: "2021-08-01T00:00:00.000Z" },
-               versionKey: { type: "boolean", example: false },
-            }
+               name: { type: 'string', example: 'manhwas_web' },
+               password: { type: 'string', example: '123456789' },
+               email: { type: 'string', example: 'example@gamil.com' },
+               timestamp: {
+                  type: 'string',
+                  example: '2021-08-01T00:00:00.000Z',
+               },
+               versionKey: { type: 'boolean', example: false },
+            },
          },
          api_upload: {
             type: 'object',
-            required: [
-               'fileName',
-               'idUser',
-               'path',
-            ],
+            required: ['fileName', 'idUser', 'path'],
             properties: {
                fileName: { type: 'string', example: 'example.png' },
                idUser: { type: 'string', example: '123456789' },
-               path: { type: 'string', example: 'https://example.com/example.png' },
-               timestamp: { type: 'string', example: '2021-08-01T00:00:00.000Z' },
+               path: {
+                  type: 'string',
+                  example: 'https://example.com/example.png',
+               },
+               timestamp: {
+                  type: 'string',
+                  example: '2021-08-01T00:00:00.000Z',
+               },
                versionKey: { type: 'boolean', example: false },
-            }
+            },
          },
          api_product: {
-            type: "object",
+            type: 'object',
             required: [
-               "name",
-               "id",
-               "price",
-               "description",
-               "image",
-               "category",
-               "quantity",
-               "date",
+               'name',
+               'id',
+               'price',
+               'description',
+               'image',
+               'category',
+               'quantity',
+               'date',
             ],
             properties: {
-               name: { type: "string", example: "bot_discord" },
-               id: { type: "number", example: 123456789 },
-               price: { type: "number", example: 100 },
-               description: { type: "string", example: "example the bot discord app" },
-               image: { type: "string", example: "https://example.com/example.png" },
-               category: { type: "string", example: "discord" },
-               quantity: { type: "number", example: 1 },
-               date: { type: "string", example: "2021-08-01T00:00:00.000Z" },
-            }
+               name: { type: 'string', example: 'bot_discord' },
+               id: { type: 'number', example: 123456789 },
+               price: { type: 'number', example: 100 },
+               description: {
+                  type: 'string',
+                  example: 'example the bot discord app',
+               },
+               image: {
+                  type: 'string',
+                  example: 'https://example.com/example.png',
+               },
+               category: { type: 'string', example: 'discord' },
+               quantity: { type: 'number', example: 1 },
+               date: { type: 'string', example: '2021-08-01T00:00:00.000Z' },
+            },
          },
          api_message: {
-            type: "object",
+            type: 'object',
             required: [
-               "username",
-               "userid",
-               "userimage",
-               "message",
-               "messageid",
+               'username',
+               'userid',
+               'userimage',
+               'message',
+               'messageid',
             ],
             properties: {
-               username: { type: "string", example: "manhwas_web" },
-               userid: { type: "number", example: 123456789 },
-               userimage: { type: "string", example: "https://example.com/example.png" },
-               message: { type: "string", example: "example the bot discord app in the server discord where the bot is in terminal console" },
-               messageid: { type: "string", example: "123456789" },
-            }
+               username: { type: 'string', example: 'manhwas_web' },
+               userid: { type: 'number', example: 123456789 },
+               userimage: {
+                  type: 'string',
+                  example: 'https://example.com/example.png',
+               },
+               message: {
+                  type: 'string',
+                  example:
+                     'example the bot discord app in the server discord where the bot is in terminal console',
+               },
+               messageid: { type: 'string', example: '123456789' },
+            },
          },
          api_recommend_product: {
-            type: "object",
-            required: [
-               "name",
-               "description",
-               "image",
-               "category",
-               "user"
-            ],
+            type: 'object',
+            required: ['name', 'description', 'image', 'category', 'user'],
             properties: {
-               name: { type: "string", example: "bot_discord" },
-               description: { type: "string", example: "example the bot discord app" },
-               image: { type: "string", example: "https://example.com/example.png" },
-               category: { type: "string", example: "discord" },
-               user: { type: "string", example: "manhwas_web" },
-            }
-         }
+               name: { type: 'string', example: 'bot_discord' },
+               description: {
+                  type: 'string',
+                  example: 'example the bot discord app',
+               },
+               image: {
+                  type: 'string',
+                  example: 'https://example.com/example.png',
+               },
+               category: { type: 'string', example: 'discord' },
+               user: { type: 'string', example: 'manhwas_web' },
+            },
+         },
       },
    },
    securitySchemes: {
@@ -159,9 +181,9 @@ const swaggerDefinition: OAS3Definition = {
                scopes: {
                   identify: 'identify',
                   guilds: 'guilds',
-               }
-            }
-         }
+               },
+            },
+         },
       },
       night_api: {
          type: 'apiKey',
@@ -172,10 +194,10 @@ const swaggerDefinition: OAS3Definition = {
                   identify: 'identify',
                   guilds: 'guilds',
                   token: 'token',
-               }
-            }
-         }
-      }
+               },
+            },
+         },
+      },
    },
 };
 

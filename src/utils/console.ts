@@ -7,19 +7,21 @@ type Labels =
    | 'express'
    | 'info'
    | 'routes'
-   | "websocket"
+   | 'licence'
+   | 'websocket'
    | 'discord';
 function logWithLabel(label: Labels, message: string) {
    const labels: Record<Labels, string> = {
       error: '[ERROR]'.red,
       success: '[SUCCESS]'.green,
+      licence: '[LICENCE]'.yellow,
       debug: '[DEBUG]'.blue,
       shards: '[SHARDS]'.yellow,
       express: '[EXPRESS]'.magenta,
       info: '[INFO]'.cyan,
       discord: '[DISCORD]'.black,
       routes: '[ROUTES]'.white,
-      websocket: '[WEBSOCKET]'.cyan
+      websocket: '[WEBSOCKET]'.gray,
    };
 
    const formattedLabel = labels[label] || label || '';

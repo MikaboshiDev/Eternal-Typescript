@@ -27,6 +27,15 @@ const router = Router();
  *     - Users
  *   summary: Get your profile information within the api
  *   description: Obtain the information of your profile within the api for the validation of technical data of use
+ *   parameters:
+ *     - name: id
+ *       in: path
+ *       description: User id to obtain the information of your profile product
+ *       required: true
+ *       explode: false
+ *       schema:
+ *         type: number
+ *         format: uuid
  *   operationId: getProfile
  *   requestBody:
  *     description: User id to obtain the information of your profile
@@ -64,6 +73,22 @@ const router = Router();
  *      - Api
  *    summary: Upload files via requests
  *    description: Upload files via requests to the host's local files
+ *    parameters:
+ *      - name: fileName
+ *        in: path
+ *        description: File name to upload to the host's local files
+ *        required: true
+ *        explode: false
+ *        schema:
+ *          type: string
+ *      - name: idUser
+ *        in: path
+ *        description: User id to upload to the host's local files
+ *        required: true
+ *        explode: false
+ *        schema:
+ *          type: number
+ *        format: uuid
  *    operationId: postUpload
  *    requestBody:
  *      description: File to upload to the host's local files
@@ -118,6 +143,65 @@ const router = Router();
  *      - Products
  *    summary: Get product information so far
  *    description: Obtain information on the products so far registered by the association
+ *    parameters:
+ *       - name: name
+ *         in: path
+ *         description: database product name
+ *         required: true
+ *         explode: false
+ *         schema:
+ *           type: string
+ *       - name: id
+ *         in: path
+ *         description: unique id of the saved product
+ *         required: true
+ *         explode: false
+ *         schema:
+ *            type: number
+ *       - name: price
+ *         in: path
+ *         description: estimated or rounded product price
+ *         required: true
+ *         explode: false
+ *         schema:
+ *           type: number
+ *         format: float
+ *       - name: description
+ *         in: path
+ *         description: description of the product something introductory about what it does
+ *         required: true
+ *         explode: false
+ *         schema:
+ *            type: string
+ *       - name: image
+ *         in: path
+ *         description: product image an illustration
+ *         required: true
+ *         explode: false
+ *         schema:
+ *            type: string
+ *         format: url
+ *       - name: category
+ *         in: path
+ *         description: category in which the product is found
+ *         required: true
+ *         explode: false
+ *         schema:
+ *           type: string
+ *       - name: quantity
+ *         in: path
+ *         description: intermediate price of estimated products
+ *         required: true
+ *         explode: false
+ *         schema:
+ *           type: number
+ *       - name: date
+ *         in: path
+ *         description: date the product was saved
+ *         required: true
+ *         explode: false
+ *         schema:
+ *           type: string
  *    operationId: getProduct
  *    requestBody:
  *      description: Product id to obtain the information of your profile
@@ -166,6 +250,65 @@ const router = Router();
  *       - Products
  *     summary: Add product information so far
  *     description: Add information on the products so far registered by the association
+ *     parameters:
+ *       - name: name
+ *         in: path
+ *         description: database product name
+ *         required: true
+ *         explode: false
+ *         schema:
+ *           type: string
+ *       - name: id
+ *         in: path
+ *         description: unique id of the saved product
+ *         required: true
+ *         explode: false
+ *         schema:
+ *            type: number
+ *       - name: price
+ *         in: path
+ *         description: estimated or rounded product price
+ *         required: true
+ *         explode: false
+ *         schema:
+ *           type: number
+ *         format: float
+ *       - name: description
+ *         in: path
+ *         description: description of the product something introductory about what it does
+ *         required: true
+ *         explode: false
+ *         schema:
+ *            type: string
+ *       - name: image
+ *         in: path
+ *         description: product image an illustration
+ *         required: true
+ *         explode: false
+ *         schema:
+ *            type: string
+ *         format: url
+ *       - name: category
+ *         in: path
+ *         description: category in which the product is found
+ *         required: true
+ *         explode: false
+ *         schema:
+ *           type: string
+ *       - name: quantity
+ *         in: path
+ *         description: intermediate price of estimated products
+ *         required: true
+ *         explode: false
+ *         schema:
+ *           type: number
+ *       - name: date
+ *         in: path
+ *         description: date the product was saved
+ *         required: true
+ *         explode: false
+ *         schema:
+ *           type: string
  *     operationId: addProduct
  *     requestBody:
  *        description: Add product information so far
@@ -203,6 +346,65 @@ const router = Router();
  *       - Products
  *     summary: Edit product information so far by id
  *     description: Edit information on the products so far registered by the association by id product
+ *     parameters:
+ *       - name: name
+ *         in: path
+ *         description: database product name
+ *         required: true
+ *         explode: false
+ *         schema:
+ *           type: string
+ *       - name: id
+ *         in: path
+ *         description: unique id of the saved product
+ *         required: true
+ *         explode: false
+ *         schema:
+ *            type: number
+ *       - name: price
+ *         in: path
+ *         description: estimated or rounded product price
+ *         required: true
+ *         explode: false
+ *         schema:
+ *           type: number
+ *         format: float
+ *       - name: description
+ *         in: path
+ *         description: description of the product something introductory about what it does
+ *         required: true
+ *         explode: false
+ *         schema:
+ *            type: string
+ *       - name: image
+ *         in: path
+ *         description: product image an illustration
+ *         required: true
+ *         explode: false
+ *         schema:
+ *            type: string
+ *         format: url
+ *       - name: category
+ *         in: path
+ *         description: category in which the product is found
+ *         required: true
+ *         explode: false
+ *         schema:
+ *           type: string
+ *       - name: quantity
+ *         in: path
+ *         description: intermediate price of estimated products
+ *         required: true
+ *         explode: false
+ *         schema:
+ *           type: number
+ *       - name: date
+ *         in: path
+ *         description: date the product was saved
+ *         required: true
+ *         explode: false
+ *         schema:
+ *           type: string
  *     operationId: editProduct
  *     requestBody:
  *       description: Edit product information so far by id
@@ -220,6 +422,65 @@ const router = Router();
  *       - Products
  *     summary: Delete product information so far by id
  *     description: Delete information on the products so far registered by the association by id product
+ *     parameters:
+ *       - name: name
+ *         in: path
+ *         description: database product name
+ *         required: true
+ *         explode: false
+ *         schema:
+ *           type: string
+ *       - name: id
+ *         in: path
+ *         description: unique id of the saved product
+ *         required: true
+ *         explode: false
+ *         schema:
+ *            type: number
+ *       - name: price
+ *         in: path
+ *         description: estimated or rounded product price
+ *         required: true
+ *         explode: false
+ *         schema:
+ *           type: number
+ *         format: float
+ *       - name: description
+ *         in: path
+ *         description: description of the product something introductory about what it does
+ *         required: true
+ *         explode: false
+ *         schema:
+ *            type: string
+ *       - name: image
+ *         in: path
+ *         description: product image an illustration
+ *         required: true
+ *         explode: false
+ *         schema:
+ *            type: string
+ *         format: url
+ *       - name: category
+ *         in: path
+ *         description: category in which the product is found
+ *         required: true
+ *         explode: false
+ *         schema:
+ *           type: string
+ *       - name: quantity
+ *         in: path
+ *         description: intermediate price of estimated products
+ *         required: true
+ *         explode: false
+ *         schema:
+ *           type: number
+ *       - name: date
+ *         in: path
+ *         description: date the product was saved
+ *         required: true
+ *         explode: false
+ *         schema:
+ *           type: string
  *     operationId: deleteProduct
  *     requestBody:
  *        description: Delete product information so far by id
@@ -237,6 +498,36 @@ const router = Router();
  *       - Products
  *     summary: Get product recommendation
  *     description: Obtain information on the products so far registered by the association
+ *     parameters:
+ *       - name: name
+ *         in: path
+ *         description: database product name
+ *         required: true
+ *         explode: false
+ *         schema:
+ *           type: string
+ *       - name: description
+ *         in: path
+ *         description: description of the product something introductory about what it does
+ *         required: true
+ *         explode: false
+ *         schema:
+ *            type: string
+ *       - name: image
+ *         in: path
+ *         description: product image an illustration
+ *         required: true
+ *         explode: false
+ *         schema:
+ *            type: string
+ *         format: url
+ *       - name: category
+ *         in: path
+ *         description: category in which the product is found
+ *         required: true
+ *         explode: false
+ *         schema:
+ *           type: string
  *     operationId: recomendProduct
  *     requestBody:
  *       description: Product id to obtain the information of your profile

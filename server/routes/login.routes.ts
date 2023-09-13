@@ -49,6 +49,25 @@ const router = Router();
  *      - Auth
  *    summary: Register inside the control api
  *    description: Register within the control api to access its functions
+ *    parameters:
+ *       - name: name
+ *         in: query
+ *         description: The name of the user to register
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - name: password
+ *         in: query
+ *         description: The password of the user to register
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - name: email
+ *         in: query
+ *         description: The email of the user to register
+ *         required: true
+ *         schema:
+ *           type: string
  *    operationId: postRegister
  *    requestBody:
  *       description: JWT token generation and encrypted data
@@ -84,6 +103,19 @@ const router = Router();
  *     - Auth
  *   summary: Log in the control rest api
  *   description: Log in the control rest api to be able to access different data and methods
+ *   parameters: 
+ *       - name: password
+ *         in: query
+ *         description: The password of the user to register
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - name: email
+ *         in: query
+ *         description: The email of the user to register
+ *         required: true
+ *         schema:
+ *           type: string
  *   operationId: postLogin
  *   requestBody:
  *     description: Discord login is requested to obtain data

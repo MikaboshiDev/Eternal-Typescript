@@ -1,5 +1,5 @@
 {
-   "author": "night-support",
+   "author": "Api Manager",
    "bugs": {
       "url": "https://github.com/MikaboshiDev/BotTypescript/issues"
    },
@@ -60,7 +60,7 @@
    "name": "temple-discord-bot",
    "readme": "README.md",
    "scripts": {
-      "night": "nodemon ./src/shards.ts",
+      "dev": "nodemon ./src/shards.ts",
       "test": "echo \"Error: no test specified\" && exit 1"
    },
    "version": "0.0.1"
