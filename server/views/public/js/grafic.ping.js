@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
         .getContext('2d');
     let datosDePing = [];
 
-    fetch('/data-client')
+    fetch('/data')
         .then((response) => response.json())
         .then((data) => {
             const { clientPing } = data;

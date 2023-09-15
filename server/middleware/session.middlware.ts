@@ -22,4 +22,12 @@ const checkJwt = (req: RequestExt, res: Response, next: NextFunction) => {
    }
 };
 
-export { checkJwt };
+const checkSegurity = (req: Request, res: Response, next: NextFunction) => {
+   const header = req.headers;
+   const userAuth = header['user-agent'];
+   const user = req.params.user;
+   if (user !== 'Horus') return 'RUT_REDIRECT_INVALID';
+   next();
+};
+
+export { checkJwt, checkSegurity };

@@ -25,5 +25,4 @@ Sharding.on('shardCreate', (shard) => {
          `Shard ${shard.id}: PID: ${shard.process?.pid}`,
       ].join('\n')
    );
-});
- */
+}); */

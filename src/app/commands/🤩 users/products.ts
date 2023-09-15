@@ -16,7 +16,9 @@ export default new Command(
          .setDescription(
             products
                .map((product) => {
-                  return `\`${product.id}\`: ${product.name}`;
+                  if (product.name === undefined) return;
+                  if (product.price === undefined) return;
+                  return `**${product.name}** - ${product.price}`;
                })
                .join('\n')
          );

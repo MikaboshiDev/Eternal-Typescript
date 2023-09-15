@@ -1,14 +1,11 @@
-import { Router, Request, Response } from 'express';
-import { logMiddleware } from '../middleware/logs.middlware';
-import { authInspection } from '../middleware/auth.middleware';
-import { devMiddlware } from '../middleware/dev.middlware';
+import { Router } from 'express';
 import {
    getAllUsers,
    getBans,
    getStatus,
-} from '../controllers/dev.controllers';
+} from '../controllers/owner.controllers';
 import { checkJwt } from '../middleware/session.middlware';
-import { checkSegurity } from '../middleware/segurity.middlware';
+import { devMiddlware } from '../middleware/auth.middleware';
 const router = Router();
 /**
  * @openapi

@@ -1,12 +1,12 @@
 import { authInspection } from '../middleware/auth.middleware';
-import { devMiddlware } from '../middleware/dev.middlware';
-import { logWithLabel } from '../../src/utils/console';
+import { authLogout } from '../controllers/auth.controllers';
 import ProductModel from '../../src/models/products';
 import { Router, Request, Response } from 'express';
+import { passport } from '../../src/utils/passport';
 import MsgModel from '../../src/models/messages';
+import model from '../../src/models/client';
 import { client } from '../../src/index';
 const router = Router();
-import path from 'path';
 import fs from 'fs';
 
 router.get('/', (req: Request, res: Response) => {
@@ -15,6 +15,17 @@ router.get('/', (req: Request, res: Response) => {
       _client: client,
    });
 });
+
+router.get('/auth/logout', authInspection, authLogout);
+router.get(
+   '/auth/login',
+   passport.authenticate('discord', {
+      failureRedirect: '/auth/logout',
+   }),
+   (req: Request, res: Response) => {
+      res.redirect('/dashboard');
+   }
+);
 
 router.get('/error', (req: Request, res: Response) => {
    res.render('error.ejs', {
@@ -32,7 +43,7 @@ router.get(
             .sort({ createdAt: -1 })
             .limit(4);
          if (!req.user) return res.redirect('/error');
-         res.render('welcome.ejs', {
+         res.render('index.ejs', {
             user: req.user,
             r_client: client,
             avatarURL: function (id: string) {
@@ -44,7 +55,7 @@ router.get(
             timeAgo: function (date: Date) {
                return require('moment')(date).fromNow();
             },
-            messages: messages
+            messages: messages,
          });
       } catch (err) {
          console.error(err);
@@ -152,74 +163,58 @@ router.get('/client', authInspection, async (req: Request, res: Response) => {
    }
 });
 
-router.get(
-   '/download/:file',
-   authInspection,
-   devMiddlware,
-   async (req: Request, res: Response) => {
-      try {
-         const file = req.params.file;
-         const directoryPath = './src/logs';
-         const filePath = path.join(directoryPath, file);
-
-         try {
-            await fs.promises.access(filePath, fs.constants.F_OK);
-         } catch (error) {
-            return res.send(`<script>alert('File not found!');</script>`);
-         }
-
-         res.download(filePath, file);
-      } catch (err) {
-         console.error(err);
-         return res.send(`<script>alert('Internal server error!');</script>`);
-      }
+router.get('/policies', authInspection, async (req: Request, res: Response) => {
+   try {
+      const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
+      if (!req.user) return res.redirect('/error');
+      res.render('policies.ejs', {
+         user: req.user,
+         r_client: client,
+         avatarURL: function (id: string) {
+            const user = client.users.cache.get(id);
+            if (user) return user.avatarURL({ forceStatic: true, size: 4096 });
+            else return 'https://cdn.discordapp.com/embed/avatars/0.png';
+         },
+         timeAgo: function (date: Date) {
+            return require('moment')(date).fromNow();
+         },
+         messages: messages,
+      });
+   } catch (err) {
+      console.error(err);
+      return res.send(`<script>alert('Internal server error!');</script>`);
    }
-);
+});
 
-router.delete(
-   '/delete/:file',
-   authInspection,
-   async (req: Request, res: Response) => {
-      try {
-         const file = req.params.file;
-         const directoryPath = './logs';
-         await fs.promises.unlink(`${directoryPath}/${file}`);
-      } catch (err) {
-         console.error(err);
-         logWithLabel('routes', 'Failed to delete file');
-         return res.send(`<script>alert('Internal server error!');</script>`);
-      }
-   }
-);
+router.get("/aplications", authInspection, async (req: Request, res: Response) => {
+   const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
+   const all = await model.find();
+   const data = all.map(x => {
+      return {
+         id: x.id,
+         username: x.username,
+         image: x.image,
+         description: x.description,
+         supportServer: x.supportServer,
+         prefix: x.prefix,
+         website: x.website,
+      };
+   });
 
-router.get(
-   '/policies',
-   authInspection,
-   async (req: Request, res: Response) => {
-      try {
-         const messages = await MsgModel.find()
-            .sort({ createdAt: -1 })
-            .limit(4);
-         if (!req.user) return res.redirect('/error');
-         res.render('policies.ejs', {
-            user: req.user,
-            r_client: client,
-            avatarURL: function (id: string) {
-               const user = client.users.cache.get(id);
-               if (user)
-                  return user.avatarURL({ forceStatic: true, size: 4096 });
-               else return 'https://cdn.discordapp.com/embed/avatars/0.png';
-            },
-            timeAgo: function (date: Date) {
-               return require('moment')(date).fromNow();
-            },
-            messages: messages,
-         });
-      } catch (err) {
-         console.error(err);
-         return res.send(`<script>alert('Internal server error!');</script>`);
-      }
-   }
-);
+   res.render('aplications.ejs', {
+      user: req.user,
+      r_client: client,
+      avatarURL: function (id: string) {
+         const user = client.users.cache.get(id);
+         if (user) return user.avatarURL({ forceStatic: true, size: 4096 });
+         else return 'https://cdn.discordapp.com/embed/avatars/0.png';
+      },
+      timeAgo: function (date: Date) {
+         return require('moment')(date).fromNow();
+      },
+      messages: messages,
+      data: data,
+   });
+});
 
 export { router };

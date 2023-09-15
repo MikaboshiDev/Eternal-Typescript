@@ -33,7 +33,7 @@
                   </div>
                   <form
                      class="form-card"
-                     action="#"
+                     action="/aplications/add-product"
                      method="POST"
                   >
                      <h2>Enter Product Data</h2>
@@ -44,23 +44,8 @@
                      </div>
 
                      <div class="form-field">
-                        <label for="id">ID:</label>
+                        <label for="id">Id:</label>
                         <input type="text" id="id" name="id" required />
-                     </div>
-
-                     <div class="form-field">
-                        <label for="payment">Payment:</label>
-                        <input
-                           type="text"
-                           id="payment"
-                           name="payment"
-                           required
-                        />
-                     </div>
-
-                     <div class="form-field">
-                        <label for="status">Status:</label>
-                        <input type="text" id="status" name="status" required />
                      </div>
 
                      <div class="form-field">
@@ -81,6 +66,16 @@
                            name="imageURL"
                            required
                         />
+                     </div>
+
+                     <div class="form-field">
+                        <label for="price">Category:</label>
+                        <input type="text" id="category" name="category" required />
+                     </div>
+
+                     <div class="form-field">
+                        <label for="price">Price:</label>
+                        <input type="text" id="price" name="price" required />
                      </div>
                      <button type="button">
                         <input type="submit" value="Agregar Producto" />

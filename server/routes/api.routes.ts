@@ -2,21 +2,24 @@ import {
    addProduct,
    deleteProduct,
    editProduct,
+   getFile,
+   getFiles,
    getProduct,
    getProducts,
    recomendProduct,
 } from '../controllers/product.controllers';
-import { getFile, getFiles } from '../controllers/upload.controllers';
-import { logMiddleware } from '../middleware/logs.middlware';
-import { getUser } from '../controllers/login.controllers';
-import { checkJwt } from '../middleware/session.middlware';
-import multerMiddleware from '../middleware/file.middlware';
-import { devMiddlware } from '../middleware/dev.middlware';
-import { Router } from 'express';
-import { authInspection } from '../middleware/auth.middleware';
-import { checkSegurity } from '../middleware/segurity.middlware';
 import { postApelation } from '../controllers/users.controllers';
-import { postMessages } from '../controllers/dev.controllers';
+import { postMessages } from '../controllers/owner.controllers';
+import multerMiddleware from '../middleware/file.middlware';
+import { checkJwt } from '../middleware/session.middlware';
+import { Router } from 'express';
+import {
+   loginCtrl,
+   postUser,
+   registerCtrl,
+} from '../controllers/auth.controllers';
+import { getUser } from '../controllers/auth.controllers';
+import { devMiddlware } from '../middleware/auth.middleware';
 const router = Router();
 
 /**
@@ -619,6 +622,136 @@ const router = Router();
  *          description: Error in upload file keys or source code please try again later
  *      "500":
  *          description: Web server is down at the moment, try again later
+ * /api/v1/register:
+ *  post:
+ *    tags:
+ *      - Auth
+ *    summary: Register inside the control api
+ *    description: Register within the control api to access its functions
+ *    parameters:
+ *       - name: name
+ *         in: query
+ *         description: The name of the user to register
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - name: password
+ *         in: query
+ *         description: The password of the user to register
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - name: email
+ *         in: query
+ *         description: The email of the user to register
+ *         required: true
+ *         schema:
+ *           type: string
+ *    operationId: postRegister
+ *    requestBody:
+ *       description: JWT token generation and encrypted data
+ *       content:
+ *          application/json:
+ *             schema:
+ *                $ref: '#/components/schemas/api_auth'
+ *          application/xml:
+ *             schema:
+ *                $ref: '#/components/schemas/api_auth'
+ *          application/x-www-form-urlencoded:
+ *             schema:
+ *                $ref: '#/components/schemas/api_auth'
+ *    responses:
+ *      '200':
+ *        description: The user has successfully registered in the api rest
+ *        content:
+ *          application/json:
+ *             schema:
+ *                $ref: '#/components/schemas/api_auth'
+ *          application/xml:
+ *             schema:
+ *                $ref: '#/components/schemas/api_auth'
+ *          application/x-www-form-urlencoded:
+ *             schema:
+ *                $ref: '#/components/schemas/api_auth'
+ *      "404":
+ *        description: Error in register keys or source code please try again later
+ *
+ * /api/v1/login:
+ *  post:
+ *   tags:
+ *     - Auth
+ *   summary: Log in the control rest api
+ *   description: Log in the control rest api to be able to access different data and methods
+ *   parameters:
+ *       - name: password
+ *         in: query
+ *         description: The password of the user to register
+ *         required: true
+ *         schema:
+ *           type: string
+ *       - name: email
+ *         in: query
+ *         description: The email of the user to register
+ *         required: true
+ *         schema:
+ *           type: string
+ *   operationId: postLogin
+ *   requestBody:
+ *     description: Discord login is requested to obtain data
+ *     content:
+ *       application/json:
+ *         schema:
+ *          $ref: '#/components/schemas/api_auth'
+ *       application/xml:
+ *          $ref: '#/components/schemas/api_auth'
+ *       application/x-www-form-urlencoded:
+ *          $ref: '#/components/schemas/api_auth'
+ *   responses:
+ *     '200':
+ *       description: The user has successfully logged into the api rest
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/api_auth'
+ *         application/xml:
+ *           schema:
+ *            $ref: '#/components/schemas/api_auth'
+ *         application/x-www-form-urlencoded:
+ *           schema:
+ *            $ref: '#/components/schemas/api_auth'
+ *     "404":
+ *       description: Error in login keys or source code please try again later
+ *
+ * /api/v1/login/user:
+ *    post:
+ *      tags:
+ *        - Users
+ *      summary: Log in the control rest api
+ *      description: register your discord server user for your products, data and statistics control
+ *      operationId: postUser
+ *      requestBody:
+ *        description: Discord login is requested to obtain data
+ *        content:
+ *          application/json:
+ *            schema:
+ *              $ref: '#/components/schemas/api_register'
+ *          application/xml:
+ *              $ref: '#/components/schemas/api_register'
+ *          application/x-www-form-urlencoded:
+ *              $ref: '#/components/schemas/api_register'
+ *      responses:
+ *        '200':
+ *           description: The user has successfully logged into the api rest
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 $ref: '#/components/schemas/api_register'
+ *             application/xml:
+ *                 $ref: '#/components/schemas/api_register'
+ *             application/x-www-form-urlencoded:
+ *                 $ref: '#/components/schemas/api_register'
+ *        "404":
+ *          description: Error in login keys or source code please try again later
  *
  */
 
@@ -632,18 +765,12 @@ router.post(
 router.get('/api/v1/archives', getFiles, checkJwt);
 
 //? Api Products //
-router.delete(
-   '/api/v1/products/delete-product/:product',
+router.delete( '/api/v1/products/delete-product/:product',
    checkJwt,
    devMiddlware,
    deleteProduct
 );
-router.put(
-   '/api/v1/products/edit-product/:product',
-   editProduct,
-   devMiddlware,
-   checkJwt
-);
+router.put('/api/v1/products/edit-product/:product', editProduct, devMiddlware, checkJwt );
 
 router.post('/api/v1/products/recommendation', recomendProduct, checkJwt);
 router.post('/api/v1/products/add-product', addProduct, devMiddlware, checkJwt);
@@ -657,5 +784,10 @@ router.get('/api/v1/users/:user', getUser, checkJwt);
 
 //? Api Website Config //
 router.post('/api/v1/messages', checkJwt, postMessages, devMiddlware);
+
+//? Auth Routes Api //
+router.post('/api/v1/register', registerCtrl);
+router.post('/api/v1/login/user', postUser, checkJwt);
+router.post('/api/v1/login', loginCtrl);
 
 export { router };

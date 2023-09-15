@@ -16,10 +16,12 @@ import { PrismaClient } from '@prisma/client';
 import { readdirSync } from 'node:fs';
 import db from './mongoose';
 import { logWithLabel } from '../utils/console';
+import { deploy, load } from '../utils/handlers';
 
 export class Manager extends Client {
    public commands: Collection<string, Command> = new Collection();
    public categories: Collection<string, string[]> = new Collection();
+   voiceGenerator: Collection<unknown, unknown>;
    //public db: PrismaClient = new PrismaClient();
    constructor() {
       super({
@@ -69,62 +71,17 @@ export class Manager extends Client {
             afk: false,
          },
       });
+
+      this.voiceGenerator = new Collection();
+      this.categories = new Collection();
+      this.commands = new Collection();
    }
 
-   public async load() {
-      for (let dir of readdirSync('./src/app/commands/')) {
-         this.categories.set(dir, []);
-         for (let file of readdirSync('./src/app/commands/' + dir + '/').filter(
-            (f) => f.endsWith('.ts')
-         )) {
-            const module: Command = require('../app/commands/' +
-               dir +
-               '/' +
-               file).default;
-
-            this.commands.set(module.structure.name, module);
-            const data = this.categories.get(dir);
-            data?.push(module.structure.name);
-            this.categories.set(dir, data!);
-         }
-      }
-
-      for (let dir of readdirSync('./src/app/events/')) {
-         for (let file of readdirSync('./src/app/events/' + dir + '/').filter(
-            (f) => f.endsWith('.ts')
-         )) {
-            const module: Event<keyof ClientEvents> = require('../app/events/' +
-               dir +
-               '/' +
-               file).default;
-
-            if (module.once) {
-               this.once(module.event, (...args) => module.run(...args));
-            } else {
-               this.on(module.event, (...args) => module.run(...args));
-            }
-         }
-      }
-   }
-
-   public async deploy() {
-      try {
-         const rest = new REST({ version: '10' }).setToken(process.env.token!);
-         const commands = [...this.commands.values()];
-         logWithLabel('info', 'Deploying application commands...');
-         await rest.put(Routes.applicationCommands(process.env.client_id!), {
-            body: commands.map((s) => s.structure),
-         });
-         logWithLabel('discord', 'Application commands deployed!');
-      } catch {
-         logWithLabel('error', 'Failed to deploy application commands!');
-      }
-   }
 
    public async start() {
-      this.load();
+      load();
       await super.login(process.env.token!);
-      await this.deploy();
+      await deploy();
 
       const express = new ExpressServer();
       const port = process.env.port_api!;

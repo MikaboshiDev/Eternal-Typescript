@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const ctx = document
         .getElementById('botChart')
         .getContext('2d');
-    fetch('/data-client')
+    fetch('/data')
         .then((response) => response.json())
         .then((data) => {
             const { usersAll, botsAll, All, clientStatus } =
