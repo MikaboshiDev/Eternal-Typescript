@@ -16,6 +16,7 @@ export interface CommandOptions {
 }
 
 export class Command {
+
    readonly structure:
       | SlashCommandBuilder
       | SlashCommandSubcommandsOnlyBuilder
