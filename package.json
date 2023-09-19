@@ -64,7 +64,8 @@
     "name": "temple-discord-bot",
     "readme": "README.md",
     "scripts": {
-        "dev": "nodemon ./src/shards.ts",
+        "build": "tsc",
+        "dev": "nodemon ./src/index.ts",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "version": "0.0.1"

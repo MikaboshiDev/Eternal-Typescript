@@ -601,19 +601,6 @@ main .date input[type='date'] {
    font-weight: 600;
 }
 
-/* =============== FOOTERS =============== */
-
-footer.footer-credits {
-   margin-top: 2rem;
-   text-align: center;
-   background: var(--color-white);
-}
-
-footer.footer-credits p {
-   font-size: 1.2rem;
-   color: var(--color-dark);
-}
-
 /* =============== MEDIA QUERIES =============== */
 
 @media screen and (max-width: 1200px) {

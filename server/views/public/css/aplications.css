@@ -379,6 +379,12 @@ main .recent-orders a {
       transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
    }
 
+   .boton-invitar a:hover {
+      background-color: var(--color-info-light);
+      color: var(--color-white);
+      transform: scale(1.1);
+   }
+
    /* Estilo para la paginación */
    .paginacion {
       display: flex;
@@ -571,19 +577,6 @@ main .recent-orders a {
 
 .right .sales-analytics .item.customers .icon {
    background: var(--color-success);
-}
-
-/* =============== FOOTERS =============== */
-
-footer.footer-credits {
-   margin-top: 2rem;
-   text-align: center;
-   background: var(--color-white);
-}
-
-footer.footer-credits p {
-   font-size: 1.2rem;
-   color: var(--color-dark);
 }
 
 /* =============== MEDIA QUERIES =============== */

@@ -1,4 +1,4 @@
-/* import { logWithLabel } from './utils/console';
+import { logWithLabel } from './utils/console';
 import { ShardingManager } from 'discord.js';
 import { config } from 'dotenv';
 import { join } from 'path';
@@ -25,4 +25,4 @@ Sharding.on('shardCreate', (shard) => {
          `Shard ${shard.id}: PID: ${shard.process?.pid}`,
       ].join('\n')
    );
-}); */
+}); 

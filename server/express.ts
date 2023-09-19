@@ -1,6 +1,6 @@
+import swaggerSetup from '../src/functions/modules/swaggers';
 import { logWithLabel } from '../src/utils/console';
 import { passport } from '../src/utils/passport';
-import swaggerSetup from '../src/docs/swaggers';
 import { router } from '../src/utils/request';
 import swaggerUi from 'swagger-ui-express';
 import cookieParser from 'cookie-parser';
@@ -50,7 +50,7 @@ export class ExpressServer {
       );
 
       this.app.set('views', path.join(__dirname, 'views'));
-      const staticDirs = ['css', 'js', 'fonts', 'images'];
+      const staticDirs = ['css', 'js', 'fonts', 'images', "svg"];
 
       staticDirs.forEach((dir) => {
          const staticPath = path.join(__dirname, `views/public/${dir}`);

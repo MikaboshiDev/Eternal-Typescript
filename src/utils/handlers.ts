@@ -7,6 +7,7 @@ import { Command, Event } from '../class/builders';
 import { logWithLabel } from './console';
 import { readdirSync } from 'node:fs';
 import { client } from '../index';
+import fs from 'fs';
 
 const pathCommands = './src/app/commands/';
 const pathEvents = './src/app/events/';
@@ -61,4 +62,32 @@ async function deploy() {
    }
 }
 
-export { load, deploy }
+async function components(client: any) {
+   try {
+      let comandos = 0;
+      fs.readdirSync('./src/app/components').forEach((carpeta) => {
+         const commands = fs
+            .readdirSync(`./src/app/components/${carpeta}`)
+            .filter((archivo) => archivo.endsWith('.ts'));
+         for (let archivo of commands) {
+            let comando: any = require(`../app/components/${carpeta}/${archivo}`)
+            if (comando.name) {
+               client.precommands.set(comando.name, comando);
+               comandos++;
+            } else {
+               console.log(`Comando [/${carpeta}/${archivo}]`);
+               continue;
+            }
+            if (comando.aliases && Array.isArray(comando.aliases))
+               comando.aliases.forEach((alias: string) =>
+                  client.aliases.set(alias, comando.name)
+               );
+         }
+      });
+   } catch (e) {
+      logWithLabel("error", `Error the load commands: ${e}`);
+      console.error(e)
+   }
+}
+
+export { load, deploy, components }

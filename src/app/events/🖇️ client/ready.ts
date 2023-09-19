@@ -20,15 +20,15 @@ const logger = createLogger({
    ),
    transports: [
       new transports.Console(),
-      new transports.File({ filename: `src/logs/${date}` }),
+      new transports.File({ filename: `upload/logs/${date}` }),
    ],
    rejectionHandlers: [
       new transports.Console(),
-      new transports.File({ filename: `src/logs/${date}` }),
+      new transports.File({ filename: `upload/logs/${date}` }),
    ],
    exceptionHandlers: [
       new transports.Console(),
-      new transports.File({ filename: `src/logs/${date}` }),
+      new transports.File({ filename: `upload/logs/${date}` }),
    ],
 });
 

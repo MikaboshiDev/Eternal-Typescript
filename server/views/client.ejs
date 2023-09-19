@@ -38,6 +38,7 @@
                </div>
             </div>
             <div class="table-logs">
+               <h2>Logs Archives</h2>
                <table>
                   <thead>
                      <tr>
@@ -73,6 +74,36 @@
                      <i class="material-icons-sharp">chevron_right</i>
                   </button>
                </div>
+            </div>
+            <div class="recent-orders">
+               <h2>Products Data</h2>
+               <table>
+                  <thead>
+                     <tr>
+                        <th>Product Name</th>
+                        <th>Product ID</th>
+                        <th>Payments</th>
+                        <th>Status</th>
+                        <th></th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <% products.slice(0, 5).forEach(product => { %>
+                     <tr>
+                        <td><%= product.name %></td>
+                        <td><%= product.id %></td>
+                        <td>
+                           <a href="<%= product.payment %>">Download Product</a>
+                        </td>
+                        <td><%= product.status ? 'Active' : 'Inactive' %></td>
+                        <td>
+                           <a href="<%= product.image %>">View image</a>
+                        </td>
+                     </tr>
+                     <% }); %>
+                  </tbody>
+               </table>
+               <a href="/products">See more Products</a>
             </div>
             <script>
                const archives = <% JSON.stringify(archives) %>;

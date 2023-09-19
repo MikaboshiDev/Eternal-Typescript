@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-import { passport } from '../../src/utils/passport';
 import { client } from '../../src/index';
 
 const authInspection = (req: Request, res: Response, next: NextFunction) => {

@@ -3,9 +3,11 @@ import model_products from '../../src/models/products';
 import { Router, Request, Response } from 'express';
 import model from '../../src/models/client';
 import { client } from '../../src/index';
+import multer from 'multer';
 const router = Router();
 import path from 'path';
 import fs from 'fs';
+import { upload } from '../../src/utils/upload';
 
 router.get('/transcript/:id', (req: Request, res: Response) => {
    const id = req.params.id;
@@ -26,17 +28,47 @@ router.get('/transcript/:id/download', (req: Request, res: Response) => {
 });
 
 router.get('/download/:file', async (req: Request, res: Response) => {
-   const file = req.params.file;
-   const directoryPath = './src/logs';
-   const filePath = path.join(directoryPath, file);
-   await fs.promises.access(filePath, fs.constants.F_OK);
-   res.download(filePath, file);
+   try {
+      const file = req.params.file;
+      const directoryPath = [
+         './src/logs',
+         './upload/archives',
+         './upload/transcripts',
+      ];
+      const filePath =
+         path.join(directoryPath[0], file) ||
+         path.join(directoryPath[1], file) ||
+         path.join(directoryPath[2], file);
+      await fs.promises.access(filePath, fs.constants.F_OK);
+      res.download(filePath, file);
+   } catch (error) {
+      res.send(`<script>alert('File not found.')</script>`);
+   }
 });
 
 router.delete('/delete/:file', async (req: Request, res: Response) => {
-   const file = req.params.file;
-   const directoryPath = './logs';
-   await fs.promises.unlink(`${directoryPath}/${file}`);
+   try {
+      const file = req.params.file;
+      const directoryPath = [
+         './src/logs',
+         './upload/archives',
+         './upload/transcripts',
+      ];
+      const filePath =
+         path.join(directoryPath[0], file) ||
+         path.join(directoryPath[1], file) ||
+         path.join(directoryPath[2], file);
+
+      await fs.unlink(filePath, (err) => {
+         if (err) {
+            res.send(`<script>alert('File not found.')</script>`);
+            console.error(err);
+         }
+      });
+      res.send(`<script>alert('File deleted successfully.');</script>`);
+   } catch (error) {
+      res.send(`<script>alert('File not found.')</script>`);
+   }
 });
 
 router.get('/data', async (req, res) => {
@@ -69,30 +101,38 @@ router.post('/aplications/:id', async (req: Request, res: Response) => {
    res.json({ message: 'Bot added to the database.' });
 });
 
-router.post("/aplications/add-product", async (req: Request, res: Response) => {
-      const { name, id, price, description, image, category, quantity, date } =
-         req.body;
-      const data = await model_products.findOne({ id });
-      if (data) return res.status(409).json({ message: 'CONFLICT' });
+router.post('/aplications/add-product', async (req: Request, res: Response) => {
+   const { name, id, price, description, image, category, quantity, date } =
+      req.body;
+   const data = await model_products.findOne({ id });
+   if (data) return res.status(409).json({ message: 'CONFLICT' });
 
-      const modelCreate = new model_products({
-         name: name,
-         id: id,
-         price: price,
-         description: description,
-         image: image,
-         category: category,
-         quantity: quantity || 0,
-         date: date || Date.now(),
-      });
+   const modelCreate = new model_products({
+      name: name,
+      id: id,
+      price: price,
+      description: description,
+      image: image,
+      category: category,
+      quantity: quantity || 0,
+      date: date || Date.now(),
+   });
 
-      const save = await modelCreate.save();
-      if (!save)
-         return res.status(500).json({ message: 'INTERNAL_SERVER_ERROR' });
-      return res.status(200).json({
-         message: 'OK',
-         data: save,
-      });
+   const save = await modelCreate.save();
+   if (!save) return res.status(500).json({ message: 'INTERNAL_SERVER_ERROR' });
+   return res.status(200).json({
+      message: 'OK',
+      data: save,
+   });
 });
+
+router.get(
+   '/upload',
+   upload.single('fileToUpload'),
+   async (req: Request, res: Response) => {
+      if (!req.file) return res.status(400).json({ message: 'BAD_REQUEST' });
+      return res.status(200).json({ message: 'OK', data: req.file });
+   }
+);
 
 export { router };

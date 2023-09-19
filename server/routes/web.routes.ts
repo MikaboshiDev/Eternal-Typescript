@@ -3,6 +3,7 @@ import { authLogout } from '../controllers/auth.controllers';
 import ProductModel from '../../src/models/products';
 import { Router, Request, Response } from 'express';
 import { passport } from '../../src/utils/passport';
+import user from '../../src/models/economy/user';
 import MsgModel from '../../src/models/messages';
 import model from '../../src/models/client';
 import { client } from '../../src/index';
@@ -98,7 +99,7 @@ router.get(
          const messages = await MsgModel.find()
             .sort({ createdAt: -1 })
             .limit(4);
-         res.render('add-product.ejs', {
+         res.render('addProduct.ejs', {
             user: req.user,
             r_client: client,
             avatarURL: function (id: string) {
@@ -119,49 +120,60 @@ router.get(
    }
 );
 
-router.get('/client', authInspection, async (req: Request, res: Response) => {
-   try {
-      const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
-      const directoryPath = './src/logs';
-      async function getFiles() {
-         return new Promise((resolve, reject) => {
-            fs.readdir(directoryPath, (err: any, files: any[]) => {
-               if (err) {
-                  console.error(err);
-                  reject(err);
-               } else {
-                  const archives = files.map((file) => ({
-                     name: file,
-                     downloadLink: `/download/${encodeURIComponent(file)}`,
-                  }));
-                  resolve(archives);
-               }
+router.get(
+   '/analytics',
+   authInspection,
+   async (req: Request, res: Response) => {
+      try {
+         const messages = await MsgModel.find()
+            .sort({ createdAt: -1 })
+            .limit(4);
+         const directoryPath = './src/logs';
+         async function getFiles() {
+            return new Promise((resolve, reject) => {
+               fs.readdir(directoryPath, (err: any, files: any[]) => {
+                  if (err) {
+                     console.error(err);
+                     reject(err);
+                  } else {
+                     const archives = files.map((file) => ({
+                        name: file,
+                        downloadLink: `/download/${encodeURIComponent(file)}`,
+                     }));
+                     resolve(archives);
+                  }
+               });
             });
-         });
-      }
+         }
 
-      const archives = await getFiles();
-      res.render('client.ejs', {
-         user: req.user,
-         r_client: client,
-         avatarURL: function (id: string) {
-            const user = client.users.cache.get(id);
-            if (user) return user.avatarURL({ forceStatic: true, size: 4096 });
-            else return 'https://cdn.discordapp.com/embed/avatars/0.png';
-         },
-         timeAgo: function (date: Date) {
-            return require('moment')(date).fromNow();
-         },
-         messages: messages,
-         files: archives,
-         clientPing: client.ws.ping,
-         archives: archives,
-      });
-   } catch (err) {
-      console.error(err);
-      return res.send(`<script>alert('Internal server error!');</script>`);
+         const products = await ProductModel.find()
+            .sort({ createdAt: -1 })
+            .limit(20);
+         const archives = await getFiles();
+         res.render('client.ejs', {
+            user: req.user,
+            r_client: client,
+            avatarURL: function (id: string) {
+               const user = client.users.cache.get(id);
+               if (user)
+                  return user.avatarURL({ forceStatic: true, size: 4096 });
+               else return 'https://cdn.discordapp.com/embed/avatars/0.png';
+            },
+            timeAgo: function (date: Date) {
+               return require('moment')(date).fromNow();
+            },
+            messages: messages,
+            files: archives,
+            clientPing: client.ws.ping,
+            archives: archives,
+            products: products,
+         });
+      } catch (err) {
+         console.error(err);
+         return res.send(`<script>alert('Internal server error!');</script>`);
+      }
    }
-});
+);
 
 router.get('/policies', authInspection, async (req: Request, res: Response) => {
    try {
@@ -186,22 +198,63 @@ router.get('/policies', authInspection, async (req: Request, res: Response) => {
    }
 });
 
-router.get("/aplications", authInspection, async (req: Request, res: Response) => {
+router.get(
+   '/aplications',
+   authInspection,
+   async (req: Request, res: Response) => {
+      const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
+      const all = await model.find();
+      const data = all.map((x) => {
+         return {
+            id: x.id,
+            username: x.username,
+            image: x.image,
+            description: x.description,
+            supportServer: x.supportServer,
+            prefix: x.prefix,
+            website: x.website,
+         };
+      });
+
+      res.render('aplications.ejs', {
+         user: req.user,
+         r_client: client,
+         avatarURL: function (id: string) {
+            const user = client.users.cache.get(id);
+            if (user) return user.avatarURL({ forceStatic: true, size: 4096 });
+            else return 'https://cdn.discordapp.com/embed/avatars/0.png';
+         },
+         timeAgo: function (date: Date) {
+            return require('moment')(date).fromNow();
+         },
+         messages: messages,
+         data: data,
+      });
+   }
+);
+
+router.get('/economy', authInspection, async (req: Request, res: Response) => {
    const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
-   const all = await model.find();
-   const data = all.map(x => {
+   const guild = client.guilds.cache.get(process.env.guild_id!);
+   const total = await user.find();
+   const userData = total.map((user) => {
+      const member = guild?.members.cache.get(user.userId!);
+
       return {
-         id: x.id,
-         username: x.username,
-         image: x.image,
-         description: x.description,
-         supportServer: x.supportServer,
-         prefix: x.prefix,
-         website: x.website,
+         username: member ? member.user.username : 'Unknown user',
+         avatarURL: member
+            ? member.user.displayAvatarURL({
+                 forceStatic: true,
+                 extension: 'png',
+                 size: 512,
+              })
+            : 'https://cdn.discordapp.com/embed/avatars/0.png',
+         dinero: user.balance,
+         dineroEnBanco: user.bank,
       };
    });
 
-   res.render('aplications.ejs', {
+   res.render('economy.ejs', {
       user: req.user,
       r_client: client,
       avatarURL: function (id: string) {
@@ -213,7 +266,40 @@ router.get("/aplications", authInspection, async (req: Request, res: Response) =
          return require('moment')(date).fromNow();
       },
       messages: messages,
-      data: data,
+      userData: userData,
+   });
+});
+
+router.get('/cdn', authInspection, async (req: Request, res: Response) => {
+   const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
+   const path = './upload/archives';
+   fs.readdir(path, (err, files) => {
+      if (err) return console.error(err);
+      const data = files.map((file) => {
+         return {
+            name: file,
+            extension: file.split('.').pop(),
+            image: `${path}/${file}`,
+            downloadLink: `/download/${encodeURIComponent(file)}`,
+            size: fs.statSync(`${path}/${file}`).size,
+            date: fs.statSync(`${path}/${file}`).mtime,
+         };
+      });
+
+      res.render('cdn.ejs', {
+         user: req.user,
+         r_client: client,
+         avatarURL: function (id: string) {
+            const user = client.users.cache.get(id);
+            if (user) return user.avatarURL({ forceStatic: true, size: 4096 });
+            else return 'https://cdn.discordapp.com/embed/avatars/0.png';
+         },
+         timeAgo: function (date: Date) {
+            return require('moment')(date).fromNow();
+         },
+         messages: messages,
+         data: data,
+      });
    });
 });
 

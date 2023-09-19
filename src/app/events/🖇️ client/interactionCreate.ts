@@ -11,5 +11,5 @@ export default new Event('interactionCreate', async (interaction) => {
     embeds: [embed('This command is owner only!', "error")] 
    });
 
-   command.run(client, interaction, /*client.db*/);
+   command.run(client, interaction, client.paypal);
 });

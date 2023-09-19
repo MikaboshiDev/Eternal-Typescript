@@ -3,26 +3,23 @@ import {
    GatewayIntentBits,
    Partials,
    Collection,
-   Events,
    Options,
-   ActivityType,
-   ClientEvents,
-   REST,
-   Routes,
 } from 'discord.js';
 import { ExpressServer } from '../../server/express';
-import { Command, Event } from '../class/builders';
-import { PrismaClient } from '@prisma/client';
-import { readdirSync } from 'node:fs';
-import db from './mongoose';
-import { logWithLabel } from '../utils/console';
 import { deploy, load } from '../utils/handlers';
+import { Command } from '../class/builders';
+import paypal from "paypal-rest-sdk";
+import db from './mongoose';
+
+import "../functions/modules/economy_modules"
 
 export class Manager extends Client {
    public commands: Collection<string, Command> = new Collection();
    public categories: Collection<string, string[]> = new Collection();
    voiceGenerator: Collection<unknown, unknown>;
-   //public db: PrismaClient = new PrismaClient();
+   precommands: Collection<unknown, unknown>;
+   aliases: Collection<unknown, unknown>;
+   paypal: typeof paypal;
    constructor() {
       super({
          shards: 'auto',
@@ -60,23 +57,20 @@ export class Manager extends Client {
             Partials.GuildScheduledEvent,
             Partials.ThreadMember,
          ],
-         presence: {
-            status: 'idle',
-            activities: [
-               {
-                  name: 'Imperfect Creation in the World',
-                  type: ActivityType.Competing,
-               },
-            ],
-            afk: false,
-         },
+      });
+      paypal.configure({
+         mode: process.env.paypal_mode!,
+         client_id: process.env.paypal_client_id!,
+         client_secret: process.env.paypal_client_secret!,
       });
 
       this.voiceGenerator = new Collection();
+      this.precommands = new Collection();
       this.categories = new Collection();
       this.commands = new Collection();
+      this.aliases = new Collection();
+      this.paypal = paypal;
    }
-
 
    public async start() {
       load();

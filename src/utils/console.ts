@@ -9,6 +9,7 @@ type Labels =
    | 'routes'
    | 'licence'
    | 'websocket'
+   | 'paypal'
    | 'discord';
 function logWithLabel(label: Labels, message: string) {
    const labels: Record<Labels, string> = {
@@ -20,6 +21,7 @@ function logWithLabel(label: Labels, message: string) {
       express: '[EXPRESS]'.magenta,
       info: '[INFO]'.cyan,
       discord: '[DISCORD]'.black,
+      paypal: '[PAYPAL]'.blue,
       routes: '[ROUTES]'.white,
       websocket: '[WEBSOCKET]'.gray,
    };

@@ -23,7 +23,7 @@ export class Command {
    readonly run: (
       client: Manager,
       interaction: ChatInputCommandInteraction,
-      //db: Manager['db']
+      paypal: Manager['paypal']
    ) => void;
    readonly options: CommandOptions | undefined;
 
@@ -35,7 +35,6 @@ export class Command {
       run: (
          client: Manager,
          interaction: ChatInputCommandInteraction,
-         //db: Manager['db']
       ) => void,
       options?: CommandOptions
    ) {

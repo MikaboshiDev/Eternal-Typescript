@@ -4,6 +4,10 @@ import { Event } from '../../../class/builders';
 
 export default new Event('messageCreate', async (message) => {
    if (message.author.bot || !message.guild || !message.channel) return;
+   if (message.channel.id !== process.env.channel_web) return;
+   if (message.content.length < 1) return;
+   if (message.content.length > 40) return;
+
    const msg = await MsgModel.findOne({ messageId: message.id });
    if (msg)
       return logWithLabel('info', 'Message already exists in the database');

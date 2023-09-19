@@ -1,4 +1,4 @@
-import { Router, Request, Response } from 'express';
+import { Request, Response } from 'express';
 import { client } from '../../src/index';
 import { ChannelType, EmbedBuilder } from 'discord.js';
 

@@ -11,7 +11,7 @@ import superagent from 'superagent';
 export default new Command(
    new SlashCommandBuilder()
       .setName('twith')
-      .setDescription('💮 Investigate twith channels with these commands')
+      .setDescription('Investigate twith channels with these commands')
       .setDMPermission(false)
       .addStringOption((option) =>
          option
@@ -87,7 +87,7 @@ export default new Command(
             components: [button],
          });
 
-         interaction.reply({ embeds: [embed] });
+         interaction.reply({ embeds: [embed], components: [row as any] });
          if (upTime.text === channelName + ' is offline') {
             upTime.text = 'if Offline';
          }
