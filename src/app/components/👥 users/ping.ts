@@ -1,12 +1,13 @@
-import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
-import { Command } from '../../../class/builders';
+import { EmbedBuilder, Message } from 'discord.js';
 import user from '../../../models/economy/user';
-export default new Command(
-  new SlashCommandBuilder().setName('ping').setDescription('Replies with Pong!').setDMPermission(false),
-  async (client, interaction) => {
+module.exports = {
+  name: 'ping',
+  description: 'The command to test the bot',
+  aliases: ['alias1', 'alias2'],
+  async execute(client: any, message: Message, args: string[]) {
     async function db_ping() {
       const start = Date.now();
-      await user.findOne({ userId: interaction.user.id });
+      await user.findOne({ userId: message.author.id });
       return Date.now() - start;
     }
 
@@ -24,7 +25,7 @@ export default new Command(
         },
         {
           name: 'Latency',
-          value: `> \`${Date.now() - interaction.createdTimestamp}ms\``,
+          value: `> \`${Date.now() - message.createdTimestamp}ms\``,
           inline: true,
         }
       )
@@ -33,6 +34,6 @@ export default new Command(
         text: `The times are in milliseconds (ms)`,
         iconURL: client.user?.displayAvatarURL(),
       });
-    await interaction.reply({ embeds: [embed] });
-  }
-);
+    await message.channel.send({ embeds: [embed] });
+  },
+};

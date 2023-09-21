@@ -10,11 +10,8 @@ if (!data) process.exit(1);
 
 export const client = new Manager();
 client.start().then(() => {
-   logWithLabel(
-      'discord',
-      `The bot has been logged in correctly as ${client.user?.tag}!`
-   );
-   logWithLabel('discord', `The bot is in ${client.guilds.cache.size} guilds!`);
+  logWithLabel('discord', `The bot has been logged in correctly as ${client.user?.tag}!`);
+  logWithLabel('discord', `The bot is in ${client.guilds.cache.size} guilds!`);
 });
 
 export { Manager };

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title><%= r_client.user.username %> - Notificactions</title>
+      <link
+         href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
+         rel="stylesheet"
+      />
+      <link href="/css/notifications.css" rel="stylesheet" />
+      <link href="/images/logo.jpg" rel="icon" type="image/png" />
+      <%- include("./partials/meta.ejs") %>
+   </head>
+   <body>
+      <div class="container">
+         <aside><%- include('./partials/aside.ejs'); %></aside>
+         <main>
+            <h1>Notice Neko - Manager</h1>
+            <div class="date">
+               <input type="date" />
+            </div>
+            <div class="notices-message">
+               <table>
+                  <thead>
+                     <tr>
+                        <th>Author</th>
+                        <th>Avatar</th>
+                        <th>Content</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <% notices.forEach((notice) => { %>
+                     <tr>
+                        <td><%= notice.authorId %></td>
+                        <td>
+                           <img
+                              src="<%= notice.authorAvatar %>"
+                              alt="Avatar"
+                              width="32"
+                              height="32"
+                           />
+                        </td>
+                        <td>
+                           <% if
+                           (notice.content.startsWith("https://cdn.discordapp.com/attachments/"))
+                           { %> <% if (notice.content.endsWith(".jpg") ||
+                           notice.content.endsWith(".png") ||
+                           notice.content.endsWith(".gif")) { %>
+                           <a href="<%= notice.content %>" target="_blank"
+                              >View image</a
+                           >
+                           <% } else { %>
+                           <a href="<%= notice.content %>" target="_blank"
+                              >Download File</a
+                           >
+                           <% } %> <% } else if
+                           (notice.content.startsWith("https://cdn.discordapp.com/"))
+                           { %>
+                           <a href="<%= notice.content %>" target="_blank"
+                              >Go to file</a
+                           >
+                           <% } else { %> <%= notice.content %> <% } %>
+                        </td>
+                        <td>
+                           <%= new Date(notice.timestamp).toLocaleString() %>
+                        </td>
+                        <td class="author-<%= notice.authorId %>">
+                           <% if (notice.authorId === "679560282929889331") { %>
+                           <span style="color: red">Urgent</span>
+                           <% } else if (notice.authorId ===
+                           "981339172231077959") { %>
+                           <span style="color: yellow">Alert</span>
+                           <% } else { %>
+                           <span>News</span>
+                           <% } %>
+                        </td>
+                     </tr>
+                     <% }); %>
+                  </tbody>
+               </table>
+            </div>
+         </main>
+         <%- include("./partials/right.ejs") %>
+      </div>
+      <footer class="footer-credits">
+         <%- include('./partials/footer.ejs'); %>
+      </footer>
+      <script src="/js/dark.theme.js"></script>
+   </body>
+</html>

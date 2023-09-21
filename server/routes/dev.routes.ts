@@ -1,9 +1,5 @@
 import { Router } from 'express';
-import {
-   getAllUsers,
-   getBans,
-   getStatus,
-} from '../controllers/owner.controllers';
+import { getAllUsers, getBans, getStatus } from '../controllers/owner.controllers';
 import { checkJwt } from '../middleware/session.middlware';
 import { devMiddlware } from '../middleware/auth.middleware';
 const router = Router();

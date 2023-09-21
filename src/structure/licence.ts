@@ -8,38 +8,32 @@ const URL = 'http://104.128.49.50:25510/api/client';
 let DATA;
 
 const postLicence = async (licence: string) => {
-   const res = await axios.post(
-      URL,
-      {
-         licence: licence,
-         product: name,
-         version: version,
+  const res = await axios.post(
+    URL,
+    {
+      licence: licence,
+      product: name,
+      version: version,
+    },
+    {
+      headers: {
+        Authorization: API_KEY,
       },
-      {
-         headers: {
-            Authorization: API_KEY,
-         },
-      }
-   );
+    }
+  );
 
-   if (
-      res.data?.status_overview !== 'success' &&
-      res.data?.status_code !== 200
-   ) {
-      logWithLabel('licence', `Licence ${licence} is invalid or expired!`);
-      DATA = false;
-   } else if (
-      res.data?.status_overview === 'success' &&
-      res.data?.status_code === 200
-   ) {
-      logWithLabel('licence', `Licence ${licence} is valid!`);
-      DATA = true;
-   } else {
-      logWithLabel('licence', 'An error occured while checking licence!');
-      DATA = false;
-   }
+  if (res.data?.status_overview !== 'success' && res.data?.status_code !== 200) {
+    logWithLabel('licence', `Licence ${licence} is invalid or expired!`);
+    DATA = false;
+  } else if (res.data?.status_overview === 'success' && res.data?.status_code === 200) {
+    logWithLabel('licence', `Licence ${licence} is valid!`);
+    DATA = true;
+  } else {
+    logWithLabel('licence', 'An error occured while checking licence!');
+    DATA = false;
+  }
 
-   return DATA;
+  return DATA;
 };
 
 export { postLicence };

@@ -1,23 +1,19 @@
 import {
-   addProduct,
-   deleteProduct,
-   editProduct,
-   getFile,
-   getFiles,
-   getProduct,
-   getProducts,
-   recomendProduct,
+  addProduct,
+  deleteProduct,
+  editProduct,
+  getFile,
+  getFiles,
+  getProduct,
+  getProducts,
+  recomendProduct,
 } from '../controllers/product.controllers';
 import { postApelation } from '../controllers/users.controllers';
 import { postMessages } from '../controllers/owner.controllers';
 import multerMiddleware from '../middleware/file.middlware';
 import { checkJwt } from '../middleware/session.middlware';
 import { Router } from 'express';
-import {
-   loginCtrl,
-   postUser,
-   registerCtrl,
-} from '../controllers/auth.controllers';
+import { loginCtrl, postUser, registerCtrl } from '../controllers/auth.controllers';
 import { getUser } from '../controllers/auth.controllers';
 import { devMiddlware } from '../middleware/auth.middleware';
 const router = Router();
@@ -756,21 +752,12 @@ const router = Router();
  */
 
 //? Api Archives //
-router.post(
-   '/api/v1/archives/upload',
-   checkJwt,
-   multerMiddleware.single('myfile'),
-   getFile
-);
+router.post('/api/v1/archives/upload', checkJwt, multerMiddleware.single('myfile'), getFile);
 router.get('/api/v1/archives', getFiles, checkJwt);
 
 //? Api Products //
-router.delete( '/api/v1/products/delete-product/:product',
-   checkJwt,
-   devMiddlware,
-   deleteProduct
-);
-router.put('/api/v1/products/edit-product/:product', editProduct, devMiddlware, checkJwt );
+router.delete('/api/v1/products/delete-product/:product', checkJwt, devMiddlware, deleteProduct);
+router.put('/api/v1/products/edit-product/:product', editProduct, devMiddlware, checkJwt);
 
 router.post('/api/v1/products/recommendation', recomendProduct, checkJwt);
 router.post('/api/v1/products/add-product', addProduct, devMiddlware, checkJwt);
