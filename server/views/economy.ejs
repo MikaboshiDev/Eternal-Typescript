@@ -1,142 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title><%= r_client.user.username %> - Economy</title>
-      <link
-         href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
-         rel="stylesheet"
-      />
-      <link href="/css/economy.css" rel="stylesheet" />
-      <link href="/images/logo.jpg" rel="icon" type="image/png" />
-      <%- include("./partials/meta.ejs") %>
-   </head>
-   <body>
-      <div class="container">
-         <aside><%- include('./partials/aside.ejs'); %></aside>
-         <main>
-            <h1>Economy Leadeboard</h1>
-            <div class="date">
-               <input type="date" />
-            </div>
-            <div class="economy">
-               <table id="dataTable">
-                  <tr>
-                     <th>Position</th>
-                     <th>Avatar</th>
-                     <th>User</th>
-                     <th>Money</th>
-                     <th>Money in Bank</th>
-                  </tr>
-                  <% userData.forEach((user, index) => { %>
-                  <tr>
-                     <td><%= index + 1 %></td>
-                     <td>
-                        <img
-                           src="<%= user.avatarURL %>"
-                           alt="Avatar de <%= user.username %>"
-                           width="20"
-                        />
-                     </td>
-                     <td><%= user.username %></td>
-                     <td><%= user.dinero %></td>
-                     <td><%= user.dineroEnBanco %></td>
-                  </tr>
-                  <% }); %>
-               </table>
-               <div class="pagination">
-                  <button id="prevButton" class="pagination-button">
-                     <i class="material-icons-sharp">chevron_left</i>
-                  </button>
-                  <button id="nextButton" class="pagination-button">
-                     <i class="material-icons-sharp">chevron_right</i>
-                  </button>
-               </div>
-            </div>
-            <script>
-                     const userData = <%- JSON.stringify(userData) %>;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= r_client.user.username %> - Economy</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+    <link href="/css/economy.css" rel="stylesheet" />
+    <link href="/images/logo.jpg" rel="icon" type="image/png" />
+    <%- include("./partials/meta.ejs") %>
+  </head>
+  <body>
+    <div class="container">
+      <aside><%- include('./partials/aside.ejs'); %></aside>
+      <main>
+        <h1>Economy Leadeboard</h1>
+        <div class="date">
+          <input type="date" />
+        </div>
+        <div class="economy">
+          <table id="dataTable">
+            <tr>
+              <th>Position</th>
+              <th>Avatar</th>
+              <th>User</th>
+              <th>Money</th>
+              <th>Money in Bank</th>
+            </tr>
+            <% userData.forEach((user, index) => { %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td>
+                <img src="<%= user.avatarURL %>" alt="Avatar de <%= user.username %>" width="20" />
+              </td>
+              <td><%= user.username %></td>
+              <td><%= user.dinero %></td>
+              <td><%= user.dineroEnBanco %></td>
+            </tr>
+            <% }); %>
+          </table>
+          <div class="pagination">
+            <button id="prevButton" class="pagination-button">
+              <i class="material-icons-sharp">chevron_left</i>
+            </button>
+            <button id="nextButton" class="pagination-button">
+              <i class="material-icons-sharp">chevron_right</i>
+            </button>
+          </div>
+        </div>
+        <script>
+                const userData = <%- JSON.stringify(userData) %>;
 
-                     const table = document.getElementById('dataTable');
-                     const prevButton = document.getElementById('prevButton');
-                     const nextButton = document.getElementById('nextButton');
+                const table = document.getElementById('dataTable');
+                const prevButton = document.getElementById('prevButton');
+                const nextButton = document.getElementById('nextButton');
 
-                     const itemsPerPage = 10;
-                     let currentPage = 0;
+                const itemsPerPage = 10;
+                let currentPage = 0;
 
-                     function updateTable() {
-                        const startIndex = currentPage * itemsPerPage;
-                        const endIndex = startIndex + itemsPerPage;
-                        const maxPage = Math.ceil(userData.length / itemsPerPage);
+                function updateTable() {
+                   const startIndex = currentPage * itemsPerPage;
+                   const endIndex = startIndex + itemsPerPage;
+                   const maxPage = Math.ceil(userData.length / itemsPerPage);
 
-                        table.innerHTML = `
-                  <tr>
-                     <th>Posición</th>
-                     <th>Avatar</th>
-                     <th>Usuario</th>
-                     <th>Dinero</th>
-                     <th>Dinero en Banco</th>
-                  </tr>
-                  ${userData
-                     .slice(startIndex, endIndex)
-                     .map(
-                        (user, index) => `
-                     <tr>
-                        <td>${startIndex + index + 1}</td>
-                        <td><img src="${user.avatarURL}" alt="Avatar de ${
-                           user.username
-                        }" width="20" /></td>
-                        <td>${user.username}</td>
-                        <td>${user.dinero}</td>
-                        <td>${user.dineroEnBanco}</td>
-                     </tr>
-                  `
-                     )
-                     .join('')}
-               `;
+                   table.innerHTML = `
+             <tr>
+                <th>Posición</th>
+                <th>Avatar</th>
+                <th>Usuario</th>
+                <th>Dinero</th>
+                <th>Dinero en Banco</th>
+             </tr>
+             ${userData
+                .slice(startIndex, endIndex)
+                .map(
+                   (user, index) => `
+                <tr>
+                   <td>${startIndex + index + 1}</td>
+                   <td><img src="${user.avatarURL}" alt="Avatar de ${
+                      user.username
+                   }" width="20" /></td>
+                   <td>${user.username}</td>
+                   <td>${user.dinero}</td>
+                   <td>${user.dineroEnBanco}</td>
+                </tr>
+             `
+                )
+                .join('')}
+          `;
 
-                        prevButton.disabled = currentPage === 0;
-                        nextButton.disabled = currentPage === maxPage - 1;
-                     }
+                   prevButton.disabled = currentPage === 0;
+                   nextButton.disabled = currentPage === maxPage - 1;
+                }
 
-                     prevButton.addEventListener('click', () => {
-                        if (currentPage > 0) {
-                           currentPage--;
-                           updateTable();
-                        }
-                     });
+                prevButton.addEventListener('click', () => {
+                   if (currentPage > 0) {
+                      currentPage--;
+                      updateTable();
+                   }
+                });
 
-                     nextButton.addEventListener('click', () => {
-                        const maxPage = Math.ceil(userData.length / itemsPerPage);
-                        if (currentPage < maxPage - 1) {
-                           currentPage++;
-                           updateTable();
-                        }
-                     });
+                nextButton.addEventListener('click', () => {
+                   const maxPage = Math.ceil(userData.length / itemsPerPage);
+                   if (currentPage < maxPage - 1) {
+                      currentPage++;
+                      updateTable();
+                   }
+                });
 
-                     updateTable();
-            </script>
-            <div class="top-economy">
-               <% userData.slice(0, 3).forEach((user, index) => { %>
-               <div class="economy-card">
-                  <h3><%= index + 1 %>° Puesto</h3>
-                  <img
-                     src="<%= user.avatarURL %>"
-                     alt="Avatar de <%= user.username %>"
-                  />
-                  <p>User: <%= user.username %></p>
-                  <p>Money: <%= user.dinero %></p>
-                  <p>Money in bank: <%= user.dineroEnBanco %></p>
-                  <p>Update Day: <%= new Date().toLocaleDateString() %></p>
-               </div>
-               <% }); %>
-            </div>
-         </main>
-         <%- include("./partials/right.ejs") %>
-      </div>
-      <footer class="footer-credits">
-         <%- include('./partials/footer.ejs'); %>
-      </footer>
-      <script src="/js/dark.theme.js"></script>
-   </body>
+                updateTable();
+        </script>
+        <div class="top-economy">
+          <% userData.slice(0, 3).forEach((user, index) => { %>
+          <div class="economy-card">
+            <h3><%= index + 1 %>° Puesto</h3>
+            <img src="<%= user.avatarURL %>" alt="Avatar de <%= user.username %>" />
+            <p>User: <%= user.username %></p>
+            <p>Money: <%= user.dinero %></p>
+            <p>Money in bank: <%= user.dineroEnBanco %></p>
+            <p>Update Day: <%= new Date().toLocaleDateString() %></p>
+          </div>
+          <% }); %>
+        </div>
+      </main>
+      <%- include("./partials/right.ejs") %>
+    </div>
+    <footer class="footer-credits"><%- include('./partials/footer.ejs'); %></footer>
+    <script src="/js/dark.theme.js"></script>
+  </body>
 </html>

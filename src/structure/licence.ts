@@ -7,6 +7,12 @@ const API_KEY = 'DDkPTP8vbarqezj7q7D8jOHXMjZzB654zu1wc3oYNbwFYOOXZVL';
 const URL = 'http://104.128.49.50:25510/api/client';
 let DATA;
 
+/**
+ * The function `postLicence` sends a POST request to a specified URL with a licence, product, and
+ * version, and returns whether the licence is valid or not.
+ * @param {string} licence - The `licence` parameter is a string that represents a license key or code.
+ * @returns the value of the variable `DATA`.
+ */
 const postLicence = async (licence: string) => {
   const res = await axios.post(
     URL,

@@ -1,7 +1,7 @@
 import { EmbedBuilder, GuildMemberRoleManager, SlashCommandBuilder } from 'discord.js';
-import { Command } from '../../../class/builders';
 import { fetchBalance, toFixedNumber } from '../../../functions/modules/economy_modules';
 import inventory from '../../../models/economy/inventory';
+import { Command } from '../../../class/builders';
 import user from '../../../models/economy/user';
 export default new Command(
   new SlashCommandBuilder()

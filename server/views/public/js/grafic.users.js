@@ -1,3 +1,5 @@
+/* The code snippet is adding an event listener to the 'DOMContentLoaded' event, which fires when the
+initial HTML document has been completely loaded and parsed. */
 document.addEventListener('DOMContentLoaded', () => {
     const ctx = document
         .getElementById('botChart')

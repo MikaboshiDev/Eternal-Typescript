@@ -1,145 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link
-         href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
-         rel="stylesheet"
-      />
-      <link href="/css/aplications.css" rel="stylesheet" />
-      <link rel="shortcut icon" href="/images/logo.jpg" type="image/gif" />
-      <title><%= r_client.user.username %> - Aplications</title>
-      <%- include("./partials/meta.ejs") %>
-   </head>
-   <body>
-      <div class="container">
-         <aside><%- include('./partials/aside.ejs'); %></aside>
-         <main>
-            <h1>Aplications</h1>
-            <div class="date">
-               <input type="date" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+    <link href="/css/aplications.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/images/logo.jpg" type="image/gif" />
+    <title><%= r_client.user.username %> - Aplications</title>
+    <%- include("./partials/meta.ejs") %>
+  </head>
+  <body>
+    <div class="container">
+      <aside><%- include('./partials/aside.ejs'); %></aside>
+      <main>
+        <h1>Aplications</h1>
+        <div class="date">
+          <input type="date" />
+        </div>
+        <div class="tarjeta-container" id="tarjeta-container">
+          <% data.slice(0, 4).forEach((bot) => { %>
+          <div class="tarjeta">
+            <div class="contenido-tarjeta">
+              <img src="<%= bot.image %>" alt="<%= bot.id %>" />
+              <div class="id">ID: <%= bot.id %></div>
+              <div class="username">Name: <%= bot.username %></div>
+              <div class="linea"></div>
+              <div class="descriptions">Description: <%= bot.description %></div>
+              <div class="boton-invitar">
+                <a href="<%= bot.website %>">Website</a>
+                <a href="<%= bot.supportServer %>">Support</a>
+              </div>
             </div>
-            <div class="tarjeta-container" id="tarjeta-container">
-               <% data.slice(0, 4).forEach((bot) => { %>
-               <div class="tarjeta">
-                  <div class="contenido-tarjeta">
-                     <img src="<%= bot.image %>" alt="<%= bot.id %>" />
-                     <div class="id">ID: <%= bot.id %></div>
-                     <div class="username">Name: <%= bot.username %></div>
-                     <div class="linea"></div>
-                     <div class="descriptions">
-                        Description: <%= bot.description %>
-                     </div>
-                     <div class="boton-invitar">
-                        <a href="<%= bot.website %>">Website</a>
-                        <a href="<%= bot.supportServer %>">Support</a>
-                     </div>
+          </div>
+          <% }); %>
+        </div>
+        <div class="paginacion">
+          <button id="pagina-anterior" disabled>
+            <i class="material-icons-sharp">chevron_left</i>
+          </button>
+          <button id="pagina-siguiente">
+            <i class="material-icons-sharp">chevron_right</i>
+          </button>
+        </div>
+      </main>
+      <%- include("./partials/right.ejs") %>
+    </div>
+    <footer class="footer-credits"><%- include('./partials/footer.ejs'); %></footer>
+    <script src="/js/dark.theme.js"></script>
+    <script>
+      function updatePage() {
+        location.reload();
+      }
+
+      function showCountdown() {
+        const countdownElement = document.getElementById('countdown');
+        let remainingTime = 10 * 60;
+
+        function updateCountdown() {
+          const minutes = Math.floor(remainingTime / 60);
+          const seconds = remainingTime % 60;
+          countdownElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+          remainingTime--;
+
+          if (remainingTime < 0) {
+            updatePage();
+          }
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+      }
+      showCountdown();
+    </script>
+    <script>
+      const tarjetaContainer = document.getElementById('tarjeta-container');
+      const paginaAnterior = document.getElementById('pagina-anterior');
+      const paginaSiguiente = document.getElementById('pagina-siguiente');
+
+      const botsData = <%- JSON.stringify(data) %>;
+      const tarjetasPorPagina = 4;
+      let paginaActual = 1;
+
+      function mostrarTarjetas() {
+        const inicio = (paginaActual - 1) * tarjetasPorPagina;
+        const fin = inicio + tarjetasPorPagina;
+        const tarjetasEnPagina = botsData.slice(inicio, fin);
+
+        tarjetaContainer.innerHTML = '';
+
+        tarjetasEnPagina.forEach((product) => {
+          const tarjeta = document.createElement('div');
+          tarjeta.className = 'tarjeta';
+          tarjeta.innerHTML = `
+               <div class="contenido-tarjeta">
+                  <img src="${product.image}" alt="${product.id}" />
+                  <div class="id">ID: ${product.id}</div>
+                  <div class="username">Name: ${product.username}</div>
+                  <div class="linea"></div>
+                  <div class="descriptions">Description: ${product.description}</div>
+                  <div class="boton-invitar">
+                     <a href="${product.website}">Invitar</a>
+                     <a href="${product.supportServer}">Support</a>
                   </div>
                </div>
-               <% }); %>
-            </div>
-            <div class="paginacion">
-               <button id="pagina-anterior" disabled>
-                  <i class="material-icons-sharp">chevron_left</i>
-               </button>
-               <button id="pagina-siguiente">
-                  <i class="material-icons-sharp">chevron_right</i>
-               </button>
-            </div>
-         </main>
-         <%- include("./partials/right.ejs") %>
-      </div>
-      <footer class="footer-credits">
-         <%- include('./partials/footer.ejs'); %>
-      </footer>
-      <script src="/js/dark.theme.js"></script>
-      <script>
-         function updatePage() {
-            location.reload();
-         }
+          `;
+          tarjetaContainer.appendChild(tarjeta);
+        });
 
-         function showCountdown() {
-            const countdownElement = document.getElementById('countdown');
-            let remainingTime = 10 * 60;
+        if (botsData.length <= tarjetasPorPagina) {
+          paginaSiguiente.setAttribute('disabled', true);
+        } else {
+          paginaSiguiente.removeAttribute('disabled');
+        }
+      }
 
-            function updateCountdown() {
-               const minutes = Math.floor(remainingTime / 60);
-               const seconds = remainingTime % 60;
-               countdownElement.textContent = `${minutes}:${
-                  seconds < 10 ? '0' : ''
-               }${seconds}`;
-               remainingTime--;
+      paginaSiguiente.addEventListener('click', () => {
+        paginaActual++;
+        mostrarTarjetas();
+        paginaAnterior.removeAttribute('disabled');
+      });
 
-               if (remainingTime < 0) {
-                  updatePage();
-               }
-            }
+      paginaAnterior.addEventListener('click', () => {
+        paginaActual--;
+        mostrarTarjetas();
+        paginaSiguiente.removeAttribute('disabled');
+        if (paginaActual === 1) {
+          paginaAnterior.setAttribute('disabled', true);
+        }
+      });
 
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-         }
-         showCountdown();
-      </script>
-      <script>
-         const tarjetaContainer = document.getElementById('tarjeta-container');
-         const paginaAnterior = document.getElementById('pagina-anterior');
-         const paginaSiguiente = document.getElementById('pagina-siguiente');
-
-         const botsData = <%- JSON.stringify(data) %>;
-         const tarjetasPorPagina = 4;
-         let paginaActual = 1;
-
-         function mostrarTarjetas() {
-           const inicio = (paginaActual - 1) * tarjetasPorPagina;
-           const fin = inicio + tarjetasPorPagina;
-           const tarjetasEnPagina = botsData.slice(inicio, fin);
-
-           tarjetaContainer.innerHTML = '';
-
-           tarjetasEnPagina.forEach((product) => {
-             const tarjeta = document.createElement('div');
-             tarjeta.className = 'tarjeta';
-             tarjeta.innerHTML = `
-                  <div class="contenido-tarjeta">
-                     <img src="${product.image}" alt="${product.id}" />
-                     <div class="id">ID: ${product.id}</div>
-                     <div class="username">Name: ${product.username}</div>
-                     <div class="linea"></div>
-                     <div class="descriptions">Description: ${product.description}</div>
-                     <div class="boton-invitar">
-                        <a href="${product.website}">Invitar</a>
-                        <a href="${product.supportServer}">Support</a>
-                     </div>
-                  </div>
-             `;
-             tarjetaContainer.appendChild(tarjeta);
-           });
-
-           if (botsData.length <= tarjetasPorPagina) {
-             paginaSiguiente.setAttribute('disabled', true);
-           } else {
-             paginaSiguiente.removeAttribute('disabled');
-           }
-         }
-
-         paginaSiguiente.addEventListener('click', () => {
-           paginaActual++;
-           mostrarTarjetas();
-           paginaAnterior.removeAttribute('disabled');
-         });
-
-         paginaAnterior.addEventListener('click', () => {
-           paginaActual--;
-           mostrarTarjetas();
-           paginaSiguiente.removeAttribute('disabled');
-           if (paginaActual === 1) {
-             paginaAnterior.setAttribute('disabled', true);
-           }
-         });
-
-         mostrarTarjetas();
-      </script>
-   </body>
+      mostrarTarjetas();
+    </script>
+  </body>
 </html>

@@ -1,3 +1,10 @@
+/**
+ * The above JavaScript code is responsible for handling the side menu, theme toggling, and storing the
+ * theme preference in a cookie.
+ * @returns The function `getThemePreferenceFromCookie` returns the theme preference value ('claro' or
+ * 'oscuro') obtained from the cookie. If no valid theme preference is found in the cookie, it returns
+ * the default value 'claro'.
+ */
 const sideMenu = document.querySelector('aside');
 const menuBtn = document.querySelector('#menu-btn');
 const closeBtn = document.querySelector('#close-btn');

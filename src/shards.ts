@@ -3,6 +3,7 @@ import { ShardingManager } from 'discord.js';
 import { config } from 'dotenv';
 import { join } from 'path';
 
+/* The code snippet is setting up and managing shards for a Discord bot using the Discord.js library. */
 config({ path: join(__dirname, '..', '.env') });
 const Sharding = new ShardingManager(join(__dirname, 'index.ts'), {
   token: process.env.token,

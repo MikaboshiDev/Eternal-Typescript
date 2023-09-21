@@ -3,6 +3,8 @@ import multer, { diskStorage } from 'multer';
 
 const PATH_STORAGE = `${process.cwd()}/upload`;
 
+/* This code is configuring the storage and filename settings for the multer middleware in an Express
+application. */
 const storage = diskStorage({
   destination(req: Request, file: Express.Multer.File, cb: any) {
     cb(null, PATH_STORAGE);

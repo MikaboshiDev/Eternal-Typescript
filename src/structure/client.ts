@@ -1,5 +1,5 @@
 import { Client, GatewayIntentBits, Partials, Collection, Options } from 'discord.js';
-import { components, deploy, load } from '../utils/handlers';
+import { addons, components, deploy, load } from '../utils/handlers';
 import { ExpressServer } from '../../server/express';
 import '../functions/modules/economy_modules';
 import { Command } from '../class/builders';
@@ -62,6 +62,7 @@ export class Manager extends Client {
     load();
     await super.login(process.env.token!);
     await components(this);
+    await addons(this);
     await deploy();
 
     const express = new ExpressServer();

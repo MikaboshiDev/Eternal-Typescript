@@ -12,6 +12,8 @@ export interface CommandOptions {
   autocomplete?: (client: Manager, interaction: AutocompleteInteraction) => void;
 }
 
+/* The code defines two classes, Command and Event, in TypeScript, which are used for creating slash
+commands and handling events in a Discord bot. */
 export class Command {
   readonly structure: SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>;
   readonly run: (client: Manager, interaction: ChatInputCommandInteraction, paypal: Manager['paypal']) => void;

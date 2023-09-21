@@ -1,135 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link
-         href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
-         rel="stylesheet"
-      />
-      <link href="/css/cdn.css" rel="stylesheet" />
-      <link rel="shortcut icon" href="/images/logo.jpg" type="image/gif" />
-      <title><%= r_client.user.username %> - CDN</title>
-      <%- include("./partials/meta.ejs") %>
-   </head>
-   <body>
-      <div class="container">
-         <aside><%- include('./partials/aside.ejs'); %></aside>
-         <main>
-            <h1>CDN Archives</h1>
-            <div class="date">
-               <input type="date" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+    <link href="/css/cdn.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/images/logo.jpg" type="image/gif" />
+    <title><%= r_client.user.username %> - CDN</title>
+    <%- include("./partials/meta.ejs") %>
+  </head>
+  <body>
+    <div class="container">
+      <aside><%- include('./partials/aside.ejs'); %></aside>
+      <main>
+        <h1>CDN Archives</h1>
+        <div class="date">
+          <input type="date" />
+        </div>
+        <div class="cdn-files">
+          <% for(let i = 0; i < data.length; i++) { %>
+          <div class="cdn-file">
+            <div class="cdn-image">
+              <% if (data[i].extension === 'jpg' || data[i].extension === 'png' || data[i].extension === 'web') { %>
+              <img src="/images/icono-png.png" alt="file" />
+              <% } else if (data[i].extension === 'doc' || data[i].extension === 'docx') { %>
+              <img src="/images/icono-docx.png" alt="file" />
+              <% } else if (data[i].extension === 'txt') { %>
+              <img src="/images/icono-text.png" alt="file" />
+              <% } else if (data[i].extension === 'pdf') { %>
+              <img src="/images/icono-pdf.png" alt="file" />
+              <% } else { %>
+              <img src="/images/manteniments.png" alt="file" />
+              <% } %>
             </div>
-            <div class="cdn-files">
-               <% for(let i = 0; i < data.length; i++) { %>
-               <div class="cdn-file">
-                  <div class="cdn-image">
-                     <% if (data[i].extension === 'jpg' || data[i].extension ===
-                     'png' || data[i].extension === 'web') { %>
-                     <img src="/images/icono-png.png" alt="file" />
-                     <% } else if (data[i].extension === 'doc' ||
-                     data[i].extension === 'docx') { %>
-                     <img src="/images/icono-docx.png" alt="file" />
-                     <% } else if (data[i].extension === 'txt') { %>
-                     <img src="/images/icono-text.png" alt="file" />
-                     <% } else if (data[i].extension === 'pdf') { %>
-                     <img src="/images/icono-pdf.png" alt="file" />
-                     <% } else { %>
-                     <img src="/images/manteniments.png" alt="file" />
-                     <% } %>
-                  </div>
-                  <div class="cdn-file-name">
-                     <span><%= data[i].name %></span>
-                  </div>
-                  <div class="cdn-file-size">
-                     <span><%= data[i].size %></span>
-                  </div>
-                  <div class="cdn-file-date">
-                     <span><%= data[i].date %></span>
-                  </div>
-                  <div class="cdn-file-download">
-                     <a href="/download/<%= data[i].name %>">
-                        <i class="material-icons-sharp">download</i>
-                     </a>
-                     <a
-                        href="#"
-                        onclick="deleteFile('<%= data[i].name %>'); return false;"
-                     >
-                        <i class="material-icons-sharp">delete</i>
-                     </a>
-                     <a
-                        href="#"
-                        onclick="openFileInput('<%= data[i].name %>'); return false;"
-                     >
-                        <i class="material-icons-sharp">edit</i>
-                     </a>
-                  </div>
-               </div>
-               <% } %>
+            <div class="cdn-file-name">
+              <span><%= data[i].name %></span>
             </div>
-         </main>
-         <%- include("./partials/right.ejs") %>
-      </div>
-      <footer class="footer-credits">
-         <%- include('./partials/footer.ejs'); %>
-      </footer>
-      <script src="/js/dark.theme.js"></script>
-      <script>
-         function deleteFile(fileName) {
-            fetch(`/delete/${fileName}`, {
-               method: 'DELETE',
-               headers: {
-                  'Content-Type': 'application/json',
-               },
-            })
-               .then((response) => {
-                  if (response.ok) {
-                     console.log(`Archivo ${fileName} eliminado con éxito.`);
-                  } else {
-                     console.error(`Error al eliminar el archivo ${fileName}.`);
-                  }
-               })
-               .catch((error) => {
-                  console.error('Error:', error);
-               });
-         }
-      </script>
-      <input type="file" id="fileInput" style="display: none" />
+            <div class="cdn-file-size">
+              <span><%= data[i].size %></span>
+            </div>
+            <div class="cdn-file-date">
+              <span><%= data[i].date %></span>
+            </div>
+            <div class="cdn-file-download">
+              <a href="/download/<%= data[i].name %>">
+                <i class="material-icons-sharp">download</i>
+              </a>
+              <a href="#" onclick="deleteFile('<%= data[i].name %>'); return false;">
+                <i class="material-icons-sharp">delete</i>
+              </a>
+              <a href="#" onclick="openFileInput('<%= data[i].name %>'); return false;">
+                <i class="material-icons-sharp">edit</i>
+              </a>
+            </div>
+          </div>
+          <% } %>
+        </div>
+      </main>
+      <%- include("./partials/right.ejs") %>
+    </div>
+    <footer class="footer-credits"><%- include('./partials/footer.ejs'); %></footer>
+    <script src="/js/dark.theme.js"></script>
+    <script>
+      function deleteFile(fileName) {
+        fetch(`/delete/${fileName}`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then((response) => {
+            if (response.ok) {
+              console.log(`Archivo ${fileName} eliminado con éxito.`);
+            } else {
+              console.error(`Error al eliminar el archivo ${fileName}.`);
+            }
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      }
+    </script>
+    <input type="file" id="fileInput" style="display: none" />
 
-      <script>
-         function openFileInput(fileName) {
-            const fileInput = document.getElementById('fileInput');
+    <script>
+      function openFileInput(fileName) {
+        const fileInput = document.getElementById('fileInput');
 
-            fileInput.addEventListener('change', (event) => {
-               const selectedFile = event.target.files[0];
-               if (selectedFile) {
-                  uploadFile(fileName, selectedFile);
-               }
-            });
+        fileInput.addEventListener('change', (event) => {
+          const selectedFile = event.target.files[0];
+          if (selectedFile) {
+            uploadFile(fileName, selectedFile);
+          }
+        });
 
-            fileInput.click();
-         }
+        fileInput.click();
+      }
 
-         function uploadFile(fileName, file) {
-            const formData = new FormData();
-            formData.append('file', file);
+      function uploadFile(fileName, file) {
+        const formData = new FormData();
+        formData.append('file', file);
 
-            fetch(`/upload`, {
-               method: 'POST',
-               body: formData,
-            })
-               .then((response) => {
-                  if (response.ok) {
-                     console.log(`Archivo ${fileName} subido con éxito.`);
-                  } else {
-                     console.error(`Error al subir el archivo ${fileName}.`);
-                  }
-               })
-               .catch((error) => {
-                  console.error('Error:', error);
-               });
-         }
-      </script>
-   </body>
+        fetch(`/upload`, {
+          method: 'POST',
+          body: formData,
+        })
+          .then((response) => {
+            if (response.ok) {
+              console.log(`Archivo ${fileName} subido con éxito.`);
+            } else {
+              console.error(`Error al subir el archivo ${fileName}.`);
+            }
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      }
+    </script>
+  </body>
 </html>

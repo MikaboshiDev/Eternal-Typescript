@@ -1,140 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link
-         href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp"
-         rel="stylesheet"
-      />
-      <link href="/css/policies.css" rel="stylesheet" />
-      <link rel="shortcut icon" href="/images/logo.jpg" type="image/gif" />
-      <title><%= r_client.user.username %> - Policies</title>
-      <%- include("./partials/meta.ejs") %>
-   </head>
-   <body>
-      <div class="container">
-         <aside><%- include('./partials/aside.ejs'); %></aside>
-         <main>
-            <h1>Manager Control</h1>
-            <div class="date">
-               <input type="date" />
-            </div>
-            <div class="conteiner_politica">
-               <h3 class="title-card">Politica My Queeen Bot</h3>
-               <p class="subtitle-card-politica">
-                  <span>Welcome</span> to the privacy policy of My Queen In the
-                  following paragraphs we will explain clearly and simple what
-                  data we save, what happens when the bot is released, what
-                  There are sanctions and other important means for the servers
-                  and users who trust our discord bots <br /><br />
-                  Remember that in case of breaching any of these rules and
-                  norms of behavior sanctions become permanent and no
-                  possibility of appeal, apart from copyright for the users who
-                  make copies of our discord or theft bots of the copyright of
-                  the same resources
-               </p>
-               <h4 class="title-card-politica">Server Information</h4>
-               <p class="subtitle-card-politica">
-                  The data we save from the discord servers and the The
-                  permissions that we ask for are the basic and necessary ones
-                  for the bot to have a good functioning as they are (ids,
-                  audits, member moderation, send messages, send links) this in
-                  question of permissions since in this way we guarantee a 90%
-                  functioning of the bot, apart from this we keep the data of
-                  the users who join the servers to be able to give them the
-                  welcome roles and thus be able to identify them for future
-                  moderation and security systems.
-               </p>
-               <h4 class="title-card-politica">User Information</h4>
-               <p class="subtitle-card-politica">
-                  The data we keep from users of the different servers is (id,
-                  name, avatar, roles, creation date, date of login to the
-                  server, date of login to the bot, expiration date of the bot,
-                  expiration date of the server) this to be able to guarantee a
-                  correct functioning of the bot commands discord and thus be
-                  able to give a good service to users who they trust our
-                  discord bots.
-               </p>
-               <h4 class="title-card-politica">What happens to my data?</h4>
-               <p class="subtitle-card-politica">
-                  The data we keep from servers and users is completely secure
-                  and are not shared with anyone else or company, these data are
-                  used for the proper functioning of the bot and thus be able to
-                  give a good service to the users who they trust our discord
-                  bots. people and/or companies who have permission to those
-                  data are no more than the owner of the bot and the company
-                  providing the db host (database) which is the that stores the
-                  data of the servers and users. Your data and those of the
-                  server are totally deleted once the bot is removed from the
-                  server and the user leaves the server this so that If it is
-                  used again, new data will be generated from the involved.
-               </p>
-            </div>
-            <div class="conteiner_politica">
-               <h3 class="title-card">Security and Conditions</h3>
-               <p class="subtitle-card-politica">
-                  In any place, moment and circumstance, the client must take
-                  into account that the service that is being offered is a
-                  third-party service, therefore, the client must take into
-                  account Note that the service can be canceled at any time In
-                  this case, the money that has been charged for the service, in
-                  case the service is not canceled and the client is not
-                  satisfied with the service will be given a period of 3
-                  business days for a review to be made and thus be able to
-                  solve the problem.
-                  <br /><br />
-                  All deliveries and commissions are made through discord, In
-                  the event that the client does not have a discord, they will
-                  be given a period of 3 business days to communicate with the
-                  manager Communications by DM or external channels will not be
-                  taken into account. account. the files and deliverables are
-                  released based on a use license personal, in case the client
-                  wants to use the file for other purposes you should contact
-                  the manager to be charged a extra for the use of the file.
-               </p>
-               <h4 class="title-card-politica">Copyright</h4>
-               <p class="subtitle-card-politica">
-                  The deliverables and files that are delivered to the client
-                  are property of its author, the client has no right to modify,
-                  copy, sell, distribute, or use in any way the files provided
-                  by the author except for personal use Files delivered by the
-                  author cannot be used for personal purposes. commercial, in
-                  case the client wants to use the file for other purposes you
-                  must contact the manager to be charged an additional for the
-                  use of the file.
-               </p>
-               <h4 class="title-card-politica">Job Servers</h4>
-               <p class="subtitle-card-politica">
-                  Currently any committee can be carried out through two discord
-                  servers which are
-                  <span>Night Support Studio</span> and
-                  <span>Velta Studio</span> being the most used Velta Studio for
-                  its greater capacity of stricter storage and terms of services
-                  (TOS), in any of these two servers can be carried out any
-                  commission related to the service that is being offering to
-                  the client.
-               </p>
-               <h4 class="title-card-politica">Main Services</h4>
-               <p class="subtitle-card-politica">
-                  The most used and valued services to date are following:<br /><br />
-                  1. Illustrations<br />
-                  2. Electronic Design<br />
-                  3. Discord Bots<br />
-                  4. CoreNeko 5. Minecraft Servers<br /><br />
-                  New services are always being added and improved existing
-                  services, in case the client does not find the service you are
-                  looking for you can contact the in charge so that you can be
-                  quoted for the service that is searching.
-               </p>
-            </div>
-         </main>
-         <%- include("./partials/right.ejs") %>
-      </div>
-      <footer class="footer-credits">
-         <%- include('./partials/footer.ejs'); %>
-      </footer>
-      <script src="/js/dark.theme.js"></script>
-   </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+    <link href="/css/policies.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/images/logo.jpg" type="image/gif" />
+    <title><%= r_client.user.username %> - Policies</title>
+    <%- include("./partials/meta.ejs") %>
+  </head>
+  <body>
+    <div class="container">
+      <aside><%- include('./partials/aside.ejs'); %></aside>
+      <main>
+        <h1>Manager Control</h1>
+        <div class="date">
+          <input type="date" />
+        </div>
+        <div class="conteiner_politica">
+          <h3 class="title-card">Politica My Queeen Bot</h3>
+          <p class="subtitle-card-politica">
+            <span>Welcome</span> to the privacy policy of My Queen In the following paragraphs we will explain clearly and simple what data we save,
+            what happens when the bot is released, what There are sanctions and other important means for the servers and users who trust our discord
+            bots <br /><br />
+            Remember that in case of breaching any of these rules and norms of behavior sanctions become permanent and no possibility of appeal, apart
+            from copyright for the users who make copies of our discord or theft bots of the copyright of the same resources
+          </p>
+          <h4 class="title-card-politica">Server Information</h4>
+          <p class="subtitle-card-politica">
+            The data we save from the discord servers and the The permissions that we ask for are the basic and necessary ones for the bot to have a
+            good functioning as they are (ids, audits, member moderation, send messages, send links) this in question of permissions since in this way
+            we guarantee a 90% functioning of the bot, apart from this we keep the data of the users who join the servers to be able to give them the
+            welcome roles and thus be able to identify them for future moderation and security systems.
+          </p>
+          <h4 class="title-card-politica">User Information</h4>
+          <p class="subtitle-card-politica">
+            The data we keep from users of the different servers is (id, name, avatar, roles, creation date, date of login to the server, date of
+            login to the bot, expiration date of the bot, expiration date of the server) this to be able to guarantee a correct functioning of the bot
+            commands discord and thus be able to give a good service to users who they trust our discord bots.
+          </p>
+          <h4 class="title-card-politica">What happens to my data?</h4>
+          <p class="subtitle-card-politica">
+            The data we keep from servers and users is completely secure and are not shared with anyone else or company, these data are used for the
+            proper functioning of the bot and thus be able to give a good service to the users who they trust our discord bots. people and/or
+            companies who have permission to those data are no more than the owner of the bot and the company providing the db host (database) which
+            is the that stores the data of the servers and users. Your data and those of the server are totally deleted once the bot is removed from
+            the server and the user leaves the server this so that If it is used again, new data will be generated from the involved.
+          </p>
+        </div>
+        <div class="conteiner_politica">
+          <h3 class="title-card">Security and Conditions</h3>
+          <p class="subtitle-card-politica">
+            In any place, moment and circumstance, the client must take into account that the service that is being offered is a third-party service,
+            therefore, the client must take into account Note that the service can be canceled at any time In this case, the money that has been
+            charged for the service, in case the service is not canceled and the client is not satisfied with the service will be given a period of 3
+            business days for a review to be made and thus be able to solve the problem.
+            <br /><br />
+            All deliveries and commissions are made through discord, In the event that the client does not have a discord, they will be given a period
+            of 3 business days to communicate with the manager Communications by DM or external channels will not be taken into account. account. the
+            files and deliverables are released based on a use license personal, in case the client wants to use the file for other purposes you
+            should contact the manager to be charged a extra for the use of the file.
+          </p>
+          <h4 class="title-card-politica">Copyright</h4>
+          <p class="subtitle-card-politica">
+            The deliverables and files that are delivered to the client are property of its author, the client has no right to modify, copy, sell,
+            distribute, or use in any way the files provided by the author except for personal use Files delivered by the author cannot be used for
+            personal purposes. commercial, in case the client wants to use the file for other purposes you must contact the manager to be charged an
+            additional for the use of the file.
+          </p>
+          <h4 class="title-card-politica">Job Servers</h4>
+          <p class="subtitle-card-politica">
+            Currently any committee can be carried out through two discord servers which are
+            <span>Night Support Studio</span> and <span>Velta Studio</span> being the most used Velta Studio for its greater capacity of stricter
+            storage and terms of services (TOS), in any of these two servers can be carried out any commission related to the service that is being
+            offering to the client.
+          </p>
+          <h4 class="title-card-politica">Main Services</h4>
+          <p class="subtitle-card-politica">
+            The most used and valued services to date are following:<br /><br />
+            1. Illustrations<br />
+            2. Electronic Design<br />
+            3. Discord Bots<br />
+            4. CoreNeko 5. Minecraft Servers<br /><br />
+            New services are always being added and improved existing services, in case the client does not find the service you are looking for you
+            can contact the in charge so that you can be quoted for the service that is searching.
+          </p>
+        </div>
+      </main>
+      <%- include("./partials/right.ejs") %>
+    </div>
+    <footer class="footer-credits"><%- include('./partials/footer.ejs'); %></footer>
+    <script src="/js/dark.theme.js"></script>
+  </body>
 </html>

@@ -1,9 +1,9 @@
 import { EmbedBuilder, PermissionFlagsBits, PermissionsBitField, SlashCommandBuilder } from 'discord.js';
+import { fetchBalance, generateToken } from '../../../functions/modules/economy_modules';
+import inventory from '../../../models/economy/inventory';
 import { Command } from '../../../class/builders';
 import shop from '../../../models/economy/shop';
-import inventory from '../../../models/economy/inventory';
 import user from '../../../models/economy/user';
-import { fetchBalance, generateToken } from '../../../functions/modules/economy_modules';
 import { Types } from 'mongoose';
 export default new Command(
   new SlashCommandBuilder()

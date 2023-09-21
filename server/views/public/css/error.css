@@ -1,85 +1,85 @@
-         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-         :root {
-            --color-primary: #7380ec;
-            --color-danger: #ff4d4d;
-            --color-success: #41f1b6;
-            --color-warning: #fb5;
-            --color-white: #fff;
-            --color-info-dark: #7b8da1;
-            --color-info-light: #dce1eb;
-            --color-dark: #393949;
-            --color-light: rgba(132, 139, 200, 0.18);
-            --color-primary-variant: #111e88;
-            --color-dark-variant: #677483;
-            --color-background: #f6f6f9;
+:root {
+  --color-primary: #7380ec;
+  --color-danger: #ff4d4d;
+  --color-success: #41f1b6;
+  --color-warning: #fb5;
+  --color-white: #fff;
+  --color-info-dark: #7b8da1;
+  --color-info-light: #dce1eb;
+  --color-dark: #393949;
+  --color-light: rgba(132, 139, 200, 0.18);
+  --color-primary-variant: #111e88;
+  --color-dark-variant: #677483;
+  --color-background: #f6f6f9;
 
-            --card-border-radius: 2rem;
-            --border-radius-1: 0.4rem;
-            --border-radius-2: 0.8rem;
-            --border-radius-3: 1.2rem;
+  --card-border-radius: 2rem;
+  --border-radius-1: 0.4rem;
+  --border-radius-2: 0.8rem;
+  --border-radius-3: 1.2rem;
 
-            --card-padding: 1.8rem;
-            --padding-1: 1.2rem;
+  --card-padding: 1.8rem;
+  --padding-1: 1.2rem;
 
-            --box-shadow: 0 2rem 3rem var(--color-light);
-         }
+  --box-shadow: 0 2rem 3rem var(--color-light);
+}
 
-         .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: var(--color-background);
-         }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--color-background);
+}
 
-         .error-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 40rem;
-            height: auto;
-            padding: 2rem;
-            background-color: var(--color-white);
-            border-radius: var(--card-border-radius);
-            box-shadow: var(--box-shadow);
-            text-align: center;
-         }
+.error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40rem;
+  height: auto;
+  padding: 2rem;
+  background-color: var(--color-white);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--box-shadow);
+  text-align: center;
+}
 
-         .error-heading {
-            font-size: 4rem;
-            font-weight: 600;
-            color: var(--color-dark);
-         }
+.error-heading {
+  font-size: 4rem;
+  font-weight: 600;
+  color: var(--color-dark);
+}
 
-         .error-subheading {
-            font-size: 2rem;
-            font-weight: 500;
-            color: var(--color-dark-variant);
-            margin-bottom: 1rem;
-         }
+.error-subheading {
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--color-dark-variant);
+  margin-bottom: 1rem;
+}
 
-         .error-container p {
-            font-size: 1.6rem;
-            font-weight: 400;
-            color: var(--color-dark-variant);
-            padding: var(--padding-1);
-         }
+.error-container p {
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--color-dark-variant);
+  padding: var(--padding-1);
+}
 
-         .error-button {
-            display: inline-block;
-            font-size: 1.6rem;
-            font-weight: 500;
-            color: var(--color-primary);
-            text-decoration: none;
-            padding: 0.5rem 2rem;
-            border: 2px solid var(--color-primary);
-            border-radius: 4px;
-            transition: background-color 0.3s, color 0.3s;
-         }
+.error-button {
+  display: inline-block;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  text-decoration: none;
+  padding: 0.5rem 2rem;
+  border: 2px solid var(--color-primary);
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
 
-         .error-button:hover {
-            background-color: var(--color-primary);
-            color: var(--color-white);
-         }
+.error-button:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
