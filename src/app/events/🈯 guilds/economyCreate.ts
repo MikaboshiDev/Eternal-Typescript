@@ -2,6 +2,8 @@ import { fetchBalance, toFixedNumber } from '../../../functions/modules/economy_
 import { Event } from '../../../class/builders';
 import user from '../../../models/economy/user';
 
+/* The code block is exporting a new event handler for the 'messageCreate' event. This event handler is
+triggered whenever a new message is created in a guild. */
 export default new Event('messageCreate', async (message) => {
   if (message.author.bot || !message.guild || !message.channel) return;
   const authorId = message.author?.id;

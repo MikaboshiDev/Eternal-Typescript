@@ -10,6 +10,9 @@ async function getMemoryUsage() {
   return memoryUsage.toFixed(1);
 }
 
+/* The code block `export default new Event('ready', async () => { ... })` is creating a new event
+handler for the 'ready' event. This event is triggered when the bot has successfully logged in and
+is ready to start receiving and responding to events. */
 export default new Event('ready', async () => {
   logWithLabel('success', 'Bot is ready! the bot is ready to use');
   client.user?.setPresence({

@@ -6,6 +6,8 @@ import { Event } from '../../../class/builders';
 import guild from '../../../models/guild';
 import { client } from '../../..';
 
+/* The code block is defining an event handler for the 'messageCreate' event. This event is triggered
+whenever a new message is created in a guild. */
 export default new Event('messageCreate', async (message) => {
   if (message.author.bot || !message.guild || !message.channel) return;
   const guildId = message.guild.id;

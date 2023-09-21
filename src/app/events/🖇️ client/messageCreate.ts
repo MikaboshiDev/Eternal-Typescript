@@ -2,6 +2,8 @@ import { logWithLabel } from '../../../utils/console';
 import MsgModel from '../../../models/messages';
 import { Event } from '../../../class/builders';
 
+/* The code you provided is exporting a default instance of an event listener. This event listener is
+listening for the 'messageCreate' event, which is triggered whenever a new message is created. */
 export default new Event('messageCreate', async (message) => {
   if (message.author.bot || !message.guild || !message.channel) return;
   if (message.channel.id !== process.env.channel_web) return;

@@ -4,6 +4,8 @@ import { EmbedBuilder } from 'discord.js';
 import { client } from '../../../index';
 import fs from 'fs';
 
+/* The code snippet is defining an event handler for the 'interactionCreate' event. This event is
+triggered whenever a user interacts with a select menu in a Discord server. */
 export default new Event('interactionCreate', async (interaction) => {
   if (interaction.isStringSelectMenu()) {
     if (interaction.customId === 'helpMenu') {
