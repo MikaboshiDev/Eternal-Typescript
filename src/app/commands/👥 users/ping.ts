@@ -2,6 +2,7 @@ import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
 import { Command } from '../../../class/builders';
 import user from '../../../models/economy/user';
 export default new Command(
+
   new SlashCommandBuilder().setName('ping').setDescription('Replies with Pong!').setDMPermission(false),
   async (client, interaction) => {
     async function db_ping() {

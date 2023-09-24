@@ -1,5 +1,5 @@
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } from 'discord.js';
 import { guild_segurity } from '../../../functions/modules/guild_modules';
-import { ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
 import { Command } from '../../../interface/commands';
 import emojis from '../../../../config/emojis.json';
 import { Event } from '../../../class/builders';
@@ -40,29 +40,46 @@ export default new Event('messageCreate', async (message) => {
   if (!command) return;
   if (!message.guild.members.me?.permissions.has('SendMessages')) return;
 
+  const embed = new EmbedBuilder()
+    .setAuthor({ name: `Command Control`, iconURL: message.author.displayAvatarURL() })
+    .setThumbnail(client.user?.displayAvatarURL() ?? '')
+    .setColor('Red');
+
   if ((command as Command).owner && message.author.id !== process.env.owner_id!)
     return message.reply({
-      content: [
-        `${emojis.error} You don't have permission to use this command because it's only for the owner of the bot.`,
-        `If you think this is an error, please contact the owner of the bot.`,
-      ].join('\n'),
+      embeds: [
+        embed.setDescription(
+          [
+            `${emojis.error} You don't have permission to use this command because it's only for the owner of the bot.`,
+            `If you think this is an error, please contact the owner of the bot.`,
+          ].join('\n')
+        ),
+      ],
     });
 
   if ((command as Command).permissions && !message.member?.permissions.has((command as Command).permissions))
     return message.reply({
-      content: [
-        `${emojis.error} You don't have permission to use this command because you don't have the necessary permissions.`,
-        `If you think this is an error, please contact the server administrator.`,
-      ].join('\n'),
+      embeds: [
+        embed.setDescription(
+          [
+            `${emojis.error} You don't have permission to use this command because you don't have the necessary permissions.`,
+            `If you think this is an error, please contact the server administrator.`,
+          ].join('\n')
+        ),
+      ],
     });
 
   if ((command as Command).botpermissions && !message.guild.members.me?.permissions.has((command as Command).botpermissions))
     return message.reply({
-      content: [
-        `${emojis.error} I don't have permission to use this command because I don't have the necessary permissions.`,
-        `If you think this is an error, please contact the server administrator.`,
-      ].join('\n'),
+      embeds: [
+        embed.setDescription(
+          [
+            `${emojis.error} I don't have permission to use this command because I don't have the necessary permissions.`,
+            `If you think this is an error, please contact the server administrator.`,
+          ].join('\n')
+        ),
+      ],
     });
 
-  (command as Command).execute(client, message, args);
+  (command as Command).execute(client, message, args, prefix);
 });

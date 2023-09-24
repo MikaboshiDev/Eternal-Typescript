@@ -20,10 +20,19 @@ export default new Command(
           return str.setName('description').setDescription('the description of the item').setRequired(true);
         })
         .addNumberOption((num) => {
-          return num.setName('price').setDescription('the price of the item').setRequired(true).setMinValue(1).setMaxValue(1000000);
+          return num
+            .setName('price')
+            .setDescription('the price of the item')
+            .setRequired(true)
+            .setMinValue(1)
+            .setMaxValue(1000000);
         })
-        .addRoleOption((option) => option.setName('role').setDescription('Give the user this role when he uses this item!'))
-        .addNumberOption((option) => option.setName('money').setDescription('Give the user money when he uses this item!'))
+        .addRoleOption((option) =>
+          option.setName('role').setDescription('Give the user this role when he uses this item!')
+        )
+        .addNumberOption((option) =>
+          option.setName('money').setDescription('Give the user money when he uses this item!')
+        )
         .addStringOption((str) => {
           return str
             .setName('identifier')
@@ -68,7 +77,12 @@ export default new Command(
         let role = null;
         if (interaction.options.getRole('role')) role = options.getRole('role')?.id;
 
-        if (!(interaction.member && (interaction.member.permissions as Readonly<PermissionsBitField>).has(PermissionFlagsBits.ManageGuild))) {
+        if (
+          !(
+            interaction.member &&
+            (interaction.member.permissions as Readonly<PermissionsBitField>).has(PermissionFlagsBits.ManageGuild)
+          )
+        ) {
           return await interaction.reply({
             content: 'You do not have enough permissions to use this command!',
           });
@@ -129,7 +143,10 @@ export default new Command(
             embeds: [new EmbedBuilder().setDescription('There are no items in this shop!').setColor('Red')],
           });
 
-        const embed = new EmbedBuilder().setTitle(`Server Shop`).setDescription('to buy an item please use `/shop buy`!').setColor('Random');
+        const embed = new EmbedBuilder()
+          .setTitle(`Server Shop`)
+          .setDescription('to buy an item please use `/shop buy`!')
+          .setColor('Random');
 
         if (page) {
           const pageNum = 5 * page - 5;
@@ -247,7 +264,12 @@ export default new Command(
 
         break;
       case 'remove':
-        if (!(interaction.member && (interaction.member.permissions as Readonly<PermissionsBitField>).has(PermissionFlagsBits.ManageGuild))) {
+        if (
+          !(
+            interaction.member &&
+            (interaction.member.permissions as Readonly<PermissionsBitField>).has(PermissionFlagsBits.ManageGuild)
+          )
+        ) {
           return await interaction.reply({
             content: 'You do not have enough permissions to use this command!',
           });

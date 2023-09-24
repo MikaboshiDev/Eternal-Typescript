@@ -1,3 +1,4 @@
+import { customerWebMiddleware, devWebMiddleware } from '../middleware/web.middleware';
 import { authInspection } from '../middleware/auth.middleware';
 import { authLogout } from '../controllers/auth.controllers';
 import ProductModel from '../../src/models/products';
@@ -9,7 +10,6 @@ import model from '../../src/models/client';
 import { client } from '../../src/index';
 const router = Router();
 import fs from 'fs';
-import { customerWebMiddleware, devWebMiddleware } from '../middleware/web.middleware';
 
 router.get('/', (req: Request, res: Response) => {
   res.render('login.ejs', {
@@ -283,7 +283,12 @@ router.get('/notifications', authInspection, devWebMiddleware, async (req: Reque
 
   const messages_content = await channel.messages.fetch({ limit: 13 });
   const notices = messages_content.map(
-    (message: { content: any; attachments: { size: number; first: () => any }; author: { id: any; username: any }; createdTimestamp: any }) => {
+    (message: {
+      content: any;
+      attachments: { size: number; first: () => any };
+      author: { id: any; username: any };
+      createdTimestamp: any;
+    }) => {
       let content = message.content;
       if (message.attachments.size > 0) {
         const attachment = message.attachments.first();

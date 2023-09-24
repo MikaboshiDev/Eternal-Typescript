@@ -8,14 +8,14 @@ import {
   getProducts,
   recomendProduct,
 } from '../controllers/product.controllers';
-import { postApelation } from '../controllers/users.controllers';
-import { postMessages } from '../controllers/owner.controllers';
-import multerMiddleware from '../middleware/file.middlware';
-import { checkJwt } from '../middleware/session.middlware';
 import { Router } from 'express';
 import { loginCtrl, postUser, registerCtrl } from '../controllers/auth.controllers';
-import { getUser } from '../controllers/auth.controllers';
+import { postApelation } from '../controllers/users.controllers';
+import { postMessages } from '../controllers/owner.controllers';
 import { devMiddlware } from '../middleware/auth.middleware';
+import multerMiddleware from '../middleware/file.middlware';
+import { checkJwt } from '../middleware/session.middlware';
+import { getUser } from '../controllers/auth.controllers';
 const router = Router();
 
 /**

@@ -1,5 +1,4 @@
 import { logWithLabel } from '../utils/console';
-import config from '../../config/gmail.json';
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({

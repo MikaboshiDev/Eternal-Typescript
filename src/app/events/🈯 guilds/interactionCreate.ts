@@ -1,7 +1,5 @@
-import { embed } from '../../../utils/function';
 import { Event } from '../../../class/builders';
 import { EmbedBuilder } from 'discord.js';
-import { client } from '../../../index';
 import fs from 'fs';
 
 /* The code snippet is defining an event handler for the 'interactionCreate' event. This event is

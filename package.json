@@ -28,6 +28,7 @@
         "passport": "^0.6.0",
         "passport-discord": "^0.1.4",
         "paypal-rest-sdk": "^1.8.1",
+        "sourcebin": "^5.0.0",
         "superagent": "^8.1.2",
         "swagger-jsdoc": "^6.2.8",
         "swagger-ui-express": "^5.0.0",
@@ -42,6 +43,7 @@
         "@types/express-session": "^1.17.7",
         "@types/jsonwebtoken": "^9.0.2",
         "@types/morgan": "^1.9.5",
+        "@types/ms": "^0.7.31",
         "@types/multer": "^1.4.7",
         "@types/node": "^20.5.7",
         "@types/nodemailer": "^6.4.9",
@@ -68,7 +70,7 @@
     "readme": "README.md",
     "scripts": {
         "build": "tsc",
-        "dev": "nodemon ./src/index.ts",
+        "dev": "nodemon ./src/shards.ts",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "version": "0.0.1"

@@ -3,7 +3,7 @@ import user from '../../../models/economy/user';
 module.exports = {
   name: 'ping',
   description: 'Ping command for discord api, database and transparency',
-  aliases: ['pong', "pp"],
+  aliases: ['pong', 'pp'],
   premium: false,
   category: 'users',
   owner: false,

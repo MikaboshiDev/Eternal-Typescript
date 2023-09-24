@@ -8,7 +8,9 @@ import {
 import { Manager } from '../index';
 
 export interface CommandOptions {
-  ownerOnly?: boolean;
+  premium?: boolean;
+  cooldown?: number;
+  owner?: boolean;
   autocomplete?: (client: Manager, interaction: AutocompleteInteraction) => void;
 }
 
@@ -18,6 +20,7 @@ export class Command {
   readonly structure: SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>;
   readonly run: (client: Manager, interaction: ChatInputCommandInteraction, paypal: Manager['paypal']) => void;
   readonly options: CommandOptions | undefined;
+  name: any;
 
   constructor(
     structure: SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>,

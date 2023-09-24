@@ -1,13 +1,13 @@
 import { logWithLabel } from '../../src/utils/console';
 import model_products from '../../src/models/products';
 import { Router, Request, Response } from 'express';
+import { upload } from '../../src/utils/upload';
 import model from '../../src/models/client';
 import { client } from '../../src/index';
 import multer from 'multer';
 const router = Router();
 import path from 'path';
 import fs from 'fs';
-import { upload } from '../../src/utils/upload';
 
 router.get('/transcript/:id', (req: Request, res: Response) => {
   const id = req.params.id;
@@ -31,7 +31,8 @@ router.get('/download/:file', async (req: Request, res: Response) => {
   try {
     const file = req.params.file;
     const directoryPath = ['./src/logs', './upload/archives', './upload/transcripts'];
-    const filePath = path.join(directoryPath[0], file) || path.join(directoryPath[1], file) || path.join(directoryPath[2], file);
+    const filePath =
+      path.join(directoryPath[0], file) || path.join(directoryPath[1], file) || path.join(directoryPath[2], file);
     await fs.promises.access(filePath, fs.constants.F_OK);
     res.download(filePath, file);
   } catch (error) {
@@ -43,7 +44,8 @@ router.delete('/delete/:file', async (req: Request, res: Response) => {
   try {
     const file = req.params.file;
     const directoryPath = ['./src/logs', './upload/archives', './upload/transcripts'];
-    const filePath = path.join(directoryPath[0], file) || path.join(directoryPath[1], file) || path.join(directoryPath[2], file);
+    const filePath =
+      path.join(directoryPath[0], file) || path.join(directoryPath[1], file) || path.join(directoryPath[2], file);
 
     await fs.unlink(filePath, (err) => {
       if (err) {
@@ -57,7 +59,7 @@ router.delete('/delete/:file', async (req: Request, res: Response) => {
   }
 });
 
-router.get('/data', async (req, res) => {
+router.get('/data', async (req: Request, res: Response) => {
   res.json({
     usersAll: client.users.cache.filter((usuario) => !usuario.bot).size,
     botsAll: client.users.cache.filter((usuario) => usuario.bot).size,

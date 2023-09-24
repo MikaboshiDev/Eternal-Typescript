@@ -15,7 +15,7 @@ interface Command {
   subcommands?: string[];
   usage?: string;
   examples?: string[];
-  execute: (client: any, message: Message, args: string[]) => void;
+  execute: (client: any, message: Message, args: string[], prefix: any) => void;
 }
 
 export { Command };
