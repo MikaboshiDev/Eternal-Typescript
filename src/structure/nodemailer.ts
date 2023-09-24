@@ -2,12 +2,12 @@ import { logWithLabel } from '../utils/console';
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
+  host: '',
   port: 587,
   secure: false,
   auth: {
-    user: 'sn4083495@gmail.com', 
-    pass: 'hbxssyaaqjtencvi', 
+    user: '', 
+    pass: '', 
   },
 });
 
@@ -21,7 +21,7 @@ transporter.verify((error: any, success: any) => {
 
 const enviarCorreo = (destinatario: string, asunto: string, mensaje: string) => {
   const opcionesCorreo = {
-    from: 'sn4083495@gmail.com', 
+    from: '', 
     to: destinatario,
     subject: asunto,
     text: mensaje,
