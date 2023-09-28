@@ -1,13 +1,10 @@
-import { WebhookClient, EmbedBuilder } from 'discord.js';
+import { EmbedBuilder, WebhookClient } from 'discord.js';
 import { inspect } from 'util';
-import fs from 'fs';
+import fs from 'node:fs';
 
-const webhook = new WebhookClient({
-  id: process.env.id_webhook!,
-  token: process.env.token_webhook!,
-});
+const webhook = new WebhookClient({ url: process.env.webhook_faild! });
 
-function handleError(title: string | null, url: string | null, ...fields: any[]) {
+function handleError(title: string | null, url: string | null, ...fields: { name: any; value: string }[]) {
   const embed = new EmbedBuilder()
     .setColor('Red')
     .setTimestamp()
@@ -23,8 +20,8 @@ function createField(name: string, value: unknown) {
   return { name, value: `\`\`\`js\n${inspect(value, { depth: 0 }).slice(0, 300)}\`\`\`` };
 }
 
-module.exports = (client: any) => {
-  client.on('error', (err: unknown) => {
+module.exports = (client: { on: (arg0: string, arg1: (err: any) => void) => void }) => {
+  client.on('error', (err) => {
     handleError(
       'Discord API Error',
       'https://discordjs.guide/popular-topics/errors.html#api-errors',

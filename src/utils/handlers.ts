@@ -4,13 +4,11 @@ import { logWithLabel } from './console';
 import { readdirSync } from 'node:fs';
 import { client } from '../index';
 import fs from 'fs';
+import { loadFiles } from '../functions/tools/function_glob';
 
 const pathCommands = './src/app/commands/';
 const pathEvents = './src/app/events/';
 
-/**
- * The `load` function loads commands and events from specific directories into the client.
- */
 async function load() {
   for (let dir of readdirSync(pathCommands)) {
     client.categories.set(dir, []);
@@ -37,9 +35,6 @@ async function load() {
   }
 }
 
-/**
- * The function deploys application commands to a Discord bot using the Discord API.
- */
 async function deploy() {
   try {
     const rest = new REST({ version: '10' }).setToken(process.env.token!);
@@ -54,11 +49,6 @@ async function deploy() {
   }
 }
 
-/**
- * This TypeScript function loads components and commands into a client object.
- * @param {any} client - The "client" parameter is an object that represents the client or bot that is
- * using this function. It is used to store and manage the commands and aliases for the bot.
- */
 async function components(client: any) {
   try {
     let totalCommands = 0;
@@ -93,42 +83,57 @@ async function components(client: any) {
   }
 }
 
-/**
- * The function `addons` loads TypeScript addons from a specified directory and logs the number of
- * successfully loaded addons.
- * @param {any} client - The `client` parameter is an object that represents the client or bot that
- * will be using the addons. It is passed to each addon so that they can interact with the client and
- * perform actions such as sending messages, joining servers, etc.
- * @returns nothing.
- */
 async function addons(client: any) {
-        try {
-            const addonsDir = "./addons";
-            let addonCounter = 0;
-
-            if (!fs.existsSync(addonsDir)) {
-                logWithLabel("error", `The addon directory does not exist in ${addonsDir}`)
-                return;
-            }
-
-            const files = await fs.promises.readdir(addonsDir);
-
-            for (const file of files) {
-                if (!file.endsWith(".ts")) continue;
-
-                try {
-                    require(`../../addons/${file}`)(client);
-                    addonCounter++;
-                } catch (e) {
-                    logWithLabel("error", `Error loading addon ${file} in ${addonsDir}: ${e}`);
-                    logWithLabel("error", `Occurred on ${new Date().toISOString()}`);
-                }
-            }
-
-            logWithLabel("success", `Successfully loaded ${addonCounter} addons.`);
-        } catch (e) {
-            logWithLabel("error", `Error loading addons: ${e}`);
-        }
+  const addons = fs.readdirSync('./addons').filter((file) => file.endsWith('.ts'));
+  let addonCount = 0;
+  for (const file of addons) {
+    if (!file.endsWith('.ts')) return;
+    require(`../../addons/${file}`)(client);
+    addonCount++;
+    logWithLabel('addons', `Loaded addon the file rute is: ${file} a total of ${addonCount} addons`);
+  }
 }
 
-export { load, deploy, components, addons };
+async function buttons(client: any) {
+  const Files = await loadFiles('src/app/buttons');
+  try {
+    Files.forEach((file) => {
+      const button = require(file);
+      if (!button.id) return;
+      client.buttons.set(button.id, button);
+    });
+  } catch (e) {
+    logWithLabel('error', `Error loading buttons: ${e}`);
+    console.error(e);
+  }
+}
+
+async function modals(client: any) {
+  const Files = await loadFiles('src/app/modals');
+  try {
+    Files.forEach((file) => {
+      const modal = require(file);
+      if (!modal.id) return;
+      client.modals.set(modal.id, modal);
+    });
+  } catch (e) {
+    logWithLabel('error', `Error loading modals: ${e}`);
+    console.error(e);
+  }
+}
+
+async function menus(client: any) {
+  const Files = await loadFiles('src/app/menus');
+  try {
+    Files.forEach((file) => {
+      const menu = require(file);
+      if (!menu.id) return;
+      client.menus.set(menu.id, menu);
+    });
+  } catch (e) {
+    logWithLabel('error', `Error loading menus: ${e}`);
+    console.error(e);
+  }
+}
+
+export { load, deploy, components, addons, buttons, modals, menus };

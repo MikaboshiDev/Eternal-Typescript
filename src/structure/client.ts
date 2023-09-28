@@ -1,5 +1,5 @@
-import { Client, GatewayIntentBits, Partials, Collection, Options } from 'discord.js';
-import { addons, components, deploy, load } from '../utils/handlers';
+import { Client, GatewayIntentBits, Partials, Collection, Options, Events } from 'discord.js';
+import { addons, buttons, components, deploy, load, menus, modals } from '../utils/handlers';
 import { ExpressServer } from '../../server/express';
 import '../functions/modules/economy_modules';
 import { Command } from '../class/builders';
@@ -12,6 +12,9 @@ export class Manager extends Client {
   voiceGenerator: Collection<unknown, unknown>;
   precommands: Collection<unknown, unknown>;
   aliases: Collection<unknown, unknown>;
+  buttons: Collection<unknown, unknown>;
+  menus: Collection<unknown, unknown>;
+  modals: Collection<unknown, unknown>;
   paypal: typeof paypal;
   constructor() {
     super({
@@ -42,13 +45,21 @@ export class Manager extends Client {
         GatewayIntentBits.DirectMessageTyping,
         GatewayIntentBits.MessageContent,
       ],
-      partials: [Partials.GuildMember, Partials.Message, Partials.User, Partials.Channel, Partials.GuildScheduledEvent, Partials.ThreadMember],
+      partials: [
+        Partials.GuildMember,
+        Partials.Message,
+        Partials.User,
+        Partials.Channel,
+        Partials.GuildScheduledEvent,
+        Partials.ThreadMember,
+      ],
     });
     paypal.configure({
       mode: process.env.paypal_mode!,
       client_id: process.env.paypal_client_id!,
       client_secret: process.env.paypal_client_secret!,
     });
+    this.setMaxListeners(0);
 
     this.voiceGenerator = new Collection();
     this.precommands = new Collection();
@@ -56,6 +67,10 @@ export class Manager extends Client {
     this.commands = new Collection();
     this.aliases = new Collection();
     this.paypal = paypal;
+
+    this.buttons = new Collection();
+    this.menus = new Collection();
+    this.modals = new Collection();
   }
 
   public async start() {
@@ -64,6 +79,10 @@ export class Manager extends Client {
     await components(this);
     await addons(this);
     await deploy();
+
+    await buttons(this);
+    await modals(this);
+    await menus(this);
 
     const express = new ExpressServer();
     const port = process.env.port_api!;

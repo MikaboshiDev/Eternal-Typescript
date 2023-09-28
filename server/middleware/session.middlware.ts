@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
-import { verifyToken } from '../../src/utils/jwt_token';
-import { RequestExt } from '../interface/req.interface';
 import { logWithLabel } from '../../src/utils/console';
+import { RequestExt } from '../interface/req.interface';
+import { verifyToken } from '../utils/jwt_token';
 
 /**
  * The function `checkJwt` is a middleware function that checks if a user is authorized by verifying a
@@ -32,7 +32,7 @@ const checkJwt = (req: RequestExt, res: Response, next: NextFunction) => {
     }
   } catch (e) {
     res.status(401).send({ message: 'Unauthorized Access' });
-    logWithLabel("error", `The error api session ${e}`)
+    logWithLabel('error', `The error api session ${e}`);
   }
 };
 

@@ -1,7 +1,7 @@
 import { logWithLabel } from '../../src/utils/console';
 import model_products from '../../src/models/products';
 import { Router, Request, Response } from 'express';
-import { upload } from '../../src/utils/upload';
+import { upload } from '../utils/upload';
 import model from '../../src/models/client';
 import { client } from '../../src/index';
 import multer from 'multer';

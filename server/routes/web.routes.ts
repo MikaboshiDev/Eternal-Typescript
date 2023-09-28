@@ -1,15 +1,15 @@
-import { customerWebMiddleware, devWebMiddleware } from '../middleware/web.middleware';
-import { authInspection } from '../middleware/auth.middleware';
-import { authLogout } from '../controllers/auth.controllers';
-import ProductModel from '../../src/models/products';
-import { Router, Request, Response } from 'express';
-import { passport } from '../../src/utils/passport';
+import { Request, Response, Router } from 'express';
+import fs from 'fs';
+import { client } from '../../src/index';
+import model from '../../src/models/client';
 import user from '../../src/models/economy/user';
 import MsgModel from '../../src/models/messages';
-import model from '../../src/models/client';
-import { client } from '../../src/index';
+import ProductModel from '../../src/models/products';
+import { authLogout } from '../controllers/auth.controllers';
+import { authInspection } from '../middleware/auth.middleware';
+import { customerWebMiddleware, devWebMiddleware } from '../middleware/web.middleware';
+import { passport } from '../utils/passport';
 const router = Router();
-import fs from 'fs';
 
 router.get('/', (req: Request, res: Response) => {
   res.render('login.ejs', {

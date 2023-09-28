@@ -1,8 +1,8 @@
-import { encrypt, verified } from '../../src/utils/bcrypt';
-import { signToken } from '../../src/utils/jwt_token';
+import UserModel from '../../src/models/auth';
 import { Auth } from '../interface/auth.interface';
 import { User } from '../interface/user.interface';
-import UserModel from '../../src/models/auth';
+import { encrypt, verified } from '../utils/bcrypt';
+import { signToken } from '../utils/jwt_token';
 
 /**
  * The function `registerNewUser` checks if a user with the given email already exists, encrypts the
@@ -68,4 +68,4 @@ const Authdelete = async ({ email, password }: Auth) => {
   return 'DELETE_USER_AUTH';
 };
 
-export { loginUser, registerNewUser, Authdelete };
+export { Authdelete, loginUser, registerNewUser };

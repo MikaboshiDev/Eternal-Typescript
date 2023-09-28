@@ -1,13 +1,13 @@
+import cookieParser from 'cookie-parser';
+import express from 'express';
+import session from 'express-session';
+import morgan from 'morgan';
+import path from 'node:path';
+import swaggerUi from 'swagger-ui-express';
 import swaggerSetup from '../src/functions/modules/swaggers';
 import { logWithLabel } from '../src/utils/console';
-import { passport } from '../src/utils/passport';
-import { router } from '../src/utils/request';
-import swaggerUi from 'swagger-ui-express';
-import cookieParser from 'cookie-parser';
-import session from 'express-session';
-import express from 'express';
-import path from 'node:path';
-import morgan from 'morgan';
+import { passport } from './utils/passport';
+import { router } from './utils/request';
 
 export class ExpressServer {
   app: any;
