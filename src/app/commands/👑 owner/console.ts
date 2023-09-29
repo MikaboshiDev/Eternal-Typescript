@@ -1,4 +1,4 @@
-import { SlashCommandBuilder } from 'discord.js';
+import { SlashCommandBuilder, PermissionFlagsBits } from 'discord.js';
 import { Command } from '../../../class/builders';
 import { exec } from 'child_process';
 
@@ -6,7 +6,10 @@ export default new Command(
   new SlashCommandBuilder()
     .setName('console')
     .setDescription('Run console commands.')
-    .addStringOption((option) => option.setName('command').setDescription('The command to run in the console.').setRequired(true))
+    .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
+    .addStringOption((option) =>
+      option.setName('command').setDescription('The command to run in the console.').setRequired(true)
+    )
     .setDMPermission(false),
   async (client, interaction) => {
     const userId = interaction.user.id;

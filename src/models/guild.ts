@@ -3,6 +3,10 @@ import mongoose from 'mongoose';
 const model = new mongoose.Schema({
   id: { type: String, required: true, unique: true },
   prefix: { type: String, default: '!' },
+  commands: {
+    components: { type: Boolean, default: false },
+    slash: { type: Boolean, default: true },
+  },
   lenguages: { type: Array, default: ['en'] },
   channels: {
     log: {

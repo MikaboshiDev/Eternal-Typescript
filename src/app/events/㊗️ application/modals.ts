@@ -5,7 +5,7 @@ import { EmbedBuilder } from 'discord.js';
 import { client } from '../../../index';
 import fs from 'fs';
 
-export default new Event('interactionCreate', async (interaction) => {
+export default new Event('interactionCreate', async (interaction: any) => {
   if (!interaction.isModalSubmit()) return;
   const embed = new EmbedBuilder()
     .setAuthor({ name: `Command Control`, iconURL: interaction.user.displayAvatarURL() })
@@ -33,6 +33,33 @@ export default new Event('interactionCreate', async (interaction) => {
         embed.setDescription(
           [
             `${emojis.error} You don't have permission to use this command because it's only for premium servers.`,
+            `If you think this is an error, please contact the owner of the bot.`,
+          ].join('\n')
+        ),
+      ],
+    });
+
+  if ((modals as Modals).permissions && !interaction.member?.permissions.has((modals as Modals).permissions))
+    return interaction.reply({
+      embeds: [
+        embed.setDescription(
+          [
+            `${emojis.error} You don't have permission to use this command because you don't have the necessary permissions.`,
+            `If you think this is an error, please contact the owner of the bot.`,
+          ].join('\n')
+        ),
+      ],
+    });
+
+  if (
+    (modals as Modals).botpermissions &&
+    !interaction.guild?.members.me.permissions.has((modals as Modals).botpermissions)
+  )
+    return interaction.reply({
+      embeds: [
+        embed.setDescription(
+          [
+            `${emojis.error} You don't have permission to use this command because you don't have the necessary permissions.`,
             `If you think this is an error, please contact the owner of the bot.`,
           ].join('\n')
         ),

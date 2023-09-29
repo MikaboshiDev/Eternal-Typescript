@@ -4,7 +4,7 @@ import emojis from '../../../../config/emojis.json';
 import { Event } from '../../../class/builders';
 import { client } from '../../../index';
 
-export default new Event('interactionCreate', async (interaction) => {
+export default new Event('interactionCreate', async (interaction: any) => {
   if (!interaction.isButton()) return;
 
   const embed = new EmbedBuilder()
@@ -33,6 +33,33 @@ export default new Event('interactionCreate', async (interaction) => {
         embed.setDescription(
           [
             `${emojis.error} You don't have permission to use this command because it's only for premium servers.`,
+            `If you think this is an error, please contact the owner of the bot.`,
+          ].join('\n')
+        ),
+      ],
+    });
+
+  if ((button as Buttons).permissions && !interaction.member?.permissions.has((button as Buttons).permissions))
+    return interaction.reply({
+      embeds: [
+        embed.setDescription(
+          [
+            `${emojis.error} You don't have permission to use this command because you don't have the necessary permissions.`,
+            `If you think this is an error, please contact the owner of the bot.`,
+          ].join('\n')
+        ),
+      ],
+    });
+
+  if (
+    (button as Buttons).botpermissions &&
+    !interaction.guild?.members.me.permissions.has((button as Buttons).botpermissions)
+  )
+    return interaction.reply({
+      embeds: [
+        embed.setDescription(
+          [
+            `${emojis.error} I don't have permission to use this command because I don't have the necessary permissions.`,
             `If you think this is an error, please contact the owner of the bot.`,
           ].join('\n')
         ),

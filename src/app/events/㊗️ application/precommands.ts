@@ -33,10 +33,21 @@ export default new Event('messageCreate', async (message) => {
   const args = message.content.slice(prefix?.length).trim().split(/ +/g);
 
   const cmd = args.shift()?.toLowerCase();
-  const command = client.precommands.get(cmd ?? '') || client.precommands.find((c: any) => c.aliases?.includes(cmd ?? ''));
+  const command =
+    client.precommands.get(cmd ?? '') || client.precommands.find((c: any) => c.aliases?.includes(cmd ?? ''));
 
   if (!command) return;
   if (!message.guild.members.me?.permissions.has('SendMessages')) return;
+
+  if (data?.commands?.components === false) {
+    message.channel.send({
+      content: [
+        `${emojis.error} Commands are disabled on this discord server at the moment`,
+        `If you want to enable them, type \`${prefix}config commands components enable\``,
+      ].join('\n'),
+    });
+    return;
+  }
 
   const embed = new EmbedBuilder()
     .setAuthor({ name: `Command Control`, iconURL: message.author.displayAvatarURL() })
@@ -67,7 +78,10 @@ export default new Event('messageCreate', async (message) => {
       ],
     });
 
-  if ((command as Command).botpermissions && !message.guild.members.me?.permissions.has((command as Command).botpermissions))
+  if (
+    (command as Command).botpermissions &&
+    !message.guild.members.me?.permissions.has((command as Command).botpermissions)
+  )
     return message.reply({
       embeds: [
         embed.setDescription(

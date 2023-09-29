@@ -1,7 +1,4 @@
-import {
-  EmbedBuilder,
-  Message,
-} from 'discord.js';
+import { ActionRowBuilder, EmbedBuilder, Message, StringSelectMenuBuilder } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
 import words from '../../../../config/words.json';
 const Api_Url = 'https://discord.com/api/v10';
@@ -152,41 +149,69 @@ module.exports = {
           });
         }
         break;
-      case 'list': {
-        const response = await axios({
-          method: 'get',
-          url: `${Api_Url}/guilds/${message.guild?.id}/auto-moderation/rules`,
-          headers: {
-            Authorization: `Bot ${process.env.token}`,
-            'Content-Type': 'application/json',
-          },
-        });
-
-        if (!response.data.length)
-          return message.channel.send({
-            content: [
-              `${emojis.error} There are no rules for self-moderation in this server`,
-              `Example: \`${prefix}automoderation create "Financial Discussions" 1 1 1 1 true\``,
-            ].join('\n'),
+      case 'list':
+        {
+          const response = await axios({
+            method: 'get',
+            url: `${Api_Url}/guilds/${message.guild?.id}/auto-moderation/rules`,
+            headers: {
+              Authorization: `Bot ${process.env.token}`,
+              'Content-Type': 'application/json',
+            },
           });
 
-        const rules = response.data.map((rule: any) => {
-          return `No.${response.data.indexOf(rule) + 1} - ${rule.name} - \`${rule.id}\``;
-        });
+          if (!response.data.length)
+            return message.channel.send({
+              content: [
+                `${emojis.error} There are no rules for self-moderation in this server`,
+                `Example: \`${prefix}automoderation create "Financial Discussions" 1 1 1 1 true\``,
+              ].join('\n'),
+            });
 
-        message.channel.send({
-          embeds: [
-            new EmbedBuilder()
-              .setTitle('Auto Moderation Rules')
-              .setFooter({ text: `Requested by ${message.author.tag}`, iconURL: message.author.displayAvatarURL() })
-              .setDescription(`The rules for this server are listed below`)
-              .setColor('Green')
-              .setTimestamp()
-              .addFields({ name: 'Rules List', value: `${rules.join('\n')}`, inline: false }),
-          ],
-        });
-      }
-      break;
+          const rules = response.data.map((rule: any) => {
+            return `No.${response.data.indexOf(rule) + 1} - ${rule.name} - \`${rule.id}\``;
+          });
+
+          const menu_config = new StringSelectMenuBuilder()
+            .setCustomId('premium_automod_menu')
+            .setPlaceholder('Select one of the options from the menu')
+            .setOptions(
+              {
+                label: 'Create a rule',
+                value: 'first_option',
+                description: 'Create a rule for self-moderation',
+                emoji: '📝',
+              },
+              {
+                label: 'Delete a rule',
+                value: 'second_option',
+                description: 'Delete a rule for self-moderation',
+                emoji: '🗑️',
+              },
+              {
+                label: 'Delete all',
+                value: 'third_option',
+                description: 'Delete all rules for self-moderation',
+                emoji: '🗑️',
+              }
+            );
+
+          const menu = new ActionRowBuilder().addComponents(menu_config);
+
+          message.channel.send({
+            embeds: [
+              new EmbedBuilder()
+                .setTitle('Auto Moderation Rules')
+                .setFooter({ text: `Requested by ${message.author.tag}`, iconURL: message.author.displayAvatarURL() })
+                .setDescription(`The rules for this server are listed below`)
+                .setColor('Green')
+                .setTimestamp()
+                .addFields({ name: 'Rules List', value: `${rules.join('\n')}`, inline: false }),
+            ],
+            components: [menu as any],
+          });
+        }
+        break;
     }
   },
 };
