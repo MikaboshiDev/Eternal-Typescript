@@ -28,7 +28,7 @@ module.exports = {
         let embed = new EmbedBuilder()
           .setAuthor({
             name: `Command Information: ${comando.name}`,
-            iconURL: client.user.avatarURL(),
+            iconURL: client.user.displayAvatarURL(),
           })
           .setFooter({
             text: `Version: ${packages.version} | Author: ${packages.author}`,
@@ -134,10 +134,10 @@ module.exports = {
       var paginaActual = 0;
 
       let ayuda_embed = new EmbedBuilder()
-        .setAuthor({ name: `Night Support Commands`, iconURL: client.user.avatarURL() })
+        .setAuthor({ name: `Night Support Commands`, iconURL: client.user.displayAvatarURL() })
         .setFooter({
           text: `Version: ${packages.version} | Author: ${packages.author}`,
-          iconURL: client.user.avatarURL(),
+          iconURL: client.user.displayAvatarURL(),
         })
         .setDescription(
           [

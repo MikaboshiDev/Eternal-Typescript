@@ -1,8 +1,8 @@
-import { ChannelType, EmbedBuilder, Message } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
 import { stripIndent } from 'common-tags';
+import { ChannelType, EmbedBuilder, Message } from 'discord.js';
 import sourcebin from 'sourcebin';
 import { inspect } from 'util';
+import emojis from '../../../../config/emojis.json';
 module.exports = {
   name: 'eval',
   description: 'Perform evaluations on different codes',
@@ -11,10 +11,7 @@ module.exports = {
   cooldown: 5000,
   premium: false,
   category: 'owner',
-  examples: [
-    `eval [code]`,
-    `eval message.channel.send("Hello world!")`,
-  ],
+  examples: [`eval [code]`, `eval message.channel.send("Hello world!")`],
   async execute(client: any, message: Message, args: string[], prefix: any) {
     if (!args.length) {
       return message.reply({
@@ -60,7 +57,7 @@ function truncate(texto: string, n: number) {
 function sendEvalOutput(
   message: {
     guild: any;
-    author: { username: any; avatarURL: (arg0: { forceStatic: boolean }) => any };
+    author: { username: any; displayAvatarURL: (arg0: { forceStatic: boolean }) => any };
     createdTimestamp: number;
     channel: {
       [x: string]: any;
@@ -80,10 +77,13 @@ function sendEvalOutput(
   `;
 
   const embed = new EmbedBuilder()
-    .setAuthor({ name: `Evaluator: ${message.author.username}`, iconURL: message.author.avatarURL({ forceStatic: true }) })
+    .setAuthor({
+      name: `Evaluator: ${message.author.username}`,
+      iconURL: message.author.displayAvatarURL({ forceStatic: true }),
+    })
     .setFooter({
       text: `Time: ${Date.now() - message.createdTimestamp}ms`,
-      iconURL: message.author.avatarURL({ forceStatic: true }),
+      iconURL: message.author.displayAvatarURL({ forceStatic: true }),
     })
     .addFields(
       { name: 'Input', value: `\`\`\`js\n${args.join(' ')}\`\`\`` },
@@ -94,7 +94,10 @@ function sendEvalOutput(
 
   message.channel.send({ embeds: [embed] }).catch(() => {
     const embed1 = new EmbedBuilder()
-      .setAuthor({ name: `Evaluator: ${message.author.username}`, iconURL: message.author.avatarURL({ forceStatic: true }) })
+      .setAuthor({
+        name: `Evaluator: ${message.author.username}`,
+        iconURL: message.author.displayAvatarURL({ forceStatic: true }),
+      })
       .addFields(
         { name: 'Input', value: `\`\`\`js\n${args.join(' ')}\`\`\`` },
         { name: 'Output', value: `\`\`\`js\n${output.substring(0, 2000)}\`\`\`` }
@@ -104,7 +107,7 @@ function sendEvalOutput(
     const embed2 = new EmbedBuilder()
       .setFooter({
         text: `Time: ${Date.now() - message.createdTimestamp}ms`,
-        iconURL: message.author.avatarURL({ forceStatic: true }),
+        iconURL: message.author.displayAvatarURL({ forceStatic: true }),
       })
       .addFields({ name: 'Output (Continued)', value: `\`\`\`js\n${output.substring(2000, 4000)}\`\`\`` })
       .setColor('Orange');
@@ -114,7 +117,7 @@ function sendEvalOutput(
 
 function sendEvalError(
   message: {
-    author: { username: any; avatarURL: (arg0: { forceStatic: boolean }) => any };
+    author: { username: any; displayAvatarURL: (arg0: { forceStatic: boolean }) => any };
     createdTimestamp: number;
     channel: { send: (arg0: { embeds: EmbedBuilder[] }) => void };
   },
@@ -126,10 +129,13 @@ function sendEvalError(
   const truncatedError = truncate(errorMessage, 2000);
 
   const embed = new EmbedBuilder()
-    .setAuthor({ name: `Evaluator: ${message.author.username}`, iconURL: message.author.avatarURL({ forceStatic: true }) })
+    .setAuthor({
+      name: `Evaluator: ${message.author.username}`,
+      iconURL: message.author.displayAvatarURL({ forceStatic: true }),
+    })
     .setFooter({
       text: `Time: ${Date.now() - message.createdTimestamp}ms`,
-      iconURL: message.author.avatarURL({ forceStatic: true }),
+      iconURL: message.author.displayAvatarURL({ forceStatic: true }),
     })
     .addFields(
       { name: 'Input', value: `\`\`\`js\n${args.join(' ')}\`\`\`` },

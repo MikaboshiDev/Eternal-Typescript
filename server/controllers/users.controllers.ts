@@ -1,6 +1,6 @@
+import { ChannelType, EmbedBuilder } from 'discord.js';
 import { Request, Response } from 'express';
 import { client } from '../../src/index';
-import { ChannelType, EmbedBuilder } from 'discord.js';
 
 /**
  * The function `postApelation` creates a new channel in a guild, sends a message with an embed to the
@@ -52,7 +52,7 @@ const postApelation = async (req: Request, res: Response) => {
             .setDescription(razon)
             .setFooter({
               text: `User ID: ${user_id}`,
-              iconURL: member?.user.avatarURL()!,
+              iconURL: member?.user.displayAvatarURL()!,
             })
             .setTimestamp(new Date()),
         ],
@@ -94,7 +94,7 @@ const postReport = async (req: Request, res: Response) => {
       .setDescription(report)
       .setFooter({
         text: `User ID: ${userid}`,
-        iconURL: member?.user.avatarURL()!,
+        iconURL: member?.user.displayAvatarURL()!,
       })
       .setTimestamp(new Date());
 

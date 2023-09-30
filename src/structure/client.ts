@@ -16,6 +16,7 @@ export class Manager extends Client {
   menus: Collection<unknown, unknown>;
   modals: Collection<unknown, unknown>;
   paypal: typeof paypal;
+  giveawaysManager: any;
   constructor() {
     super({
       shards: 'auto',

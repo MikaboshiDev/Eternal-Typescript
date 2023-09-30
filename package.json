@@ -4,7 +4,7 @@
         "url": "https://github.com/MikaboshiDev/BotTypescript/issues"
     },
     "dependencies": {
-        "@prisma/client": "^5.2.0",
+        "@dqbd/tiktoken": "^1.0.7",
         "axios": "^1.5.0",
         "bcryptjs": "^2.4.3",
         "child_process": "^1.0.2",
@@ -12,6 +12,7 @@
         "common-tags": "^1.8.2",
         "cookie-parser": "^1.4.6",
         "cron": "^2.4.4",
+        "discord-giveaways": "^6.0.1",
         "discord.js": "^14.13.0",
         "dotenv": "^16.3.1",
         "ejs": "^3.1.9",
@@ -19,6 +20,7 @@
         "express-session": "^1.17.3",
         "glob": "^10.3.4",
         "jsonwebtoken": "^9.0.2",
+        "luxon": "^3.4.3",
         "mathjs": "^11.11.1",
         "moment": "^2.29.4",
         "mongoose": "^7.5.0",
