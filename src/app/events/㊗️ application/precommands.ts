@@ -1,4 +1,4 @@
-import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } from 'discord.js';
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, TextChannel } from 'discord.js';
 import { guild_segurity } from '../../../functions/modules/guild_modules';
 import { Command } from '../../../interface/commands';
 import emojis from '../../../../config/emojis.json';
@@ -64,6 +64,14 @@ export default new Event('messageCreate', async (message) => {
           ].join('\n')
         ),
       ],
+    });
+
+  if ((command as Command).nsfw && !(message.channel as TextChannel).nsfw)
+    return message.reply({
+      content: [
+        `${emojis.error} You can't use this command in a non-nsfw channel.`,
+        `If you think this is an error, please contact the server administrator.`,
+      ].join('\n'),
     });
 
   if ((command as Command).permissions && !message.member?.permissions.has((command as Command).permissions))
