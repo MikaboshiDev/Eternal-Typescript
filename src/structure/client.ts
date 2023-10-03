@@ -13,10 +13,11 @@ export class Manager extends Client {
   precommands: Collection<unknown, unknown>;
   aliases: Collection<unknown, unknown>;
   buttons: Collection<unknown, unknown>;
-  menus: Collection<unknown, unknown>;
   modals: Collection<unknown, unknown>;
+  menus: Collection<unknown, unknown>;
   paypal: typeof paypal;
   giveawaysManager: any;
+  poru: any;
   constructor() {
     super({
       shards: 'auto',
@@ -70,8 +71,8 @@ export class Manager extends Client {
     this.paypal = paypal;
 
     this.buttons = new Collection();
-    this.menus = new Collection();
     this.modals = new Collection();
+    this.menus = new Collection();
   }
 
   public async start() {

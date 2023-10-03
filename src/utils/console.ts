@@ -1,5 +1,5 @@
 import 'colors';
-type Labels = 'error' | 'success' | 'debug' | 'shards' | 'express' | 'info' | 'routes' | 'licence' | 'websocket' | 'paypal' | 'discord' | "addons";
+type Labels = 'error' | 'success' | 'debug' | 'shards' | 'express' | 'info' | 'routes' | 'licence' | 'websocket' | 'paypal' | 'discord' | "addons" | "poru";
 function logWithLabel(label: Labels, message: string) {
   const labels: Record<Labels, string> = {
     error: '[ERROR]'.red,
@@ -14,6 +14,7 @@ function logWithLabel(label: Labels, message: string) {
     routes: '[ROUTES]'.white,
     websocket: '[WEBSOCKET]'.gray,
     addons: '[ADDONS]'.bgBlue,
+    poru: '[PORU]'.bgRed
   };
 
   const formattedLabel = labels[label] || label || '';
