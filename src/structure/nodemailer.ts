@@ -2,18 +2,15 @@ import { logWithLabel } from '../utils/console';
 import nodemailer from 'nodemailer';
 
 const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
+  host: '',
   port: 587,
   secure: false,
   auth: {
-    user: 'sn4083495@gmail.com',
-    pass: 'hbxssyaaqjtencvi',
+    user: '',
+    pass: '',
   },
 });
 
-/* The `transporter.verify()` function is used to verify the connection configuration of the email
-server. It takes a callback function as an argument, which will be called once the verification is
-complete. */
 transporter.verify((error: any, success: any) => {
   if (error) logWithLabel('error', `Error in the email: ${error}`);
   else logWithLabel('success', `Server is ready to take our messages: ${success}`);
@@ -21,14 +18,12 @@ transporter.verify((error: any, success: any) => {
 
 const enviarCorreo = (destinatario: string, asunto: string, mensaje: string) => {
   const opcionesCorreo = {
-    from: 'sn4083495@gmail.com',
+    from: '',
     to: destinatario,
     subject: asunto,
     text: mensaje,
   };
 
-/* The code `transporter.sendMail(opcionesCorreo, (error: any, info: { response: any }) => { ... })` is
-sending an email using the `transporter` object created with nodemailer. */
   transporter.sendMail(opcionesCorreo, (error: any, info: { response: any }) => {
     if (error) logWithLabel('error', `Error in the email: ${error}`);
     else logWithLabel('success', `Email sent: ${info.response}`);
