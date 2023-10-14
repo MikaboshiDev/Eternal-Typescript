@@ -1,7 +1,9 @@
 import { Collection, EmbedBuilder, GuildMemberRoleManager, GuildMember, Role } from 'discord.js';
+import TicketSetupData from '../../../models/tickets/setup';
 import { Buttons } from '../../../interface/buttons';
 import emojis from '../../../../config/emojis.json';
 import { Event } from '../../../class/builders';
+import DB from '../../../models/tickets/system';
 import { client } from '../../../index';
 
 export default new Event('interactionCreate', async (interaction: any) => {
@@ -60,6 +62,21 @@ export default new Event('interactionCreate', async (interaction: any) => {
         embed.setDescription(
           [
             `${emojis.error} I don't have permission to use this command because I don't have the necessary permissions.`,
+            `If you think this is an error, please contact the owner of the bot.`,
+          ].join('\n')
+        ),
+      ],
+    });
+
+  if (
+    (button as Buttons).ticketMod &&
+    !interaction.guild?.members.me.permissions.has("ManageChannels")
+  )
+    return interaction.reply({
+      embeds: [
+        embed.setDescription(
+          [
+            `${emojis.error} You need support roles to be able to handle server tickets`,
             `If you think this is an error, please contact the owner of the bot.`,
           ].join('\n')
         ),

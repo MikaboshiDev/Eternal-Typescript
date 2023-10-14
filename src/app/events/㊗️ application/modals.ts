@@ -1,6 +1,7 @@
 import emojis from '../../../../config/emojis.json';
 import { Modals } from '../../../interface/modals';
 import { Event } from '../../../class/builders';
+import DB from '../../../models/tickets/system';
 import { EmbedBuilder } from 'discord.js';
 import { client } from '../../../index';
 import fs from 'fs';
@@ -60,6 +61,18 @@ export default new Event('interactionCreate', async (interaction: any) => {
         embed.setDescription(
           [
             `${emojis.error} You don't have permission to use this command because you don't have the necessary permissions.`,
+            `If you think this is an error, please contact the owner of the bot.`,
+          ].join('\n')
+        ),
+      ],
+    });
+
+  if ((modals as Modals).ticketMod && !interaction.guild?.members.me.permissions.has('ManageChannels'))
+    return interaction.reply({
+      embeds: [
+        embed.setDescription(
+          [
+            `${emojis.error} You need support roles to be able to handle server tickets`,
             `If you think this is an error, please contact the owner of the bot.`,
           ].join('\n')
         ),

@@ -4,6 +4,7 @@ import { Message } from 'discord.js';
 interface Buttons {
   id: string;
   owner: boolean;
+  ticketMod: boolean;
   premium: boolean;
   permissions: PermissionResolvable[];
   botpermissions: PermissionResolvable[];

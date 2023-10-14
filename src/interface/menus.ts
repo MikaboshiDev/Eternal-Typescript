@@ -3,6 +3,7 @@ import { Message } from 'discord.js';
 
 interface Menus {
   id: string;
+  ticketMod: boolean;
   owner: boolean;
   premium: boolean;
   permissions: PermissionResolvable[];
