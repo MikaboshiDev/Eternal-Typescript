@@ -1,10 +1,14 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
 import { createTranscript } from 'discord-html-transcripts';
 import TicketSetupData from '../../../models/tickets/setup';
+import { logWithLabel } from '../../../utils/console';
 import Profile from '../../../models/tickets/perfil';
 import emojis from '../../../../config/emojis.json';
 import DB from '../../../models/tickets/system';
 import Discord from 'discord.js';
+import fs from 'fs';
+import axios from 'axios';
+
 module.exports = {
   id: 'modal_ticket_delete',
   async execute(interaction: any, client: any) {
@@ -77,6 +81,7 @@ module.exports = {
     const transcript = await createTranscript(interaction.channel, {
       limit: -1,
       filename: `transcript-${interaction.channel.id}-${data.TicketID}`,
+      poweredBy: true,
     });
 
     await guild.channels.cache
@@ -117,5 +122,23 @@ module.exports = {
 
     interaction.reply({ embeds: [embed] });
     setTimeout(() => channel.delete().then(() => DB.deleteOne({ ChannelID: channel.id })), 5 * 1000);
+    const nombreArchivo = `transcript-${interaction.channel.id}-${data.TicketID}.html`;
+    const attachmentURL = transcript.setFile.toString();
+    const rutaGuardar = './upload/transcripts/';
+
+    const rutaCompleta = `${rutaGuardar}${nombreArchivo}`;
+    axios({
+      url: attachmentURL,
+      responseType: 'stream',
+    }).then((response) => {
+      response.data
+        .pipe(fs.createWriteStream(rutaCompleta))
+        .on('finish', () => {
+          logWithLabel('discord', `The archive was saved successfully in ${rutaCompleta}`);
+        })
+        .on('error', (err: any) => {
+          logWithLabel('discord', `Error saving file: ${err}`);
+        });
+    });
   },
 };
