@@ -22,6 +22,7 @@
         "express": "^4.18.2",
         "express-session": "^1.17.3",
         "glob": "^10.3.4",
+        "html-entities": "^2.4.0",
         "jsonwebtoken": "^9.0.2",
         "luxon": "^3.4.3",
         "mathjs": "^11.11.1",

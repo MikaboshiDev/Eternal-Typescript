@@ -14,7 +14,7 @@ module.exports = {
   cooldown: 5000,
   permissions: ['Administrator'],
   botpermissions: ['Administrator'],
-  description: 'The reuqest (GET, POST, PUT, DELETE) method for the API',
+  description: 'The request (GET, POST, PUT, DELETE) method for the API',
   examples: [`request [method] [url] [body]`, `request [method] [url]`],
   aliases: ['req', 'api', 'request-api'],
   category: 'premium',
