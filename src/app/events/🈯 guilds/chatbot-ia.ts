@@ -37,8 +37,8 @@ Remember to answer this question: ${message.content} in a technical way, if they
     message.reply({
       content: respuesta ? respuesta : `${emojis.error} Could not find an answer to your question.`,
     });
-  } catch (e) {
-    logWithLabel('error', `Error in event ${module.exports.info.name}`);
+  } catch (e: any) {
+    logWithLabel('error', `Error in event chatbot-ia => ${e.message}`);
     message.reply({
       content: [
         `${emojis.error} An error has occurred while executing this command or event is being executed.`,
