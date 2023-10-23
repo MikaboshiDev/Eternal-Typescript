@@ -6,6 +6,7 @@
     "dependencies": {
         "@discordjs/voice": "^0.16.0",
         "@dqbd/tiktoken": "^1.0.7",
+        "@iamtraction/google-translate": "^2.0.1",
         "aflb": "^1.3.7",
         "akaneko": "^5.2.8",
         "axios": "^1.5.0",

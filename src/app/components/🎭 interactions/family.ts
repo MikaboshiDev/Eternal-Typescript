@@ -17,6 +17,16 @@ module.exports = {
   category: 'interactions',
   premium: false,
   cooldown: 5000,
+  examples: [
+    "family [subcommand] [name]",
+    "family adopt [name]",
+  ],
+  subcommands: [
+    "family adopt [target]",
+    "family divorce [target]",
+    "family status [target]",
+    "family propose [target]",
+  ],
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const subcommand = args[0];
     switch (subcommand) {

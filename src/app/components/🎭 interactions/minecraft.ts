@@ -9,6 +9,14 @@ module.exports = {
   category: 'interactions',
   premium: false,
   cooldown: 5000,
+  examples: [
+    "minecraft [subcommand] [name]",
+    "minecraft skin [name]",
+  ],
+  subcommands: [
+    "minecraft skin [target mc]",
+    "minecraft server [target mc]",
+  ],
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const subcommand = args[0];
     switch (subcommand) {

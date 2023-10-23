@@ -3,6 +3,7 @@ import {
   ChatInputCommandInteraction,
   ClientEvents,
   SlashCommandBuilder,
+  ContextMenuCommandBuilder,
   SlashCommandSubcommandsOnlyBuilder,
 } from 'discord.js';
 import { Manager } from '../index';
@@ -15,13 +16,21 @@ export interface CommandOptions {
 }
 
 export class Command {
-  readonly structure: SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>;
+  readonly structure:
+    | SlashCommandBuilder
+    | ContextMenuCommandBuilder
+    | SlashCommandSubcommandsOnlyBuilder
+    | Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>;
   readonly run: (client: Manager, interaction: ChatInputCommandInteraction, paypal: Manager['paypal']) => void;
   readonly options: CommandOptions | undefined;
   name: any;
 
   constructor(
-    structure: SlashCommandBuilder | SlashCommandSubcommandsOnlyBuilder | Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>,
+    structure:
+      | SlashCommandBuilder
+      | ContextMenuCommandBuilder
+      | SlashCommandSubcommandsOnlyBuilder
+      | Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>,
     run: (client: Manager, interaction: ChatInputCommandInteraction) => void,
     options?: CommandOptions
   ) {

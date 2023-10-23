@@ -1,3 +1,4 @@
+import { customerWebMiddleware, devWebMiddleware } from '../middleware/web.middleware';
 import { Request, Response, Router } from 'express';
 import fs from 'fs';
 import { client } from '../../src/index';
@@ -7,7 +8,6 @@ import MsgModel from '../../src/models/messages';
 import ProductModel from '../../src/models/products';
 import { authLogout } from '../controllers/auth.controllers';
 import { authInspection } from '../middleware/auth.middleware';
-import { customerWebMiddleware, devWebMiddleware } from '../middleware/web.middleware';
 import { passport } from '../utils/passport';
 const router = Router();
 

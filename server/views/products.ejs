@@ -24,11 +24,11 @@
               <img src="<%= product.image %>" alt="<%= product.name %>" />
               <div class="nombre"><%= product.name %></div>
               <div class="linea"></div>
-              <div class="id">ID: <%= product.id %></div>
+              <div class="id">ID: <%= product.id ? product.id : 'N/A' %></div>
               <div class="linea"></div>
               <div class="descripcion"><%= product.description %></div>
               <button class="boton-descarga">
-                <a href="<%= product.category %>"><%= product.price %> $</a>
+                <a href="<%= product.category %>"><%= product.price ? product.price : 'N/A' %> $</a>
               </button>
             </div>
           </div>
@@ -66,11 +66,11 @@
                   <img src="${product.image}" alt="${product.name}" />
                   <div class="nombre">${product.name}</div>
                   <div class="linea"></div>
-                  <div class="id">ID: ${product.id}</div>
+                  <div class="id">ID: ${product.id ? product.id : 'N/A'}</div>
                   <div class="linea"></div>
                   <div class="descripcion">${product.description}</div>
                   <button class="boton-descarga">
-                    <a href="${product.quantity}">${product.price} $</a>
+                    <a href="${product.quantity}">${product.price ? product.price : 'N/A'} $</a>
                   </button>
                 </div>
               `;

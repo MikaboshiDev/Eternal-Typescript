@@ -99,7 +99,7 @@ router.post('/aplications/add-product', async (req: Request, res: Response) => {
     id: id,
     price: price,
     description: description,
-    image: image,
+    image: image ? image : 'https://cdn.discordapp.com/embed/avatars/0.png',
     category: category,
     quantity: quantity || 0,
     date: date || Date.now(),
