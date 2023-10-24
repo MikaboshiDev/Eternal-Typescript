@@ -19,7 +19,7 @@ module.exports = {
   subcommands: [
     `all subcommands function nsfw discord servers`,
   ],
-  async execute(client: any, message: Message, args: string[], prefix: any) {
+  async execute(message: Message, args: string[], prefix: any) {
     const { nsfw } = new client();
     const subcommands = args[0];
     switch (subcommands) {
