@@ -40,7 +40,7 @@ router.get('/dashboard', authInspection, async (req: Request, res: Response) => 
   try {
     const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
     if (!req.user) return res.redirect('/error');
-    res.render('index.ejs', {
+    res.render('dashboard.ejs', {
       user: req.user,
       r_client: client,
       avatarURL: function (id: string) {

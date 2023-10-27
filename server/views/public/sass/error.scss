@@ -1,0 +1,55 @@
+@use "root";
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--color-background);
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40rem;
+  height: auto;
+  padding: 2rem;
+  background-color: var(--color-white);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--box-shadow);
+  text-align: center;
+  h1 {
+    font-size: 4rem;
+    font-weight: 600;
+    color: var(--color-dark);
+  }
+  h2 {
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--color-dark-variant);
+    margin-bottom: 1rem;
+  }
+  p {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--color-dark-variant);
+    padding: var(--padding-1);
+  }
+  a {
+    display: inline-block;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--color-primary);
+    text-decoration: none;
+    padding: 0.5rem 2rem;
+    border: 2px solid var(--color-primary);
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  a:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+  }
+}

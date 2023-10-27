@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600&display=swap');
+
 :root {
   --color-primary: #7380ec;
   --color-danger: #ff4d4d;
@@ -12,12 +13,15 @@
   --color-primary-variant: #111e88;
   --color-dark-variant: #677483;
   --color-background: #f6f6f9;
+
   --card-border-radius: 2rem;
   --border-radius-1: 0.4rem;
   --border-radius-2: 1rem;
   --border-radius-3: 1.2rem;
+
   --card-padding: 2.5rem;
   --padding-1: 1.2rem;
+
   --box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
 }
 
@@ -38,36 +42,36 @@
   background-color: var(--color-white);
   border-radius: var(--card-border-radius);
   box-shadow: var(--box-shadow);
-}
-.welcome-card h1 {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: 2.8rem;
-  font-weight: 800;
-  color: var(--color-dark);
-  margin-bottom: 10px;
-}
-.welcome-card p {
-  font-family: "Poppins", sans-serif;
-  font-size: 1.6rem;
-  font-weight: 400;
-  color: var(--color-dark-variant);
-  margin-bottom: 20px;
-  text-align: center;
-}
-.welcome-card a {
-  display: flex;
-  align-items: center;
-  font-family: "Poppins", sans-serif;
-  font-size: 1.6rem;
-  font-weight: 500;
-  color: var(--color-white);
-  background-color: var(--color-primary);
-  border: none;
-  border-radius: var(--border-radius-2);
-  padding: var(--padding-1);
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-  text-decoration: none;
+  h1 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: var(--color-dark);
+    margin-bottom: 10px;
+  }
+  p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--color-dark-variant);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  a {
+    display: flex;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--color-white);
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: var(--border-radius-2);
+    padding: var(--padding-1);
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none;
+  }
 }
 
 .discord-icon {
@@ -82,34 +86,35 @@
 @media screen and (max-width: 1200px) {
   .welcome-card {
     width: 70%;
+    h1 {
+      font-size: 2.5rem;
+    }
+    p {
+      font-size: 1.6rem;
+    }
   }
-  .welcome-card h1 {
-    font-size: 2.5rem;
-  }
-  .welcome-card p {
-    font-size: 1.6rem;
-  }
+
   .discord-icon {
     font-size: 2rem;
   }
 }
+
 @media screen and (max-width: 768px) {
   .welcome-card {
     width: 90%;
     padding: 2rem;
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+    }
+    p {
+      font-size: 1.4rem;
+      margin-bottom: 15px;
+    }
   }
-  .welcome-card h1 {
-    font-size: 2.2rem;
-    margin-bottom: 15px;
-  }
-  .welcome-card p {
-    font-size: 1.4rem;
-    margin-bottom: 15px;
-  }
+
   .discord-icon {
     font-size: 1.8rem;
     margin-right: 10px;
   }
 }
-
-/*# sourceMappingURL=login.css.map */

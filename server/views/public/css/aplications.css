@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
 :root {
   --color-primary: #7380ec;
   --color-danger: #ff4d4d;
@@ -13,15 +12,12 @@
   --color-primary-variant: #111e88;
   --color-dark-variant: #677483;
   --color-background: #f6f6f9;
-
   --card-border-radius: 2rem;
   --border-radius-1: 0.4rem;
   --border-radius-2: 0.8rem;
   --border-radius-3: 1.2rem;
-
   --card-padding: 1.8rem;
   --padding-1: 1.2rem;
-
   --box-shadow: 0 2rem 3rem var(--color-light);
 }
 
@@ -52,7 +48,7 @@ html {
 body {
   width: 100vw;
   height: 100vh;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 0.88rem;
   background: var(--color-background);
   overflow-x: hidden;
@@ -139,43 +135,33 @@ b {
 aside {
   height: 100vh;
 }
-
 aside .top {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-top: 1.4rem;
 }
-
 aside .logo {
   display: flex;
   gap: 0.5rem;
 }
-
 aside .logo img {
   width: 2rem;
   height: 2rem;
 }
-
-aside .close {
+aside .logo .close {
   display: none;
 }
-
-/* =============== SIDEBAR =============== */
-
 aside .sidebar {
   position: relative;
   top: 3rem;
   display: flex;
   flex-direction: column;
   height: 86vh;
-  top: 3rem;
 }
-
-aside h3 {
+aside .sidebar h3 {
   font-weight: 500;
 }
-
 aside .sidebar a {
   display: flex;
   color: var(--color-info-dark);
@@ -186,47 +172,39 @@ aside .sidebar a {
   height: 3.7rem;
   transition: all 300ms ease;
 }
-
 aside .sidebar a span {
   font-size: 1.6rem;
   transition: all 300ms ease;
 }
-
 aside .sidebar a:last-child {
   position: absolute;
   bottom: 2rem;
   width: 100%;
 }
-
 aside .sidebar a.active {
   background: var(--color-light);
   color: var(--color-primary);
   margin-left: 0;
 }
-
 aside .sidebar a.active:before {
-  content: '';
+  content: "";
   width: 6px;
   height: 100%;
   background: var(--color-primary);
 }
-
 aside .sidebar a.active span {
   color: var(--color-primary);
   margin-left: calc(1rem - 3px);
 }
-
 aside .sidebar a:hover {
   background: var(--color-light);
   color: var(--color-primary);
   margin-left: 0;
 }
-
 aside .sidebar a:hover span {
   margin-left: 1rem;
 }
-
-aside .sidebar .message-count {
+aside .sidebar a .message-count {
   background: var(--color-danger);
   color: var(--color-white);
   padding: 2px 10px;
@@ -234,12 +212,9 @@ aside .sidebar .message-count {
   border-radius: var(--border-radius-1);
 }
 
-/* =============== MAIN =============== */
-
 main {
   margin-top: 1.4rem;
 }
-
 main .date {
   display: inline-block;
   background: var(--color-light);
@@ -247,22 +222,142 @@ main .date {
   margin-top: 1rem;
   padding: 0.5rem 1.6rem;
 }
-
-main .date input[type='date'] {
+main .date input[type=date] {
   background: transparent;
   color: var(--color-dark);
 }
 
-/* =============== ORDENES RECIENTES =============== */
+.right {
+  margin-top: 1.4rem;
+}
+.right .top {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
+}
+.right .top button {
+  display: none;
+}
+.right .top .theme-toggler {
+  background: var(--color-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 1.6rem;
+  width: 4.2rem;
+  cursor: pointer;
+  border-radius: var(--border-radius-1);
+}
+.right .top .theme-toggler i {
+  font-size: 1.2rem;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.right .top .theme-toggler i.active {
+  background: var(--color-primary);
+  color: white;
+  border-radius: var(--border-radius-1);
+}
+.right .top .theme-toggler i.inactive {
+  background: var(--color-light);
+  color: var(--color-dark);
+  border-radius: var(--border-radius-1);
+}
+.right .top .profile {
+  display: flex;
+  gap: 2rem;
+  text-align: right;
+}
+.right .recent-updates {
+  margin-top: 1rem;
+}
+.right .recent-updates h2 {
+  margin-bottom: 0.8rem;
+}
+.right .recent-updates .updates {
+  background: var(--color-white);
+  padding: var(--card-padding);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--box-shadow);
+  transition: all 300ms ease;
+}
+.right .recent-updates .updates:hover {
+  box-shadow: none;
+}
+.right .recent-updates .updates .update {
+  display: grid;
+  grid-template-columns: 2.6rem auto;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.right .sales-analytics {
+  margin-top: 2rem;
+}
+.right .sales-analytics h2 {
+  margin-bottom: 0.8rem;
+}
+.right .sales-analytics .item {
+  background: var(--color-white);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.7rem;
+  padding: 1.4rem var(--card-padding);
+  border-radius: var(--border-radius-3);
+  box-shadow: var(--box-shadow);
+  transition: all 300ms ease;
+}
+.right .sales-analytics .item:hover {
+  box-shadow: none;
+}
+.right .sales-analytics .item .right {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0;
+  width: 100%;
+}
+.right .sales-analytics .item .icon {
+  padding: 0.6rem;
+  color: var(--color-white);
+  border-radius: 50%;
+}
+.right .sales-analytics .item .icon.offline {
+  background: var(--color-danger);
+}
+.right .sales-analytics .item .icon.customers {
+  background: var(--color-success);
+}
+.right .sales-analytics .add-product {
+  background-color: transparent;
+  border: 2px dashed var(--color-primary);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.right .sales-analytics .add-product:hover {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+.right .sales-analytics .add-product div {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.right .sales-analytics .add-product div h3 {
+  font-weight: 600;
+}
 
 main .recent-orders {
   margin-top: 2rem;
 }
-
 main .recent-orders h2 {
   margin-bottom: 0.8rem;
 }
-
 main .recent-orders table {
   background: var(--color-white);
   width: 100%;
@@ -272,39 +367,33 @@ main .recent-orders table {
   box-shadow: var(--box-shadow);
   transition: all 300ms ease;
 }
-
 main .recent-orders table:hover {
   box-shadow: none;
 }
-
-main table tbody td {
+main .recent-orders table tbody td {
   height: 2.8rem;
   border-bottom: 1px solid var(--color-light);
   color: var(--color-dark-variant);
 }
-
-main table tbody tr:last-child td {
+main .recent-orders table tbody td:last-child {
   border: none;
 }
-
-main .recent-orders a {
+main .recent-orders table .recent-orders a {
   text-align: center;
   display: block;
   margin: 1rem auto;
   color: var(--color-primary);
 }
 
-/* Estilo para el contenedor de tarjetas */
 .tarjeta-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px; /* Espacio entre las tarjetas */
+  gap: 20px;
 }
 
-/* Estilo para cada tarjeta */
 .tarjeta {
-  width: calc(50% - 20px); /* 50% del ancho del contenedor con espacio entre las tarjetas */
+  width: calc(50% - 20px);
   height: auto;
   margin-top: 20px;
   border: 1px solid var(--color-info-light);
@@ -318,55 +407,43 @@ main .recent-orders a {
   overflow: hidden;
   position: relative;
 }
-
-/* Estilo para el contenido de la tarjeta */
-.contenido-tarjeta {
+.tarjeta .contenido-tarjeta {
   text-align: center;
   padding: 20px;
 }
-
-/* Estilo para la imagen dentro de la tarjeta */
-.tarjeta img {
+.tarjeta .contenido-tarjeta img {
   max-width: 100%;
-  max-height: 200px; /* Tamaño máximo de la imagen */
+  max-height: 200px;
   height: auto;
 }
-
-/* Estilo para la información dentro de la tarjeta */
-.id {
+.tarjeta .contenido-tarjeta .id {
   font-weight: bold;
   margin-top: 10px;
   color: var(--color-dark);
 }
-
-.username {
+.tarjeta .contenido-tarjeta .username {
   font-weight: bold;
   margin-top: 10px;
   color: var(--color-dark);
 }
-
-.linea {
+.tarjeta .contenido-tarjeta .linea {
   width: 100%;
   height: 1px;
   background-color: var(--color-info-light);
   margin: 10px 0;
 }
-
-.descriptions {
+.tarjeta .contenido-tarjeta .descriptions {
   margin-top: 10px;
   color: var(--color-info-dark);
 }
-
-/* Estilo para el botón de invitar */
-.boton-invitar {
-  margin-top: 20px; /* Aumenta el espacio entre el contenido y el botón */
+.tarjeta .boton-invitar {
+  margin-top: 20px;
   text-align: center;
 }
-
-.boton-invitar a {
+.tarjeta .boton-invitar a {
   display: inline-block;
-  padding: 10px 20px; /* Ajusta el padding horizontal */
-  margin-right: 10px; /* Espacio entre los botones */
+  padding: 10px 20px;
+  margin-right: 10px;
   background-color: transparent;
   color: var(--color-info-light);
   text-decoration: none;
@@ -375,20 +452,17 @@ main .recent-orders a {
   cursor: pointer;
   transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
-
-.boton-invitar a:hover {
+.tarjeta .boton-invitar a:hover {
   background-color: var(--color-info-light);
   color: var(--color-white);
   transform: scale(1.1);
 }
 
-/* Estilo para la paginación */
 .paginacion {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
-
 .paginacion button {
   background-color: var(--color-info-light);
   color: var(--color-white);
@@ -401,205 +475,32 @@ main .recent-orders a {
   margin: 0 10px;
   transition: background-color 0.3s ease-in-out;
 }
-
 .paginacion button[disabled] {
   background-color: var(--color-gray);
   cursor: not-allowed;
 }
-
 .paginacion button:hover {
   background-color: var(--color-success);
 }
 
-/* =============== RIGHT =============== */
-
-.right {
-  margin-top: 1.4rem;
-}
-
-.right .top {
-  display: flex;
-  justify-content: end;
-  gap: 2rem;
-}
-
-.right .top button {
-  display: none;
-}
-
-.right .theme-toggler {
-  background: var(--color-light);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 1.6rem;
-  width: 4.2rem;
-  cursor: pointer;
-  border-radius: var(--border-radius-1);
-}
-
-.right .theme-toggler i {
-  font-size: 1.2rem;
-  width: 50%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.right .theme-toggler i.active {
-  background: var(--color-primary);
-  color: white;
-  border-radius: var(--border-radius-1);
-}
-
-.right .theme-toggler i.inactive {
-  background: var(--color-light);
-  color: var(--color-dark);
-  border-radius: var(--border-radius-1);
-}
-
-.right .top .profile {
-  display: flex;
-  gap: 2rem;
-  text-align: right;
-}
-
-/* =============== RECENT UPDATES =============== */
-
-.right .recent-updates {
-  margin-top: 1rem;
-}
-
-.right .recent-updates h2 {
-  margin-bottom: 0.8rem;
-}
-
-.right .recent-updates .updates {
-  background: var(--color-white);
-  padding: var(--card-padding);
-  border-radius: var(--card-border-radius);
-  box-shadow: var(--box-shadow);
-  transition: all 300ms ease;
-}
-
-.right .recent-updates .updates:hover {
-  box-shadow: none;
-}
-
-.right .recent-updates .updates .update {
-  display: grid;
-  grid-template-columns: 2.6rem auto;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-.right .sales-analytics .item.offline .icon {
-  background: var(--color-danger);
-}
-
-.right .sales-analytics .item.customers .icon {
-  background: var(--color-success);
-}
-
-.right .sales-analytics .add-product {
-  background-color: transparent;
-  border: 2px dashed var(--color-primary);
-  color: var(--color-primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.right .sales-analytics .add-product:hover {
-  background-color: var(--color-primary);
-  color: var(--color-white);
-}
-
-.right .sales-analytics .add-product div {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-}
-
-.right .sales-analytics .add-product div h3 {
-  font-weight: 600;
-}
-
-/* =============== SALES ANALYTICS =============== */
-
-.right .sales-analytics {
-  margin-top: 2rem;
-}
-
-.right .sales-analytics h2 {
-  margin-bottom: 0.8rem;
-}
-
-.right .sales-analytics .item {
-  background: var(--color-white);
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 0.7rem;
-  padding: 1.4rem var(--card-padding);
-  border-radius: var(--border-radius-3);
-  box-shadow: var(--box-shadow);
-  transition: all 300ms ease;
-}
-
-.right .sales-analytics .item:hover {
-  box-shadow: none;
-}
-
-.right .sales-analytics .item .right {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  margin: 0;
-  width: 100%;
-}
-
-.right .sales-analytics .item .icon {
-  padding: 0.6rem;
-  color: var(--color-white);
-  border-radius: 50%;
-  background: var(--color-primary);
-  display: flex;
-}
-
-.right .sales-analytics .item.offline .icon {
-  background: var(--color-danger);
-}
-
-.right .sales-analytics .item.customers .icon {
-  background: var(--color-success);
-}
-
-/* =============== MEDIA QUERIES =============== */
 @media screen and (max-width: 1200px) {
   .container {
     width: 94%;
     grid-template-columns: 7rem auto 23rem;
   }
-
   aside .logo h2 {
     display: none;
   }
-
   aside .sidebar h3 {
     display: none;
   }
-
   aside .sidebar a {
     width: 5.6rem;
   }
-
   aside .sidebar a:last-child {
     position: relative;
     margin-top: 1.8rem;
   }
-
   main .recent-orders {
     width: 94%;
     position: absolute;
@@ -607,29 +508,23 @@ main .recent-orders a {
     transform: translateX(-50%);
     margin: 2rem 0 0 8.8rem;
   }
-
   main .recent-orders table {
     width: 83vw;
   }
-
   main table thead tr th:last-child,
   main table thead tr th:first-child {
     display: none;
   }
-
-  main table tbody tr td:last-child,
-  main table tbody tr td:first-child {
+  main table thead tbody tr td:last-child,
+  main table thead tbody tr td:first-child {
     display: none;
   }
 }
-
-/* =============== MEDIA QUERIES =============== */
 @media screen and (max-width: 768px) {
   .container {
     width: 100%;
     grid-template-columns: 1fr;
   }
-
   aside {
     position: fixed;
     left: -100%;
@@ -642,61 +537,44 @@ main .recent-orders a {
     display: none;
     animation: showMenu 400ms ease forwards;
   }
-
-  @keyframes showMenu {
-    to {
-      left: 0;
-    }
-  }
-
   aside .logo {
     margin-left: 1rem;
   }
-
   aside .logo h2 {
     display: inline;
   }
-
   aside .sidebar h3 {
     display: inline;
   }
-
   aside .sidebar a {
     width: 100%;
     height: 3.4rem;
   }
-
   aside .sidebar a:last-child {
     position: absolute;
     bottom: 5rem;
   }
-
   aside .close {
     display: inline-block;
     cursor: pointer;
   }
-
   main {
     margin-top: 8rem;
     padding: 0 1rem;
   }
-
   main .recent-orders {
     position: relative;
     margin: 3rem 0 0 0;
     width: 100%;
   }
-
   main .recent-orders table {
     width: 100%;
     margin: 0;
   }
-
   .right {
     width: 94%;
     margin: 0 auto 4rem;
   }
-
   .right .top {
     position: fixed;
     top: 0;
@@ -710,17 +588,14 @@ main .recent-orders a {
     z-index: 2;
     box-shadow: 0 1rem 1rem var(--color-light);
   }
-
   .right .top .theme-toggler {
     width: 4.4rem;
     position: absolute;
     left: 66%;
   }
-
   .right .profile .info {
     display: none;
   }
-
   .right .top button {
     display: inline-block;
     background: transparent;
@@ -729,8 +604,9 @@ main .recent-orders a {
     position: absolute;
     left: 1rem;
   }
-
   .right .top button span {
     font-size: 2rem;
   }
 }
+
+/*# sourceMappingURL=aplications.css.map */

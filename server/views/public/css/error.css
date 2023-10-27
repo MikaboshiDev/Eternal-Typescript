@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
 :root {
   --color-primary: #7380ec;
   --color-danger: #ff4d4d;
@@ -13,15 +12,12 @@
   --color-primary-variant: #111e88;
   --color-dark-variant: #677483;
   --color-background: #f6f6f9;
-
   --card-border-radius: 2rem;
   --border-radius-1: 0.4rem;
   --border-radius-2: 0.8rem;
   --border-radius-3: 1.2rem;
-
   --card-padding: 1.8rem;
   --padding-1: 1.2rem;
-
   --box-shadow: 0 2rem 3rem var(--color-light);
 }
 
@@ -46,28 +42,24 @@
   box-shadow: var(--box-shadow);
   text-align: center;
 }
-
-.error-heading {
+.error-container h1 {
   font-size: 4rem;
   font-weight: 600;
   color: var(--color-dark);
 }
-
-.error-subheading {
+.error-container h2 {
   font-size: 2rem;
   font-weight: 500;
   color: var(--color-dark-variant);
   margin-bottom: 1rem;
 }
-
 .error-container p {
   font-size: 1.6rem;
   font-weight: 400;
   color: var(--color-dark-variant);
   padding: var(--padding-1);
 }
-
-.error-button {
+.error-container a {
   display: inline-block;
   font-size: 1.6rem;
   font-weight: 500;
@@ -78,8 +70,9 @@
   border-radius: 4px;
   transition: background-color 0.3s, color 0.3s;
 }
-
-.error-button:hover {
+.error-container a:hover {
   background-color: var(--color-primary);
   color: var(--color-white);
 }
+
+/*# sourceMappingURL=error.css.map */

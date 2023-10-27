@@ -1,0 +1,331 @@
+@use 'format';
+
+.tarjeta-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tarjeta {
+  width: 400px;
+  height: 500px;
+  margin: 10px;
+  border: 1px solid var(--color-info-light);
+  border-radius: var(--card-border-radius);
+  padding: var(--card-padding);
+  box-shadow: var(--box-shadow);
+  background: var(--color-white);
+  color: var(--color-white);
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+
+  .contenido-tarjeta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .nombre {
+      font-weight: bold;
+      margin-top: var(--padding-1);
+      color: var(--color-dark);
+    }
+
+    .id {
+      font-size: 14px;
+      color: var(--color-info-dark);
+    }
+
+    .descripcion {
+      margin-top: var(--padding-1);
+      color: var(--color-dark-variant);
+    }
+
+    .linea {
+      width: 100%;
+      height: 1px;
+      background-color: var(--color-info-light);
+      margin: var(--padding-1) 0;
+    }
+  }
+
+  &:hover {
+    box-shadow: none;
+  }
+
+  .boton-descarga {
+    position: absolute;
+    bottom: var(--padding-1);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.5rem 1rem;
+    background-color: var(--color-info-light);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--border-radius-1);
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: var(--color-success);
+    }
+  }
+}
+
+.paginacion {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+
+  button {
+    background-color: var(--color-info-light);
+    color: var(--color-white);
+    border: none;
+    border-radius: var(--border-radius-1);
+    cursor: pointer;
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+    transition: background-color 0.3s ease-in-out;
+
+    &[disabled] {
+      background-color: var(--color-gray);
+      cursor: not-allowed;
+    }
+
+    &:hover {
+      background-color: var(--color-success);
+    }
+  }
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &.blur {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+  }
+}
+
+.form-container {
+  display: none;
+  background: var(--color-white);
+  height: 80%;
+  width: 40%;
+  padding: 1.4rem var(--card-padding);
+  border-radius: var(--border-radius-3);
+  box-shadow: var(--box-shadow);
+  transition: all 300ms ease;
+  position: relative;
+  z-index: 1000;
+  text-align: center;
+
+  h2 {
+    margin-bottom: 0.8rem;
+    text-align: center;
+  }
+
+  .form-field {
+    margin-bottom: 0.7rem;
+
+    label {
+      color: var(--color-dark);
+      font-weight: bold;
+      display: block;
+    }
+
+    input[type='text'] {
+      width: 90%;
+      padding: 1rem;
+      border-radius: var(--border-radius-1);
+      border: 1px solid var(--color-info-light);
+      transition: border-color 0.3s;
+
+      &:focus {
+        outline: none;
+        border-color: var(--color-primary);
+      }
+    }
+  }
+
+  button {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: var(--border-radius-2);
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-top: 1rem;
+
+    &:hover {
+      background-color: var(--color-primary-variant);
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .container {
+    width: 94%;
+    grid-template-columns: 7rem auto 23rem;
+  }
+
+  aside .logo h2 {
+    display: none;
+  }
+
+  aside .sidebar h3 {
+    display: none;
+  }
+
+  aside .sidebar a {
+    width: 5.6rem;
+  }
+
+  aside .sidebar a:last-child {
+    position: relative;
+    margin-top: 1.8rem;
+  }
+
+  .tarjeta {
+    width: calc(50% - 20px);
+    margin: 10px;
+
+    .nombre {
+      font-size: 16px;
+    }
+
+    .descripcion {
+      font-size: 14px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+
+  aside {
+    position: fixed;
+    left: -100%;
+    background: var(--color-white);
+    width: 18rem;
+    z-index: 3;
+    box-shadow: 1rem 3rem 4rem var(--color-light);
+    height: 100vh;
+    padding-right: var(--card-padding);
+    display: none;
+    animation: showMenu 400ms ease forwards;
+
+    .logo {
+      margin-left: 1rem;
+
+      h2 {
+        display: inline;
+      }
+    }
+
+    .sidebar {
+      h3 {
+        display: inline;
+      }
+
+      a {
+        width: 100%;
+        height: 3.4rem;
+
+        &:last-child {
+          position: absolute;
+          bottom: 5rem;
+        }
+      }
+    }
+
+    .close {
+      display: inline-block;
+      cursor: pointer;
+    }
+  }
+
+  main {
+    margin-top: 8rem;
+    padding: 0 1rem;
+  }
+
+  .tarjeta {
+    width: calc(100% - 20px);
+    margin: 10px;
+    height: 600px;
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  .right {
+    width: 94%;
+    margin: 0 auto 4rem;
+
+    .top {
+      position: fixed;
+      top: 0;
+      left: 0;
+      align-items: center;
+      padding: 0 0.8rem;
+      height: 4.6rem;
+      background: var(--color-white);
+      width: 100%;
+      margin: 0;
+      z-index: 2;
+      box-shadow: 0 1rem 1rem var(--color-light);
+
+      .theme-toggler {
+        width: 4.4rem;
+        position: absolute;
+        left: 66%;
+      }
+    }
+
+    .profile {
+      .info {
+        display: none;
+      }
+    }
+
+    .top button {
+      display: inline-block;
+      background: transparent;
+      cursor: pointer;
+      color: var(--color-danger);
+      position: absolute;
+      left: 1rem;
+
+      span {
+        font-size: 2rem;
+      }
+    }
+  }
+}
