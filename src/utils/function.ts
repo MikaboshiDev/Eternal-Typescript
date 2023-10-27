@@ -1,5 +1,4 @@
-import { ChatInputCommandInteraction, EmbedBuilder, GuildMember } from 'discord.js';
-import { client } from '..';
+import { EmbedBuilder, GuildMember } from 'discord.js';
 
 export const embed = (message: string, type?: 'error' | 'info' | 'warn' | 'loading' | 'none', footer?: string) => {
   switch (type) {
@@ -25,7 +24,9 @@ export const embed = (message: string, type?: 'error' | 'info' | 'warn' | 'loadi
     }
 
     case 'loading': {
-      return new EmbedBuilder().setDescription(':arrows_counterclockwise: ' + message).setFooter(footer ? { text: footer } : null);
+      return new EmbedBuilder()
+        .setDescription(':arrows_counterclockwise: ' + message)
+        .setFooter(footer ? { text: footer } : null);
     }
 
     default: {

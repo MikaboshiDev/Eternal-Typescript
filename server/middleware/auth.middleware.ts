@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from 'express';
-import { client } from '../../src/index';
+import { NextFunction, Request, Response } from 'express';
+import { client } from '../../src/shulker';
 
 /**
  * The authInspection function checks if a user is authenticated and redirects them to the login page

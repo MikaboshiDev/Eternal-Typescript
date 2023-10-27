@@ -6,7 +6,7 @@
     <title><%= r_client.user.username %> - Notificactions</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
     <link href="/css/notifications.css" rel="stylesheet" />
-    <link href="/images/logo.jpg" rel="icon" type="image/png" />
+    <link href="/images/favicon/logo.jpg" rel="icon" type="image/png" />
     <%- include("./partials/meta.ejs") %>
   </head>
   <body>
@@ -36,8 +36,9 @@
                   <img src="<%= notice.authorAvatar %>" alt="Avatar" width="32" height="32" />
                 </td>
                 <td>
-                  <% if (notice.content.startsWith("https://cdn.discordapp.com/attachments/")) { %> <% if (notice.content.endsWith(".jpg") ||
-                  notice.content.endsWith(".png") || notice.content.endsWith(".gif")) { %>
+                  <% if (notice.content.startsWith("https://cdn.discordapp.com/attachments/")) { %> <% if
+                  (notice.content.endsWith(".jpg") || notice.content.endsWith(".png") ||
+                  notice.content.endsWith(".gif")) { %>
                   <a href="<%= notice.content %>" target="_blank">View image</a>
                   <% } else { %>
                   <a href="<%= notice.content %>" target="_blank">Download File</a>

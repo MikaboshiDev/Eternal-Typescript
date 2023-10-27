@@ -1,6 +1,5 @@
-import { logWithLabel } from '../../../utils/console';
 import { Event } from '../../../class/builders';
-import { client } from '../../../index';
+import { client } from '../../../shulker';
 
 export default new Event('interactionCreate', async (interaction: any) => {
   if (interaction.isContextMenuCommand()) {

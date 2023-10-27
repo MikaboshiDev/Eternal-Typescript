@@ -20,7 +20,6 @@ export class Manager extends Client {
   poru: any;
   constructor() {
     super({
-      shards: 'auto',
       failIfNotExists: false,
       allowedMentions: {
         parse: ['users', 'roles'],

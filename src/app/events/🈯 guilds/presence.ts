@@ -1,7 +1,7 @@
-import { Event } from '../../../class/builders';
-import { logWithLabel } from '../../../utils/console';
 import { ActivityType } from 'discord.js';
-import { client } from '../../..';
+import { Event } from '../../../class/builders';
+import { client } from '../../../shulker';
+import { logWithLabel } from '../../../utils/console';
 
 const os = require('node:os');
 const cpus = os.cpus();

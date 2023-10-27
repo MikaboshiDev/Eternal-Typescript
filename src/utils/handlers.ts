@@ -3,7 +3,7 @@ import { ClientEvents, REST, Routes } from 'discord.js';
 import { Command, Event } from '../class/builders';
 import { logWithLabel } from './console';
 import { readdirSync } from 'node:fs';
-import { client } from '../index';
+import { client } from '../shulker';
 import fs from 'fs';
 
 const pathCommands = './src/app/commands/';
@@ -136,4 +136,4 @@ async function menus(client: any) {
   }
 }
 
-export { load, deploy, components, addons, buttons, modals, menus };
+export { addons, buttons, components, deploy, load, menus, modals };

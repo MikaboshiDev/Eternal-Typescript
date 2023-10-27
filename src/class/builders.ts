@@ -2,11 +2,11 @@ import {
   AutocompleteInteraction,
   ChatInputCommandInteraction,
   ClientEvents,
-  SlashCommandBuilder,
   ContextMenuCommandBuilder,
+  SlashCommandBuilder,
   SlashCommandSubcommandsOnlyBuilder,
 } from 'discord.js';
-import { Manager } from '../index';
+import { Manager } from '../shulker';
 
 export interface CommandOptions {
   premium?: boolean;
@@ -24,6 +24,7 @@ export class Command {
   readonly run: (client: Manager, interaction: ChatInputCommandInteraction, paypal: Manager['paypal']) => void;
   readonly options: CommandOptions | undefined;
   name: any;
+  cooldown!: number;
 
   constructor(
     structure:
@@ -51,4 +52,3 @@ export class Event<K extends keyof ClientEvents> {
     this.once = once;
   }
 }
-

@@ -1,10 +1,8 @@
-import emojis from '../../../../config/emojis.json';
-import { Modals } from '../../../interface/modals';
-import { Event } from '../../../class/builders';
-import DB from '../../../models/tickets/system';
 import { EmbedBuilder } from 'discord.js';
-import { client } from '../../../index';
-import fs from 'fs';
+import emojis from '../../../../config/emojis.json';
+import { Event } from '../../../class/builders';
+import { Modals } from '../../../interface/modals';
+import { client } from '../../../shulker';
 
 export default new Event('interactionCreate', async (interaction: any) => {
   if (!interaction.isModalSubmit()) return;

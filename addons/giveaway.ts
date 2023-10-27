@@ -1,5 +1,5 @@
-import giveawayModel from '../src/models/systems/giveaways';
 import { GiveawaysManager, Giveaway } from 'discord-giveaways'; 
+import giveawayModel from '../src/models/systems/giveaways';
 
 module.exports = (client: any) => {
   /*const GiveawayManagerWithOwnDatabase = class extends GiveawaysManager {

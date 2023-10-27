@@ -1,8 +1,8 @@
+import { Request, Response } from 'express';
+import moment from 'moment';
 import UserModel from '../../src/models/auth';
 import MsgModel from '../../src/models/messages';
-import { Request, Response } from 'express';
-import { client } from '../../src/index';
-import moment from 'moment';
+import { client } from '../../src/shulker';
 
 /**
  * The getStatus function returns the status of the client, including the number of users, guilds,
@@ -104,4 +104,4 @@ const postMessages = async (req: Request, res: Response) => {
   return res.status(200).json({ message: 'OK', data: newMsg });
 };
 
-export { getStatus, getAllUsers, getBans, postMessages };
+export { getAllUsers, getBans, getStatus, postMessages };

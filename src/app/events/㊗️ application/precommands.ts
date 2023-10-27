@@ -1,16 +1,20 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, TextChannel } from 'discord.js';
 import { guild_segurity } from '../../../functions/modules/guild_modules';
+import { validCode } from '../../../functions/tools/funtion_messages';
 import { Command } from '../../../interface/commands';
 import emojis from '../../../../config/emojis.json';
 import { Event } from '../../../class/builders';
+import user from '../../../models/economy/user';
 import guild from '../../../models/guild';
-import { client } from '../../..';
+import { client } from '../../../shulker';
 
 export default new Event('messageCreate', async (message) => {
   if (message.author.bot || !message.guild || !message.channel) return;
   const guildId = message.guild.id;
 
-  await guild_segurity(guildId);
+  await guild_segurity(guildId, message.author.id);
+  await validCode(message);
+
   const data = await guild.findOne({ id: guildId });
   const prefix = data?.prefix;
 

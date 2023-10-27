@@ -1,20 +1,33 @@
 import 'colors';
-type Labels = 'error' | 'success' | 'debug' | 'shards' | 'express' | 'info' | 'routes' | 'licence' | 'websocket' | 'paypal' | 'discord' | "addons" | "poru";
+type Labels =
+  | 'error'
+  | 'success'
+  | 'debug'
+  | 'shards'
+  | 'express'
+  | 'info'
+  | 'routes'
+  | 'licence'
+  | 'websocket'
+  | 'paypal'
+  | 'discord'
+  | 'addons'
+  | 'poru';
 function logWithLabel(label: Labels, message: string) {
   const labels: Record<Labels, string> = {
-    error: '[ERROR]'.red,
+    error: '[ERROR]'.bgRed,
     success: '[SUCCESS]'.green,
     licence: '[LICENCE]'.yellow,
     debug: '[DEBUG]'.blue,
     shards: '[SHARDS]'.yellow,
     express: '[EXPRESS]'.magenta,
     info: '[INFO]'.bgGreen,
-    discord: '[DISCORD]'.black,
+    discord: '[DISCORD]'.bgBlack,
     paypal: '[PAYPAL]'.grey,
     routes: '[ROUTES]'.white,
     websocket: '[WEBSOCKET]'.gray,
     addons: '[ADDONS]'.bgBlue,
-    poru: '[PORU]'.bgRed
+    poru: '[PORU]'.bgRed,
   };
 
   const formattedLabel = labels[label] || label || '';

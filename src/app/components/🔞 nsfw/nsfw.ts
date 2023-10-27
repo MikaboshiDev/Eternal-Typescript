@@ -2,25 +2,17 @@ import { ChannelType, EmbedBuilder, Message } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
 import superagent from 'superagent';
 import akaneko from 'akaneko';
-import client from 'aflb';
 
 module.exports = {
   name: 'nsfw',
   description: 'use nsfw commands within age restricted channels',
   aliases: ['nsfw'],
   category: 'nsfw',
-  examples: [
-    `nsfw [subcommand] [properties]`,
-    `nsfw [command]`,
-  ],
+  examples: [`nsfw [subcommand] [properties]`, `nsfw [command]`],
   premium: false,
   nsfw: true,
-  cooldown: 5000,
-  subcommands: [
-    `all subcommands function nsfw discord servers`,
-  ],
-  async execute(message: Message, args: string[], prefix: any) {
-    const { nsfw } = new client();
+  subcommands: [`all subcommands function nsfw discord servers`],
+  async execute(client: any, message: Message, args: string[], prefix: any) {
     const subcommands = args[0];
     switch (subcommands) {
       case '4k':
@@ -33,54 +25,10 @@ module.exports = {
             });
         }
         break;
-      case 'ass':
-        {
-          const result = await nsfw.ass();
-          const imageUrl = result.url;
-          const a = new EmbedBuilder().setImage(imageUrl);
-          message.reply({ embeds: [a] }).catch(() => {});
-        }
-        break;
-      case 'bdsm':
-        {
-          const result = await nsfw.bdsm();
-          const imageUrl = result.url;
-          const a = new EmbedBuilder().setImage(imageUrl);
-          message.reply({ embeds: [a] }).catch(() => {});
-        }
-        break;
-      case 'blowjob':
-        {
-          const { url } = await nsfw.blowjob();
-          const a = new EmbedBuilder().setImage(url);
-          message.reply({ embeds: [a] }).catch(() => {});
-        }
-        break;
-      case 'boobjob':
-        {
-          const result = await nsfw.boobjob();
-          const a = new EmbedBuilder().setImage(result.url);
-          message.reply({ embeds: [a] }).catch(() => {});
-        }
-        break;
-      case 'cum':
-        {
-          const result = await nsfw.cum();
-          const a = new EmbedBuilder().setImage(result.url);
-          message.reply({ embeds: [a] }).catch(() => {});
-        }
-        break;
       case 'doujin':
         {
           const image = await akaneko.nsfw.doujin();
           const a = new EmbedBuilder().setImage(image as any);
-          message.reply({ embeds: [a] }).catch(() => {});
-        }
-        break;
-      case 'elves':
-        {
-          const result = await nsfw.elves();
-          const a = new EmbedBuilder().setImage(result.url);
           message.reply({ embeds: [a] }).catch(() => {});
         }
         break;
@@ -105,13 +53,6 @@ module.exports = {
           message.reply({ embeds: [a] }).catch(() => {});
         }
         break;
-      case 'hentai_gif':
-        {
-          const image = nsfw.hentai_gif();
-          const a = new EmbedBuilder().setImage(image as any);
-          message.reply({ embeds: [a] }).catch(() => {});
-        }
-        break;
       case 'maids':
         {
           const image = await akaneko.nsfw.maid();
@@ -119,32 +60,9 @@ module.exports = {
           message.reply({ embeds: [a] }).catch(() => {});
         }
         break;
-      case 'masturbation':
-        {
-          const image = await nsfw.masturbation();
-          const a = new EmbedBuilder()
-            .setAuthor({ name: `${message.author} he is masturbating`, iconURL: message.author.displayAvatarURL() })
-            .setImage(image as any);
-          message.reply({ embeds: [a] }).catch(() => {});
-        }
-        break;
       case 'mobile-wallpapers':
         {
           const image = await akaneko.nsfw.mobileWallpapers();
-          const a = new EmbedBuilder().setImage(image as any);
-          message.reply({ embeds: [a] }).catch(() => {});
-        }
-        break;
-      case 'nekonsfw':
-        {
-          const image = nsfw.neko_nsfw();
-          const a = new EmbedBuilder().setImage(image as any);
-          message.reply({ embeds: [a] }).catch(() => {});
-        }
-        break;
-      case 'panties':
-        {
-          const image = nsfw.panties();
           const a = new EmbedBuilder().setImage(image as any);
           message.reply({ embeds: [a] }).catch(() => {});
         }
@@ -198,6 +116,38 @@ module.exports = {
           message.reply({ embeds: [a] }).catch(() => {});
         }
         break;
+      case 'netorare':
+        {
+          const image = await akaneko.nsfw.netorare();
+          const a = new EmbedBuilder().setImage(image as any);
+          message.reply({ embeds: [a] }).catch(() => {});
+        }
+        break;
+      case 'ass':
+        {
+          const image = await akaneko.nsfw.ass();
+          const a = new EmbedBuilder().setImage(image as any);
+          message.reply({ embeds: [a] }).catch(() => {});
+        }
+        break;
+      case 'bdsm': {
+        const image = await akaneko.nsfw.bdsm();
+        const a = new EmbedBuilder().setImage(image as any);
+        message.reply({ embeds: [a] }).catch(() => {});
+      }
+      break;
+      case "blowjob": {
+        const image = await akaneko.nsfw.blowjob();
+        const a = new EmbedBuilder().setImage(image as any);
+        message.reply({ embeds: [a] }).catch(() => {});
+      }
+      break;
+      case "cum": {
+        const image = await akaneko.nsfw.cum();
+        const a = new EmbedBuilder().setImage(image as any);
+        message.reply({ embeds: [a] }).catch(() => {});
+      }
+      break;
     }
   },
 };

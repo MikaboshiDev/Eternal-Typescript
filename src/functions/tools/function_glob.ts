@@ -1,7 +1,6 @@
 import { logWithLabel } from '../../utils/console';
 import path from 'node:path';
 import { glob } from 'glob';
-import chalk from 'chalk';
 
 async function deleteCachedFile(file: string) {
   const filePath = path.resolve(file);
@@ -17,7 +16,7 @@ async function loadFiles(dirName: string) {
     await Promise.all(jsFiles.map(deleteCachedFile));
     return jsFiles;
   } catch (error) {
-    logWithLabel("discord", `Error loading files: ${chalk.red(error)}`);
+    logWithLabel("discord", `Error loading files: ${error}`);
     throw error;
   }
 }

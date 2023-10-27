@@ -1,9 +1,8 @@
-import emojis from '../../../../config/emojis.json';
-import { Menus } from '../../../interface/menus';
-import { Event } from '../../../class/builders';
 import { EmbedBuilder, PermissionResolvable } from 'discord.js';
-import { client } from '../../../index';
-import fs from 'fs';
+import emojis from '../../../../config/emojis.json';
+import { Event } from '../../../class/builders';
+import { Menus } from '../../../interface/menus';
+import { client } from '../../../shulker';
 
 export default new Event('interactionCreate', async (interaction: any) => {
   if (!interaction.isStringSelectMenu()) return;

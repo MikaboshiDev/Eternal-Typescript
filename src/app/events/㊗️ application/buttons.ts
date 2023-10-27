@@ -1,10 +1,8 @@
-import { Collection, EmbedBuilder, GuildMemberRoleManager, GuildMember, Role } from 'discord.js';
-import TicketSetupData from '../../../models/tickets/setup';
-import { Buttons } from '../../../interface/buttons';
+import { EmbedBuilder } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
 import { Event } from '../../../class/builders';
-import DB from '../../../models/tickets/system';
-import { client } from '../../../index';
+import { Buttons } from '../../../interface/buttons';
+import { client } from '../../../shulker';
 
 export default new Event('interactionCreate', async (interaction: any) => {
   if (!interaction.isButton()) return;
@@ -68,10 +66,7 @@ export default new Event('interactionCreate', async (interaction: any) => {
       ],
     });
 
-  if (
-    (button as Buttons).ticketMod &&
-    !interaction.guild?.members.me.permissions.has("ManageChannels")
-  )
+  if ((button as Buttons).ticketMod && !interaction.guild?.members.me.permissions.has('ManageChannels'))
     return interaction.reply({
       embeds: [
         embed.setDescription(
