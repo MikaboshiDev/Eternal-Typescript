@@ -132,7 +132,7 @@ b {
   color: var(--color-success);
 }
 
-.warning {
+warning {
   color: var(--color-warning);
 }
 
@@ -144,17 +144,16 @@ aside {
     align-items: center;
     justify-content: space-between;
     margin-top: 1.4rem;
-  }
 
-  .logo {
-    display: flex;
-    gap: 0.5rem;
+    .logo {
+      display: flex;
+      gap: 0.5rem;
 
-    img {
-      width: 2rem;
-      height: 2rem;
+      img {
+        width: 2rem;
+        height: 2rem;
+      }
     }
-
     .close {
       display: none;
     }
@@ -166,6 +165,7 @@ aside {
     display: flex;
     flex-direction: column;
     height: 86vh;
+    top: 3rem;
 
     h3 {
       font-weight: 500;
@@ -219,14 +219,14 @@ aside {
           margin-left: 1rem;
         }
       }
+    }
 
-      .message-count {
-        background: var(--color-danger);
-        color: var(--color-white);
-        padding: 2px 10px;
-        font-size: 11px;
-        border-radius: var(--border-radius-1);
-      }
+    .message-count {
+      background: var(--color-danger);
+      color: var(--color-white);
+      padding: 2px 10px;
+      font-size: 11px;
+      border-radius: var(--border-radius-1);
     }
   }
 }
@@ -259,140 +259,153 @@ main {
     button {
       display: none;
     }
-
-    .theme-toggler {
-      background: var(--color-light);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 1.6rem;
-      width: 4.2rem;
-      cursor: pointer;
-      border-radius: var(--border-radius-1);
-
-      i {
-        font-size: 1.2rem;
-        width: 50%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        &.active {
-          background: var(--color-primary);
-          color: white;
-          border-radius: var(--border-radius-1);
-        }
-
-        &.inactive {
-          background: var(--color-light);
-          color: var(--color-dark);
-          border-radius: var(--border-radius-1);
-        }
-      }
-    }
-
-    .profile {
-      display: flex;
-      gap: 2rem;
-      text-align: right;
-    }
   }
 
-  .recent-updates {
-    margin-top: 1rem;
+  .theme-toggler {
+    background: var(--color-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 1.6rem;
+    width: 4.2rem;
+    cursor: pointer;
+    border-radius: var(--border-radius-1);
 
-    h2 {
-      margin-bottom: 0.8rem;
-    }
-
-    .updates {
-      background: var(--color-white);
-      padding: var(--card-padding);
-      border-radius: var(--card-border-radius);
-      box-shadow: var(--box-shadow);
-      transition: all 300ms ease;
-
-      &:hover {
-        box-shadow: none;
-      }
-
-      .update {
-        display: grid;
-        grid-template-columns: 2.6rem auto;
-        gap: 1rem;
-        margin-bottom: 1rem;
-      }
-    }
-  }
-
-  .sales-analytics {
-    margin-top: 2rem;
-
-    h2 {
-      margin-bottom: 0.8rem;
-    }
-
-    .item {
-      background: var(--color-white);
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 0.7rem;
-      padding: 1.4rem var(--card-padding);
-      border-radius: var(--border-radius-3);
-      box-shadow: var(--box-shadow);
-      transition: all 300ms ease;
-
-      &:hover {
-        box-shadow: none;
-      }
-
-      .right {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        margin: 0;
-        width: 100%;
-      }
-
-      .icon {
-        padding: 0.6rem;
-        color: var(--color-white);
-        border-radius: 50%;
-
-        &.offline {
-          background: var(--color-danger);
-        }
-
-        &.customers {
-          background: var(--color-success);
-        }
-      }
-    }
-
-    .add-product {
-      background-color: transparent;
-      border: 2px dashed var(--color-primary);
-      color: var(--color-primary);
+    i {
+      font-size: 1.2rem;
+      width: 50%;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
 
-      &:hover {
-        background-color: var(--color-primary);
-        color: var(--color-white);
+      &.active {
+        background: var(--color-primary);
+        color: white;
+        border-radius: var(--border-radius-1);
       }
 
-      div {
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-
-        h3 {
-          font-weight: 600;
-        }
+      &.inactive {
+        background: var(--color-light);
+        color: var(--color-dark);
+        border-radius: var(--border-radius-1);
       }
     }
+  }
+
+  .top .profile {
+    display: flex;
+    gap: 2rem;
+    text-align: right;
+  }
+}
+
+.right .recent-updates {
+  margin-top: 1rem;
+
+  h2 {
+    margin-bottom: 0.8rem;
+  }
+
+  .updates {
+    background: var(--color-white);
+    padding: var(--card-padding);
+    border-radius: var(--card-border-radius);
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+
+    &:hover {
+      box-shadow: none;
+    }
+
+    .update {
+      display: grid;
+      grid-template-columns: 2.6rem auto;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.right .sales-analytics {
+  margin-top: 2rem;
+
+  h2 {
+    margin-bottom: 0.8rem;
+  }
+
+  .item {
+    background: var(--color-white);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.7rem;
+    padding: 1.4rem var(--card-padding);
+    border-radius: var(--border-radius-3);
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+
+    &:hover {
+      box-shadow: none;
+    }
+
+    .right {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin: 0;
+      width: 100%;
+    }
+
+    .icon {
+      padding: 0.6rem;
+      color: var(--color-white);
+      border-radius: 50%;
+      background: var(--color-primary);
+      display: flex;
+
+      &.offline {
+        background: var(--color-danger);
+      }
+
+      &.customers {
+        background: var(--color-success);
+      }
+    }
+  }
+
+  .add-product {
+    background-color: transparent;
+    border: 2px dashed var(--color-primary);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: var(--color-primary);
+      color: var(--color-white);
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+
+      h3 {
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+footer.footer-credits {
+  margin-top: 2rem;
+  text-align: center;
+  background: var(--color-white);
+
+  p {
+    font-size: 1.2rem;
+    color: var(--color-dark);
   }
 }

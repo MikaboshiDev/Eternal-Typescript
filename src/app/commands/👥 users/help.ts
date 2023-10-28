@@ -3,7 +3,7 @@ import { Command } from '../../../class/builders';
 import fs from 'fs';
 
 export default new Command(
-  new SlashCommandBuilder().setName('help').setDescription('Sends the command list!').setDMPermission(false),
+  new SlashCommandBuilder().setName('help').setDescription('👥 Sends the command list!').setDMPermission(false),
   async (client, interaction) => {
     const dirs = fs.readdirSync('./src/app/commands');
     const slashCommands = await client.application?.commands.fetch();
@@ -24,7 +24,11 @@ export default new Command(
       )
       .setColor('Random');
 
-    let helpMenu = new StringSelectMenuBuilder().setCustomId('helpMenu').setMaxValues(1).setMinValues(1).setPlaceholder('Select a category');
+    let helpMenu = new StringSelectMenuBuilder()
+      .setCustomId('helpMenu')
+      .setMaxValues(1)
+      .setMinValues(1)
+      .setPlaceholder('Select a category');
 
     fs.readdirSync('./src/app/commands').forEach((command) => {
       helpMenu.addOptions({

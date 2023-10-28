@@ -9,16 +9,16 @@
     "clock": "⌛",
     "coin": "🪙",
     "commands": "🉐",
-    "correct": "✅",
+    "correct": "<a:yes:1030716280703045714>",
     "counter": "🌐",
     "danger": "☢️",
-    "error": "❌",
+    "error": "<a:error:1030716002259980318>",
     "fire": "🔥",
     "folders": "📁",
     "globe": "🌍",
     "help": {
         "back": "⬅️",
-        "cancel": "❌",
+        "cancel": "<a:error:1030716002259980318>",
         "forward": "➡️",
         "home": "🏘️",
         "support": "⚒️"
@@ -36,8 +36,8 @@
             "option_5": "🌊"
         },
         "quest": {
-            "negative": "❌",
-            "positive": "✅"
+            "negative": "<a:error:1030716002259980318>",
+            "positive": "<a:yes:1030716280703045714>"
         },
         "tickets": {
             "option_1": "🌍",

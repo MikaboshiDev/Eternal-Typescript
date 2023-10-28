@@ -17,33 +17,35 @@ import Discord from 'discord.js';
 export default new Command(
   new SlashCommandBuilder()
     .setName('tickets')
-    .setDescription('Execute the advanced setup of private server tickets')
+    .setDescription('🎟️ Execute the advanced setup of private server tickets')
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
     .setDMPermission(false)
     .addChannelOption((option) =>
       option
         .setName('channel')
-        .setDescription('Choose the channel where I will publish the ticket setup')
-
+        .setDescription('🎟️ Choose the channel where I will publish the ticket setup')
         .setRequired(true)
         .addChannelTypes(ChannelType.GuildText)
     )
     .addChannelOption((option) =>
       option
         .setName('category')
-        .setDescription('Choose the category where we will open the tickets')
+        .setDescription('🎟️ Choose the category where we will open the tickets')
         .setRequired(true)
         .addChannelTypes(ChannelType.GuildCategory)
     )
     .addChannelOption((option) =>
       option
         .setName('transcription')
-        .setDescription('Choose the channel where we will send the transcriptions')
+        .setDescription('🎟️ Choose the channel where we will send the transcriptions')
         .setRequired(true)
         .addChannelTypes(ChannelType.GuildText)
     )
     .addRoleOption((option) =>
-      option.setName('managers').setDescription('Choose the role that can manage the server tickets').setRequired(true)
+      option
+        .setName('managers')
+        .setDescription('🎟️ Choose the role that can manage the server tickets')
+        .setRequired(true)
     ),
   async (client, interaction) => {
     const { guild, options } = interaction;

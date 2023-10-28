@@ -8,13 +8,13 @@ export default new Command(
     .setName('components')
     .setDMPermission(false)
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
-    .setDescription('Enable or disable bot configuration properties')
+    .setDescription('👑 Enable or disable bot configuration properties')
     .addSubcommand((subcommand) =>
       subcommand
         .setName('messages')
-        .setDescription('Enable or disable bot messages commands')
+        .setDescription('👑 Enable or disable bot messages commands')
         .addBooleanOption((option) =>
-          option.setName('enable').setDescription('Enable or disable messages commands').setRequired(true)
+          option.setName('enable').setDescription('👑 Enable or disable messages commands').setRequired(true)
         )
     ),
   async (client, interaction) => {

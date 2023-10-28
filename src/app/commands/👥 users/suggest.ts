@@ -16,7 +16,7 @@ export default new Command(
   new SlashCommandBuilder()
     .setDMPermission(false)
     .setName('question')
-    .setDescription('Give a idea for a server'),
+    .setDescription('👥 Give a idea for a server'),
   async (client, interaction) => {
     const { guild } = interaction;
     const i = interaction;

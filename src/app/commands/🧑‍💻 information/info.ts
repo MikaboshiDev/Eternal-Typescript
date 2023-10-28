@@ -13,26 +13,26 @@ const premiumTiers = ['`None`', '`Tier 1`', '`Tier 2`', '`Tier 3`'];
 export default new Command(
   new SlashCommandBuilder()
     .setName('info')
-    .setDescription('Get information about the bot and server')
+    .setDescription('🧑‍💻 Get information about the bot and server')
     .addSubcommandGroup((group) =>
       group
         .setName('bot')
-        .setDescription('Get information about the bot')
-        .addSubcommand((sub) => sub.setName('stats').setDescription('Get statistics about the bot'))
-        .addSubcommand((sub) => sub.setName('ping').setDescription("Get the bot's ping"))
-        .addSubcommand((sub) => sub.setName('ram').setDescription("Get the bot's ram usage"))
+        .setDescription('🧑‍💻 Get information about the bot')
+        .addSubcommand((sub) => sub.setName('stats').setDescription('🧑‍💻Get statistics about the bot'))
+        .addSubcommand((sub) => sub.setName('ping').setDescription("🧑‍💻 Get the bot's ping"))
+        .addSubcommand((sub) => sub.setName('ram').setDescription("🧑‍💻 Get the bot's ram usage"))
     )
     .addSubcommandGroup((group) =>
       group
         .setName('server')
-        .setDescription('Get information about the server')
-        .addSubcommand((sub) => sub.setName('stats').setDescription('Get statistics about the server'))
+        .setDescription('🧑‍💻 Get information about the server')
+        .addSubcommand((sub) => sub.setName('stats').setDescription('🧑‍💻 Get statistics about the server'))
         .addSubcommand((sub) =>
           sub
             .setName('roles')
-            .setDescription('Get information about a role')
+            .setDescription('🧑‍💻 Get information about a role')
             .addRoleOption((option) =>
-              option.setName('role').setDescription('The role to get information about').setRequired(true)
+              option.setName('role').setDescription('🧑‍💻 The role to get information about').setRequired(true)
             )
         )
     ),

@@ -8,30 +8,27 @@ import { Command } from '../../../class/builders';
 export default new Command(
   new SlashCommandBuilder()
     .setName(`quest`)
-    .setDescription(`manage the suggestion system`)
+    .setDescription(`🎟️ Manage the suggestion system`)
     .setDMPermission(false)
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
     .addSubcommand((subcommand) => {
       return subcommand
         .setName('setup')
-        .setDescription(`❔ set the suggestion system for the server up`)
+        .setDescription(`🎟️ Set the suggestion system for the server up`)
         .addChannelOption((option) => {
           return option
             .setName(`channel`)
-            .setDescription(`Chose a specific channel to send suggests to`)
+            .setDescription(`🎟️ Chose a specific channel to send suggests to`)
             .setRequired(true)
             .addChannelTypes(ChannelType.GuildText);
         })
         .addRoleOption((option) => {
-          return option
-            .setName(`manager`)
-            .setDescription(`Provide a role to manage suggestions`)
-            .setRequired(true);
+          return option.setName(`manager`).setDescription(`🎟️ Provide a role to manage suggestions`).setRequired(true);
         })
         .addStringOption((option) => {
           return option
             .setName(`color`)
-            .setDescription(`Chose a embed color to use on embeds`)
+            .setDescription(`🎟️ Chose a embed color to use on embeds`)
             .setRequired(true)
             .addChoices(
               { name: `red`, value: `#D84559` },
@@ -46,7 +43,7 @@ export default new Command(
         .addStringOption((option) => {
           return option
             .setName(`accept`)
-            .setDescription(`Chose a color on accepted suggestions`)
+            .setDescription(`🎟️ Chose a color on accepted suggestions`)
             .setRequired(true)
             .addChoices(
               { name: `red`, value: `#D84559` },
@@ -61,7 +58,7 @@ export default new Command(
         .addStringOption((option) => {
           return option
             .setName(`declined`)
-            .setDescription(`Chose a color on declined suggestions`)
+            .setDescription(`🎟️ Chose a color on declined suggestions`)
             .setRequired(true)
             .addChoices(
               { name: `red`, value: `#D84559` },
@@ -75,9 +72,7 @@ export default new Command(
         });
     })
     .addSubcommand((subcommand) => {
-      return subcommand
-        .setName('delete')
-        .setDescription(`delete the suggestion data on the server`)
+      return subcommand.setName('delete').setDescription(`🎟️ Delete the suggestion data on the server`);
     }),
   async (client, interaction) => {
     const { guild, channel, options } = interaction;

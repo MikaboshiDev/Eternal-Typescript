@@ -6,10 +6,10 @@ import { Command } from '../../../class/builders';
 export default new Command(
   new SlashCommandBuilder()
     .setName('eval')
-    .setDescription('Eval command interaction constract!')
+    .setDescription('👑 Eval command interaction constract!')
     .setDMPermission(false)
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
-    .addStringOption((option) => option.setName('code').setDescription('Code to evaluate').setRequired(true)),
+    .addStringOption((option) => option.setName('code').setDescription('👑 Code to evaluate').setRequired(true)),
   async (client, interaction) => {
     const code = interaction.options.getString('code');
     if (!code)

@@ -1,29 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600&display=swap');
-
-:root {
-  --color-primary: #7380ec;
-  --color-danger: #ff4d4d;
-  --color-success: #41f1b6;
-  --color-warning: #fb5;
-  --color-white: #fff;
-  --color-info-dark: #7b8da1;
-  --color-info-light: #dce1eb;
-  --color-dark: #292929;
-  --color-light: rgba(132, 139, 200, 0.18);
-  --color-primary-variant: #111e88;
-  --color-dark-variant: #677483;
-  --color-background: #f6f6f9;
-
-  --card-border-radius: 2rem;
-  --border-radius-1: 0.4rem;
-  --border-radius-2: 1rem;
-  --border-radius-3: 1.2rem;
-
-  --card-padding: 2.5rem;
-  --padding-1: 1.2rem;
-
-  --box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
-}
+@use "root";
 
 .container {
   display: flex;

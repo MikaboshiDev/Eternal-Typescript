@@ -6,12 +6,12 @@ import { logWithLabel } from '../../../utils/console';
 export default new Command(
   new SlashCommandBuilder()
     .setName('reload')
-    .setDescription('Restart or shut down the bot.')
+    .setDescription('👑 Restart or shut down the bot.')
     .setDMPermission(false)
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild)
-    .addSubcommand((subcommand) => subcommand.setName('application').setDescription('Restart the bot application.'))
-    .addSubcommand((subcommand) => subcommand.setName('commands').setDescription('Reload only the bot commands.'))
-    .addSubcommand((subcommand) => subcommand.setName('process').setDescription('Shut down the bot completely.'))
+    .addSubcommand((subcommand) => subcommand.setName('application').setDescription('👑 Restart the bot application.'))
+    .addSubcommand((subcommand) => subcommand.setName('commands').setDescription('👑 Reload only the bot commands.'))
+    .addSubcommand((subcommand) => subcommand.setName('process').setDescription('👑 Shut down the bot completely.'))
     .setDMPermission(false),
   async (client, interaction) => {
     const subcommand = interaction.options.getSubcommand();
@@ -20,7 +20,11 @@ export default new Command(
         case 'application':
           {
             const button = new ActionRowBuilder().addComponents(
-              new ButtonBuilder().setCustomId('yes').setLabel('Continue').setStyle(ButtonStyle.Success).setEmoji(emojis.correct)
+              new ButtonBuilder()
+                .setCustomId('yes')
+                .setLabel('Continue')
+                .setStyle(ButtonStyle.Success)
+                .setEmoji(emojis.correct)
             );
 
             const msg = await interaction.reply({
@@ -68,7 +72,11 @@ export default new Command(
         case 'commands':
           {
             const button = new ActionRowBuilder().addComponents(
-              new ButtonBuilder().setCustomId('yes').setLabel('Continue').setStyle(ButtonStyle.Success).setEmoji(emojis.correct)
+              new ButtonBuilder()
+                .setCustomId('yes')
+                .setLabel('Continue')
+                .setStyle(ButtonStyle.Success)
+                .setEmoji(emojis.correct)
             );
 
             const msg = await interaction.reply({
@@ -119,7 +127,11 @@ export default new Command(
           break;
         case 'process': {
           const button = new ActionRowBuilder().addComponents(
-            new ButtonBuilder().setCustomId('yes').setLabel('Continue').setStyle(ButtonStyle.Success).setEmoji(emojis.correct)
+            new ButtonBuilder()
+              .setCustomId('yes')
+              .setLabel('Continue')
+              .setStyle(ButtonStyle.Success)
+              .setEmoji(emojis.correct)
           );
 
           const msg = await interaction.reply({

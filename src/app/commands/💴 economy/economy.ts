@@ -7,6 +7,7 @@ import {
 } from 'discord.js';
 import { fetchBalance, generateToken, getBalance, toFixedNumber } from '../../../functions/modules/economy_modules';
 import inventory from '../../../models/economy/inventory';
+import emojis from '../../../../config/emojis.json';
 import { Command } from '../../../class/builders';
 import shop from '../../../models/economy/shop';
 import user from '../../../models/economy/user';
@@ -15,26 +16,28 @@ import { Types } from 'mongoose';
 export default new Command(
   new SlashCommandBuilder()
     .setName('economy')
-    .setDescription('the economy sistem of the bot (WIP) (not working yet)')
+    .setDescription('💴 The economy sistem of the bot (WIP) (not working yet)')
     .addSubcommandGroup((subCommandGroup) => {
       return subCommandGroup
         .setName('actions')
-        .setDescription('Do actions to get money!')
+        .setDescription('💴 Do actions to get money!')
         .addSubcommand((subCommand) => {
           return subCommand
             .setName('balance')
-            .setDescription('Returns the balance of a user')
-            .addUserOption((option) => option.setName('user').setDescription('Select a user to get the balance of'));
+            .setDescription('💴 Returns the balance of a user')
+            .addUserOption((option) => option.setName('user').setDescription('💴 Select a user to get the balance of'));
         })
         .addSubcommand((subCommand) => {
           return subCommand
             .setName('pay')
-            .setDescription('pays a user a selected amount')
-            .addUserOption((option) => option.setName('user').setDescription('Select a user to pay').setRequired(true))
+            .setDescription('💴 Pays a user a selected amount')
+            .addUserOption((option) =>
+              option.setName('user').setDescription('💴 Select a user to pay').setRequired(true)
+            )
             .addNumberOption((option) =>
               option
                 .setName('amount')
-                .setDescription('The amount to pay the user')
+                .setDescription('💴 The amount to pay the user')
                 .setRequired(true)
                 .setMaxValue(1000)
                 .setMinValue(1)
@@ -44,82 +47,82 @@ export default new Command(
     .addSubcommandGroup((subCommandGroup) => {
       return subCommandGroup
         .setName('inventory')
-        .setDescription('Check what items you have that you bought from the shop')
+        .setDescription('💴 Check what items you have that you bought from the shop')
         .addSubcommand((subCommand) => {
           return subCommand
             .setName('view')
-            .setDescription('view your inventory')
-            .addNumberOption((option) => option.setName('page').setDescription('The page you want to go to'));
+            .setDescription('💴 View your inventory')
+            .addNumberOption((option) => option.setName('page').setDescription('💴 The page you want to go to'));
         })
         .addSubcommand((subCommand) => {
           return subCommand
             .setName('use_item')
-            .setDescription('use an item from your inventory')
+            .setDescription('💴 Use an item from your inventory')
             .addStringOption((str) => {
-              return str.setName('identifier').setDescription('Item identifier').setRequired(true);
+              return str.setName('identifier').setDescription('💴 Item identifier').setRequired(true);
             });
         });
     })
     .addSubcommandGroup((subCommandGroup) => {
       return subCommandGroup
         .setName('shop')
-        .setDescription('View the guild shop or change its settings!')
+        .setDescription('💴 View the guild shop or change its settings!')
         .addSubcommand((subCommand) => {
           return subCommand
             .setName('add')
-            .setDescription('add an item to the shop')
+            .setDescription('💴 Add an item to the shop')
             .addStringOption((str) => {
               return str
                 .setName('name')
-                .setDescription('the name of the product. (not the identifier)')
+                .setDescription('💴 The name of the product. (not the identifier)')
                 .setRequired(true);
             })
             .addStringOption((str) => {
-              return str.setName('description').setDescription('the description of the item').setRequired(true);
+              return str.setName('description').setDescription('💴 The description of the item').setRequired(true);
             })
             .addNumberOption((num) => {
               return num
                 .setName('price')
-                .setDescription('the price of the item')
+                .setDescription('💴 The price of the item')
                 .setRequired(true)
                 .setMinValue(1)
                 .setMaxValue(1000000);
             })
             .addRoleOption((option) =>
-              option.setName('role').setDescription('Give the user this role when he uses this item!')
+              option.setName('role').setDescription('💴 Give the user this role when he uses this item!')
             )
             .addNumberOption((option) =>
-              option.setName('money').setDescription('Give the user money when he uses this item!')
+              option.setName('money').setDescription('💴 Give the user money when he uses this item!')
             )
             .addStringOption((str) => {
               return str
                 .setName('identifier')
-                .setDescription('the identifier of the product. (if not supplied a token will be generated)')
+                .setDescription('💴 The identifier of the product. (if not supplied a token will be generated)')
                 .setRequired(false);
             });
         })
         .addSubcommand((subCommand) => {
           return subCommand
             .setName('view')
-            .setDescription('lets you view the shop!')
+            .setDescription('💴 Lets you view the shop!')
             .addNumberOption((num) => {
-              return num.setName('page').setDescription('The page of the shop you want to view');
+              return num.setName('page').setDescription('💴 The page of the shop you want to view');
             });
         })
         .addSubcommand((subCommand) => {
           return subCommand
             .setName('buy')
-            .setDescription('Buy an item from the shop')
+            .setDescription('💴 Buy an item from the shop')
             .addStringOption((option) => {
-              return option.setName('identifier').setDescription('The identifier of the item you want to buy');
+              return option.setName('identifier').setDescription('💴 The identifier of the item you want to buy');
             });
         })
         .addSubcommand((subCommand) => {
           return subCommand
             .setName('remove')
-            .setDescription('remove an item from the shop!')
+            .setDescription('💴 Remove an item from the shop!')
             .addStringOption((option) => {
-              return option.setName('identifier').setDescription('The identifier of the item you want to remove');
+              return option.setName('identifier').setDescription('💴 The identifier of the item you want to remove');
             });
         });
     }),
@@ -147,7 +150,10 @@ export default new Command(
                 )
               ) {
                 return await interaction.reply({
-                  content: 'You do not have enough permissions to use this command!',
+                  content: [
+                    `${emojis.error} You do not have enough permissions to use this command!`,
+                    `You need the \`MANAGE_GUILD\` permission to use this command!`,
+                  ].join('\n'),
                 });
               }
 
@@ -166,7 +172,9 @@ export default new Command(
                 embeds: [
                   new EmbedBuilder()
                     .setTitle('New Item Added!')
-                    .setDescription('Item added to shop, to view the updated shop please do `/shop view`!')
+                    .setDescription(
+                      `${emojis.correct} Item added to shop, to view the updated shop please do \`/shop view\`!`
+                    )
                     .addFields(
                       {
                         name: 'Item Name',
@@ -203,12 +211,26 @@ export default new Command(
               });
               if (!shopData)
                 return await interaction.reply({
-                  embeds: [new EmbedBuilder().setDescription('There are no items in this shop!').setColor('Red')],
+                  embeds: [
+                    new EmbedBuilder()
+                      .setDescription(
+                        [
+                          `${emojis.error} There are no items in the shop!`,
+                          `To add an item please do \`/shop add\`!`,
+                        ].join('\n')
+                      )
+                      .setColor('Red'),
+                  ],
                 });
 
               const embed = new EmbedBuilder()
                 .setTitle(`Server Shop`)
-                .setDescription('to buy an item please use `/shop buy`!')
+                .setDescription(
+                  [
+                    `To buy an item from the shop please do \`/shop buy\`!`,
+                    `To view the next page of the shop please do \`/shop view\`!`,
+                  ].join('\n')
+                )
                 .setColor('Random');
 
               if (page) {
@@ -260,12 +282,30 @@ export default new Command(
 
               if (InvData)
                 return await interaction.reply({
-                  embeds: [new EmbedBuilder().setDescription('You have already bought this item!').setColor('Red')],
+                  embeds: [
+                    new EmbedBuilder()
+                      .setDescription(
+                        [
+                          `${emojis.error} You already have this item in your inventory!`,
+                          `To use this item please do \`/inventory use_item\`!`,
+                        ].join('\n')
+                      )
+                      .setColor('Red'),
+                  ],
                 });
 
               if (itemShopData?.itemIdentifier !== identifier)
                 return await interaction.reply({
-                  embeds: [new EmbedBuilder().setDescription('No item exists with that identifier!').setColor('Red')],
+                  embeds: [
+                    new EmbedBuilder()
+                      .setDescription(
+                        [
+                          `${emojis.error} That item does not exist in the shop!`,
+                          `To view the shop please do \`/shop view\`!`,
+                        ].join('\n')
+                      )
+                      .setColor('Red'),
+                  ],
                 });
 
               const item = await shop.findOne({
@@ -276,14 +316,21 @@ export default new Command(
               if (!item?.itemPrice) {
                 if (!item?.role) {
                   return await interaction.reply({
-                    embeds: [new EmbedBuilder().setDescription('This item has no price or role!')],
+                    embeds: [
+                      new EmbedBuilder().setDescription(
+                        [`${emojis.error} That item cannot be bought!`, `Its just for display!`].join('\n')
+                      ),
+                    ],
                   });
                 }
 
                 return await interaction.reply({
                   embeds: [
                     new EmbedBuilder().setDescription(
-                      `You have bought ${item?.itemName} for $${item?.itemPrice}! This item has been moved into your inventory.`
+                      [
+                        `${emojis.error} That item cannot be bought because it does not have a price!`,
+                        `Its just for display and it gives you a role!`,
+                      ].join('\n')
                     ),
                   ],
                 });
@@ -291,7 +338,14 @@ export default new Command(
 
               if (Number(userBalance.balance) < Number(item.itemPrice))
                 return await interaction.reply({
-                  embeds: [new EmbedBuilder().setDescription("You don't have enough money to buy this item")],
+                  embeds: [
+                    new EmbedBuilder().setDescription(
+                      [
+                        `${emojis.error} You do not have enough money to buy that item!`,
+                        `You need $${item.itemPrice} to buy that item!`,
+                      ].join('\n')
+                    ),
+                  ],
                 });
 
               await user.findOneAndUpdate(
@@ -320,7 +374,10 @@ export default new Command(
               await interaction.reply({
                 embeds: [
                   new EmbedBuilder().setDescription(
-                    `You have bought ${item?.itemName} for $${item?.itemPrice}! This item has been moved into your inventory.`
+                    [
+                      `${emojis.error} You have bought ${item?.itemName} for $${item?.itemPrice}! This item has been moved into your inventory.`,
+                      `To view your inventory please do \`/inventory view\`!`,
+                    ].join('\n')
                   ),
                 ],
               });
@@ -334,7 +391,10 @@ export default new Command(
                 )
               ) {
                 return await interaction.reply({
-                  content: 'You do not have enough permissions to use this command!',
+                  content: [
+                    `${emojis.error} You do not have enough permissions to use this command!`,
+                    `You need the \`MANAGE_GUILD\` permission to use this command!`,
+                  ].join('\n'),
                 });
               }
 
@@ -347,7 +407,16 @@ export default new Command(
                 })
               ) {
                 return await interaction.reply({
-                  embeds: [new EmbedBuilder().setDescription('That item does not exist.').setColor('Red')],
+                  embeds: [
+                    new EmbedBuilder()
+                      .setDescription(
+                        [
+                          `${emojis.error} That item does not exist in the shop!`,
+                          `To view the shop please do \`/shop view\`!`,
+                        ].join('\n')
+                      )
+                      .setColor('Red'),
+                  ],
                   ephemeral: true,
                 });
               }
@@ -358,7 +427,16 @@ export default new Command(
               });
 
               return await interaction.reply({
-                embeds: [new EmbedBuilder().setDescription('Removed that item from the shop!.').setColor('Red')],
+                embeds: [
+                  new EmbedBuilder()
+                    .setDescription(
+                      [
+                        `${emojis.correct} Item has been removed from the shop!`,
+                        `To view the updated shop please do \`/shop view\`!`,
+                      ].join('\n')
+                    )
+                    .setColor('Red'),
+                ],
                 ephemeral: true,
               });
             default:
@@ -379,7 +457,14 @@ export default new Command(
               if (!inventoryData?.length)
                 return interaction.reply({
                   embeds: [
-                    new EmbedBuilder().setDescription("you don't have any item in your inventory!").setColor('Red'),
+                    new EmbedBuilder()
+                      .setDescription(
+                        [
+                          `${emojis.error} You do not have any items in your inventory!`,
+                          `To buy an item from the shop please do \`/shop buy\`!`,
+                        ].join('\n')
+                      )
+                      .setColor('Red'),
                   ],
                 });
 
@@ -435,7 +520,12 @@ export default new Command(
                 return interaction.reply({
                   embeds: [
                     new EmbedBuilder()
-                      .setDescription('You have not bought that item from the shop yet or that item does not exist!')
+                      .setDescription(
+                        [
+                          `${emojis.error} That item does not exist in your inventory!`,
+                          `To view your inventory please do \`/inventory view\`!`,
+                        ].join('\n')
+                      )
                       .setColor('Red'),
                   ],
                 });
@@ -450,7 +540,9 @@ export default new Command(
               if (!item?.role && !item?.money)
                 return await interaction.reply({
                   embeds: [
-                    new EmbedBuilder().setDescription('That item cannot be used its just for display!').setColor('Red'),
+                    new EmbedBuilder()
+                      .setDescription([`${emojis.error} That item cannot be used!`, `Its just for display!`].join('\n'))
+                      .setColor('Red'),
                   ],
                 });
 
@@ -474,7 +566,12 @@ export default new Command(
                   embeds: [
                     new EmbedBuilder()
                       .setDescription(
-                        `The role: ${interaction.guild?.roles.cache.get(item.role)} has been given to you!`
+                        [
+                          `${emojis.error} The role: ${interaction.guild?.roles.cache.get(
+                            item.role
+                          )} has been given to you!`,
+                          `This item has been removed from your inventory!`,
+                        ].join('\n')
                       )
                       .setColor('Green'),
                   ],
@@ -499,7 +596,12 @@ export default new Command(
                 return interaction.reply({
                   embeds: [
                     new EmbedBuilder()
-                      .setDescription(`$${item.money} has been added to your balance!`)
+                      .setDescription(
+                        [
+                          `${emojis.correct} You have been given $${item.money}!`,
+                          `This item has been removed from your inventory!`,
+                        ].join('\n')
+                      )
                       .setColor('Green'),
                   ],
                   ephemeral: true,
@@ -525,7 +627,10 @@ export default new Command(
                   return await interaction.reply({
                     embeds: [
                       new EmbedBuilder().setDescription(
-                        `Oops! ${user.tag} does not have a balance yet. A reason for this is they might have not talked in this server yet or the admins removed his balance!`
+                        [
+                          `Oops! ${user.tag} does not have a balance yet. A reason for this is they might have not talked in this server yet or the admins removed his balance!`,
+                          `To give them a balance please do \`/economy give\`!`,
+                        ].join('\n')
                       ),
                     ],
                     ephemeral: true,
@@ -557,7 +662,14 @@ export default new Command(
               if (member?.bot || member?.id === interaction.user.id)
                 return await interaction.reply({
                   embeds: [
-                    new EmbedBuilder().setDescription('You cant send money to yourself or a bot!').setColor('Red'),
+                    new EmbedBuilder()
+                      .setDescription(
+                        [
+                          `${emojis.error} You cannot pay that user!`,
+                          `They are either a bot or you are trying to pay yourself!`,
+                        ].join('\n')
+                      )
+                      .setColor('Red'),
                   ],
                   ephemeral: true,
                 });
@@ -566,7 +678,12 @@ export default new Command(
                 return await interaction.reply({
                   embeds: [
                     new EmbedBuilder()
-                      .setDescription("You don't have enough money in your balance to pay that user.")
+                      .setDescription(
+                        [
+                          `${emojis.error} You do not have enough money to pay that user!`,
+                          `You need $${amount} to pay that user!`,
+                        ].join('\n')
+                      )
                       .setColor('Red'),
                   ],
                 });

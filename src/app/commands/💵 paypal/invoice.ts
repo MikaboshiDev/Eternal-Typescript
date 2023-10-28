@@ -5,11 +5,17 @@ import { Command } from '../../../class/builders';
 export default new Command(
   new SlashCommandBuilder()
     .setName('invoice')
-    .setDescription('The payment invoice for the bot.')
+    .setDescription('💵 The payment invoice for the bot.')
     .setDMPermission(false)
-    .addUserOption((option) => option.setName('user').setDescription('The user you want to send the invoice to.').setRequired(true))
-    .addNumberOption((option) => option.setName('price').setDescription('The price of the item you want to buy.').setRequired(true))
-    .addStringOption((option) => option.setName('service').setDescription('The service you want to buy.').setRequired(true)),
+    .addUserOption((option) =>
+      option.setName('user').setDescription('💵 The user you want to send the invoice to.').setRequired(true)
+    )
+    .addNumberOption((option) =>
+      option.setName('price').setDescription('💵 The price of the item you want to buy.').setRequired(true)
+    )
+    .addStringOption((option) =>
+      option.setName('service').setDescription('💵 The service you want to buy.').setRequired(true)
+    ),
   async (client, interaction) => {
     const author = interaction.user;
     const paypal = client.paypal;
@@ -69,7 +75,9 @@ export default new Command(
 
       const invoiceLink = invoice.links ? invoice.links[0].href : 'No link provided';
 
-      const button = new ActionRowBuilder().addComponents(new ButtonBuilder().setURL(invoiceLink).setStyle(ButtonStyle.Link).setLabel('Pay Now'));
+      const button = new ActionRowBuilder().addComponents(
+        new ButtonBuilder().setURL(invoiceLink).setStyle(ButtonStyle.Link).setLabel('Pay Now')
+      );
 
       interaction.reply({
         embeds: [
