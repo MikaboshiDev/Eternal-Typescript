@@ -15,11 +15,11 @@ module.exports = {
     if (!data) {
       embed
         .setColor('Red')
-        .setTitle('Ticket System! 🔴')
+        .setTitle('Ticket System')
         .setDescription(
           [
-            `\`👤\` Reason: The ticket system has not been configured on the server.`,
-            `\`⭐\` Date: ${new Date().toLocaleDateString()}`,
+            `The ticket system has not been configured on the server yet, please contact the server administrators.`,
+            `please contact the server administrators.`,
           ].join('\n')
         );
       return interaction.reply({ embeds: [embed], ephemeral: true }).catch((err: any) => {});
@@ -27,11 +27,11 @@ module.exports = {
 
     if (!interaction.guild.members.me.permissions.has('ManageChannels')) {
       embed
-        .setTitle('Ticket System! 🔴')
+        .setTitle('Ticket System')
         .setDescription(
           [
-            `\`👤\` Reason: I don't have permissions to create channels in the Discord server.`,
-            `\`⭐\` Date: ${new Date().toLocaleDateString()}`,
+            `I don't have permissions to create channels in the Discord server.`,
+            `please give me the permissions to create channels.`,
           ].join('\n')
         );
       return interaction.reply({ embeds: [embed], ephemeral: true }).catch((err: any) => {});

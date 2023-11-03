@@ -14,13 +14,15 @@ module.exports = {
     `anime cringe`,
     `anime facts [text]`,
     `anime handhold [user]`,
+    `anime waifu`,
   ],
   subcommands: [
-    "anime alert [text]",
-    "anime biden [text]",
-    "anime cringe",
-    "anime facts [text]",
-    "anime handhold [user]",
+    'anime alert [text]',
+    'anime biden [text]',
+    'anime cringe',
+    'anime facts [text]',
+    'anime handhold [user]',
+    'anime waifu',
   ],
   cooldown: 5000,
   async execute(client: any, message: Message, args: string[], prefix: any) {
@@ -182,6 +184,27 @@ module.exports = {
             .setImage(data)
             .setTimestamp();
           message.reply({ embeds: [handholdEmbed] }).catch((e) => {
+            message.reply({
+              content: [
+                ` ${emojis.error} An error occurred while executing the command, try again later`,
+                `plase report this error to the support server.`,
+              ].join('\n'),
+            });
+          });
+        }
+        break;
+      case 'waifu':
+        {
+          const data = await animeApi('waifu');
+          const prettyCringe = new EmbedBuilder()
+            .setColor('Grey')
+            .setAuthor({
+              name: `${message.author.username} here is a cute waifu with you`,
+              iconURL: `${message.author.avatarURL({ forceStatic: true })}`,
+            })
+            .setImage(data)
+            .setTimestamp();
+          message.reply({ embeds: [prettyCringe] }).catch((e) => {
             message.reply({
               content: [
                 ` ${emojis.error} An error occurred while executing the command, try again later`,

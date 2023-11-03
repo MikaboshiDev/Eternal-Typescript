@@ -71,7 +71,17 @@ module.exports = {
     const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: 'fumo.png' });
     return message.channel
       .send({
-        content: `**${target.tag}** get together with **${mentiontwo.tag}** a un **${random}%**`,
+        embeds: [
+          new EmbedBuilder()
+            .setColor(color as any)
+            .setAuthor({
+              name: `${target.username} x ${mentiontwo.username}`,
+              iconURL: message.author.avatarURL() as any,
+            })
+            .setImage('attachment://fumo.png')
+            .setFooter({ text: `Compatibility: ${random}%` })
+            .setTimestamp(),
+        ],
         files: [attachment],
       })
       .catch((e) => {

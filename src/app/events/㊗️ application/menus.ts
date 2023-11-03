@@ -68,5 +68,17 @@ export default new Event('interactionCreate', async (interaction: any) => {
       ],
     });
 
+  if ((menus as Menus).ticketMod && !interaction.guild?.members.me.permissions.has('ManageChannels'))
+    return interaction.reply({
+      embeds: [
+        embed.setDescription(
+          [
+            `${emojis.error} You need support roles to be able to handle server tickets`,
+            `If you think this is an error, please contact the owner of the bot.`,
+          ].join('\n')
+        ),
+      ],
+    });
+
   (menus as Menus).execute(interaction, client);
 });
