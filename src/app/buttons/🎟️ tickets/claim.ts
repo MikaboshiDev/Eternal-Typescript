@@ -1,6 +1,6 @@
-import { ChatInputCommandInteraction, EmbedBuilder, channelMention } from 'discord.js';
-import TicketSetupData from '../../../models/tickets/setup';
+import { EmbedBuilder, channelMention } from 'discord.js';
 import Profile from '../../../models/tickets/perfil';
+import model from '../../../models/tickets/setup';
 import DB from '../../../models/tickets/system';
 module.exports = {
   id: 'claim-ticket',
@@ -8,45 +8,45 @@ module.exports = {
     const { options, channel, guild, member } = interaction;
     const embed = new EmbedBuilder();
 
-    const ticketSetup = await TicketSetupData.findOne({ GuildID: interaction.guild.id });
-    if (!ticketSetup) {
-      embed
-        .setColor('Red')
-        .setTitle('Ticket System! 🔴')
-        .setDescription(
-          [
-            `\`👤\` Reason: There is no data in the database to proceed with the system.`,
-            `\`⭐\` Date: ${new Date().toLocaleDateString()}`,
-          ].join('\n')
-        );
+    const ticketSetup = await model.findOne({ GuildID: guild?.id });
+    if (!ticketSetup)
       return interaction.reply({
-        embeds: [embed],
+        embeds: [
+          new EmbedBuilder()
+            .setColor('Red')
+            .setTitle('Ticket System')
+            .setDescription(
+              [
+                `There is no ticket system set up on the discord server`,
+                `Verify that the system is installed on the server`,
+              ].join('\n')
+            ),
+        ],
         ephemeral: true,
       });
-    }
 
     const data = await DB.findOne({ ChannelID: channel.id });
-    if (!data) {
-      embed
-        .setColor('Red')
-        .setTitle('Ticket System! 🔴')
-        .setDescription(
-          [
-            `\`👤\` Reason: There are no previously saved data to proceed with the system.`,
-            `\`⭐\` Date: ${new Date().toLocaleDateString()}`,
-          ].join('\n')
-        );
+    if (!data)
       return interaction.reply({
-        embeds: [embed],
+        embeds: [
+          new EmbedBuilder()
+            .setColor('Red')
+            .setTitle('Ticket System')
+            .setDescription(
+              [
+                `The channel where this button is being executed is not a ticket`,
+                `Please verify that you are within a ticket`,
+              ].join('\n')
+            ),
+        ],
         ephemeral: true,
       });
-    }
 
     if (data.Support)
       return interaction.reply({
         content: [
-          `\`👤\` Reason: This ticket has already been claimed by <@${data.Support}>, it's a shame.`,
-          `\`⭐\` Date: ${new Date().toLocaleDateString()}`,
+          `This ticket has already been claimed by <@${data.Support}>, it's a shame.`,
+          `the ticket will be closed in 5 seconds.`,
         ].join('\n'),
         ephemeral: true,
       });

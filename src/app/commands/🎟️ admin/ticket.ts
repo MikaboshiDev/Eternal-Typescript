@@ -7,13 +7,9 @@ import {
   StringSelectMenuBuilder,
   TextChannel,
 } from 'discord.js';
-import TicketSetupData from '../../../models/tickets/setup';
-import { logWithLabel } from '../../../utils/console';
-import Profile from '../../../models/tickets/perfil';
 import emojis from '../../../../config/emojis.json';
 import { Command } from '../../../class/builders';
 import DB from '../../../models/tickets/system';
-import Discord from 'discord.js';
 export default new Command(
   new SlashCommandBuilder()
     .setName('tickets')

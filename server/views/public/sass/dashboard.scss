@@ -1,5 +1,19 @@
 @use 'format';
 
+@mixin tarjets() {
+  width: 450px;
+  height: auto;
+  border: 1px solid var(--color-info-light);
+  border-radius: var(--card-border-radius);
+  padding: var(--card-padding);
+  box-shadow: var(--box-shadow);
+  background: var(--color-white);
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+  overflow: hidden;
+  position: relative;
+}
+
 main {
   .recent-orders {
     margin-top: 2rem;
@@ -37,6 +51,80 @@ main {
       display: block;
       margin: 1rem auto;
       color: var(--color-primary);
+    }
+  }
+}
+
+.information {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+
+  .information-general {
+    @include tarjets();
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    .informacion-general-name {
+      font-weight: bold;
+      color: var(--color-dark);
+      margin-top: var(--padding-1);
+      text-align: center;
+    }
+
+    .informacion-general-servers,
+    .informacion-general-users {
+      flex: 1;
+      text-align: center;
+    }
+
+    .informacion-general-servers-title,
+    .informacion-general-users-title {
+      font-weight: bold;
+      color: var(--color-dark);
+      font-size: 1.2rem;
+    }
+
+    .informacion-general-servers-number,
+    .informacion-general-users-number {
+      font-size: 1.5rem;
+      color: var(--color-primary);
+      font-weight: bold;
+    }
+
+    .linea {
+      width: 100%;
+      height: 1px;
+      background-color: var(--color-info-light);
+      margin: var(--padding-1) 0;
+    }
+
+    .informacion-general-infrestructura {
+      background: var(--color-white);
+      border: 1px solid var(--color-info-light);
+      border-radius: var(--card-border-radius);
+      padding: var(--card-padding);
+      box-shadow: var(--box-shadow);
+      text-align: center;
+      flex: 1;
+    }
+
+    .informacion-general-infrestructura-title {
+      font-weight: bold;
+      color: var(--color-dark);
+      margin-top: var(--padding-1);
+      text-align: center;
+    }
+
+    .informacion-general-infrestructura-plataform,
+    .informacion-general-infrestructura-ram,
+    .informacion-general-infrestructura-cpu,
+    .informacion-general-infrestructura-uptime {
+      color: var(--color-dark-variant);
+      font-size: 1rem;
+      margin: 0.5rem 0;
     }
   }
 }

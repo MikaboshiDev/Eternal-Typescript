@@ -1,6 +1,6 @@
-import { ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
-import TicketSetupData from '../../../models/tickets/setup';
+import { EmbedBuilder } from 'discord.js';
 import Profile from '../../../models/tickets/perfil';
+import model from '../../../models/tickets/setup';
 import DB from '../../../models/tickets/system';
 
 module.exports = {
@@ -9,54 +9,45 @@ module.exports = {
     const { options, channel, guild, member } = interaction;
     const embed = new EmbedBuilder();
 
-    const ticketSetup = await TicketSetupData.findOne({ GuildID: guild.id });
-    if (!ticketSetup) {
-      embed
-        .setColor('Red')
-        .setTitle('Ticket System! 🔴')
-        .setDescription(
-          [
-            `\`👤\` Reason: There is no data in the database to proceed with the system.`,
-            `\`⭐\` Date: ${new Date().toLocaleDateString()}`,
-          ].join('\n')
-        );
+    const ticketSetup = await model.findOne({ GuildID: guild?.id });
+    if (!ticketSetup)
       return interaction.reply({
-        embeds: [embed],
-        ephemeral: true,
-      });
-    }
-
-    if (!interaction.member.roles.cache.has(ticketSetup.Handlers))
-      return interaction.reply({
-        content: [
-          `\`👤\` Reason: You don't have the support role to claim this ticket, sorry.`,
-          `day If you think this is an error, contact the server administrators.`,
-        ].join('\n'),
+        embeds: [
+          new EmbedBuilder()
+            .setColor('Red')
+            .setTitle('Ticket System')
+            .setDescription(
+              [
+                `There is no ticket system set up on the discord server`,
+                `Verify that the system is installed on the server`,
+              ].join('\n')
+            ),
+        ],
         ephemeral: true,
       });
 
     const data = await DB.findOne({ ChannelID: channel.id });
-    if (!data) {
-      embed
-        .setColor('Red')
-        .setTitle('Ticket System! 🔴')
-        .setDescription(
-          [
-            `\`👤\` Reason: There are no previously saved data to continue with the system.`,
-            `\`⭐\` Date: ${new Date().toLocaleDateString()}`,
-          ].join('\n')
-        );
+    if (!data)
       return interaction.reply({
-        embeds: [embed],
+        embeds: [
+          new EmbedBuilder()
+            .setColor('Red')
+            .setTitle('Ticket System')
+            .setDescription(
+              [
+                `The channel where this button is being executed is not a ticket`,
+                `Please verify that you are within a ticket`,
+              ].join('\n')
+            ),
+        ],
         ephemeral: true,
       });
-    }
 
     if (data.Support !== member.id)
       return interaction.reply({
         content: [
-          `\`👤\` Reason: You cannot unassign a ticket that you have not claimed or is unclaimed.`,
-          `\`⭐\` Date: ${new Date().toLocaleDateString()}`,
+          `You cannot unassign a ticket that you have not claimed or is unclaimed.`,
+          `is a shame, the ticket will be closed in 5 seconds.`,
         ].join('\n'),
         ephemeral: true,
       });
@@ -65,7 +56,7 @@ module.exports = {
       return interaction.reply({
         content: [
           `\`👤\` Reason: You don't have the support role to unassign this ticket.`,
-          `\`⭐\` Date: ${new Date().toLocaleDateString()}`,
+          `thanks for your attention, the ticket will be closed in 5 seconds.`,
         ].join('\n'),
         ephemeral: true,
       });

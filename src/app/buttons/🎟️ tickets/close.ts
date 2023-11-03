@@ -1,13 +1,10 @@
 import {
-  ChatInputCommandInteraction,
-  Client,
   ActionRowBuilder,
-  TextInputBuilder,
+  ChatInputCommandInteraction,
   ModalBuilder,
+  TextInputBuilder,
   TextInputStyle,
 } from 'discord.js';
-import TicketSetupData from '../../../models/tickets/setup';
-import DB from '../../../models/tickets/system';
 
 module.exports = {
   id: 'close-ticket',

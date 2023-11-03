@@ -7,6 +7,7 @@ import { Event } from '../../../class/builders';
 import user from '../../../models/economy/user';
 import guild from '../../../models/guild';
 import { client } from '../../../shulker';
+import { findClosestCommand } from '../../../functions/modules/locations_command';
 
 export default new Event('messageCreate', async (message) => {
   if (message.author.bot || !message.guild || !message.channel) return;
@@ -40,7 +41,16 @@ export default new Event('messageCreate', async (message) => {
   const command =
     client.precommands.get(cmd ?? '') || client.precommands.find((c: any) => c.aliases?.includes(cmd ?? ''));
 
-  if (!command) return;
+  if (!command) {
+    const didYouMean = findClosestCommand(cmd ?? "", [...client.precommands.keys()]);
+    return message.reply({
+      content: [
+        `${emojis.error} The command \`${cmd}\` doesn't exist, the development exist`,
+        didYouMean ? `Did you mean \`${prefix}${didYouMean}\`?` : '',
+      ].join("\n")
+    });
+  }
+  
   if (!message.guild.members.me?.permissions.has('SendMessages')) return;
 
   if (data?.commands?.components === false) {

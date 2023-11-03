@@ -1,5 +1,5 @@
-import { ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
-import TicketSetupData from '../../../models/tickets/setup';
+import { EmbedBuilder } from 'discord.js';
+import model from '../../../models/tickets/setup';
 import DB from '../../../models/tickets/system';
 
 module.exports = {
@@ -8,41 +8,49 @@ module.exports = {
     const { options, channel, guild, member } = interaction;
     const embed = new EmbedBuilder();
 
-    const ticketSetup = await TicketSetupData.findOne({ GuildID: guild.id });
-    if (!ticketSetup) {
-      embed
-        .setColor('Red')
-        .setTitle('Ticket System! 🔴')
-        .setDescription(
-          [`\`👤\` Reason: There is no data in the database.`, `\`⭐\` Date: ${new Date().toLocaleDateString()}`].join(
-            '\n'
-          )
-        );
-      return interaction.reply({ embeds: [embed], ephemeral: true }).catch(() => {});
-    }
+    const ticketSetup = await model.findOne({ GuildID: guild?.id });
+    if (!ticketSetup)
+      return interaction.reply({
+        embeds: [
+          new EmbedBuilder()
+            .setColor('Red')
+            .setTitle('Ticket System')
+            .setDescription(
+              [
+                `There is no ticket system set up on the discord server`,
+                `Verify that the system is installed on the server`,
+              ].join('\n')
+            ),
+        ],
+        ephemeral: true,
+      });
 
     const data = await DB.findOne({ ChannelID: channel.id });
-    if (!data) {
-      embed
-        .setColor('Red')
-        .setTitle('Ticket System! 🔴')
-        .setDescription(
-          [
-            `\`👤\` Reason: There are no previously saved data.`,
-            `\`⭐\` Date: ${new Date().toLocaleDateString()}`,
-          ].join('\n')
-        );
-      return interaction.reply({ embeds: [embed], ephemeral: true }).catch(() => {});
-    }
+    if (!data)
+      return interaction.reply({
+        embeds: [
+          new EmbedBuilder()
+            .setColor('Red')
+            .setTitle('Ticket System')
+            .setDescription(
+              [
+                `The channel where this button is being executed is not a ticket`,
+                `Please verify that you are within a ticket`,
+              ].join('\n')
+            ),
+        ],
+        ephemeral: true,
+      });
+
     const creator = interaction.guild.members.cache.get(data.CreatedBy);
     if (channel.name === `🔴` + `︰` + creator.user.username + creator.user.discriminator) {
       embed
         .setColor('Red')
-        .setTitle('Ticket System! 🔴')
+        .setTitle('Ticket System')
         .setDescription(
           [
-            `\`👤\` Reason: This ticket is already in priority on the server.`,
-            `\`⭐\` Date: ${new Date().toLocaleDateString()}`,
+            `This ticket is already in priority on the server.`,
+            `of the server and the ticket will be closed in 5 seconds.`,
           ].join('\n')
         );
       return interaction.reply({ embeds: [embed], ephemeral: true }).catch(() => {});
@@ -54,11 +62,11 @@ module.exports = {
         embeds: [
           new EmbedBuilder()
             .setColor('Green')
-            .setTitle('Ticket System! 🟢')
+            .setTitle('Ticket System')
             .setDescription(
               [
-                `\`👤\` Reason: The ticket has been put in priority successfully.`,
-                `\`⭐\` Date: ${new Date().toLocaleDateString()}`,
+                `The ticket has been put in priority successfully.`,
+                `thanks for using the ticket system of the server.`,
               ].join('\n')
             ),
         ],

@@ -1,8 +1,4 @@
-import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
-import TicketSetupData from '../../../models/tickets/setup';
-import Profile from '../../../models/tickets/perfil';
-import emojis from '../../../../config/emojis.json';
-import DB from '../../../models/tickets/system';
+import { EmbedBuilder } from 'discord.js';
 
 module.exports = {
   id: 'Review-Ticket',

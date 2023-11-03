@@ -1,6 +1,4 @@
-import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
-import TicketSetupData from '../../../models/tickets/setup';
-import DB from '../../../models/tickets/system';
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } from 'discord.js';
 
 module.exports = {
   id: 'datos_ticket',

@@ -15,19 +15,19 @@ type Labels =
   | 'poru';
 function logWithLabel(label: Labels, message: string) {
   const labels: Record<Labels, string> = {
-    error: '[ERROR]'.bgRed,
+    error: '[ERROR]'.red,
     success: '[SUCCESS]'.green,
     licence: '[LICENCE]'.yellow,
     debug: '[DEBUG]'.blue,
     shards: '[SHARDS]'.yellow,
     express: '[EXPRESS]'.magenta,
-    info: '[INFO]'.bgGreen,
-    discord: '[DISCORD]'.bgBlack,
+    info: '[INFO]'.green,
+    discord: '[DISCORD]'.black,
     paypal: '[PAYPAL]'.grey,
     routes: '[ROUTES]'.white,
     websocket: '[WEBSOCKET]'.gray,
-    addons: '[ADDONS]'.bgBlue,
-    poru: '[PORU]'.bgRed,
+    addons: '[ADDONS]'.blue,
+    poru: '[PORU]'.red,
   };
 
   const formattedLabel = labels[label] || label || '';

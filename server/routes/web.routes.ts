@@ -10,6 +10,7 @@ import { authInspection } from '../middleware/auth.middleware';
 import { customerWebMiddleware, devWebMiddleware } from '../middleware/web.middleware';
 import { passport } from '../utils/passport';
 const router = Router();
+import os from 'os';
 
 router.get('/', (req: Request, res: Response) => {
   res.render('login.ejs', {
@@ -43,6 +44,7 @@ router.get('/dashboard', authInspection, async (req: Request, res: Response) => 
     res.render('dashboard.ejs', {
       user: req.user,
       r_client: client,
+      os: os,
       avatarURL: function (id: string) {
         const user = client.users.cache.get(id);
         if (user) return user.avatarURL({ forceStatic: true, size: 4096 });

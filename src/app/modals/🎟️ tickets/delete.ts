@@ -1,13 +1,10 @@
-import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
-import { createTranscript } from 'discord-html-transcripts';
-import TicketSetupData from '../../../models/tickets/setup';
-import { logWithLabel } from '../../../utils/console';
-import Profile from '../../../models/tickets/perfil';
-import emojis from '../../../../config/emojis.json';
-import DB from '../../../models/tickets/system';
-import Discord from 'discord.js';
-import fs from 'fs';
 import axios from 'axios';
+import { createTranscript } from 'discord-html-transcripts';
+import Discord, { EmbedBuilder } from 'discord.js';
+import fs from 'fs';
+import model from '../../../models/tickets/setup';
+import DB from '../../../models/tickets/system';
+import { logWithLabel } from '../../../utils/console';
 
 module.exports = {
   id: 'modal_ticket_delete',
@@ -15,38 +12,40 @@ module.exports = {
     const { options, channel, guild, member } = interaction;
     const embed = new EmbedBuilder();
     const value_razon = interaction.fields.getTextInputValue('modal_delete');
-    const ticketSetup = await TicketSetupData.findOne({ GuildID: guild.id });
-    if (!ticketSetup) {
-      embed
-        .setColor('Red')
-        .setTitle('Ticket System! 🔴')
-        .setDescription(
-          [`\`👤\` Reason: I don't have a database to work`, `\`⭐\` Date: ${new Date().toLocaleDateString()}`].join(
-            '\n'
-          )
-        );
-      return interaction.reply({ embeds: [embed], ephemeral: true });
-    }
 
-    if (!interaction.member.roles.cache.has(ticketSetup.Handlers))
-      return interaction.reply({
-        content: [
-          `\`👤\` Reason: You don't have the support role to claim this ticket, sorry.`,
-          `day If you think this is an error, contact the server administrators.`,
-        ].join('\n'),
-        ephemeral: true,
-      });
+        const ticketSetup = await model.findOne({ GuildID: guild?.id });
+        if (!ticketSetup)
+          return interaction.reply({
+            embeds: [
+              new EmbedBuilder()
+                .setColor('Red')
+                .setTitle('Ticket System')
+                .setDescription(
+                  [
+                    `There is no ticket system set up on the discord server`,
+                    `Verify that the system is installed on the server`,
+                  ].join('\n')
+                ),
+            ],
+            ephemeral: true,
+          });
 
-    const data = await DB.findOne({ ChannelID: channel.id });
-    if (!data) {
-      embed
-        .setColor('Red')
-        .setTitle('Ticket System! 🔴')
-        .setDescription(
-          [`\`👤\` Reason: No previously saved data.`, `\`⭐\` Date: ${new Date().toLocaleDateString()}`].join('\n')
-        );
-      return interaction.reply({ embeds: [embed], ephemeral: true });
-    }
+        const data = await DB.findOne({ ChannelID: channel.id });
+        if (!data)
+          return interaction.reply({
+            embeds: [
+              new EmbedBuilder()
+                .setColor('Red')
+                .setTitle('Ticket System')
+                .setDescription(
+                  [
+                    `The channel where this button is being executed is not a ticket`,
+                    `Please verify that you are within a ticket`,
+                  ].join('\n')
+                ),
+            ],
+            ephemeral: true,
+          });
 
     if (data.Closed === true) {
       embed

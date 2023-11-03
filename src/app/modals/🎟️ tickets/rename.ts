@@ -1,9 +1,3 @@
-import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
-import TicketSetupData from '../../../models/tickets/setup';
-import Profile from '../../../models/tickets/perfil';
-import emojis from '../../../../config/emojis.json';
-import DB from '../../../models/tickets/system';
-
 module.exports = {
   id: 'modal_ticket_rename',
   async execute(interaction: any, client: any) {

@@ -1,16 +1,7 @@
-import {
-  ActionRowBuilder,
-  ButtonBuilder,
-  ButtonStyle,
-  ChannelType,
-  ChatInputCommandInteraction,
-  EmbedBuilder,
-} from 'discord.js';
-import TicketSetupData from '../../../models/tickets/setup';
-import Profile from '../../../models/tickets/perfil';
+import Discord, { ActionRowBuilder, ButtonStyle, ChannelType, EmbedBuilder } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
+import model from '../../../models/tickets/setup';
 import DB from '../../../models/tickets/system';
-import Discord from 'discord.js';
 module.exports = {
   id: 'modal_ticket_cores',
   async execute(interaction: any, client: any) {
@@ -19,7 +10,7 @@ module.exports = {
     const value_razon = interaction.fields.getTextInputValue('modal_razon');
     const value_category = interaction.fields.getTextInputValue('modal_category');
     const value_links = interaction.fields.getTextInputValue('modal_archive');
-    const data = await TicketSetupData.findOne({ GuildID: interaction.guild.id });
+    const data = await model.findOne({ GuildID: interaction.guild.id });
 
     if (!data) {
       embed
@@ -89,7 +80,7 @@ module.exports = {
           Opened: Date.now().toString(),
         }).catch((err) => {});
 
-        await TicketSetupData.findOneAndUpdate({ GuildID: interaction.guild.id }, { IDs: data.IDs ? data.IDs + 1 : 1 });
+        await model.findOneAndUpdate({ GuildID: interaction.guild.id }, { IDs: data.IDs ? data.IDs + 1 : 1 });
 
         channel.setRateLimitPerUser(2);
 
