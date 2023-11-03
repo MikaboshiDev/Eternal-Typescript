@@ -1,11 +1,11 @@
-import { EmbedBuilder } from 'discord.js';
+import { EmbedBuilder, InteractionType } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
 import { Event } from '../../../class/builders';
 import { Modals } from '../../../interface/modals';
 import { client } from '../../../shulker';
 
 export default new Event('interactionCreate', async (interaction: any) => {
-  if (!interaction.isModalSubmit()) return;
+  if (interaction.type !== InteractionType.ModalSubmit) return;
   const embed = new EmbedBuilder()
     .setAuthor({ name: `Command Control`, iconURL: interaction.user.displayAvatarURL() })
     .setThumbnail(client.user?.displayAvatarURL() ?? '')

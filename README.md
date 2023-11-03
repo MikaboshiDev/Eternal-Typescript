@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://cdn.discordapp.com/attachments/1134529955330535487/1158768951782805545/wallpaperflare.com_wallpaper_9.jpg?ex=651d732e&is=651c21ae&hm=e4f977c066c41d4cbf7f28c09cd9eff5a567d55d8e19326e1fffb7b9529c4923&" alt="BOT VERSION"/><br/>NEKO - MANAGER<br/>
+  <img src="https://cdn.discordapp.com/attachments/1134529955330535487/1170026353517670532/3.jpg?ex=65578af4&is=654515f4&hm=b4aee76ccae76c3a4e1cbc15c7a170ea96d62c42ac0580ab712d09c9d7d0e024&" alt="BOT VERSION"/><br/>NEKO - MANAGER<br/>
   <img src="https://img.shields.io/badge/Discord.js-v14-%2334d058?style=flat-square&logo=npm&logoColor=fff" alt="DJS Version"/>
   <img src="https://img.shields.io/badge/Node.js-v16-%2334d058?style=flat-square&logo=npm&logoColor=fff" alt="Node Version"/>
   <img src="https://img.shields.io/badge/Version-0.0.2-%2334d058?style=flat-square&logo=npm&logoColor=fff" alt="Version"/>

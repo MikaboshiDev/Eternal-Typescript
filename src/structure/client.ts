@@ -98,8 +98,8 @@ export class Manager extends Client {
     console.log("\x1b[36m| |  | | / __|/ __/ _ \\| '__/ _` | \x1b[33m| / __|");
     console.log('\x1b[36m| |__| | \\__ \\ (_| (_) | | | (_| |\x1b[37m_\x1b[32m| \\__ \\');
     console.log('\x1b[36m|_____/|_|___/\\___\\___/|_|  \\__,_\x1b[37m(_) \x1b[32m|___/');
-    console.log('                                   \x1b[34m_/ |');
-    console.log('                                  \x1b[35m|__/');
+    console.log('                                  \x1b[34m_/ |');
+    console.log('                                 \x1b[35m|__/');
     console.log('\x1b[0m');
   }
 }

@@ -2,6 +2,7 @@ import Discord, { ActionRowBuilder, ButtonStyle, ChannelType, EmbedBuilder } fro
 import emojis from '../../../../config/emojis.json';
 import model from '../../../models/tickets/setup';
 import DB from '../../../models/tickets/system';
+
 module.exports = {
   id: 'modal_ticket_cores',
   async execute(interaction: any, client: any) {

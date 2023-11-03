@@ -62,5 +62,40 @@ module.exports = {
         ),
       ],
     });
+
+    const filter = (i: any) => i.customId === 'add_user_ticket' && i.user.id === member.id;
+    const collector = interaction.channel.createMessageComponentCollector({ filter, time: 60000 });
+
+    collector.on('collect', async (i: any) => {
+      const user = i.values[0];
+      if (interaction.channel.permissionOverwrites.cache.has(user.id))
+        return interaction.reply({
+          embeds: [
+            new EmbedBuilder()
+              .setTitle('Ticket System')
+              .setDescription(
+                [
+                  `The user ${user} is already on the ticket at this time`,
+                  `please select someone else from the menu`,
+                ].join('\n')
+              ),
+          ],
+        });
+
+      await interaction.channel.permissionOverwrites.create(user.id, {
+        ViewChannel: true,
+      });
+
+      interaction.channel.send({
+        embeds: [
+          new EmbedBuilder()
+            .setTitle('Ticket System')
+            .setDescription(
+              [`The user ${user} has been added to the ticket`, `Now you can chat with him in the ticket`].join('\n')
+            ),
+        ],
+        ephemeral: true,
+      });
+    });
   },
 };

@@ -3,7 +3,6 @@ import { inspect } from 'util';
 import fs from 'node:fs';
 
 const webhook = new WebhookClient({ url: process.env.webhook_faild! });
-
 function handleError(title: string | null, url: string | null, ...fields: { name: any; value: string }[]) {
   const embed = new EmbedBuilder()
     .setColor('Red')
