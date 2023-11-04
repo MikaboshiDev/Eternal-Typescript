@@ -8,7 +8,7 @@ module.exports = {
   aliases: ['recompensa', 'recompensas', 'recompensar'],
   category: 'economy',
   premium: false,
-  cooldown: 5000,
+  cooldown: 1000,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     try {
       const key = await keygen.findOne({ clave: args[0] });

@@ -1,14 +1,14 @@
-import { ChannelType, EmbedBuilder, Message, Webhook } from 'discord.js';
+import { ChannelType, Message, Webhook } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
 
 module.exports = {
   name: 'sudo',
   description: 'Send a message through webhooks in the Discord server',
-  botpermissions: ["ManageChannels"],
+  botpermissions: ['ManageChannels'],
   aliases: ['hack'],
   category: 'public',
   premium: false,
-  cooldown: 5000,
+  cooldown: 1000,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     let user = message.mentions.members?.first() || message.guild?.members.cache.get(args[0]);
     if (!message.guild || !message.channel || !message.partial) return;

@@ -29,7 +29,7 @@ module.exports = {
   aliases: ['w', 'trabajar'],
   category: 'economy',
   premium: false,
-  cooldown: 5000,
+  cooldown: 1000,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     try {
       const data = await model.findOne({ userID: message.author.id });

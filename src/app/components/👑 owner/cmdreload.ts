@@ -7,11 +7,9 @@ module.exports = {
   aliases: ['cmd-reload', 'reload-cmd'],
   category: 'owner',
   premium: false,
-  cooldown: 5000,
+  cooldown: 1000,
   owner: true,
-  examples: [
-    'cmdreload help',
-  ],
+  examples: ['cmdreload help'],
   async execute(client: any, message: Message, args: string[], prefix: any) {
     try {
       const cmd = args[0];

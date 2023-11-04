@@ -1,4 +1,4 @@
-import { ChannelType, EmbedBuilder, GuildMember, Message } from 'discord.js';
+import { EmbedBuilder, Message } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
 
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
   category: 'administration',
   examples: ['kick [user] [reason]', 'kick @steve spamming'],
   premium: false,
-  cooldown: 5000,
+  cooldown: 1000,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const user = message.mentions.members?.first() || message.guild?.members.cache.get(args[0]);
     const reason = args.slice(1).join(' ');

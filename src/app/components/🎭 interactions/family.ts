@@ -1,14 +1,6 @@
-import {
-  ActionRowBuilder,
-  ButtonBuilder,
-  ButtonStyle,
-  ChannelType,
-  ComponentType,
-  EmbedBuilder,
-  Message,
-} from 'discord.js';
-import Schema from '../../../models/interactions/family';
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ComponentType, EmbedBuilder, Message } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
+import Schema from '../../../models/interactions/family';
 
 module.exports = {
   name: 'family',
@@ -16,16 +8,13 @@ module.exports = {
   aliases: ['family-cmd'],
   category: 'interactions',
   premium: false,
-  cooldown: 5000,
-  examples: [
-    "family [subcommand] [name]",
-    "family adopt [name]",
-  ],
+  cooldown: 1000,
+  examples: ['family [subcommand] [name]', 'family adopt [name]'],
   subcommands: [
-    "family adopt [target]",
-    "family divorce [target]",
-    "family status [target]",
-    "family propose [target]",
+    'family adopt [target]',
+    'family divorce [target]',
+    'family status [target]',
+    'family propose [target]',
   ],
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const subcommand = args[0];
@@ -260,177 +249,196 @@ module.exports = {
           });
         }
         break;
-      case 'propose': {
-        const target = message.mentions.members?.first() || message.guild?.members.cache.get(args[1]);
-        if (!target)
-          return message.channel.send({
-            content: [
-              `${emojis.error} You must mention a member to propose to them`,
-              `> \`${prefix}propose [user]\``,
-            ].join('\n'),
-          });
+      case 'propose':
+        {
+          const target = message.mentions.members?.first() || message.guild?.members.cache.get(args[1]);
+          if (!target)
+            return message.channel.send({
+              content: [
+                `${emojis.error} You must mention a member to propose to them`,
+                `> \`${prefix}propose [user]\``,
+              ].join('\n'),
+            });
 
-        if (target.user.bot)
-          return message.channel.send({
-            content: [`${emojis.error} You cannot propose to a bot :pensive:`, `> \`${prefix}propose [user]\``].join(
-              '\n'
-            ),
-          });
+          if (target.user.bot)
+            return message.channel.send({
+              content: [`${emojis.error} You cannot propose to a bot :pensive:`, `> \`${prefix}propose [user]\``].join(
+                '\n'
+              ),
+            });
 
-        if (target.id === message.author.id)
-          return message.channel.send({
-            content: [`${emojis.error} You cannot propose to yourself :pensive:`, `> \`${prefix}propose [user]\``].join(
-              '\n'
-            ),
-          });
+          if (target.id === message.author.id)
+            return message.channel.send({
+              content: [
+                `${emojis.error} You cannot propose to yourself :pensive:`,
+                `> \`${prefix}propose [user]\``,
+              ].join('\n'),
+            });
 
-        if (target.user.id === client.user.id)
-          return message.channel.send({
-            content: [
-              `${emojis.error} I'm sorry, but I'm already married to <@${client.config.ownerID}> :pensive:`,
-              `> \`${prefix}propose [user]\``,
-            ].join('\n'),
-          });
+          if (target.user.id === client.user.id)
+            return message.channel.send({
+              content: [
+                `${emojis.error} I'm sorry, but I'm already married to <@${client.config.ownerID}> :pensive:`,
+                `> \`${prefix}propose [user]\``,
+              ].join('\n'),
+            });
 
-        const data = await Schema.findOne({ Guild: message.guild?.id, User: message.author.id });
-        if (data) {
-          message.channel.send({
-            content: [`${emojis.error} You are already married to <@${data.Partner}>!`, `> \`${prefix}divorce\``].join(
-              '\n'
-            ),
-          });
-        } else {
-          const data = await Schema.findOne({ Guild: message.guild?.id, Partner: target.id });
+          const data = await Schema.findOne({ Guild: message.guild?.id, User: message.author.id });
           if (data) {
             message.channel.send({
               content: [
-                `${emojis.error} <@${target.id}> is already married to <@${data.Partner}>!`,
+                `${emojis.error} You are already married to <@${data.Partner}>!`,
                 `> \`${prefix}divorce\``,
               ].join('\n'),
             });
           } else {
-            const data = await Schema.findOne({
-              Guild: message.guild?.id,
-              User: target.id,
-              Parent: message.author.id,
-            });
+            const data = await Schema.findOne({ Guild: message.guild?.id, Partner: target.id });
             if (data) {
               message.channel.send({
-                content: [`${emojis.error} You cannot marry a family member!`, `> \`${prefix}divorce\``].join('\n'),
+                content: [
+                  `${emojis.error} <@${target.id}> is already married to <@${data.Partner}>!`,
+                  `> \`${prefix}divorce\``,
+                ].join('\n'),
               });
             } else {
               const data = await Schema.findOne({
                 Guild: message.guild?.id,
-                User: message.author.id,
-                Parent: target.id,
+                User: target.id,
+                Parent: message.author.id,
               });
               if (data) {
                 message.channel.send({
                   content: [`${emojis.error} You cannot marry a family member!`, `> \`${prefix}divorce\``].join('\n'),
                 });
               } else {
-                const data = await Schema.findOne({ Guild: message.guild?.id, User: message.author?.id });
+                const data = await Schema.findOne({
+                  Guild: message.guild?.id,
+                  User: message.author.id,
+                  Parent: target.id,
+                });
                 if (data) {
-                  if (data.Children.includes(target.id)) {
-                    message.channel.send({
-                      content: [`${emojis.error} You cannot marry a family member!`, `> \`${prefix}divorce\``].join(
-                        '\n'
-                      ),
-                    });
+                  message.channel.send({
+                    content: [`${emojis.error} You cannot marry a family member!`, `> \`${prefix}divorce\``].join('\n'),
+                  });
+                } else {
+                  const data = await Schema.findOne({ Guild: message.guild?.id, User: message.author?.id });
+                  if (data) {
+                    if (data.Children.includes(target.id)) {
+                      message.channel.send({
+                        content: [`${emojis.error} You cannot marry a family member!`, `> \`${prefix}divorce\``].join(
+                          '\n'
+                        ),
+                      });
+                    } else {
+                      propose();
+                    }
                   } else {
                     propose();
                   }
-                } else {
-                  propose();
                 }
               }
             }
           }
-        }
 
-        function propose() {
-          const row = new ActionRowBuilder().addComponents(
-            new ButtonBuilder().setCustomId('propose_accept').setEmoji('✅').setStyle(ButtonStyle.Success),
+          function propose() {
+            const row = new ActionRowBuilder().addComponents(
+              new ButtonBuilder().setCustomId('propose_accept').setEmoji('✅').setStyle(ButtonStyle.Success),
 
-            new ButtonBuilder().setCustomId('propose_deny').setEmoji('❌').setStyle(ButtonStyle.Danger)
-          );
+              new ButtonBuilder().setCustomId('propose_deny').setEmoji('❌').setStyle(ButtonStyle.Danger)
+            );
 
-          message.channel.send({
-            embeds: [
-              new EmbedBuilder()
-                .setTitle(`👰・Marriage proposal`)
-                .setDescription(
-                  `${message.author} has asked ${target} to propose him! \n${target} click on one of the buttons`
-                )
-                .setColor('Random')
-                .setFooter({
-                  text: message.author.tag,
-                  iconURL: message.author.displayAvatarURL({ forceStatic: true }),
-                })
-                .setTimestamp(),
-            ],
-            components: [row as any],
-          });
+            message.channel.send({
+              embeds: [
+                new EmbedBuilder()
+                  .setTitle(`👰・Marriage proposal`)
+                  .setDescription(
+                    `${message.author} has asked ${target} to propose him! \n${target} click on one of the buttons`
+                  )
+                  .setColor('Random')
+                  .setFooter({
+                    text: message.author.tag,
+                    iconURL: message.author.displayAvatarURL({ forceStatic: true }),
+                  })
+                  .setTimestamp(),
+              ],
+              components: [row as any],
+            });
 
-          const filter = (i: { user: { id: string | undefined } }) => i.user.id === target?.id;
+            const filter = (i: { user: { id: string | undefined } }) => i.user.id === target?.id;
 
-          message.channel
-            .awaitMessageComponent({ filter, componentType: ComponentType.Button, time: 60000 })
-            .then(async (i) => {
-              if (i.customId == 'propose_accept') {
-                Schema.findOne(
-                  { Guild: message.guild?.id, User: message.author.id },
-                  async (err: any, data: { Partner: string; save: () => void }) => {
-                    if (data) {
-                      data.Partner = target ? target.id : '';
-                      data.save();
-                    } else {
-                      new Schema({
-                        Guild: message.guild?.id,
-                        User: message.author.id,
-                        Partner: target ? target.id : '',
-                      }).save();
+            message.channel
+              .awaitMessageComponent({ filter, componentType: ComponentType.Button, time: 60000 })
+              .then(async (i) => {
+                if (i.customId == 'propose_accept') {
+                  Schema.findOne(
+                    { Guild: message.guild?.id, User: message.author.id },
+                    async (err: any, data: { Partner: string; save: () => void }) => {
+                      if (data) {
+                        data.Partner = target ? target.id : '';
+                        data.save();
+                      } else {
+                        new Schema({
+                          Guild: message.guild?.id,
+                          User: message.author.id,
+                          Partner: target ? target.id : '',
+                        }).save();
+                      }
                     }
-                  }
-                );
+                  );
 
-                Schema.findOne(
-                  { Guild: message.guild?.id, User: target ? target.id : ' ' },
-                  async (err: any, data: { Partner: string; save: () => void }) => {
-                    if (data) {
-                      data.Partner = message.author.id;
-                      data.save();
-                    } else {
-                      new Schema({
-                        Guild: message.guild?.id,
-                        User: target ? target.id : '',
-                        Partner: message.author.id,
-                      }).save();
+                  Schema.findOne(
+                    { Guild: message.guild?.id, User: target ? target.id : ' ' },
+                    async (err: any, data: { Partner: string; save: () => void }) => {
+                      if (data) {
+                        data.Partner = message.author.id;
+                        data.save();
+                      } else {
+                        new Schema({
+                          Guild: message.guild?.id,
+                          User: target ? target.id : '',
+                          Partner: message.author.id,
+                        }).save();
+                      }
                     }
-                  }
-                );
+                  );
 
-                message.channel.send({
-                  embeds: [
-                    new EmbedBuilder()
-                      .setTitle(`👰・Marriage proposal - Approved`)
-                      .setDescription(`${message.author} and ${target} are now married! 👰🎉`)
-                      .setColor('Random')
-                      .setFooter({
-                        text: message.author.tag,
-                        iconURL: message.author.displayAvatarURL({ forceStatic: true }),
-                      })
-                      .setTimestamp(),
-                  ],
-                });
-              }
+                  message.channel.send({
+                    embeds: [
+                      new EmbedBuilder()
+                        .setTitle(`👰・Marriage proposal - Approved`)
+                        .setDescription(`${message.author} and ${target} are now married! 👰🎉`)
+                        .setColor('Random')
+                        .setFooter({
+                          text: message.author.tag,
+                          iconURL: message.author.displayAvatarURL({ forceStatic: true }),
+                        })
+                        .setTimestamp(),
+                    ],
+                  });
+                }
 
-              if (i.customId == 'propose_deny') {
+                if (i.customId == 'propose_deny') {
+                  message.channel.send({
+                    embeds: [
+                      new EmbedBuilder()
+                        .setTitle(`👰・Marriage proposal - Denied`)
+                        .setDescription(`${target} loves someone else and chose not to marry ${message.author}`)
+                        .setColor('Random')
+                        .setFooter({
+                          text: message.author.tag,
+                          iconURL: message.author.displayAvatarURL({ forceStatic: true }),
+                        })
+                        .setTimestamp(),
+                    ],
+                  });
+                }
+              })
+              .catch(() => {
                 message.channel.send({
                   embeds: [
                     new EmbedBuilder()
                       .setTitle(`👰・Marriage proposal - Denied`)
-                      .setDescription(`${target} loves someone else and chose not to marry ${message.author}`)
+                      .setDescription(`${target} has not answered anything! The wedding is canceled`)
                       .setColor('Random')
                       .setFooter({
                         text: message.author.tag,
@@ -439,26 +447,10 @@ module.exports = {
                       .setTimestamp(),
                   ],
                 });
-              }
-            })
-            .catch(() => {
-              message.channel.send({
-                embeds: [
-                  new EmbedBuilder()
-                    .setTitle(`👰・Marriage proposal - Denied`)
-                    .setDescription(`${target} has not answered anything! The wedding is canceled`)
-                    .setColor('Random')
-                    .setFooter({
-                      text: message.author.tag,
-                      iconURL: message.author.displayAvatarURL({ forceStatic: true }),
-                    })
-                    .setTimestamp(),
-                ],
               });
-            });
+          }
         }
-      }
-      break;
+        break;
     }
   },
 };

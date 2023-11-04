@@ -1,12 +1,12 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, Message } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
 import moment from 'moment';
+import emojis from '../../../../config/emojis.json';
 module.exports = {
   name: 'member',
   description: 'see the information of the server users or yourself',
   aliases: ['user', 'userinfo'],
   category: 'public',
-  cooldown: 5000,
+  cooldown: 1000,
   premium: false,
   examples: [`member [user]`, `member @Kurapika`],
   async execute(client: any, message: Message, args: string[]) {

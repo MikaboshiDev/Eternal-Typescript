@@ -1,4 +1,4 @@
-import { ChannelType, EmbedBuilder, Message } from 'discord.js';
+import { Message } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
 
 module.exports = {
@@ -11,7 +11,7 @@ module.exports = {
   category: 'administration',
   premium: false,
   subcommands: ['threads archive [channel]', 'threads join [channel]', 'threads lock [channel]'],
-  cooldown: 5000,
+  cooldown: 1000,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const subcomandos = args[0];
     switch (subcomandos) {

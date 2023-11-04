@@ -1,7 +1,7 @@
-import { ChannelType, EmbedBuilder, Message } from 'discord.js';
-import { logWithLabel } from '../../../utils/console';
-import emojis from '../../../../config/emojis.json';
 import axios from 'axios';
+import { EmbedBuilder, Message } from 'discord.js';
+import emojis from '../../../../config/emojis.json';
+import { logWithLabel } from '../../../utils/console';
 
 module.exports = {
   name: 'shorterurl',
@@ -9,7 +9,7 @@ module.exports = {
   aliases: ['shorter-url', 'short-url', 'shorter'],
   category: 'utility',
   premium: false,
-  cooldown: 5000,
+  cooldown: 1000,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const embed = new EmbedBuilder();
     const destination = args[0];

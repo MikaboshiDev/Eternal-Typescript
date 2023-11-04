@@ -14,7 +14,7 @@ module.exports = {
   description: 'Help command for discord api, database and transparency',
   aliases: ['h', 'ayuda', 'helps'],
   category: 'public',
-  cooldown: 5000,
+  cooldown: 1000,
   premium: false,
   examples: [`help [command]`, `help [category]`],
   async execute(client: any, message: Message, args: string[], prefix: any) {

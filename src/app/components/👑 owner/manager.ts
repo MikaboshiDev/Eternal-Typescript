@@ -1,8 +1,8 @@
 import { EmbedBuilder, Message } from 'discord.js';
 import fs from 'fs';
 import emojis from '../../../../config/emojis.json';
-import { logWithLabel } from '../../../utils/console';
 import model_guild from '../../../models/guild';
+import { logWithLabel } from '../../../utils/console';
 
 module.exports = {
   name: 'manager',
@@ -10,7 +10,7 @@ module.exports = {
   aliases: ['control', 'controles', 'controle'],
   category: 'owner',
   premium: false,
-  cooldown: 5000,
+  cooldown: 1000,
   owner: true,
   examples: [`controls [subcommands] [parameters]`, `controls [command] [parameters], [command] [parameters]`],
   subcommands: [`controls name <new name>`, `controls avatar <image url>`, `controls prefix <new prefix>`],

@@ -1,9 +1,9 @@
-import { Message, EmbedBuilder } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
-import fetch from 'node-fetch';
-import { logWithLabel } from '../../../utils/console';
 import { stripIndent } from 'common-tags';
+import { EmbedBuilder, Message } from 'discord.js';
 import moment from 'moment';
+import fetch from 'node-fetch';
+import emojis from '../../../../config/emojis.json';
+import { logWithLabel } from '../../../utils/console';
 
 module.exports = {
   name: 'npm',
@@ -11,7 +11,7 @@ module.exports = {
   aliases: ['npm-search', 'npmjs', 'npm-search', 'npm-package', 'npm-package-search'],
   category: 'utility',
   premium: false,
-  cooldown: 5000,
+  cooldown: 1000,
   examples: ['npm <package name>'],
   async execute(client: any, message: Message, args: string[], prefix: any) {
     try {
@@ -73,8 +73,12 @@ module.exports = {
               {
                 name: 'Times',
                 value: [
-                  `Created at: \`${new Date(body.time.created).toDateString()}\` ${moment(body.time.created).fromNow()}`,
-                  `Modified at: \`${new Date(body.time.modified).toDateString()}\` ${moment(body.time.modified).fromNow()}`,
+                  `Created at: \`${new Date(body.time.created).toDateString()}\` ${moment(
+                    body.time.created
+                  ).fromNow()}`,
+                  `Modified at: \`${new Date(body.time.modified).toDateString()}\` ${moment(
+                    body.time.modified
+                  ).fromNow()}`,
                 ].join('\n'),
                 inline: false,
               },

@@ -1,24 +1,20 @@
-import { AttachmentBuilder, ChannelType, EmbedBuilder, Message } from 'discord.js';
+import { AttachmentBuilder, EmbedBuilder, Message } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
 
 module.exports = {
   name: 'navegation',
   description: 'Execute image management commands or other possible configurations',
   aliases: ['browser', 'navegator'],
-  examples: [
-    "navegation [subcommand] [parameters]",
-    "navegation [options] [choice] [value]",
-    "navegation [value]"
-  ],
+  examples: ['navegation [subcommand] [parameters]', 'navegation [options] [choice] [value]', 'navegation [value]'],
   category: 'public',
   premium: false,
   subcommands: [
-    "navegation search <search term>",
-    "navegation screenshot <domain>",
-    "navegation phcomment <@user | user ID> <text>",
-    "navegation tweet <@user | user ID> <text>",
+    'navegation search <search term>',
+    'navegation screenshot <domain>',
+    'navegation phcomment <@user | user ID> <text>',
+    'navegation tweet <@user | user ID> <text>',
   ],
-  cooldown: 5000,
+  cooldown: 1000,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const subcommand = args[0];
     switch (subcommand) {

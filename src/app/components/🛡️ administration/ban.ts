@@ -1,4 +1,4 @@
-import { ChannelType, EmbedBuilder, Message } from 'discord.js';
+import { EmbedBuilder, Message } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
 
 module.exports = {
@@ -9,7 +9,7 @@ module.exports = {
   permissions: ['BanMembers', 'UseApplicationCommands'],
   botpermissions: ['BanMembers', 'UseApplicationCommands'],
   premium: false,
-  cooldown: 5000,
+  cooldown: 1000,
   examples: ['ban add @user', 'ban remove @user', 'ban list', 'ban add @user [reason]', 'ban remove @user [reason]'],
   subcommands: ['ban add [user] [reason]', 'ban remove [user]', 'ban list'],
   async execute(client: any, message: Message, args: string[], prefix: any) {

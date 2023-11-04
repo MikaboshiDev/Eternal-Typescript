@@ -11,10 +11,10 @@ export default new Event('interactionCreate', async (interaction: any) => {
     .setThumbnail(client.user?.displayAvatarURL() ?? '')
     .setColor('Red');
 
-  const menus = client.menus.get(interaction.customId);
+  const menus: Menus = client.menus.get(interaction.customId) as Menus;
   if (!menus || menus === undefined) return;
 
-  if ((menus as Menus).owner && interaction.user.id !== process.env.owner_id)
+  if (menus.owner && interaction.user.id !== process.env.owner_id)
     return interaction.reply({
       embeds: [
         embed.setDescription(
@@ -26,7 +26,7 @@ export default new Event('interactionCreate', async (interaction: any) => {
       ],
     });
 
-  if ((menus as Menus).premium && !interaction.guild?.premiumSubscriptionCount)
+  if (menus.premium && !interaction.guild?.premiumSubscriptionCount)
     return interaction.reply({
       embeds: [
         embed.setDescription(
@@ -38,10 +38,7 @@ export default new Event('interactionCreate', async (interaction: any) => {
       ],
     });
 
-  if (
-    (menus as Menus).permissions &&
-    !interaction.member?.permissions.has((menus as Menus).permissions as PermissionResolvable)
-  )
+  if (menus.permissions && !interaction.member?.permissions.has(menus.permissions as PermissionResolvable))
     return interaction.reply({
       embeds: [
         embed.setDescription(
@@ -54,8 +51,8 @@ export default new Event('interactionCreate', async (interaction: any) => {
     });
 
   if (
-    (menus as Menus).botpermissions &&
-    !interaction.guild?.members.me.permissions.has((menus as Menus).botpermissions as PermissionResolvable)
+    menus.botpermissions &&
+    !interaction.guild?.members.me.permissions.has(menus.botpermissions as PermissionResolvable)
   )
     return interaction.reply({
       embeds: [
@@ -68,7 +65,7 @@ export default new Event('interactionCreate', async (interaction: any) => {
       ],
     });
 
-  if ((menus as Menus).ticketMod && !interaction.guild?.members.me.permissions.has('ManageChannels'))
+  if (menus.ticketMod && !interaction.guild?.members.me.permissions.has('ManageChannels'))
     return interaction.reply({
       embeds: [
         embed.setDescription(
@@ -80,5 +77,5 @@ export default new Event('interactionCreate', async (interaction: any) => {
       ],
     });
 
-  (menus as Menus).execute(interaction, client);
+  menus.execute(interaction, client);
 });

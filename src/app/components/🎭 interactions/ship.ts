@@ -1,6 +1,6 @@
-import { AttachmentBuilder, ChannelType, EmbedBuilder, Message } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
 import Canvas from 'canvas';
+import { AttachmentBuilder, EmbedBuilder, Message } from 'discord.js';
+import emojis from '../../../../config/emojis.json';
 
 module.exports = {
   name: 'ship',
@@ -8,7 +8,7 @@ module.exports = {
   aliases: ['ship-post'],
   category: 'interactions',
   premium: false,
-  cooldown: 5000,
+  cooldown: 1000,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const canvas = Canvas.createCanvas(700, 250);
     const ctx = canvas.getContext('2d');

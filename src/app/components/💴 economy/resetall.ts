@@ -1,5 +1,4 @@
-import { economyData } from '../../../functions/tools/economyFunction';
-import { ChannelType, EmbedBuilder, Message } from 'discord.js';
+import { Message } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
 import model from '../../../models/servers/economy';
 
@@ -10,7 +9,7 @@ module.exports = {
   category: 'economy',
   premium: false,
   owner: true,
-  cooldown: 5000,
+  cooldown: 1000,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     try {
       const data = await model.find();

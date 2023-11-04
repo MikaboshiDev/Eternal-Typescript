@@ -12,10 +12,10 @@ export default new Event('interactionCreate', async (interaction: any) => {
     .setThumbnail(client.user?.displayAvatarURL() ?? '')
     .setColor('Red');
 
-  const button = client.buttons.get(interaction.customId);
+  const button: Buttons = client.buttons.get(interaction.customId) as Buttons;
   if (!button || button === undefined) return;
 
-  if ((button as Buttons).owner && interaction.user.id !== process.env.owner_id)
+  if (button.owner && interaction.user.id !== process.env.owner_id)
     return interaction.reply({
       embeds: [
         embed.setDescription(
@@ -27,7 +27,7 @@ export default new Event('interactionCreate', async (interaction: any) => {
       ],
     });
 
-  if ((button as Buttons).premium && !interaction.guild?.premiumSubscriptionCount)
+  if (button.premium && !interaction.guild?.premiumSubscriptionCount)
     return interaction.reply({
       embeds: [
         embed.setDescription(
@@ -39,7 +39,7 @@ export default new Event('interactionCreate', async (interaction: any) => {
       ],
     });
 
-  if ((button as Buttons).permissions && !interaction.member?.permissions.has((button as Buttons).permissions))
+  if (button.permissions && !interaction.member?.permissions.has(button.permissions))
     return interaction.reply({
       embeds: [
         embed.setDescription(
@@ -51,10 +51,7 @@ export default new Event('interactionCreate', async (interaction: any) => {
       ],
     });
 
-  if (
-    (button as Buttons).botpermissions &&
-    !interaction.guild?.members.me.permissions.has((button as Buttons).botpermissions)
-  )
+  if (button.botpermissions && !interaction.guild?.members.me.permissions.has(button.botpermissions))
     return interaction.reply({
       embeds: [
         embed.setDescription(
@@ -66,7 +63,7 @@ export default new Event('interactionCreate', async (interaction: any) => {
       ],
     });
 
-  if ((button as Buttons).ticketMod && !interaction.guild?.members.me.permissions.has('ManageChannels'))
+  if (button.ticketMod && !interaction.guild?.members.me.permissions.has('ManageChannels'))
     return interaction.reply({
       embeds: [
         embed.setDescription(
@@ -78,5 +75,5 @@ export default new Event('interactionCreate', async (interaction: any) => {
       ],
     });
 
-  (button as Buttons).execute(interaction, client);
+  button.execute(interaction, client);
 });

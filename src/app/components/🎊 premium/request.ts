@@ -11,7 +11,7 @@ function replaceParam(string: string, message: { guild: { id: any }; author: { i
 
 module.exports = {
   name: 'request',
-  cooldown: 5000,
+  cooldown: 1000,
   permissions: ['Administrator'],
   botpermissions: ['Administrator'],
   description: 'The request (GET, POST, PUT, DELETE) method for the API',

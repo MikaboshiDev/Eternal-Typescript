@@ -1,4 +1,4 @@
-import { ChannelType, EmbedBuilder, Message } from 'discord.js';
+import { EmbedBuilder, Message } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
 import model from '../../../models/users';
 
@@ -10,7 +10,7 @@ module.exports = {
   premium: false,
   permissions: ['BanMembers', 'UseApplicationCommands'],
   botpermissions: ['BanMembers', 'UseApplicationCommands'],
-  cooldown: 5000,
+  cooldown: 1000,
   examples: [
     'warnings list [user]',
     'warnings add @Drago [reason]',

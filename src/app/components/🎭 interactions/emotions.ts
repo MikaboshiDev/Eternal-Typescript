@@ -1,7 +1,7 @@
-import { AttachmentBuilder, ChannelType, EmbedBuilder, Message } from 'discord.js';
-import { animeApi } from '../../../functions/tools/httpRequest';
-import emojis from '../../../../config/emojis.json';
+import { AttachmentBuilder, EmbedBuilder, Message } from 'discord.js';
 import neko from 'nekos.life';
+import emojis from '../../../../config/emojis.json';
+import { animeApi } from '../../../functions/tools/httpRequest';
 
 module.exports = {
   name: 'emotions',
@@ -9,7 +9,7 @@ module.exports = {
   aliases: ['emotion', 'anime'],
   category: 'interactions',
   premium: false,
-  cooldown: 5000,
+  cooldown: 1000,
   examples: [
     'emotions baka',
     'emotions eightball',

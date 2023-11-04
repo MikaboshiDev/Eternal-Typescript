@@ -11,10 +11,10 @@ export default new Event('interactionCreate', async (interaction: any) => {
     .setThumbnail(client.user?.displayAvatarURL() ?? '')
     .setColor('Red');
 
-  const modals = client.modals.get(interaction.customId);
+  const modals: Modals = client.modals.get(interaction.customId) as Modals;
   if (!modals || modals === undefined) return;
 
-  if ((modals as Modals).owner && interaction.user.id !== process.env.owner_id)
+  if (modals.owner && interaction.user.id !== process.env.owner_id)
     return interaction.reply({
       embeds: [
         embed.setDescription(
@@ -26,7 +26,7 @@ export default new Event('interactionCreate', async (interaction: any) => {
       ],
     });
 
-  if ((modals as Modals).premium && !interaction.guild?.premiumSubscriptionCount)
+  if (modals.premium && !interaction.guild?.premiumSubscriptionCount)
     return interaction.reply({
       embeds: [
         embed.setDescription(
@@ -38,7 +38,7 @@ export default new Event('interactionCreate', async (interaction: any) => {
       ],
     });
 
-  if ((modals as Modals).permissions && !interaction.member?.permissions.has((modals as Modals).permissions))
+  if (modals.permissions && !interaction.member?.permissions.has(modals.permissions))
     return interaction.reply({
       embeds: [
         embed.setDescription(
@@ -50,10 +50,7 @@ export default new Event('interactionCreate', async (interaction: any) => {
       ],
     });
 
-  if (
-    (modals as Modals).botpermissions &&
-    !interaction.guild?.members.me.permissions.has((modals as Modals).botpermissions)
-  )
+  if (modals.botpermissions && !interaction.guild?.members.me.permissions.has(modals.botpermissions))
     return interaction.reply({
       embeds: [
         embed.setDescription(
@@ -65,7 +62,7 @@ export default new Event('interactionCreate', async (interaction: any) => {
       ],
     });
 
-  if ((modals as Modals).ticketMod && !interaction.guild?.members.me.permissions.has('ManageChannels'))
+  if (modals.ticketMod && !interaction.guild?.members.me.permissions.has('ManageChannels'))
     return interaction.reply({
       embeds: [
         embed.setDescription(
@@ -77,5 +74,5 @@ export default new Event('interactionCreate', async (interaction: any) => {
       ],
     });
 
-  (modals as Modals).execute(interaction, client);
+  modals.execute(interaction, client);
 });

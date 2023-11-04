@@ -16,7 +16,7 @@ module.exports = {
   aliases: ['paypal'],
   category: 'economy',
   premium: false,
-  cooldown: 5000,
+  cooldown: 1000,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const sendEmbed = (title: string, desc: string, thumbnail: string) => {
       const embed = new EmbedBuilder()

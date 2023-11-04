@@ -1,4 +1,4 @@
-import { ChannelType, EmbedBuilder, Message } from 'discord.js';
+import { EmbedBuilder, Message } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
 import keygen from '../../../models/premium/clave';
 module.exports = {
@@ -8,7 +8,7 @@ module.exports = {
   permissions: ['Administrator'],
   category: 'settings',
   premium: false,
-  cooldown: 5000,
+  cooldown: 1000,
   examples: [`keygen [subcommand] [properties] [key]`, `keygen [command] [key]`],
   subcommands: [`keygen generate <duration> <amount>`, `keygen activate <key>`, `keygen desactivate <key>`],
   async execute(client: any, message: Message, args: string[], prefix: any) {

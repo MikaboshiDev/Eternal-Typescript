@@ -1,25 +1,18 @@
 import { EmbedBuilder, Message } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
- 
+
 import moment from 'moment';
 module.exports = {
   name: 'emoji',
   description: 'information emoji in the server discord',
-  cooldown: 5000,
-  aliases: ['emojis', 'emojiinfo', 'emoji-info', "emoji-control"],
+  cooldown: 1000,
+  aliases: ['emojis', 'emojiinfo', 'emoji-info', 'emoji-control'],
   permissions: ['ManageEmojisAndStickers', 'AttachFiles', 'UseExternalEmojis'],
   botpermissions: ['ManageEmojisAndStickers', 'AttachFiles', 'UseExternalEmojis'],
   premium: false,
-  examples: [
-    `emoji [subcommand] [properties] [emoji]`,
-    `emoji [command] [emoji]`
-  ],
+  examples: [`emoji [subcommand] [properties] [emoji]`, `emoji [command] [emoji]`],
   category: 'settings',
-  subcommands: [
-    `emoji add <emoji>`,
-    `emoji info <emoji>`,
-    `emoji jumbo <emoji>`,
-  ],
+  subcommands: [`emoji add <emoji>`, `emoji info <emoji>`, `emoji jumbo <emoji>`],
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const subcommand = args[0];
     switch (subcommand) {

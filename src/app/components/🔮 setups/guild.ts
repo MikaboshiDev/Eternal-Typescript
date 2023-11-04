@@ -1,4 +1,4 @@
-import { ChannelType, EmbedBuilder, Message } from 'discord.js';
+import { Message } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
 import guild from '../../../models/guild';
 module.exports = {
@@ -7,7 +7,7 @@ module.exports = {
   aliases: ['server', 'guilds', 'servers'],
   category: 'setups',
   premium: false,
-  cooldown: 5000,
+  cooldown: 1000,
   permissions: ['Administrator'],
   example: [`guild [subcommand] [properties]`, `guild [command]`],
   subcommands: [

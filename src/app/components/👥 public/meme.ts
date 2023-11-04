@@ -1,14 +1,4 @@
-import {
-  ActionRowBuilder,
-  ButtonBuilder,
-  ButtonStyle,
-  ChannelType,
-  ComponentType,
-  EmbedBuilder,
-  Message,
-} from 'discord.js';
-import emojis from '../../../../config/emojis.json';
-import fetch from 'node-fetch';
+import { Message } from 'discord.js';
 
 module.exports = {
   name: 'meme',
@@ -16,9 +6,9 @@ module.exports = {
   aliases: ['memes'],
   category: 'public',
   premium: false,
-  cooldown: 5000,
+  cooldown: 1000,
   async execute(client: any, message: Message, args: string[], prefix: any) {
-/*    let meme = await fetch('https://meme-api.herokuapp.com/gimme').then((r) => r.json());
+    /*    let meme = await fetch('https://meme-api.herokuapp.com/gimme').then((r) => r.json());
     const button = new ActionRowBuilder().addComponents([
       new ButtonBuilder().setLabel('Refresh').setStyle(ButtonStyle.Primary).setCustomId('refresh-button'),
     ]);

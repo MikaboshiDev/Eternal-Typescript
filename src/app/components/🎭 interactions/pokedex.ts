@@ -1,6 +1,6 @@
-import { ActionRowBuilder, ButtonBuilder, ChannelType, EmbedBuilder, Message, ButtonStyle } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
 import axios from 'axios';
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, Message } from 'discord.js';
+import emojis from '../../../../config/emojis.json';
 
 module.exports = {
   name: 'pokedex',
@@ -8,7 +8,7 @@ module.exports = {
   aliases: ['poke-dex'],
   category: 'interactions',
   premium: false,
-  cooldown: 5000,
+  cooldown: 1000,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const pokemon = args.join(' ');
     if (!pokemon)
@@ -80,7 +80,7 @@ module.exports = {
               },
               { name: 'Generation', value: `${json.gen}`, inline: false },
               { name: 'Egg Groups', value: `${json.eggGroups.join(', ')}`, inline: false },
-              { name: 'Catch Rate', value: `${json.captureRate}`, inline: false },
+              { name: 'Catch Rate', value: `${json.captureRate}`, inline: false }
             )
             .setFooter({ text: json.description }),
         ],

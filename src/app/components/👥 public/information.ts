@@ -15,7 +15,7 @@ module.exports = {
     `information bot [general|ram|guilds] [properties]`,
   ],
   subcommands: [`information bot <general|ram|guilds>`, `information role <role>`, `information server`],
-  cooldown: 5000,
+  cooldown: 1000,
   premium: false,
   async execute(client: any, message: Message, args: string[]) {
     const { guilds, channels, ws, uptime, commands } = client;

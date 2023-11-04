@@ -16,13 +16,13 @@
 
 import { addons, buttons, components, deploy, load, menus, modals } from '../utils/handlers';
 import { Client, Collection, GatewayIntentBits, Options, Partials } from 'discord.js';
+import { ensureConsole } from '../functions/modules/servers';
 import { ExpressServer } from '../../server/express';
 import { logWithLabel } from '../utils/console';
 import model from '../models/servers/economy';
 import emojis from '../../config/emojis.json';
 import { Command } from '../class/builders';
 import paypal from 'paypal-rest-sdk';
-import winston from 'winston';
 import db from './mongoose';
 
 export class Manager extends Client {
@@ -36,7 +36,7 @@ export class Manager extends Client {
   menus: Collection<unknown, unknown>;
   paypal: typeof paypal;
   giveawaysManager: any;
-  poru: any;
+  cooldown: Collection<unknown, unknown>;
   constructor() {
     super({
       failIfNotExists: false,
@@ -88,6 +88,7 @@ export class Manager extends Client {
     this.aliases = new Collection();
     this.paypal = paypal;
 
+    this.cooldown = new Collection();
     this.buttons = new Collection();
     this.modals = new Collection();
     this.menus = new Collection();
@@ -95,6 +96,7 @@ export class Manager extends Client {
 
   public async start() {
     load();
+    ensureConsole();
     await super.login(process.env.token!);
     await components(this);
     await addons(this);
@@ -108,17 +110,5 @@ export class Manager extends Client {
     const port = process.env.port_api!;
     express.start(port ? parseInt(port) : 3000);
     db();
-  }
-
-  public async log() {
-    console.log('\x1b[36m_____  _                       _   \x1b[31m_');
-    console.log('\x1b[36m|  __ \\(_)                     | | \x1b[31m(_)');
-    console.log('\x1b[36m| |  | |_ ___  ___ ___  _ __ __| |  \x1b[33m_ ___');
-    console.log("\x1b[36m| |  | | / __|/ __/ _ \\| '__/ _` | \x1b[33m| / __|");
-    console.log('\x1b[36m| |__| | \\__ \\ (_| (_) | | | (_| |\x1b[37m_\x1b[32m| \\__ \\');
-    console.log('\x1b[36m|_____/|_|___/\\___\\___/|_|  \\__,_\x1b[37m(_) \x1b[32m|___/');
-    console.log('                                  \x1b[34m_/ |');
-    console.log('                                 \x1b[35m|__/');
-    console.log('\x1b[0m');
   }
 }

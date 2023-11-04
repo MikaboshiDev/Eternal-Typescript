@@ -1,6 +1,6 @@
-import { economyData } from '../../../functions/tools/economyFunction';
-import { ChannelType, EmbedBuilder, Message } from 'discord.js';
+import { EmbedBuilder, Message } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
+import { economyData } from '../../../functions/tools/economyFunction';
 import model from '../../../models/servers/economy';
 
 const slotItems = ['🍒', '🍎', '🍊', '🍇', '🍋', '🍓', '🍉', '🍈', '💣'];
@@ -14,7 +14,7 @@ module.exports = {
   aliases: ['slot'],
   category: 'economy',
   premium: false,
-  cooldown: 5000,
+  cooldown: 1000,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     try {
       const data = await model.findOne({ userID: message.author.id });

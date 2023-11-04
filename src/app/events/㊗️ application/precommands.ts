@@ -1,10 +1,11 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, TextChannel } from 'discord.js';
-import { ensureEconomyExists, ensureGuildExists } from '../../../functions/modules/servers';
-import { findClosestCommand } from '../../../functions/modules/locations';
-import { validCode } from '../../../functions/tools/messagesData';
-import { Command } from '../../../interface/commands';
+import ms from 'ms';
 import emojis from '../../../../config/emojis.json';
 import { Event } from '../../../class/builders';
+import { findClosestCommand } from '../../../functions/modules/locations';
+import { ensureEconomyExists, ensureGuildExists } from '../../../functions/modules/servers';
+import { validCode } from '../../../functions/tools/messagesData';
+import { Command } from '../../../interface/commands';
 import guild from '../../../models/guild';
 import { client } from '../../../shulker';
 
@@ -38,8 +39,9 @@ export default new Event('messageCreate', async (message) => {
   const args = message.content.slice(prefix?.length).trim().split(/ +/g);
 
   const cmd = args.shift()?.toLowerCase();
-  const command =
-    client.precommands.get(cmd ?? '') || client.precommands.find((c: any) => c.aliases?.includes(cmd ?? ''));
+  const command: Command =
+    (client.precommands.get(cmd ?? '') as Command) ||
+    (client.precommands.find((c: any) => c.aliases?.includes(cmd ?? '')) as Command);
 
   if (!command) {
     const didYouMean = findClosestCommand(cmd ?? '', [...client.precommands.keys()]);
@@ -68,7 +70,7 @@ export default new Event('messageCreate', async (message) => {
     .setThumbnail(client.user?.displayAvatarURL() ?? '')
     .setColor('Red');
 
-  if ((command as Command).owner && message.author.id !== process.env.owner_id!)
+  if (command.owner && message.author.id !== process.env.owner_id!)
     return message.reply({
       embeds: [
         embed.setDescription(
@@ -80,7 +82,7 @@ export default new Event('messageCreate', async (message) => {
       ],
     });
 
-  if ((command as Command).nsfw && !(message.channel as TextChannel).nsfw)
+  if (command.nsfw && !(message.channel as TextChannel).nsfw)
     return message.reply({
       content: [
         `${emojis.error} You can't use this command in a non-nsfw channel.`,
@@ -88,7 +90,7 @@ export default new Event('messageCreate', async (message) => {
       ].join('\n'),
     });
 
-  if ((command as Command).permissions && !message.member?.permissions.has((command as Command).permissions))
+  if (command.permissions && !message.member?.permissions.has(command.permissions))
     return message.reply({
       embeds: [
         embed.setDescription(
@@ -100,10 +102,7 @@ export default new Event('messageCreate', async (message) => {
       ],
     });
 
-  if (
-    (command as Command).botpermissions &&
-    !message.guild.members.me?.permissions.has((command as Command).botpermissions)
-  )
+  if (command.botpermissions && !message.guild.members.me?.permissions.has(command.botpermissions))
     return message.reply({
       embeds: [
         embed.setDescription(
@@ -115,5 +114,19 @@ export default new Event('messageCreate', async (message) => {
       ],
     });
 
-  (command as Command).execute(client, message, args, prefix);
+  if (command.cooldown) {
+    if (client.cooldown.has(`${message.author.id}${command.name}`))
+      return message.reply({
+        content: [
+          `${emojis.error} Hello ${message.author.username}, I'm sorry but you can't execute the mentioned command yet.`,
+          `please wait a while: <t:${Math.floor(command.cooldown + Date.now() / 1000)}:R>`,
+        ].join('\n'),
+      });
+    client.cooldown.set(`${message.author.id}${command.name}`, command.cooldown);
+    setTimeout(() => {
+      client.cooldown.delete(`${message.author.id}${command.name}`);
+    }, command.cooldown * 1000);
+  }
+
+  command.execute(client, message, args, prefix);
 });

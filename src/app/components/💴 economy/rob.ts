@@ -1,7 +1,6 @@
-import { ensureEconomyExists } from '../../../functions/modules/servers';
-import { economyData } from '../../../functions/tools/economyFunction';
-import { ChannelType, EmbedBuilder, Message } from 'discord.js';
+import { Message } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
+import { ensureEconomyExists } from '../../../functions/modules/servers';
 import model from '../../../models/servers/economy';
 
 module.exports = {
@@ -10,7 +9,7 @@ module.exports = {
   aliases: ['steal'],
   category: 'economy',
   premium: false,
-  cooldown: 5000,
+  cooldown: 1000,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     if (!args.length)
       return message.reply({

@@ -1,18 +1,17 @@
-import { ChannelType, EmbedBuilder, Message } from 'discord.js';
+import { Message } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
-import axios from 'axios';
 
 module.exports = {
   name: 'threads',
   description: 'threads join, create, delete and more',
   permissions: ['ManageChannels'],
   botpermissions: ['ManageChannels'],
-  aliases: ['thread', 'thread-control', "hilos", "hilo"],
+  aliases: ['thread', 'thread-control', 'hilos', 'hilo'],
   category: 'settings',
   owner: true,
   examples: [`threads [subcommand] [properties]`, `threads [command]`],
   subcommands: ['threads archive <channel>', 'threads join', 'threads lock <channel>'],
-  cooldown: 5000,
+  cooldown: 1000,
   premium: false,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const subcommands = args[0];

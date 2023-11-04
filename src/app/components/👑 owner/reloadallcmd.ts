@@ -1,5 +1,5 @@
+import { Message } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
-import { EmbedBuilder, Message } from 'discord.js';
 import { logWithLabel } from '../../../utils/console';
 
 module.exports = {
@@ -8,11 +8,9 @@ module.exports = {
   aliases: ['reloadallcommands', 'reloadallcmds'],
   category: 'owner',
   premium: false,
-  cooldown: 5000,
+  cooldown: 1000,
   owner: true,
-  examples: [
-    'reloadallcmd',
-  ],
+  examples: ['reloadallcmd'],
   async execute(client: any, message: Message, args: string[], prefix: any) {
     try {
       let t = await message.reply({

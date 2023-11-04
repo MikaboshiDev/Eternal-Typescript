@@ -1,4 +1,4 @@
-import { ChannelType, EmbedBuilder, Message } from 'discord.js';
+import { EmbedBuilder, Message } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
 import model from '../../../models/servers/afk';
 
@@ -8,7 +8,7 @@ module.exports = {
   aliases: ['set-afk'],
   category: 'public',
   premium: false,
-  cooldown: 5000,
+  cooldown: 1000,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const user = message.member;
     const role = message.mentions.roles.first();

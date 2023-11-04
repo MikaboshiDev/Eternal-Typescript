@@ -1,8 +1,8 @@
+import axios from 'axios';
 import { ActionRowBuilder, EmbedBuilder, Message, StringSelectMenuBuilder } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
 import words from '../../../../config/words.json';
 const Api_Url = 'https://discord.com/api/v10';
-import axios from 'axios';
 
 module.exports = {
   name: 'automoderation',
@@ -17,7 +17,7 @@ module.exports = {
   ],
   category: 'premium',
   premium: true,
-  cooldown: 5000,
+  cooldown: 1000,
   subcommands: [
     'automoderation create <name> <event_type> <actions> <trigger_type> <trigger_metadata> <enabled>',
     'automoderation delete <id>',

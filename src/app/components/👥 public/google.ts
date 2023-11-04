@@ -1,4 +1,4 @@
-import { ChannelType, EmbedBuilder, Message } from 'discord.js';
+import { EmbedBuilder, Message } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
 
 module.exports = {
@@ -7,7 +7,7 @@ module.exports = {
   aliases: ['google-search', 'search'],
   category: 'public',
   premium: false,
-  cooldown: 5000,
+  cooldown: 1000,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const text1 = args.join(' ');
     const text2 = args.join('+');
