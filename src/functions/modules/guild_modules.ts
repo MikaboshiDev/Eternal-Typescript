@@ -1,5 +1,5 @@
 import { logWithLabel } from '../../utils/console';
-import user from '../../models/economy/user';
+import model from '../../models/servers/economy';
 import guild from '../../models/guild';
 
 async function guild_segurity(guildId: string, userid: string) {
@@ -10,16 +10,13 @@ async function guild_segurity(guildId: string, userid: string) {
   await newGuild.save();
   logWithLabel('discord', `New guild: ${guildId} added to database`);
 
-  const data_user = await user.findOne({ guildId: guildId, userId: userid });
-  if (data_user) return;
+  const economy = await model.findOne({ userID: userid });
+  if (economy) return;
 
-  const newUser = new user({ 
-    guildId: guildId, 
-    userId: userid,
-    balance: 1000
-  });
-  await newUser.save();
-  logWithLabel("discord", `New data user: ${userid} added to database`)
+  const newEconomy = new model({ userID: userid });
+  await newEconomy.save();
+
+  logWithLabel('discord', `New economy: ${userid} added to database`);
 }
 
 export { guild_segurity };

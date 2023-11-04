@@ -1,5 +1,5 @@
-import { ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
-import user from '../../../models/economy/user';
+import { EmbedBuilder } from 'discord.js';
+
 import fs from 'fs';
 module.exports = {
   id: 'helpMenu',

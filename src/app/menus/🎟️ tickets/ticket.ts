@@ -1,12 +1,11 @@
 import {
   ActionRowBuilder,
   ChatInputCommandInteraction,
-  EmbedBuilder,
   ModalBuilder,
   TextInputBuilder,
   TextInputStyle,
 } from 'discord.js';
-import user from '../../../models/economy/user';
+
 import { logWithLabel } from '../../../utils/console';
 
 module.exports = {

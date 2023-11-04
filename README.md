@@ -34,11 +34,11 @@ Project collaborators and people who helped develop it.
   <tr>
     <td align="center">
       <a href="https://docs.night-support.xyz/" target="_blank">
-      <img src="https://cdn.discordapp.com/avatars/679560282929889331/311b22d3461b2f363008383fb41d0e68.webp" width="100px;" alt=""/><br /><sub><b>Horus</b></sub></a><br />
+      <img src="https://cdn.discordapp.com/avatars/679560282929889331/180096fa674371d22e5a72bf1d9ebf35.webp" width="100px;" alt=""/><br /><sub><b>Horus</b></sub></a><br />
       <a href="https://bit.ly/nightdashboard" title="Code">💻</a></td>
     <td align="center">
       <a href="https://tienda.demonscraft.live/" target="_blank">
-      <img src="https://cdn.discordapp.com/avatars/1099061178854019116/d643ceb5d77c7e26bd87d575c76710f1.webp" width="100px;" alt=""/><br /><sub><b>Steve Game</b></sub></a><br />
+      <img src="https://cdn.discordapp.com/avatars/981339172231077959/08c6cdc3c8b2b3bd126749e796262c21.webp" width="100px;" alt=""/><br /><sub><b>Steve Game</b></sub></a><br />
       <a href="https://www.tiktok.com/@demonscraft1?_op=1&_r=1&_t=8dGvpGDEdFd" title="Code">👍</a>
     </td>
   </tr>

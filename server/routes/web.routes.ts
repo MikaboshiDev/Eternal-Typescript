@@ -1,7 +1,7 @@
 import { Request, Response, Router } from 'express';
 import fs from 'fs';
 import model from '../../src/models/client';
-import user from '../../src/models/economy/user';
+import user from '../../src/models/servers/economy';
 import MsgModel from '../../src/models/messages';
 import ProductModel from '../../src/models/products';
 import { client } from '../../src/shulker';
@@ -212,7 +212,7 @@ router.get('/economy', authInspection, async (req: Request, res: Response) => {
   const guild = client.guilds.cache.get(process.env.guild_id!);
   const total = await user.find();
   const userData = total.map((user) => {
-    const member = guild?.members.cache.get(user.userId!);
+    const member = guild?.members.cache.get(user.userID!);
 
     return {
       username: member ? member.user.username : 'Unknown user',
@@ -223,7 +223,7 @@ router.get('/economy', authInspection, async (req: Request, res: Response) => {
             size: 512,
           })
         : 'https://cdn.discordapp.com/embed/avatars/0.png',
-      dinero: user.balance,
+      dinero: user.money,
       dineroEnBanco: user.bank,
     };
   });

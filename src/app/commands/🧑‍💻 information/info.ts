@@ -1,7 +1,6 @@
 import { ChannelType, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
-import { logWithLabel } from '../../../utils/console';
 import { Command } from '../../../class/builders';
-import user from '../../../models/economy/user';
+
 import { stripIndent } from 'common-tags';
 import moment from 'moment';
 import os from 'os';
@@ -19,7 +18,6 @@ export default new Command(
         .setName('bot')
         .setDescription('🧑‍💻 Get information about the bot')
         .addSubcommand((sub) => sub.setName('stats').setDescription('🧑‍💻Get statistics about the bot'))
-        .addSubcommand((sub) => sub.setName('ping').setDescription("🧑‍💻 Get the bot's ping"))
         .addSubcommand((sub) => sub.setName('ram').setDescription("🧑‍💻 Get the bot's ram usage"))
     )
     .addSubcommandGroup((group) =>
@@ -98,40 +96,6 @@ export default new Command(
                   })
                   .setTimestamp();
 
-                await interaction.reply({ embeds: [embed] });
-              }
-              break;
-            case 'ping':
-              {
-                async function db_ping() {
-                  const start = Date.now();
-                  await user.findOne({ userId: interaction.user.id });
-                  return Date.now() - start;
-                }
-
-                const embed = new EmbedBuilder()
-                  .addFields(
-                    {
-                      name: 'Api the Discord',
-                      value: `> \`${client.ws.ping}ms\``,
-                      inline: true,
-                    },
-                    {
-                      name: 'Database',
-                      value: `> \`${await db_ping()}ms\``,
-                      inline: true,
-                    },
-                    {
-                      name: 'Latency',
-                      value: `> \`${Date.now() - interaction.createdTimestamp}ms\``,
-                      inline: true,
-                    }
-                  )
-                  .setColor('Random')
-                  .setFooter({
-                    text: `The times are in milliseconds (ms)`,
-                    iconURL: client.user?.displayAvatarURL(),
-                  });
                 await interaction.reply({ embeds: [embed] });
               }
               break;

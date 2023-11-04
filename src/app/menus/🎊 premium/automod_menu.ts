@@ -1,16 +1,9 @@
-import {
-  ActionRowBuilder,
-  ChatInputCommandInteraction,
-  EmbedBuilder,
-  ModalBuilder,
-  TextInputBuilder,
-  TextInputStyle,
-} from 'discord.js';
-import { logWithLabel } from '../../../utils/console';
-import emojis from '../../../../config/emojis.json';
-import user from '../../../models/economy/user';
-const Api_Url = 'https://discord.com/api/v10';
 import axios from 'axios';
+import { ActionRowBuilder, EmbedBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } from 'discord.js';
+import emojis from '../../../../config/emojis.json';
+import { logWithLabel } from '../../../utils/console';
+
+const Api_Url = 'https://discord.com/api/v10';
 
 module.exports = {
   botpermissions: ['ManageGuild'],
@@ -21,7 +14,7 @@ module.exports = {
     } else if (interaction.values.includes('second_option')) {
       const a = new TextInputBuilder()
         .setPlaceholder('Enter the id moderation rule')
-        .setLabel("You can get it with the command /automod list")
+        .setLabel('You can get it with the command /automod list')
         .setCustomId('premium_automod_modal_id')
         .setStyle(TextInputStyle.Short)
         .setRequired(true);

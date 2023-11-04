@@ -1,8 +1,8 @@
-import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
-import user from '../../../models/economy/user';
-const Api_Url = 'https://discord.com/api/v10';
 import axios from 'axios';
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } from 'discord.js';
+import emojis from '../../../../config/emojis.json';
+
+const Api_Url = 'https://discord.com/api/v10';
 
 module.exports = {
   id: 'premium_automod_modal',

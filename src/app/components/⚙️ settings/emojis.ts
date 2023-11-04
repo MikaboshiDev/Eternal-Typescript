@@ -1,6 +1,6 @@
-import emojis from '../../../../config/emojis.json';
 import { EmbedBuilder, Message } from 'discord.js';
-import user from '../../../models/economy/user';
+import emojis from '../../../../config/emojis.json';
+ 
 import moment from 'moment';
 module.exports = {
   name: 'emoji',

@@ -1,5 +1,5 @@
 import { ChannelType, EmbedBuilder, Message } from 'discord.js';
-import user from '../../../models/economy/user';
+
 import { stripIndent } from 'common-tags';
 import moment from 'moment';
 import os from 'os';
@@ -268,7 +268,7 @@ module.exports = {
               },
             ])
             .setFooter({
-              text: member?.displayName || user ? author.username : author.username,
+              text: member?.displayName || author.username,
               iconURL: member?.displayAvatarURL() || author.displayAvatarURL(),
             })
             .setTimestamp();
