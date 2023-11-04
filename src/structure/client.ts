@@ -1,3 +1,19 @@
+/*
+# Discord Server: https://discord.gg/pgDje8S3Ed
+# Github: https://github.com/MikaboshiDev
+# Docs: https://docs.night-support.xyz/
+# Dashboard: http://www.night-support.xyz/
+
+# Created by: MikaboshiDev
+# Version: 0.0.2
+# Discord: azazel_hla
+
+# This file is the main configuration file for the bot.
+# Inside this file you will find all the settings you need to configure the bot.
+# If you have any questions, please contact us on our discord server.
+# If you want to know more about the bot, you can visit our website.
+*/
+
 import { addons, buttons, components, deploy, load, menus, modals } from '../utils/handlers';
 import { Client, Collection, GatewayIntentBits, Options, Partials } from 'discord.js';
 import { ExpressServer } from '../../server/express';
@@ -20,7 +36,6 @@ export class Manager extends Client {
   paypal: typeof paypal;
   giveawaysManager: any;
   poru: any;
-  balance: (userid: any, count: any, action: any, message: any) => Promise<any>;
   constructor() {
     super({
       failIfNotExists: false,
@@ -75,48 +90,6 @@ export class Manager extends Client {
     this.buttons = new Collection();
     this.modals = new Collection();
     this.menus = new Collection();
-
-    this.balance = async (userid, count, action, message) => {
-      try {
-        const data = await model.findOne({ userID: userid });
-        if (!data || data.money < 0) {
-          return message.reply({
-            content: [
-              `${emojis.error} **${message.author.username}**, you don't have enough money to do this action right now!`,
-              `you may not have enough money or your account does not exist in the bank`,
-            ].join('\n'),
-          });
-        }
-
-        switch (action) {
-          case 'add':
-            await model.findOneAndUpdate({ userID: userid }, { $inc: { money: count } }, { new: true });
-            break;
-          case 'remove':
-            await model.findOneAndUpdate({ userID: userid }, { $inc: { money: -count } }, { new: true });
-            break;
-          case 'delete':
-            await model.findOneAndDelete({ userID: userid });
-            message.reply({
-              content: [
-                `${emojis.correct} **${message.author.username}**, your account has been deleted successfully from the bank!`,
-                `the day \`${new Date().toLocaleDateString()}\` at \`${new Date().toLocaleTimeString()}\``,
-              ].join('\n'),
-            });
-            break;
-          default:
-            message.reply(`${emojis.error} Invalid action specified.`);
-        }
-      } catch (error) {
-        logWithLabel("error", `An error occurred while processing the balance of ${userid}`)
-        message.reply({
-          content: [
-            `${emojis.error} **${message.author.username}**, an error occurred while processing your balance!`,
-            `please try again later`,
-          ].join("\n")
-        });
-      }
-    };
   }
 
   public async start() {

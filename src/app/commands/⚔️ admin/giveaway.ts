@@ -1,50 +1,43 @@
-import {
-  ChannelType,
-  EmbedBuilder,
-  SlashCommandBuilder,
-  PermissionFlagsBits,
-  GuildChannel,
-  TextChannel,
-} from 'discord.js';
-import { logWithLabel } from '../../../utils/console';
+import { ChannelType, EmbedBuilder, PermissionFlagsBits, SlashCommandBuilder, TextChannel } from 'discord.js';
+import ms from 'ms';
 import emojis from '../../../../config/emojis.json';
 import { Command } from '../../../class/builders';
-import ms from 'ms';
+import { logWithLabel } from '../../../utils/console';
 
 export default new Command(
   new SlashCommandBuilder()
     .setName('giveaways')
-    .setDescription('🎟️ Start a giveaway')
+    .setDescription('⚔️ Start a giveaway')
     .setDMPermission(false)
     .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
     .addSubcommand((options) =>
       options
         .setName('start')
-        .setDescription('🎟️ Start a giveaway')
+        .setDescription('⚔️ Start a giveaway')
         .addStringOption((options) =>
-          options.setName('duration').setDescription('🎟️ Pass a duration (1m, 1h, 1d)').setRequired(true)
+          options.setName('duration').setDescription('⚔️ Pass a duration (1m, 1h, 1d)').setRequired(true)
         )
         .addIntegerOption((options) =>
-          options.setName('winners').setDescription('🎟️ Set the winners for this giveaway').setRequired(true)
+          options.setName('winners').setDescription('⚔️ Set the winners for this giveaway').setRequired(true)
         )
         .addStringOption((options) =>
-          options.setName('prize').setDescription('🎟️ Set a prize to win').setRequired(true)
+          options.setName('prize').setDescription('⚔️ Set a prize to win').setRequired(true)
         )
         .addChannelOption((options) =>
           options
             .setName('channel')
-            .setDescription('🎟️ Set the channel where the giveaway is started.')
+            .setDescription('⚔️ Set the channel where the giveaway is started.')
             .addChannelTypes(ChannelType.GuildText)
         )
     )
     .addSubcommand((options) =>
       options
         .setName('actions')
-        .setDescription('🎟️ Giveaway options')
+        .setDescription('⚔️ Giveaway options')
         .addStringOption((options) =>
           options
             .setName('options')
-            .setDescription('🎟️ Select one of the options')
+            .setDescription('⚔️ Select one of the options')
             .addChoices(
               { name: 'end', value: 'end' },
               { name: 'pause', value: 'pause' },
@@ -55,7 +48,7 @@ export default new Command(
             .setRequired(true)
         )
         .addStringOption((options) =>
-          options.setName('message_id').setDescription('🎟️ Set the giveaway message ID').setRequired(true)
+          options.setName('message_id').setDescription('⚔️ Set the giveaway message ID').setRequired(true)
         )
     ),
   async (client, interaction) => {

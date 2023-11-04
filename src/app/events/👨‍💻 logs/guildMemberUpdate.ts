@@ -2,9 +2,13 @@ import { EmbedBuilder, TextChannel } from 'discord.js';
 import { logWithLabel } from '../../../utils/console';
 import { Event } from '../../../class/builders';
 import { client } from '../../../shulker';
+import model from '../../../models/guild';
 
 export default new Event('guildMemberUpdate', async (oldMember, newMember) => {
-  const log_channel = client.channels.cache.get(process.env.log_channel as string);
+  const data = await model.findOne({ guildId: newMember.guild.id });
+  if (!data) return;
+
+  const log_channel = newMember.guild.channels.cache.get(data.channels?.log?.channel as string);
   if (!log_channel) return;
 
   if (oldMember.nickname !== newMember.nickname) {

@@ -3,10 +3,14 @@ import { logWithLabel } from '../../../utils/console';
 import emojis from '../../../../config/emojis.json';
 import { Event } from '../../../class/builders';
 import { client } from '../../../shulker';
+import model from '../../../models/guild';
 import moment from 'moment';
 
 export default new Event('voiceStateUpdate', async (oldState, newState) => {
-  const log_channel = newState.guild.channels.cache.get(process.env.log_channel as string);
+  const data = await model.findOne({ guildId: newState.guild.id });
+  if (!data) return;
+
+  const log_channel = newState.guild.channels.cache.get(data.channels?.log?.channel as string);
   if (!log_channel) return;
   
 

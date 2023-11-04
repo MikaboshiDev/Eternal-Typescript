@@ -1,39 +1,38 @@
 import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
-import { logWithLabel } from '../../../utils/console';
 import emojis from '../../../../config/emojis.json';
 import { Command } from '../../../class/builders';
 
 export default new Command(
   new SlashCommandBuilder()
     .setName('voice')
-    .setDescription('🎟️ Controls your voice channel.')
+    .setDescription('⚔️ Controls your voice channel.')
     .setDMPermission(false)
     .addSubcommand((subcommand) =>
       subcommand
         .setName('invite')
-        .setDescription('🎟️ Invite a member to your voice channel.')
-        .addUserOption((option) => option.setName('member').setDescription('🎟️ Select the member.').setRequired(true))
+        .setDescription('⚔️ Invite a member to your voice channel.')
+        .addUserOption((option) => option.setName('member').setDescription('⚔️ Select the member.').setRequired(true))
     )
     .addSubcommand((subcommand) =>
       subcommand
         .setName('disable')
-        .setDescription('🎟️ Disable your voice channel.')
-        .addUserOption((option) => option.setName('member').setDescription('🎟️ Select the member.').setRequired(true))
+        .setDescription('⚔️ Disable your voice channel.')
+        .addUserOption((option) => option.setName('member').setDescription('⚔️ Select the member.').setRequired(true))
     )
     .addSubcommand((subcommand) =>
       subcommand
         .setName('name')
-        .setDescription('🎟️ Change the name of your voice channel.')
-        .addStringOption((option) => option.setName('text').setDescription('🎟️ Enter the new name.').setRequired(true))
+        .setDescription('⚔️ Change the name of your voice channel.')
+        .addStringOption((option) => option.setName('text').setDescription('⚔️ Enter the new name.').setRequired(true))
     )
     .addSubcommand((subcommand) =>
       subcommand
         .setName('public')
-        .setDescription('🎟️ Change the privacy of your voice channel.')
+        .setDescription('⚔️ Change the privacy of your voice channel.')
         .addStringOption((option) =>
           option
             .setName('turn')
-            .setDescription('🎟️ Turn on or off the privacy.')
+            .setDescription('⚔️ Turn on or off the privacy.')
             .setRequired(true)
             .addChoices({ name: 'On', value: 'on' }, { name: 'Off', value: 'off' })
         )

@@ -1,12 +1,14 @@
-import { EmbedBuilder, TextChannel } from 'discord.js';
+import { EmbedBuilder, Guild, TextChannel } from 'discord.js';
 import { logWithLabel } from '../../../utils/console';
 import emojis from '../../../../config/emojis.json';
 import { Event } from '../../../class/builders';
 import { client } from '../../../shulker';
+import model from '../../../models/guild';
 
 export default new Event('inviteCreate', async (invite) => {
-  const log_channel = client.channels.cache.get(process.env.log_channel as string);
   if (!invite.guild) return;
+  const data = await model.findOne({ guildId: invite.guild.id });
+  const log_channel = (invite.guild as Guild).channels.cache.get(data?.channels?.log?.channel as string);
   if (!log_channel) return;
 
   const embed = new EmbedBuilder()
