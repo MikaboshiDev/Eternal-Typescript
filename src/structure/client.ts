@@ -19,9 +19,6 @@ import { Client, Collection, GatewayIntentBits, Options, Partials } from 'discor
 import { ensureConsole } from '../functions/modules/servers';
 import { ExpressServer } from '../../server/express';
 import { DiscordTogether } from 'discord-together';
-import { logWithLabel } from '../utils/console';
-import model from '../models/servers/economy';
-import emojis from '../../config/emojis.json';
 import { Command } from '../class/builders';
 import paypal from 'paypal-rest-sdk';
 import db from './mongoose';

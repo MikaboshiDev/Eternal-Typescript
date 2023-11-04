@@ -1,11 +1,5 @@
 {
-   "ignore": [
-      "*.tsconfig.json",
-      "**/config/**"
-   ],
-   "verbose": true,
-   "watch": [
-      "src",
-      "server"
-   ]
+  "ignore": ["*.tsconfig.json", "**/docs/**"],
+  "verbose": true,
+  "watch": ["src", "server", "addons", "config", ".gitignore"]
 }

@@ -47,9 +47,3 @@ Project collaborators and people who helped develop it.
 ## 📝 Creditos.
 
 Credits to `Hanzel` for the development of the bot and to `Horus` for the documentation and development of the control panel.
-
-<p align="center">
-  <a href="https://discord.gg/pgDje8S3Ed" target="_blank">
-    <img src="https://cdn.discordapp.com/attachments/1027458270589362257/1029172979873103902/zza1c3u6yp051.webp" />
-  </a>
-</p>
