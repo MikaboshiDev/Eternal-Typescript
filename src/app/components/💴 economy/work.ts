@@ -85,7 +85,7 @@ module.exports = {
 
       return message.reply({
         content: [
-          `Hello ${message.author} you are lucky you have worked \`${trabajo}\` with a salary increase of \`${random}\` thank you very much`,
+          `${emojis.correct} Hello ${message.author} you are lucky you have worked \`${trabajo}\` with a salary increase of \`${random}\` thank you very much`,
           `for enjoying us in the economy come back later with us`,
         ].join('\n'),
       });

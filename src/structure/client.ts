@@ -1,6 +1,7 @@
 import { addons, buttons, components, deploy, load, menus, modals } from '../utils/handlers';
 import { Client, Collection, GatewayIntentBits, Options, Partials } from 'discord.js';
 import { ExpressServer } from '../../server/express';
+import { logWithLabel } from '../utils/console';
 import model from '../models/servers/economy';
 import emojis from '../../config/emojis.json';
 import { Command } from '../class/builders';
@@ -107,8 +108,13 @@ export class Manager extends Client {
             message.reply(`${emojis.error} Invalid action specified.`);
         }
       } catch (error) {
-        console.error(`Error in balance function:`, error);
-        message.reply(`${emojis.error} An error occurred while processing your request.`);
+        logWithLabel("error", `An error occurred while processing the balance of ${userid}`)
+        message.reply({
+          content: [
+            `${emojis.error} **${message.author.username}**, an error occurred while processing your balance!`,
+            `please try again later`,
+          ].join("\n")
+        });
       }
     };
   }

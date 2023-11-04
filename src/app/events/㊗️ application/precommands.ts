@@ -1,5 +1,5 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, TextChannel } from 'discord.js';
-import { ensureEconomyExists, ensureGuildExists } from '../../../functions/modules/Servers';
+import { ensureEconomyExists, ensureGuildExists } from '../../../functions/modules/servers';
 import { findClosestCommand } from '../../../functions/modules/locations';
 import { validCode } from '../../../functions/tools/messagesData';
 import { Command } from '../../../interface/commands';
