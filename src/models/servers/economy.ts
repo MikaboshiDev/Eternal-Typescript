@@ -19,30 +19,7 @@ const StorageSchema = new Schema({
   rob: String,
   job: String,
   store: {
-    items: {
-      yacht: Number,
-      lamborghini: Number,
-      car: Number,
-      motorbike: Number,
-      bicycle: Number,
-      nike: Number,
-      tshirt: Number,
-      mansion: Number,
-      house: Number,
-      dirthut: Number,
-      pensil: Number,
-      pen: Number,
-      condom: Number,
-      bottle: Number,
-      fish: Number,
-      hamster: Number,
-      dog: Number,
-      cat: Number,
-      pants: Number,
-      hat: Number,
-      earth: Number,
-      lizard: Number,
-    },
+    inventory: { type: Array, default: [] }
   },
 });
 

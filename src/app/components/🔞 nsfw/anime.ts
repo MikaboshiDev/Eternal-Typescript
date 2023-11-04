@@ -1,5 +1,5 @@
 import { AttachmentBuilder, ChannelType, EmbedBuilder, Message } from 'discord.js';
-import { animeApi } from '../../../functions/tools/function_request';
+import { animeApi } from '../../../functions/tools/httpRequest';
 import emojis from '../../../../config/emojis.json';
 
 module.exports = {

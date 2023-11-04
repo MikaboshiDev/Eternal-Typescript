@@ -1,5 +1,4 @@
-import { economyData } from '../../../functions/tools/funcion_economy';
-import { ChannelType, EmbedBuilder, Message } from 'discord.js';
+import { EmbedBuilder, Message } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
 import model from '../../../models/servers/economy';
 

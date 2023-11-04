@@ -1,8 +1,6 @@
-import { economyData } from '../../../functions/tools/funcion_economy';
-import emojis from '../../../../config/emojis.json';
-import model from '../../../models/servers/economy';
-import keygen from '../../../models/premium/clave';
 import { Message } from 'discord.js';
+import emojis from '../../../../config/emojis.json';
+import keygen from '../../../models/premium/clave';
 
 module.exports = {
   name: 'claim',

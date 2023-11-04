@@ -1,4 +1,4 @@
-import { loadFiles } from '../functions/tools/function_glob';
+import { loadFiles } from '../functions/tools/globArchives';
 import { ClientEvents, REST, Routes } from 'discord.js';
 import { Command, Event } from '../class/builders';
 import { logWithLabel } from './console';

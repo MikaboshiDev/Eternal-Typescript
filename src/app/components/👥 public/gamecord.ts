@@ -1,4 +1,4 @@
-import { HangmanGame, SnakeGame, TicTacToe, RPSGame } from '../../../functions/tools/function_gamecord';
+import { HangmanGame, SnakeGame, TicTacToe, RPSGame } from '../../../functions/tools/gamecordClass';
 import { ChannelType, EmbedBuilder, Message } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
 

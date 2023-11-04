@@ -1,6 +1,5 @@
-import { economyData } from '../../../functions/tools/funcion_economy';
-import { AttachmentBuilder, ChannelType, EmbedBuilder, Message } from 'discord.js';
 import canvas, { createCanvas, loadImage } from 'canvas';
+import { AttachmentBuilder, EmbedBuilder, Message } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
 import model from '../../../models/servers/economy';
 
@@ -82,7 +81,12 @@ module.exports = {
     }
     const attachment = new AttachmentBuilder(canvas.toBuffer(), { name: 'unkown.png' });
     message.channel.send({
-      content: `Hey! ${member.username} the user's account is below.`,
+      embeds: [
+        new EmbedBuilder()
+          .setTitle('Economy Balance')
+          .setDescription(`Hey! ${member.username} the user's account is below.`)
+          .setImage('attachment://unkown.png'),
+      ],
       files: [attachment],
     });
   },
