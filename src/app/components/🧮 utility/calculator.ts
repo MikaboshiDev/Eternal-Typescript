@@ -1,6 +1,6 @@
-import { ChannelType, EmbedBuilder, Message } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
+import { EmbedBuilder, Message } from 'discord.js';
 import { evaluate } from 'mathjs';
+import emojis from '../../../../config/emojis.json';
 module.exports = {
   name: 'calculator',
   description: 'Calculator the given expression (e.g. 1 + 1)',
@@ -12,7 +12,7 @@ module.exports = {
       return message.channel.send({
         content: [
           `${emojis.error} **Please provide a valid expression to calculate!**`,
-          `**Usage:** \`calculator <expression>\``,
+          `> **Usage:** \`calculator <expression>\``,
         ].join('\n'),
       });
 

@@ -46,7 +46,7 @@ module.exports = {
             return message.channel.send({
               content: [
                 `${emojis.error} **${message.author.username}**, You need to provide a text!`,
-                `**Usage:** \`${prefix}8ball [text]\``,
+                `> **Usage:** \`${prefix}8ball [text]\``,
               ].join('\n'),
             });
 
@@ -77,7 +77,7 @@ module.exports = {
             message.channel.send({
               content: [
                 `${emojis.error} **${message.author.username}**, You need to provide a text!`,
-                `**Usage:** \`${prefix}slap [text]\``,
+                `> **Usage:** \`${prefix}slap [text]\``,
               ].join('\n'),
             });
           }
@@ -96,7 +96,7 @@ module.exports = {
             message.channel.send({
               content: [
                 `${emojis.error} **${message.author.username}**, You need to provide a text!`,
-                `**Usage:** \`${prefix}kiss [text]\``,
+                `> **Usage:** \`${prefix}kiss [text]\``,
               ].join('\n'),
             });
           }
@@ -115,7 +115,7 @@ module.exports = {
             message.channel.send({
               content: [
                 `${emojis.error} **${message.author.username}**, You need to provide a text!`,
-                `**Usage:** \`${prefix}tickle [text]\``,
+                `> **Usage:** \`${prefix}tickle [text]\``,
               ].join('\n'),
             });
           }

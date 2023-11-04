@@ -3,6 +3,7 @@ import model from '../../../models/tickets/setup';
 import DB from '../../../models/tickets/system';
 
 module.exports = {
+  ticketMod: true,
   id: 'agregar_usuario',
   async execute(interaction: any, client: any) {
     const { options, channel, guild, member } = interaction;

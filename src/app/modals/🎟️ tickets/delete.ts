@@ -7,6 +7,7 @@ import DB from '../../../models/tickets/system';
 import { logWithLabel } from '../../../utils/console';
 
 module.exports = {
+  ticketMod: true,
   id: 'modal_ticket_delete',
   async execute(interaction: any, client: any) {
     const { options, channel, guild, member } = interaction;

@@ -18,7 +18,7 @@ module.exports = {
       return message.channel.send({
         content: [
           `${emojis.error} **Please mention a user to kick** or provide his ID`,
-          `**Usage:** \`${prefix} kick <@user> [reason]\``,
+          `> **Usage:** \`${prefix} kick <@user> [reason]\``,
         ].join('\n'),
       });
 
@@ -26,7 +26,7 @@ module.exports = {
       return message.channel.send({
         content: [
           `${emojis.error} **You cannot kick yourself** that not is member of the server`,
-          `**Usage:** \`${prefix} kick <@user> [reason]\``,
+          `> **Usage:** \`${prefix} kick <@user> [reason]\``,
         ].join('\n'),
       });
 
@@ -34,7 +34,7 @@ module.exports = {
       return message.channel.send({
         content: [
           `${emojis.error} **You cannot kick me** is that funny? I am the bot of the server`,
-          `**Usage:** \`${prefix} kick <@user> [reason]\``,
+          `> **Usage:** \`${prefix} kick <@user> [reason]\``,
         ].join('\n'),
       });
 
@@ -42,7 +42,7 @@ module.exports = {
       return message.channel.send({
         content: [
           `${emojis.error} **You cannot kick the server owner** is that funny?`,
-          `**Usage:** \`${prefix} kick <@user> [reason]\``,
+          `> **Usage:** \`${prefix} kick <@user> [reason]\``,
         ].join('\n'),
       });
 
@@ -50,7 +50,7 @@ module.exports = {
       return message.channel.send({
         content: [
           `${emojis.error} **I cannot kick this user because he has a higher role than me**`,
-          `**Usage:** \`${prefix} kick <@user> [reason]\``,
+          `> **Usage:** \`${prefix} kick <@user> [reason]\``,
         ].join('\n'),
       });
     }
@@ -59,7 +59,7 @@ module.exports = {
       return message.channel.send({
         content: [
           `${emojis.error} **You cannot kick this user because he has a higher role than you**`,
-          `**Usage:** \`${prefix} kick <@user> [reason]\``,
+          `> **Usage:** \`${prefix} kick <@user> [reason]\``,
         ].join('\n'),
       });
     }

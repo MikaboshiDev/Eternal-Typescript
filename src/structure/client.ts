@@ -18,6 +18,7 @@ import { addons, buttons, components, deploy, load, menus, modals } from '../uti
 import { Client, Collection, GatewayIntentBits, Options, Partials } from 'discord.js';
 import { ensureConsole } from '../functions/modules/servers';
 import { ExpressServer } from '../../server/express';
+import { DiscordTogether } from 'discord-together';
 import { logWithLabel } from '../utils/console';
 import model from '../models/servers/economy';
 import emojis from '../../config/emojis.json';
@@ -28,15 +29,16 @@ import db from './mongoose';
 export class Manager extends Client {
   public categories: Collection<string, string[]> = new Collection();
   public commands: Collection<string, Command> = new Collection();
+  discordTogether: DiscordTogether<{ [x: string]: string }>;
   voiceGenerator: Collection<unknown, unknown>;
   precommands: Collection<unknown, unknown>;
+  cooldown: Collection<unknown, unknown>;
   aliases: Collection<unknown, unknown>;
   buttons: Collection<unknown, unknown>;
   modals: Collection<unknown, unknown>;
   menus: Collection<unknown, unknown>;
   paypal: typeof paypal;
   giveawaysManager: any;
-  cooldown: Collection<unknown, unknown>;
   constructor() {
     super({
       failIfNotExists: false,
@@ -79,6 +81,7 @@ export class Manager extends Client {
       client_id: process.env.paypal_client_id!,
       client_secret: process.env.paypal_client_secret!,
     });
+    this.discordTogether = new DiscordTogether(this);
     this.setMaxListeners(0);
 
     this.voiceGenerator = new Collection();

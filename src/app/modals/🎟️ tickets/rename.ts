@@ -1,4 +1,5 @@
 module.exports = {
+  ticketMod: true,
   id: 'modal_ticket_rename',
   async execute(interaction: any, client: any) {
     const value_name = interaction.fields.getTextInputValue('modal_name');

@@ -7,6 +7,7 @@ import {
 } from 'discord.js';
 
 module.exports = {
+  ticketMod: true,
   id: 'delete-ticket',
   async execute(interaction: ChatInputCommandInteraction, client: any) {
     const e = new TextInputBuilder()
