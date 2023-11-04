@@ -80,7 +80,6 @@ module.exports = {
               },
               { name: 'Generation', value: `${json.gen}`, inline: false },
               { name: 'Egg Groups', value: `${json.eggGroups.join(', ')}`, inline: false },
-              { name: 'EV Yield', value: `${json.effortYield.join(', ')}`, inline: false },
               { name: 'Catch Rate', value: `${json.captureRate}`, inline: false },
             )
             .setFooter({ text: json.description }),

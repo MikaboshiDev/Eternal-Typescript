@@ -6,7 +6,7 @@ import neko from 'nekos.life';
 module.exports = {
   name: 'emotions',
   description: 'The list commands of Emotions',
-  aliases: ['emotion', "anime"],
+  aliases: ['emotion', 'anime'],
   category: 'interactions',
   premium: false,
   cooldown: 5000,
@@ -39,16 +39,6 @@ module.exports = {
     const nekoclient = new neko();
     const subcommand = args[0];
     switch (subcommand) {
-      case 'baka':
-        {
-          const user = message.mentions.users.first() || message.author;
-          const embed = new EmbedBuilder()
-            .setTitle('Emotions Commands')
-            .setDescription(`you are an idiot ${user}`)
-            .setImage((await nekoclient.baka()).url);
-          message.channel.send({ embeds: [embed] });
-        }
-        break;
       case 'eightball':
         {
           const text = args.join(' ');
@@ -76,32 +66,59 @@ module.exports = {
         break;
       case 'slap':
         {
-          const user = message.mentions.users.first() || message.author;
-          const embed = new EmbedBuilder()
-            .setTitle('Emotions Commands')
-            .setDescription(`${message.author} A slapped *${user}* hard`)
-            .setImage((await nekoclient.slap()).url);
-          message.channel.send({ embeds: [embed] });
+          try {
+            const user = message.mentions.users.first() || message.author;
+            const embed = new EmbedBuilder()
+              .setTitle('Emotions Commands')
+              .setDescription(`${message.author} A slapped *${user}* hard`)
+              .setImage((await nekoclient.slap()).url);
+            message.channel.send({ embeds: [embed] });
+          } catch (error) {
+            message.channel.send({
+              content: [
+                `${emojis.error} **${message.author.username}**, You need to provide a text!`,
+                `**Usage:** \`${prefix}slap [text]\``,
+              ].join('\n'),
+            });
+          }
         }
         break;
       case 'kiss':
         {
-          const user = message.mentions.users.first() || message.author;
-          const embed = new EmbedBuilder()
-            .setTitle('Emotions Commands')
-            .setDescription(`${message.author} A kissed *${user}*`)
-            .setImage((await nekoclient.kiss()).url);
-          message.channel.send({ embeds: [embed] });
+          try {
+            const user = message.mentions.users.first() || message.author;
+            const embed = new EmbedBuilder()
+              .setTitle('Emotions Commands')
+              .setDescription(`${message.author} A kissed *${user}*`)
+              .setImage((await nekoclient.kiss()).url);
+            message.channel.send({ embeds: [embed] });
+          } catch (error) {
+            message.channel.send({
+              content: [
+                `${emojis.error} **${message.author.username}**, You need to provide a text!`,
+                `**Usage:** \`${prefix}kiss [text]\``,
+              ].join('\n'),
+            });
+          }
         }
         break;
       case 'tickle':
         {
-          const user = message.mentions.users.first() || message.author;
-          const embed = new EmbedBuilder()
-            .setTitle('Emotions Commands')
-            .setDescription(`${message.author} He is tickling *${user}*`)
-            .setImage((await nekoclient.kiss()).url);
-          message.channel.send({ embeds: [embed] });
+          try {
+            const user = message.mentions.users.first() || message.author;
+            const embed = new EmbedBuilder()
+              .setTitle('Emotions Commands')
+              .setDescription(`${message.author} He is tickling *${user}*`)
+              .setImage((await nekoclient.kiss()).url);
+            message.channel.send({ embeds: [embed] });
+          } catch (error) {
+            message.channel.send({
+              content: [
+                `${emojis.error} **${message.author.username}**, You need to provide a text!`,
+                `**Usage:** \`${prefix}tickle [text]\``,
+              ].join('\n'),
+            });
+          }
         }
         break;
       case 'alert':

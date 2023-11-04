@@ -71,7 +71,7 @@ module.exports = {
               ].join('\n'),
             });
           let reason = args.slice(2).join(' ');
-          if (!reason) reason = `${emojis.error} No reason specified!`;
+          if (!reason) reason = `No reason specified!`;
           if (user.id == message.guild?.ownerId)
             return message.reply({
               content: [

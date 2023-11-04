@@ -22,6 +22,7 @@ import model from '../models/servers/economy';
 import emojis from '../../config/emojis.json';
 import { Command } from '../class/builders';
 import paypal from 'paypal-rest-sdk';
+import winston from 'winston';
 import db from './mongoose';
 
 export class Manager extends Client {
