@@ -11,7 +11,7 @@ module.exports = {
   owner: true,
   examples: [`threads [subcommand] [properties]`, `threads [command]`],
   subcommands: ['threads archive <channel>', 'threads join', 'threads lock <channel>'],
-  cooldown: 1000,
+  cooldown: 20,
   premium: false,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const subcommands = args[0];

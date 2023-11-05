@@ -9,7 +9,7 @@ module.exports = {
   category: 'economy',
   premium: false,
   owner: true,
-  cooldown: 1000,
+  cooldown: 20,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     try {
       const data = await model.find();

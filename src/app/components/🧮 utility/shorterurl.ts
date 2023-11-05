@@ -9,7 +9,7 @@ module.exports = {
   aliases: ['shorter-url', 'short-url', 'shorter'],
   category: 'utility',
   premium: false,
-  cooldown: 1000,
+  cooldown: 20,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const embed = new EmbedBuilder();
     const destination = args[0];

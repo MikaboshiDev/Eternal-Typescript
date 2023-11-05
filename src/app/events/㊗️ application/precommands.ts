@@ -128,13 +128,15 @@ export default new Event('messageCreate', async (message) => {
     }, command.cooldown * 1000);
   }
 
-  if (command.premium && data?.premium === false)
-    return message.reply({
-      content: [
-        `${emojis.error} Hello ${message.author.username}, I'm sorry but you can't execute the mentioned command yet.`,
-        `This command is only for premium servers, if you want to buy premium, type \`${prefix}premium\``,
-      ].join('\n'),
-    });
+  if (command.premium) {
+    if (data?.premium === false)
+      return message.reply({
+        content: [
+          `${emojis.error} Hello ${message.author.username}, I'm sorry but you can't execute the mentioned command yet.`,
+          `This command is only for premium servers, if you want to buy premium, type \`${prefix}premium\``,
+        ].join('\n'),
+      });
+  }
 
   command.execute(client, message, args, prefix);
 });

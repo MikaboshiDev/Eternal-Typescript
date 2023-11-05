@@ -10,7 +10,7 @@ module.exports = {
   permissions: ['BanMembers', 'UseApplicationCommands'],
   botpermissions: ['BanMembers', 'UseApplicationCommands'],
   premium: false,
-  cooldown: 1000,
+  cooldown: 20,
   examples: ['ban add @user', 'ban remove @user', 'ban list', 'ban add @user [reason]', 'ban remove @user [reason]'],
   subcommands: ['ban add [user] [reason]', 'ban remove [user]', 'ban list'],
   async execute(client: any, message: Message, args: string[], prefix: any) {

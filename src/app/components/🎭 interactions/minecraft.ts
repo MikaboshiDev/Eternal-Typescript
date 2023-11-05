@@ -9,7 +9,7 @@ module.exports = {
   aliases: ['mc', 'minecraft-cmd'],
   category: 'interactions',
   premium: false,
-  cooldown: 1000,
+  cooldown: 20,
   examples: ['minecraft [subcommand] [name]', 'minecraft skin [name]'],
   subcommands: ['minecraft skin [target mc]', 'minecraft server [target mc]'],
   async execute(client: any, message: Message, args: string[], prefix: any) {

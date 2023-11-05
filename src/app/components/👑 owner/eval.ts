@@ -8,7 +8,7 @@ module.exports = {
   description: 'Perform evaluations on different codes',
   aliases: ['e', 'evaluate'],
   owner: true,
-  cooldown: 1000,
+  cooldown: 20,
   premium: false,
   category: 'owner',
   examples: [`eval [code]`, `eval message.channel.send("Hello world!")`],

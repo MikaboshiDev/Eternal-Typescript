@@ -14,7 +14,7 @@ module.exports = {
     'navegation phcomment <@user | user ID> <text>',
     'navegation tweet <@user | user ID> <text>',
   ],
-  cooldown: 1000,
+  cooldown: 20,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const subcommand = args[0];
     switch (subcommand) {

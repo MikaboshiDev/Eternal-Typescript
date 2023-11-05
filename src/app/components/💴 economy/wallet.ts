@@ -9,7 +9,7 @@ module.exports = {
   aliases: ['bal', 'balance', 'money', 'cash'],
   category: 'economy',
   premium: false,
-  cooldown: 1000,
+  cooldown: 20,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const member = message.mentions.users.first() || message.author;
     if (member.bot)

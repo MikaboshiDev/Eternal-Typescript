@@ -11,7 +11,7 @@ module.exports = {
   premium: false,
   permissions: ['BanMembers', 'UseApplicationCommands'],
   botpermissions: ['BanMembers', 'UseApplicationCommands'],
-  cooldown: 1000,
+  cooldown: 20,
   examples: [
     'warnings list [user]',
     'warnings add @Drago [reason]',

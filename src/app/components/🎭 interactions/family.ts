@@ -9,7 +9,7 @@ module.exports = {
   aliases: ['family-cmd'],
   category: 'interactions',
   premium: false,
-  cooldown: 1000,
+  cooldown: 20,
   examples: ['family [subcommand] [name]', 'family adopt [name]'],
   subcommands: [
     'family adopt [target]',

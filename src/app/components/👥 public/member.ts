@@ -6,7 +6,7 @@ module.exports = {
   description: 'see the information of the server users or yourself',
   aliases: ['user', 'userinfo'],
   category: 'public',
-  cooldown: 1000,
+  cooldown: 20,
   premium: false,
   examples: [`member [user]`, `member @Kurapika`],
   async execute(client: any, message: Message, args: string[]) {

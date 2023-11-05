@@ -7,6 +7,7 @@ module.exports = {
   category: 'premium',
   aliases: ['httpstatuscode', 'httpstatuscodes', 'httpstatuscodes', 'httpstatuscode'],
   cooldown: 4,
+  premium: true,
   examples: [`httpsstatus [status]`, `httpsstatus [params] 200`],
   description: 'Show httpstatus with a meme image and description',
   async execute(client: any, message: Message, args: string[], prefix: any) {

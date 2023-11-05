@@ -7,7 +7,7 @@ module.exports = {
   aliases: ['server', 'guilds', 'servers'],
   category: 'setups',
   premium: false,
-  cooldown: 1000,
+  cooldown: 20,
   permissions: ['Administrator'],
   example: [`guild [subcommand] [properties]`, `guild [command]`],
   subcommands: [

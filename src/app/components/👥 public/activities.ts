@@ -24,7 +24,7 @@ module.exports = {
     'activities sketchheads',
     'activities betrayal',
   ],
-  cooldown: 1000,
+  cooldown: 20,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const voice = message.member?.voice.channel?.id;
     const subcommands = args[0];

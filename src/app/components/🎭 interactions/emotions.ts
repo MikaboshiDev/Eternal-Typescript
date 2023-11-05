@@ -9,7 +9,7 @@ module.exports = {
   aliases: ['emotion', 'anime'],
   category: 'interactions',
   premium: false,
-  cooldown: 1000,
+  cooldown: 20,
   examples: [
     'emotions baka',
     'emotions eightball',

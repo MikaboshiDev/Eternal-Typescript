@@ -8,7 +8,7 @@ module.exports = {
   aliases: ['hack'],
   category: 'public',
   premium: false,
-  cooldown: 1000,
+  cooldown: 20,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     let user = message.mentions.members?.first() || message.guild?.members.cache.get(args[0]);
     if (!message.guild || !message.channel || !message.partial) return;

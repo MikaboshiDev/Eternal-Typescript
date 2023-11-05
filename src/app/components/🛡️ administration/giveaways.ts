@@ -21,7 +21,7 @@ module.exports = {
     'giveaway actions delete <message_id>',
   ],
   premium: false,
-  cooldown: 1000,
+  cooldown: 20,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const errorEmbed = new EmbedBuilder().setColor('Red');
     const successEmbed = new EmbedBuilder().setColor('#38ca08');

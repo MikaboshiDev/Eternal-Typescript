@@ -9,7 +9,7 @@ module.exports = {
   category: 'public',
   examples: ['gamecord hangman', 'gamecord snake', 'gamecord tictac-toe [oponent]'],
   premium: false,
-  cooldown: 1000,
+  cooldown: 20,
   subcommands: ['gamecord hangman', 'gamecord snake', 'gamecord tictac-toe [oponent]'],
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const subcommand = args[0];

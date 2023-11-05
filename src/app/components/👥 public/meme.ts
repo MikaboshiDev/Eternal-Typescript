@@ -6,7 +6,7 @@ module.exports = {
   aliases: ['memes'],
   category: 'public',
   premium: false,
-  cooldown: 1000,
+  cooldown: 20,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     /*    let meme = await fetch('https://meme-api.herokuapp.com/gimme').then((r) => r.json());
     const button = new ActionRowBuilder().addComponents([

@@ -17,7 +17,7 @@ module.exports = {
   ],
   category: 'premium',
   premium: true,
-  cooldown: 1000,
+  cooldown: 20,
   subcommands: [
     'automoderation create <name> <event_type> <actions> <trigger_type> <trigger_metadata> <enabled>',
     'automoderation delete <id>',

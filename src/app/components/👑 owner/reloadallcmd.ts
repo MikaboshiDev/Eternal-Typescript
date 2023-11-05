@@ -8,7 +8,7 @@ module.exports = {
   aliases: ['reloadallcommands', 'reloadallcmds'],
   category: 'owner',
   premium: false,
-  cooldown: 1000,
+  cooldown: 20,
   owner: true,
   examples: ['reloadallcmd'],
   async execute(client: any, message: Message, args: string[], prefix: any) {

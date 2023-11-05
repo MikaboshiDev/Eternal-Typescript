@@ -11,7 +11,7 @@ module.exports = {
   aliases: ['npm-search', 'npmjs', 'npm-search', 'npm-package', 'npm-package-search'],
   category: 'utility',
   premium: false,
-  cooldown: 1000,
+  cooldown: 20,
   examples: ['npm <package name>'],
   async execute(client: any, message: Message, args: string[], prefix: any) {
     try {

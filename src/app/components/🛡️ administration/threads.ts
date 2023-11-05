@@ -12,7 +12,7 @@ module.exports = {
   category: 'administration',
   premium: false,
   subcommands: ['threads archive [channel]', 'threads join [channel]', 'threads lock [channel]'],
-  cooldown: 1000,
+  cooldown: 20,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     try {
       const subcomandos = args[0];

@@ -8,8 +8,8 @@ module.exports = {
   description: 'Pokedex command can show you information about pokemon',
   aliases: ['poke-dex'],
   category: 'interactions',
-  premium: false,
-  cooldown: 1000,
+  premium: true,
+  cooldown: 20,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     try {
       const pokemon = args.join(' ');

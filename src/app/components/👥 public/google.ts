@@ -7,7 +7,7 @@ module.exports = {
   aliases: ['google-search', 'search'],
   category: 'public',
   premium: false,
-  cooldown: 1000,
+  cooldown: 20,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const text1 = args.join(' ');
     const text2 = args.join('+');

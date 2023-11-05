@@ -8,7 +8,7 @@ module.exports = {
   aliases: ['ship-post'],
   category: 'interactions',
   premium: false,
-  cooldown: 1000,
+  cooldown: 20,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const canvas = Canvas.createCanvas(700, 250);
     const ctx = canvas.getContext('2d');

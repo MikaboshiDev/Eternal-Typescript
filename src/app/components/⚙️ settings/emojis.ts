@@ -5,7 +5,7 @@ import moment from 'moment';
 module.exports = {
   name: 'emoji',
   description: 'information emoji in the server discord',
-  cooldown: 1000,
+  cooldown: 20,
   aliases: ['emojis', 'emojiinfo', 'emoji-info', 'emoji-control'],
   permissions: ['ManageEmojisAndStickers', 'AttachFiles', 'UseExternalEmojis'],
   botpermissions: ['ManageEmojisAndStickers', 'AttachFiles', 'UseExternalEmojis'],

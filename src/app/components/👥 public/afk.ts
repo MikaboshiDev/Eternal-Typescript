@@ -8,7 +8,7 @@ module.exports = {
   aliases: ['set-afk'],
   category: 'public',
   premium: false,
-  cooldown: 1000,
+  cooldown: 20,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const user = message.member;
     const role = message.mentions.roles.first();

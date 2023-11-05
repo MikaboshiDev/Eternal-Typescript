@@ -6,7 +6,7 @@ module.exports = {
   aliases: ['dino-chrome', 'chorome-dino'],
   category: 'fun',
   premium: false,
-  cooldown: 1000,
+  cooldown: 20,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     let msg = await message.channel.send({ content: `---------------🦖` });
     let time = 1 * 1000;

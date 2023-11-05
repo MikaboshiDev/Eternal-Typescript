@@ -1,5 +1,6 @@
 import { EmbedBuilder, Message } from 'discord.js';
 import fs from 'fs';
+import fetch from "node-fetch";
 import emojis from '../../../../config/emojis.json';
 import model_guild from '../../../models/guild';
 import { logWithLabel } from '../../../utils/console';
@@ -10,7 +11,7 @@ module.exports = {
   aliases: ['control', 'controles', 'controle'],
   category: 'owner',
   premium: false,
-  cooldown: 1000,
+  cooldown: 20,
   owner: true,
   examples: [`controls [subcommands] [parameters]`, `controls [command] [parameters], [command] [parameters]`],
   subcommands: [`controls name <new name>`, `controls avatar <image url>`, `controls prefix <new prefix>`],
@@ -136,6 +137,14 @@ module.exports = {
               }
             } else if (message.content && textIsImage(message.content)) {
               url = args.join(' ');
+
+              if (!url.startsWith('http://') && !url.startsWith('https://')) return message.channel.send({
+                content: [
+                  `${emojis.error} The image must be a png or http p https file or a link!`,
+                  `Example: \`${prefix}controls avatar <image url>\``,
+                ].join("\n")
+              });
+              
               const response = await fetch(url);
               const buffer = await response.arrayBuffer();
 

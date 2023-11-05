@@ -14,7 +14,7 @@ module.exports = {
   aliases: ['slot'],
   category: 'economy',
   premium: false,
-  cooldown: 1000,
+  cooldown: 20,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     try {
       const data = await model.findOne({ userID: message.author.id });

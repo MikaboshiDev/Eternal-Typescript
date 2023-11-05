@@ -6,7 +6,7 @@ module.exports = {
   aliases: ['av', 'pfp'],
   category: 'public',
   premium: false,
-  cooldown: 1000,
+  cooldown: 20,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     let user = message.mentions.users.first() || client.users.cache.get(args[0]) || message.author;
 
