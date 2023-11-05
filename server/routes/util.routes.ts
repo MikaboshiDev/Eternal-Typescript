@@ -20,6 +20,7 @@ import path from 'path';
 import model from '../../src/models/client';
 import model_products from '../../src/models/products';
 import { client } from '../../src/shulker';
+import { logWithLabel } from '../../src/utils/console';
 import { upload } from '../utils/upload';
 const router = Router();
 
@@ -103,28 +104,33 @@ router.post('/aplications/:id', async (req: Request, res: Response) => {
   res.json({ message: 'Bot added to the database.' });
 });
 
-router.post('/aplications/add-product', async (req: Request, res: Response) => {
-  const { name, id, price, description, image, category, quantity, date } = req.body;
-  const data = await model_products.findOne({ id });
-  if (data) return res.status(409).json({ message: 'CONFLICT' });
+router.post('/products/add-product', async (req: Request, res: Response) => {
+  try {
+    const { name, id, price, description, image, category, quantity, date } = req.body;
+    const data = await model_products.findOne({ id });
+    if (data) return res.status(409).json({ message: 'CONFLICT' });
 
-  const modelCreate = new model_products({
-    name: name,
-    id: id,
-    price: price,
-    description: description,
-    image: image ? image : 'https://cdn.discordapp.com/embed/avatars/0.png',
-    category: category,
-    quantity: quantity || 0,
-    date: date || Date.now(),
-  });
+    const modelCreate = new model_products({
+      name: name,
+      id: id,
+      price: price,
+      description: description,
+      image: image ? image : 'https://cdn.discordapp.com/embed/avatars/0.png',
+      category: category,
+      quantity: quantity || 0,
+      date: date || Date.now(),
+    });
 
-  const save = await modelCreate.save();
-  if (!save) return res.status(500).json({ message: 'INTERNAL_SERVER_ERROR' });
-  return res.status(200).json({
-    message: 'OK',
-    data: save,
-  });
+    const save = await modelCreate.save();
+    if (!save) return res.status(500).json({ message: 'INTERNAL_SERVER_ERROR' });
+    return res.status(200).json({
+      message: 'OK',
+      data: save,
+    });
+  } catch (err) {
+    res.send(`<script>alert('Something went wrong.')</script>`);
+    logWithLabel('discord', `Something went wrong: ${err}`);
+  }
 });
 
 router.get('/upload', upload.single('fileToUpload'), async (req: Request, res: Response) => {

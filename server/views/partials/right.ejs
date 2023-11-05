@@ -23,20 +23,17 @@
   <div class="recent-updates">
     <h2><a href="#">Reviews Discord</a></h2>
     <div class="updates">
-      <% messages.forEach((msg) => { %>
+      <% _reviews.forEach((msg) => { %>
       <div class="update">
         <div class="profile-photo">
-          <img src="<%= msg.userimage %>" alt="<%= msg.username %>" />
+          <img src="<%= msg.authorAvatar %>" alt="<%= msg.authorName %>" />
         </div>
         <div class="message">
           <p>
-            <b><%= msg.username %></b>
-            <% if (msg.message.startsWith('https://cdn.discordapp.com/attachments')) { %>
-            <a href="<%= msg.message %>">Ir a imagen</a>
-            <% } else if (msg.message.startsWith('https://') || msg.message.startsWith('http://')) { %> Mensaje
-            bloqueado <% } else { %> <%= msg.message %> <% } %>
+            <b><%= msg.authorName %></b>
+            <%= msg.content %>
           </p>
-          <small class="text-muted"><%= timeAgo(msg.createdAt) %></small>
+          <small class="text-muted"><%= timeAgo(msg.timestamp) %></small>
         </div>
       </div>
       <% }); %>

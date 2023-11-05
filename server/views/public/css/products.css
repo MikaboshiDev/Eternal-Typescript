@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 :root {
   --color-primary: #7380ec;
   --color-danger: #ff4d4d;
@@ -48,7 +48,7 @@ html {
 body {
   width: 100vw;
   height: 100vh;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 0.88rem;
   background: var(--color-background);
   overflow-x: hidden;
@@ -188,7 +188,7 @@ aside .sidebar a.active {
   margin-left: 0;
 }
 aside .sidebar a.active:before {
-  content: "";
+  content: '';
   width: 6px;
   height: 100%;
   background: var(--color-primary);
@@ -223,7 +223,7 @@ main .date {
   margin-top: 1rem;
   padding: 0.5rem 1.6rem;
 }
-main .date input[type=date] {
+main .date input[type='date'] {
   background: transparent;
   color: var(--color-dark);
 }
@@ -375,7 +375,7 @@ footer.footer-credits p {
 
 .tarjeta {
   width: 400px;
-  height: 500px;
+  height: 700px;
   margin: 10px;
   border: 1px solid var(--color-info-light);
   border-radius: var(--card-border-radius);
@@ -505,14 +505,14 @@ footer.footer-credits p {
   font-weight: bold;
   display: block;
 }
-.form-container .form-field input[type=text] {
+.form-container .form-field input[type='text'] {
   width: 90%;
   padding: 1rem;
   border-radius: var(--border-radius-1);
   border: 1px solid var(--color-info-light);
   transition: border-color 0.3s;
 }
-.form-container .form-field input[type=text]:focus {
+.form-container .form-field input[type='text']:focus {
   outline: none;
   border-color: var(--color-primary);
 }

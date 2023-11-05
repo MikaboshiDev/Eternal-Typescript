@@ -18,45 +18,80 @@
         <div class="date">
           <input type="date" />
         </div>
-        <div class="commands">
-          <% for (let i = 0; i < commands.length; i++) { %>
-          <div class="card">
-            <h2><%= commands[i].name %></h2>
-            <div class="linea"></div>
-            <p><span>Description:</span> <%= commands[i].description %></p>
-            <p><span>Category:</span> <%= commands[i].category %></p>
-            <p><span>Aliases:</span> <%= commands[i].aliases.join(', ') %></p>
-            <div class="linea"></div>
-            <span class="highlight-element">Destacado</span>
-            <div class="subcommands">
-              <h3>Subcommands</h3>
-              <ul>
-                <% if (commands[i].subcommands && Array.isArray(commands[i].subcommands)) { %> <% for (let j = 0; j <
-                commands[i].subcommands.length; j++) { %>
-                <li>No. <%= j + 1 %>: <%= commands[i].subcommands[j] %></li>
-                <% } %> <% } else { %>
-                <li>No subcommands available.</li>
+        <div class="commands-date">
+          <div class="commands">
+            <% for (let i = 0; i < commands.length; i++) { %>
+            <div class="card" id="commandsCard">
+              <h2>
+                <%= commands[i].name %> <% if (commands[i].subcommands && commands[i].subcommands.length > 0) { %>
+                <i class="material-icons-sharp" alt="subcommands enable">display_settings</i>
                 <% } %>
-              </ul>
+              </h2>
+              <a href="#">
+                <!-- Aquí puedes añadir el enlace si es necesario -->
+              </a>
+              <div class="linea"></div>
+              <p><span>Description:</span> <%= commands[i].description %></p>
+              <p><span>Category:</span> <%= commands[i].category %></p>
+              <p><span>Aliases:</span> <%= commands[i].aliases.join(', ') %></p>
             </div>
-            <div class="examples">
-              <h3>Examples</h3>
-              <ul>
-                <% if (commands[i].examples && Array.isArray(commands[i].examples)) { %> <% for (let j = 0; j <
-                commands[i].examples.length; j++) { %>
-                <li>No. <%= j + 1 %>: <%= commands[i].examples[j] %></li>
-                <% } %> <% } else { %>
-                <li>No examples available.</li>
-                <% } %>
-              </ul>
-            </div>
+            <% } %>
           </div>
-          <% } %>
+          <div class="pagination">
+            <button id="prevButton" class="pagination-button">
+              <i class="material-icons-sharp">chevron_left</i>
+            </button>
+            <button id="nextButton" class="pagination-button">
+              <i class="material-icons-sharp">chevron_right</i>
+            </button>
+          </div>
         </div>
       </main>
       <%- include("./partials/right.ejs") %>
     </div>
     <footer class="footer-credits"><%- include('./partials/footer.ejs'); %></footer>
     <script src="/js/dark.theme.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const cards = document.getElementById('commandsCard');
+        const prevButton = document.getElementById('prevButton');
+        const nextButton = document.getElementById('nextButton');
+        const cardsPerPage = 9;
+        let currentPage = 0;
+
+        function updateCards() {
+          for (let i = 0; i < cards.length; i++) {
+            cards[i].style.display = 'none';
+          }
+          for (let i = currentPage * cardsPerPage; i < (currentPage + 1) * cardsPerPage; i++) {
+            if (cards[i]) {
+              cards[i].style.display = 'block';
+            }
+          }
+        }
+
+        function checkButtons() {
+          currentPage === 0 ? (prevButton.disabled = true) : (prevButton.disabled = false);
+          currentPage === Math.ceil(cards.length / cardsPerPage) - 1
+            ? (nextButton.disabled = true)
+            : (nextButton.disabled = false);
+        }
+
+        prevButton.addEventListener('click', function () {
+          currentPage--;
+          updateCards();
+          checkButtons();
+        });
+
+        nextButton.addEventListener('click', function () {
+          currentPage++;
+          updateCards();
+          checkButtons();
+        });
+
+        updateCards();
+        checkButtons();
+      });
+    </script>
   </body>
 </html>

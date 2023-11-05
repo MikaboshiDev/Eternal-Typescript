@@ -2,7 +2,7 @@ interface IProduct extends Document {
   name: string;
   id: number;
   price: number;
-  decription: string;
+  description: string;
   image: string;
   category: string;
   quantity: number;

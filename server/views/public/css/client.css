@@ -371,6 +371,10 @@ main .graficas {
   margin-top: 1.5rem;
   margin-left: 1rem;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 20px;
 }
 main .recent-orders {
   margin-top: 2rem;
@@ -407,6 +411,7 @@ main table tbody tr:last-child td {
 
 .media-users,
 .status-bot {
+  flex: 1;
   display: inline-block;
   vertical-align: top;
   width: 500px;
@@ -509,6 +514,14 @@ main table tbody tr:last-child td {
     position: relative;
     margin-top: 1.8rem;
   }
+  .graficas {
+    flex-direction: column;
+  }
+  .media-users,
+  .status-bot {
+    width: 100%;
+    margin: 10px 0;
+  }
 }
 @media screen and (max-width: 768px) {
   .container {
@@ -593,9 +606,13 @@ main table tbody tr:last-child td {
   .right .profile .info {
     display: none;
   }
+  .graficas {
+    flex-direction: column;
+  }
   .media-users,
   .status-bot {
     width: 100%;
+    margin: 10px 0;
   }
 }
 

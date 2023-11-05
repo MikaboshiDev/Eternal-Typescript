@@ -56,6 +56,12 @@ router.get('/error', (req: Request, res: Response) => {
 router.get('/dashboard', authInspection, async (req: Request, res: Response) => {
   try {
     const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
+    const reviews = client.channels.cache.get(process.env.channel_reviews!);
+
+    if (!reviews) return res.status(404).json({ error: 'Channel not found' });
+    if (!reviews.isTextBased()) return res.status(404).json({ error: 'Channel is not text based' });
+
+    const msgReviews = await reviews?.messages.fetch({ limit: 5 });
     if (!req.user) return res.redirect('/error');
     res.render('dashboard.ejs', {
       user: req.user,
@@ -70,6 +76,15 @@ router.get('/dashboard', authInspection, async (req: Request, res: Response) => 
         return require('moment')(date).fromNow();
       },
       messages: messages,
+      _reviews: msgReviews.map((msg: any) => {
+        return {
+          content: msg.content,
+          authorAvatar: msg.author.avatarURL({ forceStatic: true, size: 4096 }),
+          authorId: msg.author.id,
+          authorName: msg.author.username,
+          timestamp: msg.createdTimestamp,
+        };
+      }),
     });
   } catch (err) {
     console.error(err);
@@ -81,6 +96,10 @@ router.get('/products', authInspection, async (req: Request, res: Response) => {
   try {
     const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
     const products = await ProductModel.find().sort({ createdAt: -1 }).limit(20);
+    const reviews = client.channels.cache.get(process.env.channel_reviews!);
+    if (!reviews) return res.status(404).json({ error: 'Channel not found' });
+    if (!reviews.isTextBased()) return res.status(404).json({ error: 'Channel is not text based' });
+    const msgReviews = await reviews?.messages.fetch({ limit: 5 });
     res.render('products.ejs', {
       user: req.user,
       _client: client,
@@ -94,6 +113,15 @@ router.get('/products', authInspection, async (req: Request, res: Response) => {
         return require('moment')(date).fromNow();
       },
       messages: messages,
+      _reviews: msgReviews.map((msg: any) => {
+        return {
+          content: msg.content,
+          authorAvatar: msg.author.avatarURL({ forceStatic: true, size: 4096 }),
+          authorId: msg.author.id,
+          authorName: msg.author.username,
+          timestamp: msg.createdTimestamp,
+        };
+      }),
     });
   } catch (err) {
     console.error(err);
@@ -104,6 +132,10 @@ router.get('/products', authInspection, async (req: Request, res: Response) => {
 router.get('/add-product', authInspection, devWebMiddleware, async (req: Request, res: Response) => {
   try {
     const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
+    const reviews = client.channels.cache.get(process.env.channel_reviews!);
+    if (!reviews) return res.status(404).json({ error: 'Channel not found' });
+    if (!reviews.isTextBased()) return res.status(404).json({ error: 'Channel is not text based' });
+    const msgReviews = await reviews?.messages.fetch({ limit: 5 });
     res.render('addProduct.ejs', {
       user: req.user,
       _client: client,
@@ -116,6 +148,15 @@ router.get('/add-product', authInspection, devWebMiddleware, async (req: Request
         return require('moment')(date).fromNow();
       },
       messages: messages,
+      _reviews: msgReviews.map((msg: any) => {
+        return {
+          content: msg.content,
+          authorAvatar: msg.author.avatarURL({ forceStatic: true, size: 4096 }),
+          authorId: msg.author.id,
+          authorName: msg.author.username,
+          timestamp: msg.createdTimestamp,
+        };
+      }),
     });
   } catch (err) {
     console.error(err);
@@ -126,6 +167,10 @@ router.get('/add-product', authInspection, devWebMiddleware, async (req: Request
 router.get('/analytics', authInspection, devWebMiddleware, async (req: Request, res: Response) => {
   try {
     const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
+    const reviews = client.channels.cache.get(process.env.channel_reviews!);
+    if (!reviews) return res.status(404).json({ error: 'Channel not found' });
+    if (!reviews.isTextBased()) return res.status(404).json({ error: 'Channel is not text based' });
+    const msgReviews = await reviews?.messages.fetch({ limit: 5 });
     const directoryPath = './upload/logs';
     async function getFiles() {
       return new Promise((resolve, reject) => {
@@ -162,6 +207,15 @@ router.get('/analytics', authInspection, devWebMiddleware, async (req: Request, 
       clientPing: client.ws.ping,
       archives: archives,
       products: products,
+      _reviews: msgReviews.map((msg: any) => {
+        return {
+          content: msg.content,
+          authorAvatar: msg.author.avatarURL({ forceStatic: true, size: 4096 }),
+          authorId: msg.author.id,
+          authorName: msg.author.username,
+          timestamp: msg.createdTimestamp,
+        };
+      }),
     });
   } catch (err) {
     console.error(err);
@@ -172,6 +226,10 @@ router.get('/analytics', authInspection, devWebMiddleware, async (req: Request, 
 router.get('/policies', authInspection, async (req: Request, res: Response) => {
   try {
     const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
+    const reviews = client.channels.cache.get(process.env.channel_reviews!);
+    if (!reviews) return res.status(404).json({ error: 'Channel not found' });
+    if (!reviews.isTextBased()) return res.status(404).json({ error: 'Channel is not text based' });
+    const msgReviews = await reviews?.messages.fetch({ limit: 5 });
     if (!req.user) return res.redirect('/error');
     res.render('policies.ejs', {
       user: req.user,
@@ -185,6 +243,15 @@ router.get('/policies', authInspection, async (req: Request, res: Response) => {
         return require('moment')(date).fromNow();
       },
       messages: messages,
+      _reviews: msgReviews.map((msg: any) => {
+        return {
+          content: msg.content,
+          authorAvatar: msg.author.avatarURL({ forceStatic: true, size: 4096 }),
+          authorId: msg.author.id,
+          authorName: msg.author.username,
+          timestamp: msg.createdTimestamp,
+        };
+      }),
     });
   } catch (err) {
     console.error(err);
@@ -194,6 +261,10 @@ router.get('/policies', authInspection, async (req: Request, res: Response) => {
 
 router.get('/aplications', authInspection, async (req: Request, res: Response) => {
   const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
+  const reviews = client.channels.cache.get(process.env.channel_reviews!);
+  if (!reviews) return res.status(404).json({ error: 'Channel not found' });
+  if (!reviews.isTextBased()) return res.status(404).json({ error: 'Channel is not text based' });
+  const msgReviews = await reviews?.messages.fetch({ limit: 5 });
   const all = await model.find();
   const data = all.map((x) => {
     return {
@@ -220,11 +291,24 @@ router.get('/aplications', authInspection, async (req: Request, res: Response) =
     },
     messages: messages,
     data: data,
+    _reviews: msgReviews.map((msg: any) => {
+      return {
+        content: msg.content,
+        authorAvatar: msg.author.avatarURL({ forceStatic: true, size: 4096 }),
+        authorId: msg.author.id,
+        authorName: msg.author.username,
+        timestamp: msg.createdTimestamp,
+      };
+    }),
   });
 });
 
 router.get('/economy', authInspection, async (req: Request, res: Response) => {
   const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
+  const reviews = client.channels.cache.get(process.env.channel_reviews!);
+  if (!reviews) return res.status(404).json({ error: 'Channel not found' });
+  if (!reviews.isTextBased()) return res.status(404).json({ error: 'Channel is not text based' });
+  const msgReviews = await reviews?.messages.fetch({ limit: 5 });
   const guild = client.guilds.cache.get(process.env.guild_id!);
   const total = await user.find();
   const userData = total.map((user) => {
@@ -256,12 +340,25 @@ router.get('/economy', authInspection, async (req: Request, res: Response) => {
       return require('moment')(date).fromNow();
     },
     messages: messages,
+    _reviews: msgReviews.map((msg: any) => {
+      return {
+        content: msg.content,
+        authorAvatar: msg.author.avatarURL({ forceStatic: true, size: 4096 }),
+        authorId: msg.author.id,
+        authorName: msg.author.username,
+        timestamp: msg.createdTimestamp,
+      };
+    }),
     userData: userData,
   });
 });
 
 router.get('/cdn', authInspection, customerWebMiddleware, async (req: Request, res: Response) => {
   const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
+  const reviews = client.channels.cache.get(process.env.channel_reviews!);
+  if (!reviews) return res.status(404).json({ error: 'Channel not found' });
+  if (!reviews.isTextBased()) return res.status(404).json({ error: 'Channel is not text based' });
+  const msgReviews = await reviews?.messages.fetch({ limit: 5 });
   const path = './upload/archives';
   fs.readdir(path, (err, files) => {
     if (err) return console.error(err);
@@ -288,6 +385,15 @@ router.get('/cdn', authInspection, customerWebMiddleware, async (req: Request, r
         return require('moment')(date).fromNow();
       },
       messages: messages,
+      _reviews: msgReviews.map((msg: any) => {
+        return {
+          content: msg.content,
+          authorAvatar: msg.author.avatarURL({ forceStatic: true, size: 4096 }),
+          authorId: msg.author.id,
+          authorName: msg.author.username,
+          timestamp: msg.createdTimestamp,
+        };
+      }),
       data: data,
     });
   });
@@ -295,6 +401,10 @@ router.get('/cdn', authInspection, customerWebMiddleware, async (req: Request, r
 
 router.get('/notifications', authInspection, devWebMiddleware, async (req: Request, res: Response) => {
   const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
+  const reviews = client.channels.cache.get(process.env.channel_reviews!);
+  if (!reviews) return res.status(404).json({ error: 'Channel not found' });
+  if (!reviews.isTextBased()) return res.status(404).json({ error: 'Channel is not text based' });
+  const msgReviews = await reviews?.messages.fetch({ limit: 5 });
   const channel = client.channels.cache.get(process.env.channel_id!);
   if (!channel) return res.status(404).json({ error: 'Channel not found' });
   if (!channel.isTextBased()) return res.status(404).json({ error: 'Channel is not text based' });
@@ -336,11 +446,24 @@ router.get('/notifications', authInspection, devWebMiddleware, async (req: Reque
     },
     messages: messages,
     notices: notices,
+    _reviews: msgReviews.map((msg: any) => {
+      return {
+        content: msg.content,
+        authorAvatar: msg.author.avatarURL({ forceStatic: true, size: 4096 }),
+        authorId: msg.author.id,
+        authorName: msg.author.username,
+        timestamp: msg.createdTimestamp,
+      };
+    }),
   });
 });
 
 router.get('/commands', authInspection, async (req: Request, res: Response) => {
   const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
+  const reviews = client.channels.cache.get(process.env.channel_reviews!);
+  if (!reviews) return res.status(404).json({ error: 'Channel not found' });
+  if (!reviews.isTextBased()) return res.status(404).json({ error: 'Channel is not text based' });
+  const msgReviews = await reviews?.messages.fetch({ limit: 5 });
   res.render('commands.ejs', {
     user: req.user,
     _client: client,
@@ -361,6 +484,15 @@ router.get('/commands', authInspection, async (req: Request, res: Response) => {
         category: command.category,
         examples: command.examples,
         subcommands: command.subcommands,
+      };
+    }),
+    _reviews: msgReviews.map((msg: any) => {
+      return {
+        content: msg.content,
+        authorAvatar: msg.author.avatarURL({ forceStatic: true, size: 4096 }),
+        authorId: msg.author.id,
+        authorName: msg.author.username,
+        timestamp: msg.createdTimestamp,
       };
     }),
   });
