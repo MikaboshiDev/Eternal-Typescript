@@ -85,7 +85,7 @@ export default new Event('messageCreate', async (message) => {
   if (command.nsfw && !(message.channel as TextChannel).nsfw)
     return message.reply({
       content: [
-        `${emojis.error} You can't use this command in a non-nsfw channel.`,
+        `${emojis.error} You can't use this command in a non-nsfw channel because it's only for nsfw channels.`,
         `If you think this is an error, please contact the server administrator.`,
       ].join('\n'),
     });
@@ -127,6 +127,14 @@ export default new Event('messageCreate', async (message) => {
       client.cooldown.delete(`${message.author.id}${command.name}`);
     }, command.cooldown * 1000);
   }
+
+  if (command.premium && data?.premium === false)
+    return message.reply({
+      content: [
+        `${emojis.error} Hello ${message.author.username}, I'm sorry but you can't execute the mentioned command yet.`,
+        `This command is only for premium servers, if you want to buy premium, type \`${prefix}premium\``,
+      ].join('\n'),
+    });
 
   command.execute(client, message, args, prefix);
 });

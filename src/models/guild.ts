@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 
 const model = new mongoose.Schema({
-  guildId: { type: String, required: true, unique: true },
   id: { type: String, required: true, unique: true },
+  premium: { type: Boolean, default: false },
   prefix: { type: String, default: '!' },
   commands: {
     components: { type: Boolean, default: false },

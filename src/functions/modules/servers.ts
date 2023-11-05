@@ -5,7 +5,9 @@ import GuildModel from '../../models/guild';
 async function ensureGuildExists(guildId: string) {
   try {
     if (guildId) {
-      const existingGuild = await GuildModel.findOne({ id: guildId });
+      const existingGuild = await GuildModel.findOne({ 
+        id: guildId 
+      });
       if (!existingGuild) {
         const newGuild = new GuildModel({ id: guildId });
         await newGuild.save();
