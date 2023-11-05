@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
+    <link href="/css/commands.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/images/favicon/logo.jpg" type="image/gif" />
+    <title><%= _client.user.username %> - Commands</title>
+    <%- include("./partials/meta.ejs") %>
+  </head>
+  <body>
+    <div class="container">
+      <aside><%- include('./partials/aside.ejs'); %></aside>
+      <main>
+        <h1>Commands</h1>
+        <div class="date">
+          <input type="date" />
+        </div>
+        <div class="commands">
+          <% for (let i = 0; i < commands.length; i++) { %>
+          <div class="card">
+            <h2><%= commands[i].name %></h2>
+            <div class="linea"></div>
+            <p><span>Description:</span> <%= commands[i].description %></p>
+            <p><span>Category:</span> <%= commands[i].category %></p>
+            <p><span>Aliases:</span> <%= commands[i].aliases.join(', ') %></p>
+            <div class="linea"></div>
+            <span class="highlight-element">Destacado</span>
+            <div class="subcommands">
+              <h3>Subcommands</h3>
+              <ul>
+                <% if (commands[i].subcommands && Array.isArray(commands[i].subcommands)) { %> <% for (let j = 0; j <
+                commands[i].subcommands.length; j++) { %>
+                <li>No. <%= j + 1 %>: <%= commands[i].subcommands[j] %></li>
+                <% } %> <% } else { %>
+                <li>No subcommands available.</li>
+                <% } %>
+              </ul>
+            </div>
+            <div class="examples">
+              <h3>Examples</h3>
+              <ul>
+                <% if (commands[i].examples && Array.isArray(commands[i].examples)) { %> <% for (let j = 0; j <
+                commands[i].examples.length; j++) { %>
+                <li>No. <%= j + 1 %>: <%= commands[i].examples[j] %></li>
+                <% } %> <% } else { %>
+                <li>No examples available.</li>
+                <% } %>
+              </ul>
+            </div>
+          </div>
+          <% } %>
+        </div>
+      </main>
+      <%- include("./partials/right.ejs") %>
+    </div>
+    <footer class="footer-credits"><%- include('./partials/footer.ejs'); %></footer>
+    <script src="/js/dark.theme.js"></script>
+  </body>
+</html>

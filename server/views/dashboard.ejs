@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
     <link href="/css/dashboard.css" rel="stylesheet" />
     <link rel="shortcut icon" href="/images/favicon/logo.jpg" type="image/gif" />
-    <title><%= r_client.user.username %> - Home</title>
+    <title><%= _client.user.username %> - Home</title>
     <%- include("./partials/meta.ejs") %>
   </head>
   <body>
@@ -21,17 +21,17 @@
         <div class="information">
           <div class="information-general">
             <img
-              src="<%= r_client.user.displayAvatarURL({ forceStatic: true, size: 512, extension: `jpg` }) %>"
-              alt="<%= r_client.user.username %>"
+              src="<%= _client.user.displayAvatarURL({ forceStatic: true, size: 512, extension: `jpg` }) %>"
+              alt="<%= _client.user.username %>"
             />
-            <div class="informacion-general-name"><%= r_client.user.username %></div>
+            <div class="informacion-general-name"><%= _client.user.username %></div>
             <div class="informacion-general-servers">
               <div class="informacion-general-servers-title">Servers</div>
-              <div class="informacion-general-servers-number"><%= r_client.guilds.cache.size %></div>
+              <div class="informacion-general-servers-number"><%= _client.guilds.cache.size %></div>
             </div>
             <div class="informacion-general-users">
               <div class="informacion-general-users-title">Users</div>
-              <div class="informacion-general-users-number"><%= r_client.users.cache.size %></div>
+              <div class="informacion-general-users-number"><%= _client.users.cache.size %></div>
             </div>
             <div class="linea"></div>
             <div class="informacion-general-infrestructura">

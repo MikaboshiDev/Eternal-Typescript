@@ -2,6 +2,7 @@ import { ChannelType, EmbedBuilder, Message } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
 import superagent from 'superagent';
 import akaneko from 'akaneko';
+import { animeApi } from '../../../functions/tools/httpRequest';
 
 module.exports = {
   name: 'nsfw',
@@ -130,24 +131,34 @@ module.exports = {
           message.reply({ embeds: [a] }).catch(() => {});
         }
         break;
-      case 'bdsm': {
-        const image = await akaneko.nsfw.bdsm();
-        const a = new EmbedBuilder().setImage(image as any);
-        message.reply({ embeds: [a] }).catch(() => {});
-      }
-      break;
-      case "blowjob": {
-        const image = await akaneko.nsfw.blowjob();
-        const a = new EmbedBuilder().setImage(image as any);
-        message.reply({ embeds: [a] }).catch(() => {});
-      }
-      break;
-      case "cum": {
-        const image = await akaneko.nsfw.cum();
-        const a = new EmbedBuilder().setImage(image as any);
-        message.reply({ embeds: [a] }).catch(() => {});
-      }
-      break;
+      case 'bdsm':
+        {
+          const image = await akaneko.nsfw.bdsm();
+          const a = new EmbedBuilder().setImage(image as any);
+          message.reply({ embeds: [a] }).catch(() => {});
+        }
+        break;
+      case 'blowjob':
+        {
+          const image = await akaneko.nsfw.blowjob();
+          const a = new EmbedBuilder().setImage(image as any);
+          message.reply({ embeds: [a] }).catch(() => {});
+        }
+        break;
+      case 'cum':
+        {
+          const image = await akaneko.nsfw.cum();
+          const a = new EmbedBuilder().setImage(image as any);
+          message.reply({ embeds: [a] }).catch(() => {});
+        }
+        break;
+      case 'trap':
+        {
+          const data = await animeApi('trap');
+          const a = new EmbedBuilder().setImage(data);
+          message.reply({ embeds: [a] }).catch(() => {});
+        }
+        break;
     }
   },
 };

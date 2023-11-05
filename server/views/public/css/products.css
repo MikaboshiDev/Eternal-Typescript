@@ -128,7 +128,7 @@ b {
   color: var(--color-success);
 }
 
-warning {
+.warning {
   color: var(--color-warning);
 }
 

@@ -128,7 +128,7 @@ b {
   color: var(--color-success);
 }
 
-warning {
+.warning {
   color: var(--color-warning);
 }
 
@@ -466,7 +466,6 @@ main .recent-orders a {
   font-size: 24px;
 }
 
-/* =============== MEDIA QUERIES =============== */
 @media screen and (max-width: 1200px) {
   .container {
     width: 94%;
@@ -504,7 +503,6 @@ main .recent-orders a {
     display: none;
   }
 }
-/* =============== MEDIA QUERIES =============== */
 @media screen and (max-width: 768px) {
   .container {
     width: 100%;

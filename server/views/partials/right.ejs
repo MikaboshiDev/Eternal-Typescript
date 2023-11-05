@@ -9,9 +9,10 @@
       <div class="info">
         <p>Hey, <b><%= user.username %></b></p>
         <small class="text-muted">
-          <% const member = r_client.guilds.cache.get("1099013284889370696").members.cache.get(user.id); let role = ""; %> <% if (member) { %> <% if
-          (member.permissions.has("ManageGuild")) { %> <% role = "Owner"; %> <% } else if (member.permissions.has("Administrator")) { %> <% role =
-          "Administrator"; %> <% } else { %> <% role = "User"; %> <% } %> <% } else { %> Sin Registrar <% } %> <%= role %>
+          <% const member = _client.guilds.cache.get("1099013284889370696").members.cache.get(user.id); let role = "";
+          %> <% if (member) { %> <% if (member.permissions.has("ManageGuild")) { %> <% role = "Owner"; %> <% } else if
+          (member.permissions.has("Administrator")) { %> <% role = "Administrator"; %> <% } else { %> <% role = "User";
+          %> <% } %> <% } else { %> Sin Registrar <% } %> <%= role %>
         </small>
       </div>
       <div class="profile-photo">
@@ -32,8 +33,8 @@
             <b><%= msg.username %></b>
             <% if (msg.message.startsWith('https://cdn.discordapp.com/attachments')) { %>
             <a href="<%= msg.message %>">Ir a imagen</a>
-            <% } else if (msg.message.startsWith('https://') || msg.message.startsWith('http://')) { %> Mensaje bloqueado <% } else { %> <%=
-            msg.message %> <% } %>
+            <% } else if (msg.message.startsWith('https://') || msg.message.startsWith('http://')) { %> Mensaje
+            bloqueado <% } else { %> <%= msg.message %> <% } %>
           </p>
           <small class="text-muted"><%= timeAgo(msg.createdAt) %></small>
         </div>

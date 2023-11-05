@@ -16,17 +16,17 @@
 
 import { Request, Response, Router } from 'express';
 import fs from 'fs';
+import os from 'os';
 import model from '../../src/models/client';
-import user from '../../src/models/servers/economy';
 import MsgModel from '../../src/models/messages';
 import ProductModel from '../../src/models/products';
+import user from '../../src/models/servers/economy';
 import { client } from '../../src/shulker';
 import { authLogout } from '../controllers/auth.controllers';
 import { authInspection } from '../middleware/auth.middleware';
 import { customerWebMiddleware, devWebMiddleware } from '../middleware/web.middleware';
 import { passport } from '../utils/passport';
 const router = Router();
-import os from 'os';
 
 router.get('/', (req: Request, res: Response) => {
   res.render('login.ejs', {
@@ -49,7 +49,7 @@ router.get(
 router.get('/error', (req: Request, res: Response) => {
   res.render('error.ejs', {
     user: req.user,
-    r_client: client,
+    _client: client,
   });
 });
 
@@ -59,7 +59,7 @@ router.get('/dashboard', authInspection, async (req: Request, res: Response) => 
     if (!req.user) return res.redirect('/error');
     res.render('dashboard.ejs', {
       user: req.user,
-      r_client: client,
+      _client: client,
       os: os,
       avatarURL: function (id: string) {
         const user = client.users.cache.get(id);
@@ -83,7 +83,7 @@ router.get('/products', authInspection, async (req: Request, res: Response) => {
     const products = await ProductModel.find().sort({ createdAt: -1 }).limit(20);
     res.render('products.ejs', {
       user: req.user,
-      r_client: client,
+      _client: client,
       products: products,
       avatarURL: function (id: string) {
         const user = client.users.cache.get(id);
@@ -106,7 +106,7 @@ router.get('/add-product', authInspection, devWebMiddleware, async (req: Request
     const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
     res.render('addProduct.ejs', {
       user: req.user,
-      r_client: client,
+      _client: client,
       avatarURL: function (id: string) {
         const user = client.users.cache.get(id);
         if (user) return user.avatarURL({ forceStatic: true, size: 4096 });
@@ -148,7 +148,7 @@ router.get('/analytics', authInspection, devWebMiddleware, async (req: Request, 
     const archives = await getFiles();
     res.render('client.ejs', {
       user: req.user,
-      r_client: client,
+      _client: client,
       avatarURL: function (id: string) {
         const user = client.users.cache.get(id);
         if (user) return user.avatarURL({ forceStatic: true, size: 4096 });
@@ -175,7 +175,7 @@ router.get('/policies', authInspection, async (req: Request, res: Response) => {
     if (!req.user) return res.redirect('/error');
     res.render('policies.ejs', {
       user: req.user,
-      r_client: client,
+      _client: client,
       avatarURL: function (id: string) {
         const user = client.users.cache.get(id);
         if (user) return user.avatarURL({ forceStatic: true, size: 4096 });
@@ -209,7 +209,7 @@ router.get('/aplications', authInspection, async (req: Request, res: Response) =
 
   res.render('aplications.ejs', {
     user: req.user,
-    r_client: client,
+    _client: client,
     avatarURL: function (id: string) {
       const user = client.users.cache.get(id);
       if (user) return user.avatarURL({ forceStatic: true, size: 4096 });
@@ -246,7 +246,7 @@ router.get('/economy', authInspection, async (req: Request, res: Response) => {
 
   res.render('economy.ejs', {
     user: req.user,
-    r_client: client,
+    _client: client,
     avatarURL: function (id: string) {
       const user = client.users.cache.get(id);
       if (user) return user.avatarURL({ forceStatic: true, size: 4096 });
@@ -278,7 +278,7 @@ router.get('/cdn', authInspection, customerWebMiddleware, async (req: Request, r
 
     res.render('cdn.ejs', {
       user: req.user,
-      r_client: client,
+      _client: client,
       avatarURL: function (id: string) {
         const user = client.users.cache.get(id);
         if (user) return user.avatarURL({ forceStatic: true, size: 4096 });
@@ -325,7 +325,7 @@ router.get('/notifications', authInspection, devWebMiddleware, async (req: Reque
 
   res.render('notifications.ejs', {
     user: req.user,
-    r_client: client,
+    _client: client,
     avatarURL: function (id: string) {
       const user = client.users.cache.get(id);
       if (user) return user.avatarURL({ forceStatic: true, size: 4096 });
@@ -336,6 +336,33 @@ router.get('/notifications', authInspection, devWebMiddleware, async (req: Reque
     },
     messages: messages,
     notices: notices,
+  });
+});
+
+router.get('/commands', authInspection, async (req: Request, res: Response) => {
+  const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
+  res.render('commands.ejs', {
+    user: req.user,
+    _client: client,
+    avatarURL: function (id: string) {
+      const user = client.users.cache.get(id);
+      if (user) return user.avatarURL({ forceStatic: true, size: 4096 });
+      else return 'https://cdn.discordapp.com/embed/avatars/0.png';
+    },
+    timeAgo: function (date: Date) {
+      return require('moment')(date).fromNow();
+    },
+    messages: messages,
+    commands: client.precommands.map((command: any) => {
+      return {
+        name: command.name,
+        description: command.description,
+        aliases: command.aliases,
+        category: command.category,
+        examples: command.examples,
+        subcommands: command.subcommands,
+      };
+    }),
   });
 });
 
