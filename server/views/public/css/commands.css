@@ -475,6 +475,10 @@ main .recent-orders a {
 .pagination .pagination-button:hover {
   background-color: var(--color-success);
 }
+.pagination .pagination-button[disabled] {
+  background-color: var(--color-gray);
+  cursor: not-allowed;
+}
 
 @media screen and (max-width: 1200px) {
   .container {

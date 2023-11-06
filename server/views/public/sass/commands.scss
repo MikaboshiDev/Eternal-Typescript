@@ -138,6 +138,11 @@ main {
     &:hover {
       background-color: var(--color-success);
     }
+
+    &[disabled] {
+      background-color: var(--color-gray);
+      cursor: not-allowed;
+    }
   }
 }
 

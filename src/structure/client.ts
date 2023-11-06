@@ -14,13 +14,13 @@
 # If you want to know more about the bot, you can visit our website.
 */
 
-import { addons, buttons, components, deploy, load, menus, modals } from '../utils/handlers';
-import { Client, Collection, GatewayIntentBits, Options, Partials } from 'discord.js';
-import { ensureConsole } from '../functions/modules/servers';
-import { ExpressServer } from '../../server/express';
 import { DiscordTogether } from 'discord-together';
-import { Command } from '../class/builders';
+import { Client, Collection, GatewayIntentBits, Options, Partials } from 'discord.js';
 import paypal from 'paypal-rest-sdk';
+import { ExpressServer } from '../../server/express';
+import { Command } from '../class/builders';
+import { ensureConsole } from '../functions/modules/servers';
+import { addons, buttons, components, deploy, load, menus, modals } from '../utils/handlers';
 import db from './mongoose';
 
 export class Manager extends Client {
@@ -92,6 +92,8 @@ export class Manager extends Client {
     this.buttons = new Collection();
     this.modals = new Collection();
     this.menus = new Collection();
+
+    this.setMaxListeners(0);
   }
 
   public async start() {

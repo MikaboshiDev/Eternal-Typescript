@@ -19,21 +19,20 @@
           <input type="date" />
         </div>
         <div class="commands-date">
-          <div class="commands">
-            <% for (let i = 0; i < commands.length; i++) { %>
+          <div class="commands" id="commands-conteiner">
+            <% const commandsToDisplay = commands.slice(0, 12); %> <% for (let i = 0; i < commandsToDisplay.length; i++)
+            { %>
             <div class="card" id="commandsCard">
               <h2>
-                <%= commands[i].name %> <% if (commands[i].subcommands && commands[i].subcommands.length > 0) { %>
+                <%= commandsToDisplay[i].name %> <% if (commandsToDisplay[i].subcommands &&
+                commandsToDisplay[i].subcommands.length > 0) { %>
                 <i class="material-icons-sharp" alt="subcommands enable">display_settings</i>
                 <% } %>
               </h2>
-              <a href="#">
-                <!-- Aquí puedes añadir el enlace si es necesario -->
-              </a>
               <div class="linea"></div>
-              <p><span>Description:</span> <%= commands[i].description %></p>
-              <p><span>Category:</span> <%= commands[i].category %></p>
-              <p><span>Aliases:</span> <%= commands[i].aliases.join(', ') %></p>
+              <p><span>Description:</span> <%= commandsToDisplay[i].description %></p>
+              <p><span>Category:</span> <%= commandsToDisplay[i].category %></p>
+              <p><span>Aliases:</span> <%= commandsToDisplay[i].aliases.join(', ') %></p>
             </div>
             <% } %>
           </div>
@@ -52,46 +51,53 @@
     <footer class="footer-credits"><%- include('./partials/footer.ejs'); %></footer>
     <script src="/js/dark.theme.js"></script>
     <script>
-      document.addEventListener('DOMContentLoaded', function () {
-        const cards = document.getElementById('commandsCard');
-        const prevButton = document.getElementById('prevButton');
-        const nextButton = document.getElementById('nextButton');
-        const cardsPerPage = 9;
-        let currentPage = 0;
+      const commandsContainer = document.getElementById('commands-conteiner');
+      const prevButton = document.getElementById('prevButton');
+      const nextButton = document.getElementById('nextButton');
+      const commands = <%- JSON.stringify(commands) %>;
+      const cardsPerPage = 12;
+      let currentPage = 1;
 
-        function updateCards() {
-          for (let i = 0; i < cards.length; i++) {
-            cards[i].style.display = 'none';
-          }
-          for (let i = currentPage * cardsPerPage; i < (currentPage + 1) * cardsPerPage; i++) {
-            if (cards[i]) {
-              cards[i].style.display = 'block';
-            }
-          }
-        }
+      function updateCards() {
+        const start = (currentPage - 1) * cardsPerPage;
+        const end = start + cardsPerPage;
+        const commandsToDisplay = commands.slice(start, end);
+        commandsContainer.innerHTML = '';
 
-        function checkButtons() {
-          currentPage === 0 ? (prevButton.disabled = true) : (prevButton.disabled = false);
-          currentPage === Math.ceil(cards.length / cardsPerPage) - 1
-            ? (nextButton.disabled = true)
-            : (nextButton.disabled = false);
-        }
-
-        prevButton.addEventListener('click', function () {
-          currentPage--;
-          updateCards();
-          checkButtons();
+        commandsToDisplay.forEach((command) => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+              <h2>
+                ${command.name}
+                ${
+                  command.subcommands && command.subcommands.length > 0
+                    ? `<i class="material-icons-sharp" alt="subcommands enable">display_settings</i>`
+                    : ''
+                }
+              </h2>
+              <div class="linea"></div>
+              <p><span>Description:</span> ${command.description}</p>
+              <p><span>Category:</span> ${command.category}</p>
+              <p><span>Aliases:</span> ${command.aliases.join(', ')}</p>
+          `;
+          commandsContainer.appendChild(card);
         });
+        nextButton.disabled = currentPage * cardsPerPage >= commands.length;
+        prevButton.disabled = currentPage <= 1;
+      }
 
-        nextButton.addEventListener('click', function () {
-          currentPage++;
-          updateCards();
-          checkButtons();
-        });
-
+      nextButton.addEventListener('click', () => {
+        currentPage++;
         updateCards();
-        checkButtons();
       });
+
+      prevButton.addEventListener('click', () => {
+        currentPage--;
+        updateCards();
+      });
+
+      updateCards();
     </script>
   </body>
 </html>
