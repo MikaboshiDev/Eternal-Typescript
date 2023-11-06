@@ -79,8 +79,6 @@ export class Manager extends Client {
       client_secret: process.env.paypal_client_secret!,
     });
     this.discordTogether = new DiscordTogether(this);
-    this.setMaxListeners(0);
-
     this.voiceGenerator = new Collection();
     this.precommands = new Collection();
     this.categories = new Collection();
@@ -92,7 +90,6 @@ export class Manager extends Client {
     this.buttons = new Collection();
     this.modals = new Collection();
     this.menus = new Collection();
-
     this.setMaxListeners(0);
   }
 

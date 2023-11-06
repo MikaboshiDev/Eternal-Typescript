@@ -400,6 +400,28 @@ main .recent-orders a {
   color: var(--color-primary);
 }
 
+.cdn-manager {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+.cdn-manager .upload-button {
+  background-color: var(--color-background);
+  border: 1px solid #eaeaea;
+  box-shadow: var(--box-shadow);
+  padding: 15px 40px;
+  text-align: center;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+.cdn-manager .upload-button:hover {
+  transform: translateY(-2px);
+  box-shadow: none;
+}
+
 .cdn-files {
   display: flex;
   flex-wrap: wrap;

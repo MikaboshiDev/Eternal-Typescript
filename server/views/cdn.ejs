@@ -18,6 +18,43 @@
         <div class="date">
           <input type="date" />
         </div>
+        <div class="cdn-manager">
+          <button class="upload-button">Subir Archivo</button>
+        </div>
+        <script>
+          document.querySelector('.upload-button').addEventListener('click', function () {
+            var fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.style.display = 'none';
+
+            document.body.appendChild(fileInput);
+            fileInput.click();
+
+            fileInput.addEventListener('change', function () {
+              var file = fileInput.files[0];
+              document.body.removeChild(fileInput);
+
+              var formData = new FormData();
+              formData.append('file', file); 
+
+              fetch('/upload', {
+                method: 'POST',
+                body: formData,
+              })
+                .then((response) => {
+                  if (response.ok) {
+                    console.log(`Archivo ${file.name} subido con éxito.`);
+                  } else {
+                    console.error(`Error al subir el archivo ${file.name}.`);
+                  }
+                })
+                .catch((error) => {
+                  console.error('Error:', error);
+                });
+            });
+          });
+        </script>
+
         <div class="cdn-files">
           <% for(let i = 0; i < data.length; i++) { %>
           <div class="cdn-file">

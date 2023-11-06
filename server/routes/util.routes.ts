@@ -45,13 +45,30 @@ router.get('/transcript/:id/download', (req: Request, res: Response) => {
 router.get('/download/:file', async (req: Request, res: Response) => {
   try {
     const file = req.params.file;
-    const directoryPath = ['./src/logs', './upload/archives', './upload/transcripts'];
-    const filePath =
-      path.join(directoryPath[0], file) || path.join(directoryPath[1], file) || path.join(directoryPath[2], file);
-    await fs.promises.access(filePath, fs.constants.F_OK);
-    res.download(filePath, file);
+    const directoryPath = ['./upload/logs', './upload/archives', './upload/transcripts'];
+    let filePath = '';
+
+    for (const directory of directoryPath) {
+      const potentialFilePath = path.join(directory, file);
+      try {
+        await fs.promises.access(potentialFilePath, fs.constants.F_OK);
+        filePath = potentialFilePath;
+        break;
+      } catch (error) {
+        logWithLabel('express', `File not found: ${error}`);
+        console.error(error);
+      }
+    }
+
+    if (filePath) {
+      res.download(filePath, file);
+    } else {
+      res.status(404).send('File not found.');
+      logWithLabel('express', `File not found: ${file}`);
+    }
   } catch (error) {
-    res.send(`<script>alert('File not found.')</script>`);
+    res.status(500).send('Internal server error.');
+    logWithLabel('express', `Something went wrong: ${error}`);
   }
 });
 
@@ -59,18 +76,32 @@ router.delete('/delete/:file', async (req: Request, res: Response) => {
   try {
     const file = req.params.file;
     const directoryPath = ['./src/logs', './upload/archives', './upload/transcripts'];
-    const filePath =
-      path.join(directoryPath[0], file) || path.join(directoryPath[1], file) || path.join(directoryPath[2], file);
+    let filePath = '';
 
-    await fs.unlink(filePath, (err) => {
-      if (err) {
-        res.send(`<script>alert('File not found.')</script>`);
-        console.error(err);
+    for (const directory of directoryPath) {
+      const potentialFilePath = path.join(directory, file);
+      try {
+        await fs.promises.access(potentialFilePath, fs.constants.F_OK);
+        filePath = potentialFilePath;
+        break;
+      } catch (error) {
+        logWithLabel('express', `File not found: ${error}`);
+        console.error(error);
       }
-    });
-    res.send(`<script>alert('File deleted successfully.');</script>`);
+    }
+
+    if (filePath) {
+      await fs.promises.unlink(filePath);
+      res.send('<script>alert("File deleted successfully.");</script>');
+      logWithLabel('express', `File deleted successfully: ${file}`);
+      res.redirect('back');
+    } else {
+      res.status(404).send('File not found.');
+      logWithLabel('express', `File not found: ${file}`);
+    }
   } catch (error) {
-    res.send(`<script>alert('File not found.')</script>`);
+    res.status(500).send('Internal server error.');
+    logWithLabel('express', `Something went wrong: ${error}`);
   }
 });
 
