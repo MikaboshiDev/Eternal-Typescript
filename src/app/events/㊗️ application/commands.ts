@@ -1,4 +1,4 @@
-import { Collection, EmbedBuilder } from 'discord.js';
+import { EmbedBuilder } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
 import { Event } from '../../../class/builders';
 import { client } from '../../../shulker';
@@ -15,7 +15,7 @@ export default new Event('interactionCreate', async (interaction) => {
     .setThumbnail(client.user?.displayAvatarURL() ?? '')
     .setColor('Red');
 
-  if (command.options?.owner && interaction.user.id !== process.env.owner_id)
+  if (command.options?.owner && interaction.user.id !== process.env.OWNERID)
     return interaction.reply({
       embeds: [
         embed.setDescription(

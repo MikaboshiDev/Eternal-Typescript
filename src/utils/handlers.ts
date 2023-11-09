@@ -1,10 +1,10 @@
-import { loadFiles } from '../functions/tools/globArchives';
 import { ClientEvents, REST, Routes } from 'discord.js';
-import { Command, Event } from '../class/builders';
-import { logWithLabel } from './console';
-import { readdirSync } from 'node:fs';
-import { client } from '../shulker';
 import fs from 'fs';
+import { readdirSync } from 'node:fs';
+import { Command, Event } from '../class/builders';
+import { loadFiles } from '../functions/tools/globArchives';
+import { client } from '../shulker';
+import { logWithLabel } from './console';
 
 const pathCommands = './src/app/commands/';
 const pathEvents = './src/app/events/';
@@ -37,10 +37,10 @@ async function load() {
 
 async function deploy() {
   try {
-    const rest = new REST({ version: '10' }).setToken(process.env.token!);
+    const rest = new REST({ version: '10' }).setToken(process.env.TOKEN!);
     const commands = [...client.commands.values()];
     logWithLabel('info', 'Deploying application commands...');
-    await rest.put(Routes.applicationCommands(process.env.client_id!), {
+    await rest.put(Routes.applicationCommands(process.env.CLIENTID!), {
       body: commands.map((s) => s.structure),
     });
     logWithLabel('discord', 'Application commands deployed!');

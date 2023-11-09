@@ -16,9 +16,8 @@
 
 import { EmbedBuilder, WebhookClient } from 'discord.js';
 import { inspect } from 'util';
-import fs from 'node:fs';
 
-const webhook = new WebhookClient({ url: process.env.webhook_faild! });
+const webhook = new WebhookClient({ url: process.env.WEBHOOKFAILD! });
 function handleError(title: string | null, url: string | null, ...fields: { name: any; value: string }[]) {
   const embed = new EmbedBuilder()
     .setColor('Red')

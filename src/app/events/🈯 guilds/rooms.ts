@@ -7,7 +7,7 @@ export default new Event('voiceStateUpdate', async (oldState, newState) => {
   const { member, guild } = newState;
   const oldChannel = oldState.channel;
   const newChannel = newState.channel;
-  const joinToCreate = process.env.room_id!;
+  const joinToCreate = process.env.ROOMID!;
 
   if (oldChannel !== newChannel && newChannel && newChannel.id === joinToCreate) {
     const voiceChannel = await guild.channels.create({

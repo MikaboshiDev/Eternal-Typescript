@@ -67,7 +67,7 @@ const getAllUsers = async (req: Request, res: Response) => {
  * a message of 'OK' and the bans data in the response body
  */
 const getBans = async (req: Request, res: Response) => {
-  const guild = client.guilds.cache.get(process.env.guild_id!);
+  const guild = client.guilds.cache.get(process.env.GUILDID!);
   if (!guild) return res.status(500).json({ message: 'Internal Server Error' });
 
   const bans = await guild?.bans.fetch();

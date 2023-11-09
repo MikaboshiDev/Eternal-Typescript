@@ -50,7 +50,7 @@ module.exports = {
             method: 'post',
             url: `${Api_Url}/guilds/${message.guild?.id}/auto-moderation/rules`,
             headers: {
-              Authorization: `Bot ${process.env.token}`,
+              Authorization: `Bot ${process.env.TOKEN}`,
               'Content-Type': 'application/json',
             },
             data: {
@@ -119,7 +119,7 @@ module.exports = {
             method: 'delete',
             url: `${Api_Url}/guilds/${message.guild?.id}/auto-moderation/rules/${id}`,
             headers: {
-              Authorization: `Bot ${process.env.token}`,
+              Authorization: `Bot ${process.env.TOKEN}`,
               'Content-Type': 'application/json',
             },
           }).catch((err: any) => {
@@ -155,7 +155,7 @@ module.exports = {
             method: 'get',
             url: `${Api_Url}/guilds/${message.guild?.id}/auto-moderation/rules`,
             headers: {
-              Authorization: `Bot ${process.env.token}`,
+              Authorization: `Bot ${process.env.TOKEN}`,
               'Content-Type': 'application/json',
             },
           });

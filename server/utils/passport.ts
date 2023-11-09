@@ -1,7 +1,6 @@
-import { Strategy } from 'passport-discord';
-import passport from 'passport';
 import 'dotenv/config';
-import fs from 'fs';
+import passport from 'passport';
+import { Strategy } from 'passport-discord';
 
 passport.serializeUser((user: any, done: any) => {
   done(null, user);
@@ -14,9 +13,9 @@ passport.deserializeUser((obj: any, done: any) => {
 passport.use(
   new Strategy(
     {
-      clientID: process.env.client_id!,
-      clientSecret: process.env.client_secret!,
-      callbackURL: process.env.callback_url!,
+      clientID: process.env.CLIENTID!,
+      clientSecret: process.env.CLIENTSECRET!,
+      callbackURL: process.env.CALLBACK!,
       scope: ['identify', 'guilds'],
     },
     (accessToken: string, refreshToken: string, profile: any, done: any) => {

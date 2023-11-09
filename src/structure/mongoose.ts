@@ -4,7 +4,7 @@
 
 import { connect } from 'mongoose';
 async function dbconnect(): Promise<void> {
-  const db_url = <string>process.env.database;
+  const db_url = <string>process.env.DB;
   await connect(db_url);
 }
 

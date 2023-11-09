@@ -13,7 +13,7 @@ module.exports = {
       method: 'get',
       url: `${Api_Url}/guilds/${interaction.guild?.id}/auto-moderation/rules/${value}`,
       headers: {
-        Authorization: `Bot ${process.env.token}`,
+        Authorization: `Bot ${process.env.TOKEN}`,
         'Content-Type': 'application/json',
       },
     });
@@ -59,7 +59,7 @@ module.exports = {
           method: 'delete',
           url: `${Api_Url}/guilds/${interaction.guild?.id}/auto-moderation/rules/${value}`,
           headers: {
-            Authorization: `Bot ${process.env.token}`,
+            Authorization: `Bot ${process.env.TOKEN}`,
             'Content-Type': 'application/json',
           },
         });

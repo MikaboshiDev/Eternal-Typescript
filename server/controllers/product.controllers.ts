@@ -1,13 +1,13 @@
-import { registerUpload } from '../service/upload.service';
+import { EmbedBuilder } from 'discord.js';
+import { Request, Response } from 'express';
+import fs from 'node:fs';
+import path from 'node:path';
+import model from '../../src/models/products';
+import { client } from '../../src/shulker';
+import { logWithLabel } from '../../src/utils/console';
 import { RequestExt } from '../interface/req.interface';
 import { Storage } from '../interface/upload.interface';
-import { logWithLabel } from '../../src/utils/console';
-import model from '../../src/models/products';
-import { Request, Response } from 'express';
-import { client } from '../../src/shulker';
-import { EmbedBuilder } from 'discord.js';
-import path from 'node:path';
-import fs from 'node:fs';
+import { registerUpload } from '../service/upload.service';
 
 const getProducts = async (req: Request, res: Response) => {
   const data = await model.find();
@@ -85,7 +85,7 @@ const deleteProduct = async (req: Request, res: Response) => {
 };
 
 const recomendProduct = async (req: Request, res: Response) => {
-  const channel = client.channels.cache.get(process.env.channel_web!);
+  const channel = client.channels.cache.get(process.env.CHANNELWEB!);
   if (!channel?.isTextBased()) return res.status(404).json({ message: 'NOT_FOUND' });
 
   channel

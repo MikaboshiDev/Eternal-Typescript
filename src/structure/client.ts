@@ -74,9 +74,9 @@ export class Manager extends Client {
       ],
     });
     paypal.configure({
-      mode: process.env.paypal_mode!,
+      mode: process.env.PAYPALMODE!,
       client_id: process.env.paypal_client_id!,
-      client_secret: process.env.paypal_client_secret!,
+      client_secret: process.env.PAYPAL_CLIENTSECRET!,
     });
     this.discordTogether = new DiscordTogether(this);
     this.voiceGenerator = new Collection();
@@ -96,7 +96,7 @@ export class Manager extends Client {
   public async start() {
     load();
     ensureConsole();
-    await super.login(process.env.token!);
+    await super.login(process.env.TOKEN!);
     await components(this);
     await addons(this);
     await deploy();
@@ -106,7 +106,7 @@ export class Manager extends Client {
     await menus(this);
 
     const express = new ExpressServer();
-    const port = process.env.port_api!;
+    const port = process.env.PORT!;
     express.start(port ? parseInt(port) : 3000);
     db();
   }

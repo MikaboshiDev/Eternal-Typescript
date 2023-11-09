@@ -1,10 +1,10 @@
-import { logWithLabel } from '../../../utils/console';
-import MsgModel from '../../../models/messages';
 import { Event } from '../../../class/builders';
+import MsgModel from '../../../models/messages';
+import { logWithLabel } from '../../../utils/console';
 
 export default new Event('messageCreate', async (message) => {
   if (message.author.bot || !message.guild || !message.channel) return;
-  if (message.channel.id !== process.env.channel_web) return;
+  if (message.channel.id !== process.env.CHANNELWEB) return;
   if (message.content.length < 1) return;
   if (message.content.length > 40) return;
 

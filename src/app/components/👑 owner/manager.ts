@@ -1,6 +1,6 @@
 import { EmbedBuilder, Message } from 'discord.js';
 import fs from 'fs';
-import fetch from "node-fetch";
+import fetch from 'node-fetch';
 import emojis from '../../../../config/emojis.json';
 import model_guild from '../../../models/guild';
 import { logWithLabel } from '../../../utils/console';
@@ -138,13 +138,14 @@ module.exports = {
             } else if (message.content && textIsImage(message.content)) {
               url = args.join(' ');
 
-              if (!url.startsWith('http://') && !url.startsWith('https://')) return message.channel.send({
-                content: [
-                  `${emojis.error} The image must be a png or http p https file or a link!`,
-                  `Example: \`${prefix}controls avatar <image url>\``,
-                ].join("\n")
-              });
-              
+              if (!url.startsWith('http://') && !url.startsWith('https://'))
+                return message.channel.send({
+                  content: [
+                    `${emojis.error} The image must be a png or http p https file or a link!`,
+                    `Example: \`${prefix}controls avatar <image url>\``,
+                  ].join('\n'),
+                });
+
               const response = await fetch(url);
               const buffer = await response.arrayBuffer();
 
@@ -248,6 +249,25 @@ module.exports = {
           });
         }
         break;
+      case 'leave': {
+        const server = client.guilds.cache.get(args[1]);
+        if (!server)
+          return message.channel.send({
+            content: [
+              `${emojis.error} The server was not found!`,
+              `Example: \`${prefix}controls leave <server id>\``,
+            ].join('\n'),
+          });
+
+        server.leave();
+        message.channel.send({
+          content: [
+            `${emojis.correct} Successfully left the server \`${server.name}\`!`,
+            `Example: \`${prefix}controls leave <server id>\``,
+          ].join('\n'),
+        });
+      }
+      break;
     }
   },
 };

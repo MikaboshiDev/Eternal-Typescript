@@ -1,5 +1,4 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, TextChannel } from 'discord.js';
-import ms from 'ms';
 import emojis from '../../../../config/emojis.json';
 import { Event } from '../../../class/builders';
 import { findClosestCommand } from '../../../functions/modules/locations';
@@ -70,7 +69,7 @@ export default new Event('messageCreate', async (message) => {
     .setThumbnail(client.user?.displayAvatarURL() ?? '')
     .setColor('Red');
 
-  if (command.owner && message.author.id !== process.env.owner_id!)
+  if (command.owner && message.author.id !== process.env.OWNERID!)
     return message.reply({
       embeds: [
         embed.setDescription(

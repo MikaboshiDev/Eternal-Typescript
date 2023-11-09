@@ -15,7 +15,7 @@ export default new Event('interactionCreate', async (interaction: any) => {
   const button: Buttons = client.buttons.get(interaction.customId) as Buttons;
   if (!button || button === undefined) return;
 
-  if (button.owner && interaction.user.id !== process.env.owner_id)
+  if (button.owner && interaction.user.id !== process.env.OWNERID)
     return interaction.reply({
       embeds: [
         embed.setDescription(

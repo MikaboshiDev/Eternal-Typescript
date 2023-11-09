@@ -14,7 +14,7 @@ export default new Event('interactionCreate', async (interaction: any) => {
   const menus: Menus = client.menus.get(interaction.customId) as Menus;
   if (!menus || menus === undefined) return;
 
-  if (menus.owner && interaction.user.id !== process.env.owner_id)
+  if (menus.owner && interaction.user.id !== process.env.OWNERID)
     return interaction.reply({
       embeds: [
         embed.setDescription(

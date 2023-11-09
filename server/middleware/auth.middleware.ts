@@ -43,7 +43,7 @@ const devMiddlware = async (req: Request, res: Response, next: NextFunction) => 
   const user = client.users.cache.get(userId);
   if (!user) return res.status(404).json({ error: 'User not found' });
 
-  const serverid = process.env.guild_id || '';
+  const serverid = process.env.GUILDID || '';
   const guild = client.guilds.cache.get(serverid);
   if (!guild) return res.status(404).json({ error: 'Guild not found' });
 

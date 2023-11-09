@@ -14,7 +14,7 @@ export default new Event('interactionCreate', async (interaction: any) => {
   const modals: Modals = client.modals.get(interaction.customId) as Modals;
   if (!modals || modals === undefined) return;
 
-  if (modals.owner && interaction.user.id !== process.env.owner_id)
+  if (modals.owner && interaction.user.id !== process.env.OWNERID)
     return interaction.reply({
       embeds: [
         embed.setDescription(

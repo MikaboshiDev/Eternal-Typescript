@@ -1,6 +1,6 @@
+import 'dotenv/config';
 import { NextFunction, Request, Response } from 'express';
 import { client } from '../../src/shulker';
-import 'dotenv/config';
 
 interface User {
   id: string;
@@ -13,7 +13,7 @@ interface User {
 }
 
 const checkGuildAndMember = (req: Request, res: Response, next: NextFunction, requiredRoleId: string) => {
-  const guild = client.guilds.cache.get(process.env.guild_id!);
+  const guild = client.guilds.cache.get(process.env.GUILDID!);
   if (!guild) return res.send(`<script>alert('Guild not found!');</script>`);
   const member = guild?.members.cache.get((req.user as User).id);
   if (!member) return res.send(`<script>alert('Member not found!');</script>`);
@@ -23,11 +23,11 @@ const checkGuildAndMember = (req: Request, res: Response, next: NextFunction, re
 };
 
 const devWebMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  checkGuildAndMember(req, res, next, process.env.developer_role_id!);
+  checkGuildAndMember(req, res, next, process.env.DEVELOPERID!);
 };
 
 const customerWebMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  checkGuildAndMember(req, res, next, process.env.customer_role_id!);
+  checkGuildAndMember(req, res, next, process.env.CUSTOMERSID!);
 };
 
 export { customerWebMiddleware, devWebMiddleware };

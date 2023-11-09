@@ -68,7 +68,7 @@ module.exports = {
             channel: { id: message.channel.id },
           }),
         headers: {
-          Authorization: `Bot ${process.env.token}`,
+          Authorization: `Bot ${process.env.TOKEN}`,
           'Content-Type': 'application/json',
         },
         data: body ? JSON.parse(body) : undefined,
