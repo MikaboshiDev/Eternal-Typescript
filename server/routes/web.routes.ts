@@ -498,4 +498,21 @@ router.get('/commands', authInspection, async (req: Request, res: Response) => {
   });
 });
 
+router.get('/minecraft', authInspection, async (req: Request, res: Response) => {
+  const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
+  res.render('minecraft.ejs', {
+    user: req.user,
+    _client: client,
+    avatarURL: function (id: string) {
+      const user = client.users.cache.get(id);
+      if (user) return user.avatarURL({ forceStatic: true, size: 4096 });
+      else return 'https://cdn.discordapp.com/embed/avatars/0.png';
+    },
+    timeAgo: function (date: Date) {
+      return require('moment')(date).fromNow();
+    },
+    messages: messages,
+  });
+});
+
 export { router };
