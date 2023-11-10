@@ -2,218 +2,48 @@
 <html>
   <head>
     <title><%= _client.user.username %> - Minecraft</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet" />
     <link rel="shortcut icon" href="/images/favicon/logo.jpg" type="image/gif" />
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-image: url('https://cdn.discordapp.com/attachments/1093297476246700043/1169458203940098169/img1.jpg?ex=655eb453&is=654c3f53&hm=6f5b88ca51cfc2a396bacb94808430b3a8587a27a2d3c2fecce7d307533e8d52&');
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-attachment: fixed;
-      }
-
-      h1 {
-        text-align: center;
-        color: white;
-        text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        font-size: 50px;
-        margin-top: 50px;
-      }
-
-      .server-card {
-        background-color: rgba(0, 0, 0, 0.5);
-        color: white;
-        padding: 20px;
-        border-radius: 10px;
-        width: 800px;
-        margin: 0 auto;
-        text-align: center;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        align-items: center;
-      }
-
-      .server-card h2 {
-        font-size: 30px;
-        margin-bottom: 20px;
-      }
-
-      .server-card p {
-        font-size: 20px;
-        margin-bottom: 10px;
-      }
-
-      .server-card p span {
-        font-weight: bold;
-      }
-
-      .server-card p span.online {
-        color: green;
-      }
-
-      .server-card p span.offline {
-        color: red;
-      }
-
-      .server-card p span.motd {
-        color: yellow;
-      }
-
-      .owners {
-        display: flex;
-        justify-content: space-around;
-        margin-top: 50px;
-      }
-
-      .owner-server {
-        background-color: rgba(0, 0, 0, 0.5);
-        color: white;
-        padding: 20px;
-        border-radius: 10px;
-        width: 400px;
-        margin: 0 auto;
-        text-align: center;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        align-items: center;
-      }
-
-      .owner-server h2 {
-        font-size: 30px;
-        margin-bottom: 20px;
-        text-align: center;
-      }
-
-      .owner-server p {
-        font-size: 20px;
-        margin-bottom: 10px;
-      }
-
-      .owner-server p span {
-        font-weight: bold;
-      }
-
-      .owner-server img {
-        border-radius: 50%;
-      }
-
-      .owner-server p a {
-        color: white;
-        text-decoration: none;
-      }
-
-      @media screen and (max-width: 1200px) {
-        .server-card {
-          width: 600px;
-        }
-
-        .owners {
-          flex-direction: column;
-        }
-
-        .owner-server {
-          width: 600px;
-          margin-bottom: 50px;
-        }
-      }
-
-      @media screen and (max-width: 700px) {
-        .server-card {
-          width: 400px;
-        }
-
-        .owners {
-          flex-direction: column;
-        }
-
-        .owner-server {
-          width: 400px;
-          margin-bottom: 50px;
-        }
-      }
-
-      @media screen and (max-width: 500px) {
-        .server-card {
-          width: 300px;
-        }
-
-        .owners {
-          flex-direction: column;
-        }
-
-        .owner-server {
-          width: 300px;
-          margin-bottom: 50px;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="/css/minecraft.css" />
+    <%- include("./partials/meta.ejs") %>
   </head>
   <body>
     <h1>Estado del Servidor de Minecraft</h1>
-    <div class="server-card">
-      <h2>Estado del Servidor</h2>
-      <p>El servidor está <span id="server-status">...</span></p>
-      <p>Jugadores conectados: <span id="server-players">...</span></p>
-      <p>Versión: <span id="server-version">...</span></p>
-      <p>Motd: <span id="server-motd">...</span></p>
-    </div>
-    <div class="owners">
-      <div class="owner-server">
-        <h2>Marco</h2>
-        <img
-          src="https://cdn.discordapp.com/attachments/1093297476246700043/1144779704595910726/239131223cd0d042929a000610e36640.jpg?ex=6557fb2e&is=6545862e&hm=148b8f3ef4e4e437008691e177706b7370bf0505e0d50df38d0e5e2809a23e62&"
-          alt="Imagen de perfil"
-          width="200px"
-          height="200px"
-        />
-        <p>Nombre: <span id="server-players">...</span></p>
-        <p>Edad: <span id="server-players">...</span></p>
-        <p>País: <span id="server-players">...</span></p>
-        <p>Redes: <span id="server-players">...</span></p>
+    <div class="conteiner">
+      <div class="info-container">
+        <div class="discord-info">
+          <h2>Servidor de Discord</h2>
+          <p>Usuarios conectados: <span id="discordUsers">Cargando...</span></p>
+          <span class="material-icons-sharp">groups</span> 
+        </div>
+        <div class="web-info">
+          <h2>Servidor Web</h2>
+          <p>Usuarios registrados: <span id="webUsers">Cargando...</span></p>
+          <span class="material-icons-sharp">groups</span> 
+        </div>
       </div>
-      <div class="owner-server">
-        <h2>Steve</h2>
-        <img
-          src="https://cdn.discordapp.com/attachments/1093297476246700043/1144779704595910726/239131223cd0d042929a000610e36640.jpg?ex=6557fb2e&is=6545862e&hm=148b8f3ef4e4e437008691e177706b7370bf0505e0d50df38d0e5e2809a23e62&"
-          alt="Imagen de perfil"
-          width="200px"
-          height="200px"
-        />
-        <p>Nombre: <span id="server-players">...</span></p>
-        <p>Edad: <span id="server-players">...</span></p>
-        <p>País: <span id="server-players">...</span></p>
-        <p>Redes: <span id="server-players">...</span></p>
-      </div>
-      <div class="owner-server">
-        <h2>Hanzel</h2>
-        <img
-          src="https://cdn.discordapp.com/attachments/1134529955330535487/1170630176233754705/e898229f25369f62b4793fb6baa99cc8.jpg?ex=6559bd4f&is=6547484f&hm=fa3a23aa6c5c978cd9398677567a9179c9a960fa84763d7edfc4a0fe5b5751dd&"
-          alt="Imagen de perfil"
-          width="200px"
-          height="200px"
-        />
-        <p>Nombre: <span id="server-players">Luis Antonio Porras</span></p>
-        <p>Edad: <span id="server-players">20 Años</span></p>
-        <p>País: <span id="server-players">Mexico</span></p>
-        <p>
-          Redes:
-          <span id="server-players"><a href="http://www.night-support.xyz/">http://www.night-support.xyz/</a></span>
+      <div class="server-card">
+      <h2>Información del Servidor</h2>
+              <div class="server-frame">
+          <iframe style="width:728px;height:90px;max-width:100%;border:none;display:block;margin:auto" src="https://es.namemc.com/server/demonscraft.lol/embed" width="728" height="90"></iframe>
+        </div>
+        <p>IP del servidor: <a href="https://mcstatus.io/status/java/demonscraft.lol">demonscraft.lol</a></l>
+        <p>Jugadores en línea: <span id="playerCount">-</span>
+            <button onclick="showPlayerList()">Show List</button>
+            <ul id="playerList" style="display: none;" class="player-list"></ul>
         </p>
+        <p>Estado: <span id="serverStatus">-</span></p>
+        <p>Versión: <span id="serverVersion">-</span></p>
+        <p>Motd: <span id="serverMotd">-</span></p>
+      </div>
+      <div class="chart-container">
+        <canvas id="playerChart" width="600" height="200"></canvas>
       </div>
     </div>
+    <script src="/js/minecraft/script.js"></script>
+    <script src="/js/minecraft/list.js"></script>
+    <script src="/js/minecraft/servers.js"></script>
   </body>
-  <script>
-    const api = 'https://mcapi.us/server/status?ip=demonscraft.lol';
-    const serverCard = document.querySelector('.server-card');
-
-    fetch(api)
-      .then((response) => response.json())
-      .then((data) => {
-        serverCard.querySelector('#server-status').textContent = data.online ? 'Online' : 'Offline';
-        serverCard.querySelector('#server-players').textContent = data.players.now ? data.players.now : 'Apagado';
-        serverCard.querySelector('#server-version').textContent = data.server.name ? data.server.name : 'Apagado';
-        serverCard.querySelector('#server-motd').textContent = data.motd ? data.motd : 'Apagado';
-      });
-  </script>
 </html>

@@ -14,15 +14,15 @@
 # If you want to know more about the bot, you can visit our website.
 */
 
-import { Request, Response, Router } from 'express';
-import fs from 'fs';
-import path from 'path';
-import model from '../../src/models/client';
 import model_products from '../../src/models/products';
-import { client } from '../../src/shulker';
 import { logWithLabel } from '../../src/utils/console';
+import { Request, Response, Router } from 'express';
+import model from '../../src/models/client';
+import { client } from '../../src/shulker';
 import { upload } from '../utils/upload';
 const router = Router();
+import path from 'path';
+import fs from 'fs';
 
 router.get('/transcript/:id', (req: Request, res: Response) => {
   const id = req.params.id;

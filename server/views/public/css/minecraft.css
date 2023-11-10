@@ -1,0 +1,136 @@
+body {
+  font-family: Arial, sans-serif;
+  background-image: url("https://cdn.discordapp.com/attachments/1093297476246700043/1169458203940098169/img1.jpg?ex=655eb453&is=654c3f53&hm=6f5b88ca51cfc2a396bacb94808430b3a8587a27a2d3c2fecce7d307533e8d52");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 50px;
+  margin-top: 20px;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.info-container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.discord-info, .web-info {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  margin: 0 30px;
+  padding: 20px;
+  border-radius: 10px;
+  width: 48%; /* Para que ambos elementos ocupen el 48% del contenedor */
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.server-card {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 800px;
+  margin: 20px auto;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.server-card h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.server-card p {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.server-card p span {
+  font-weight: bold;
+}
+.server-card p span.online {
+  color: green;
+}
+.server-card p span.offline {
+  color: red;
+}
+.server-card p span.motd {
+  color: yellow;
+}
+.server-card p a {
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px dashed white;
+}
+.server-card button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+.server-card button:hover {
+  background-color: #46a049;
+}
+.server-card select {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+  display: none;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  color: black;
+}
+.server-card select option {
+  padding: 10px;
+}
+
+.chart-container {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+  width: 800px;
+  margin: 20px auto;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+@media screen and (max-width: 1200px) {
+  .server-card, .chart-container {
+    width: 600px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .server-card, .chart-container {
+    width: 400px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .server-card, .chart-container {
+    width: 300px;
+  }
+}
+
+/*# sourceMappingURL=minecraft.css.map */
