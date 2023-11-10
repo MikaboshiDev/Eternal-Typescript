@@ -12,18 +12,30 @@
   <body>
     <h1>Estado del Servidor de Minecraft</h1>
     <div class="conteiner">
-      <div class="info-container">
-        <div class="discord-info">
-          <h2>Servidor de Discord</h2>
-          <p>Usuarios conectados: <span id="discordUsers">Cargando...</span></p>
-          <span class="material-icons-sharp">groups</span> 
-        </div>
-        <div class="web-info">
-          <h2>Servidor Web</h2>
-          <p>Usuarios registrados: <span id="webUsers">Cargando...</span></p>
-          <span class="material-icons-sharp">groups</span> 
-        </div>
-      </div>
+<div class="info-container">
+  <div class="discord-info">
+    <h2>Servidor de Discord</h2>
+    <p>Usuarios conectados: <span id="discordUsers">Cargando...</span></p>
+    <span class="material-icons-sharp">groups</span> 
+  </div>
+  <div class="web-info">
+    <h2>Servidor Web</h2>
+    <p>Usuarios registrados: <span id="webUsers">Cargando...</span></p>
+    <span class="material-icons-sharp">groups</span> 
+  </div>
+</div>
+
+<script>
+  const discordUserCount = <%= _client.users.cache.size %>;
+  const webUserCount = 129
+
+  const userSectionDiscord = document.getElementById('discordUsers');
+  const userSectionWeb = document.getElementById('webUsers');
+
+  userSectionDiscord.innerHTML = discordUserCount;
+  userSectionWeb.innerHTML = webUserCount;
+</script>
+
       <div class="server-card">
       <h2>Información del Servidor</h2>
               <div class="server-frame">
@@ -44,6 +56,5 @@
     </div>
     <script src="/js/minecraft/script.js"></script>
     <script src="/js/minecraft/list.js"></script>
-    <script src="/js/minecraft/servers.js"></script>
   </body>
 </html>
