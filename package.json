@@ -12,6 +12,7 @@
         "bcryptjs": "^2.4.3",
         "canvacord": "^5.4.10",
         "canvas": "^2.11.0",
+        "captcha-canvas": "^3.2.1",
         "colors": "^1.4.0",
         "common-tags": "^1.8.2",
         "cookie-parser": "^1.4.6",
