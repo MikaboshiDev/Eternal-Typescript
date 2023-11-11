@@ -7,7 +7,6 @@ import DB from '../../../models/tickets/system';
 import { logWithLabel } from '../../../utils/console';
 
 module.exports = {
-  ticketMod: true,
   id: 'modal_ticket_delete',
   async execute(interaction: any, client: any) {
     const { options, channel, guild, member } = interaction;
@@ -117,7 +116,9 @@ module.exports = {
             components: [botones],
             files: [transcript],
           })
-          .catch(() => {});
+          .catch(() => {
+            logWithLabel('discord', `The user ${creador.tag} has blocked me`);
+          });
       });
 
     interaction.reply({ embeds: [embed] });
