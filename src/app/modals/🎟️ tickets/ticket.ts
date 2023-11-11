@@ -103,7 +103,6 @@ module.exports = {
             ].join('\n')
           )
           .setColor('Random')
-          .setImage(client.config.img.tickets.one)
           .setFooter({
             text: `Support Server and Server Services`,
             iconURL: interaction.user.avatarURL({ forceStatic: true }),

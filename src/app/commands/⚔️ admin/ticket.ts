@@ -9,7 +9,7 @@ import {
 } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
 import { Command } from '../../../class/builders';
-import DB from '../../../models/tickets/system';
+import DB from '../../../models/tickets/setup';
 export default new Command(
   new SlashCommandBuilder()
     .setName('tickets')
@@ -101,7 +101,12 @@ export default new Command(
 
     const channel_text = guild?.channels?.cache.get(channel?.id as any);
     if (!channel_text)
-      return interaction.reply({ content: `${emojis.error} The channel was not found`, ephemeral: true });
+      return interaction.reply({
+        content: [
+          `${emojis.error} **${interaction.user}**, the channel you mentioned does not exist on the server!`,
+          `please try again later`,
+        ].join('\n'),
+      });
 
     (channel_text as TextChannel)
       .send({ embeds: [embed], components: [selectMenuRow as any] })

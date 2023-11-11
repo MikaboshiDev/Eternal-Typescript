@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 const model = new mongoose.Schema({
   id: { type: String, required: true, unique: true },
   premium: { type: Boolean, default: false },
+  roleMember: { type: String, default: null },
   prefix: { type: String, default: '!' },
   commands: {
     components: { type: Boolean, default: false },

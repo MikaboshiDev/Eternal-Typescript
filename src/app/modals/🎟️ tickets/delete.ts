@@ -14,39 +14,39 @@ module.exports = {
     const embed = new EmbedBuilder();
     const value_razon = interaction.fields.getTextInputValue('modal_delete');
 
-        const ticketSetup = await model.findOne({ GuildID: guild?.id });
-        if (!ticketSetup)
-          return interaction.reply({
-            embeds: [
-              new EmbedBuilder()
-                .setColor('Red')
-                .setTitle('Ticket System')
-                .setDescription(
-                  [
-                    `There is no ticket system set up on the discord server`,
-                    `Verify that the system is installed on the server`,
-                  ].join('\n')
-                ),
-            ],
-            ephemeral: true,
-          });
+    const ticketSetup = await model.findOne({ GuildID: guild?.id });
+    if (!ticketSetup)
+      return interaction.reply({
+        embeds: [
+          new EmbedBuilder()
+            .setColor('Red')
+            .setTitle('Ticket System')
+            .setDescription(
+              [
+                `There is no ticket system set up on the discord server`,
+                `Verify that the system is installed on the server`,
+              ].join('\n')
+            ),
+        ],
+        ephemeral: true,
+      });
 
-        const data = await DB.findOne({ ChannelID: channel.id });
-        if (!data)
-          return interaction.reply({
-            embeds: [
-              new EmbedBuilder()
-                .setColor('Red')
-                .setTitle('Ticket System')
-                .setDescription(
-                  [
-                    `The channel where this button is being executed is not a ticket`,
-                    `Please verify that you are within a ticket`,
-                  ].join('\n')
-                ),
-            ],
-            ephemeral: true,
-          });
+    const data = await DB.findOne({ ChannelID: channel.id });
+    if (!data)
+      return interaction.reply({
+        embeds: [
+          new EmbedBuilder()
+            .setColor('Red')
+            .setTitle('Ticket System')
+            .setDescription(
+              [
+                `The channel where this button is being executed is not a ticket`,
+                `Please verify that you are within a ticket`,
+              ].join('\n')
+            ),
+        ],
+        ephemeral: true,
+      });
 
     if (data.Closed === true) {
       embed

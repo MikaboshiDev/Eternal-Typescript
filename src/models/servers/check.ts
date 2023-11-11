@@ -1,13 +1,8 @@
 import { model, Schema, Document } from 'mongoose';
-interface CaptchaCode extends Document {
-  Id: string;
-  Code: string;
-}
-
-const CaptchaCodeSchema = new Schema<CaptchaCode>({
+const CaptchaCodeSchema = new Schema({
   Id: String,
   Code: String,
 });
 
-const CaptchaCodeModel = model<CaptchaCode>('codes-capcha', CaptchaCodeSchema);
+const CaptchaCodeModel = model('codes-capcha', CaptchaCodeSchema);
 export default CaptchaCodeModel;
