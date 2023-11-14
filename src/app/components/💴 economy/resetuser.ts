@@ -1,4 +1,4 @@
-import { ChannelType, EmbedBuilder, Message } from 'discord.js';
+import { Message } from 'discord.js';
 import emojis from '../../../../config/emojis.json';
 import model from '../../../models/servers/economy';
 
@@ -9,7 +9,7 @@ module.exports = {
   category: 'economy',
   owner: true,
   premium: false,
-  cooldown: 5000,
+  cooldown: 20,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const user = message.mentions.users.first() || message.author;
     if (!user)

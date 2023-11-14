@@ -1,15 +1,6 @@
-import {
-  ActionRowBuilder,
-  ButtonBuilder,
-  ButtonStyle,
-  ChannelType,
-  EmbedBuilder,
-  GuildMember,
-  Message,
-} from 'discord.js';
-import emojis from '../../../../config/emojis.json';
-import model from '../../../models/servers/economy';
+import { Message } from 'discord.js';
 import { pagination } from '../../../functions/tools/pagination';
+import model from '../../../models/servers/economy';
 
 const medallas: { [key: number]: string | undefined } = {
   1: '🥇',
@@ -23,7 +14,7 @@ module.exports = {
   aliases: ['leaderboard', 'lb'],
   category: 'economy',
   premium: false,
-  cooldown: 5000,
+  cooldown: 20,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const total = await model.find();
     await message.guild?.members.fetch();

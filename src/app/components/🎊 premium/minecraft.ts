@@ -26,38 +26,51 @@ module.exports = {
                 ].join('\n'),
               });
 
-            const info = `https://api.mojang.com/users/profiles/minecraft/${player}`;
-            const skin = `https://mc-heads.net/body/${player}`;
+            try {
+              const info = `https://api.mojang.com/users/profiles/minecraft/${player}`;
+              const skin = `https://mc-heads.net/body/${player}`;
 
-            const uuid = await fetch(info).then((res) => res.json());
-            if (!uuid.id)
-              return message.channel.send({
-                content: [
-                  `${emojis.error} The player you entered does not exist in the minecraft database!`,
-                  `Example: \`${prefix}skins <player>\``,
-                ].join('\n'),
+              const uuid = await fetch(info).then((res) => res.json());
+              if (!uuid.id)
+                return message.channel.send({
+                  content: [
+                    `${emojis.error} The player you entered does not exist in the minecraft database!`,
+                    `Example: \`${prefix}skins <player>\``,
+                  ].join('\n'),
+                });
+
+              const download = `https://crafatar.com/skins/${uuid.id}`;
+              const embed = new EmbedBuilder()
+                .setFooter({
+                  text: `Request id: ${uuid.id}`,
+                  iconURL: message.author.displayAvatarURL({ forceStatic: true }),
+                })
+                .setAuthor({
+                  name: message.author.tag,
+                  iconURL: message.author.displayAvatarURL({ forceStatic: true }),
+                })
+                .setTimestamp(new Date())
+                .setColor('Green')
+                .setThumbnail(download)
+                .setImage(skin);
+
+              message.channel.send({ embeds: [embed] }).catch(() => {
+                message.channel.send({
+                  content: [
+                    `${emojis.error} An error occurred while getting the skin of the minecraft player!`,
+                    `Example: \`${prefix}skins <player>\``,
+                  ].join('\n'),
+                });
               });
-
-            const download = `https://crafatar.com/skins/${uuid.id}`;
-            const embed = new EmbedBuilder()
-              .setFooter({
-                text: `Request id: ${uuid.id}`,
-                iconURL: message.author.displayAvatarURL({ forceStatic: true }),
-              })
-              .setAuthor({ name: message.author.tag, iconURL: message.author.displayAvatarURL({ forceStatic: true }) })
-              .setTimestamp(new Date())
-              .setColor('Green')
-              .setThumbnail(download)
-              .setImage(skin);
-
-            message.channel.send({ embeds: [embed] }).catch(() => {
+            } catch (e) {
+              logWithLabel('error', `An error occurred while processing the skin of ${args[1]}`);
               message.channel.send({
                 content: [
                   `${emojis.error} An error occurred while getting the skin of the minecraft player!`,
                   `Example: \`${prefix}skins <player>\``,
                 ].join('\n'),
               });
-            });
+            }
           } catch (err) {
             logWithLabel('error', `An error occurred while processing the skin of ${args[1]}`);
             message.channel.send({

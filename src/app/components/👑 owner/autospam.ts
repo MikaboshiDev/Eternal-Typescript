@@ -1,16 +1,13 @@
 import {
   AutoModerationActionType,
   AutoModerationRuleEventType,
-  AutoModerationRuleManager,
   AutoModerationRuleTriggerType,
-  ChannelType,
   EmbedBuilder,
   Message,
 } from 'discord.js';
-import { logWithLabel } from '../../../utils/console';
 import emojis from '../../../../config/emojis.json';
+import { logWithLabel } from '../../../utils/console';
 const Api_Url = 'https://discord.com/api/v10';
-import axios from 'axios';
 
 module.exports = {
   name: 'autospam',
@@ -18,7 +15,7 @@ module.exports = {
   aliases: ['spam'],
   category: 'owner',
   premium: false,
-  cooldown: 5000,
+  cooldown: 20,
   owner: true,
   async execute(client: any, message: Message, args: string[], prefix: any) {
     const channel = message.mentions.channels.first() || message.guild?.channels.cache.get(args[0]) || null;
