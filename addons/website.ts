@@ -60,15 +60,15 @@ module.exports = (client: any) => {
   }
 
   setInterval(() => {
-    logWithLabel("websocket", `Posting stats to ${config.systems.webhook_id}`);
-    if (config.systems.webhhok_id === "" || config.systems.webhook_token === "") {
-        logWithLabel("error", "No webhook id or token found in .env file");
-        return;
+    logWithLabel('websocket', `Posting stats to ${config.systems.webhook_id}`);
+    if (config.systems.webhhok_id === '' || config.systems.webhook_token === '') {
+      logWithLabel('error', 'No webhook id or token found in .env file');
+      return;
     }
 
     if (client.user === null) {
-        logWithLabel('error', 'Client user is null or undefined');
-        return;
+      logWithLabel('error', 'Client user is null or undefined');
+      return;
     }
 
     postStats();

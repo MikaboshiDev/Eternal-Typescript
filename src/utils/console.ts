@@ -23,7 +23,7 @@ type Labels =
   | 'discord'
   | 'addons'
   | 'poru';
-  
+
 const labels: Record<Labels, string> = {
   error: '[ERROR]'.red,
   success: '[SUCCESS]'.green,

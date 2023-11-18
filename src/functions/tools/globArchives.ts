@@ -16,7 +16,7 @@ async function loadFiles(dirName: string) {
     await Promise.all(jsFiles.map(deleteCachedFile));
     return jsFiles;
   } catch (error) {
-    logWithLabel("discord", `Error loading files: ${error}`);
+    logWithLabel('discord', `Error loading files: ${error}`);
     throw error;
   }
 }

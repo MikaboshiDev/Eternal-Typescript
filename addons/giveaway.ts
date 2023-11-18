@@ -14,7 +14,7 @@
 # If you want to know more about the bot, you can visit our website.
 */
 
-import { GiveawaysManager, Giveaway } from 'discord-giveaways'; 
+import { GiveawaysManager, Giveaway } from 'discord-giveaways';
 import giveawayModel from '../src/models/systems/giveaways';
 
 module.exports = (client: any) => {
