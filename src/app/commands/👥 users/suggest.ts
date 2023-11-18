@@ -1,22 +1,10 @@
-import {
-  ActionRowBuilder,
-  EmbedBuilder,
-  ModalBuilder,
-  SlashCommandBuilder,
-  TextInputBuilder,
-  TextInputStyle,
-} from 'discord.js';
-import SuggestionSetup from '../../../models/questions/setups';
-import Suggestions from '../../../models/questions/quest';
-import { logWithLabel } from '../../../utils/console';
-import emojis from '../../../../config/emojis.json';
+import { ActionRowBuilder, ModalBuilder, SlashCommandBuilder, TextInputBuilder, TextInputStyle } from 'discord.js';
+import emojis from '../../../../config/json/emojis.json';
 import { Command } from '../../../class/builders';
+import SuggestionSetup from '../../../models/questions/setups';
 
 export default new Command(
-  new SlashCommandBuilder()
-    .setDMPermission(false)
-    .setName('question')
-    .setDescription('👥 Give a idea for a server'),
+  new SlashCommandBuilder().setDMPermission(false).setName('question').setDescription('👥 Give a idea for a server'),
   async (client, interaction) => {
     const { guild } = interaction;
     const i = interaction;

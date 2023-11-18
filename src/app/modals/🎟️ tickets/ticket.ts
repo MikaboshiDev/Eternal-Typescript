@@ -1,5 +1,5 @@
 import Discord, { ActionRowBuilder, ButtonStyle, ChannelType, EmbedBuilder } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 import model from '../../../models/tickets/setup';
 import DB from '../../../models/tickets/system';
 

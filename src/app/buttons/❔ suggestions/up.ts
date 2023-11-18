@@ -1,7 +1,7 @@
-import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction } from 'discord.js';
-import SuggestionSetup from '../../../models/questions/setups';
+import { ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
+import emojis from '../../../../config/json/emojis.json';
 import Suggestions from '../../../models/questions/quest';
-import emojis from '../../../../config/emojis.json';
+import SuggestionSetup from '../../../models/questions/setups';
 
 module.exports = {
   id: 'Upvote',

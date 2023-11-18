@@ -1,5 +1,10 @@
-import emojis from "../../../../config/emojis.json";
-import { EmbedBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, ModalBuilder, ChatInputCommandInteraction } from "discord.js";
+import {
+  ActionRowBuilder,
+  ChatInputCommandInteraction,
+  ModalBuilder,
+  TextInputBuilder,
+  TextInputStyle,
+} from 'discord.js';
 
 module.exports = {
   id: 'Decline',

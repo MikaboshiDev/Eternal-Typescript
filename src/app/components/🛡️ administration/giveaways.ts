@@ -1,6 +1,6 @@
 import { ChannelType, EmbedBuilder, Message, TextChannel } from 'discord.js';
 import ms from 'ms';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 
 module.exports = {
   name: 'giveaways',

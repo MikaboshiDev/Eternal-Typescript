@@ -1,5 +1,5 @@
 import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 import { Command } from '../../../class/builders';
 
 export default new Command(

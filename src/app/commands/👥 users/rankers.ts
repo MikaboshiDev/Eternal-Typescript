@@ -1,18 +1,10 @@
-import {
-  AttachmentBuilder,
-  SlashCommandBuilder,
-  ChannelType,
-  EmbedBuilder,
-  PermissionFlagsBits,
-  ChatInputCommandInteraction,
-  GuildMember,
-  PermissionResolvable,
-} from 'discord.js';
-import { Rank } from 'canvacord';
-import User from '../../../models/ranking/schema';
+const url =
+  'https://wallpapertag.com/wallpaper/full/e/c/6/477550-most-popular-hubble-ultra-deep-field-wallpaper-1920x1200.jpg';
+import { AttachmentBuilder, SlashCommandBuilder, EmbedBuilder, GuildMember } from 'discord.js';
 import ChannelDB from '../../../models/ranking/channel';
-import { logWithLabel } from '../../../utils/console';
+import User from '../../../models/ranking/schema';
 import { Command } from '../../../class/builders';
+import { Rank } from 'canvacord';
 
 export default new Command(
   new SlashCommandBuilder()
@@ -74,11 +66,7 @@ export default new Command(
             .setStatus('online')
             .setProgressBar('#75ff7e', 'COLOR')
             .setUsername((member as GuildMember).user.username)
-            .setBackground(
-              'IMAGE',
-              channelDBS?.image ||
-                'https://wallpapertag.com/wallpaper/full/e/c/6/477550-most-popular-hubble-ultra-deep-field-wallpaper-1920x1200.jpg'
-            );
+            .setBackground('IMAGE', channelDBS?.image || url);
 
           rank.build().then((data) => {
             interaction.reply({

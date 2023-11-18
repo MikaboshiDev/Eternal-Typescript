@@ -1,10 +1,10 @@
-import { Client, EmbedBuilder, EmojiIdentifierResolvable, Message, PermissionFlagsBits } from 'discord.js';
-import userGuildDatas from '../src/models/counter/userGuild';
+import { Client, EmojiIdentifierResolvable, Message, PermissionFlagsBits } from 'discord.js';
+import emojis from '../config/json/emojis.json';
+import botDatas from '../src/models/counter/bot';
 import guildDatas from '../src/models/counter/guild';
 import userDatas from '../src/models/counter/user';
-import botDatas from '../src/models/counter/bot';
+import userGuildDatas from '../src/models/counter/userGuild';
 import { filterContent } from './counter/filter';
-import emojis from '../config/emojis.json';
 
 module.exports = (client: Client) => {
   client.on('messageCreate', async (message: Message) => {
@@ -123,7 +123,7 @@ module.exports = (client: Client) => {
         content: [
           `${emojis.error} You can't count two numbers in a raw.`,
           `You can use saves to continue counting. See /rules.`,
-        ].join("\n")
+        ].join('\n'),
       });
 
       setTimeout(() => {

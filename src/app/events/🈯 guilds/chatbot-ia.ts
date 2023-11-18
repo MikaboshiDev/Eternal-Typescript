@@ -1,9 +1,10 @@
 import { Message } from 'discord.js';
 import OpenAI from 'openai';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 import { Event } from '../../../class/builders';
 import model from '../../../models/guild';
 import { logWithLabel } from '../../../utils/console';
+import { config } from '../../../utils/config';
 
 export default new Event('messageCreate', async (message: Message) => {
   try {
@@ -15,7 +16,7 @@ export default new Event('messageCreate', async (message: Message) => {
     if (message.channel.id !== data.channels?.chatbot?.channel) return;
 
     const openai = new OpenAI({
-      apiKey: process.env.APIKEY,
+      apiKey: config.general.apikey,
     });
 
     const chatCompletion = await openai.chat.completions.create({

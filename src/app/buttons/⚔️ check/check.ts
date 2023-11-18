@@ -1,3 +1,4 @@
+import { Captcha } from 'captcha-canvas';
 import {
   ActionRowBuilder,
   AttachmentBuilder,
@@ -5,11 +6,10 @@ import {
   ButtonStyle,
   ChatInputCommandInteraction,
   EmbedBuilder,
+  GuildMember,
 } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 import model from '../../../models/servers/check';
-import { Captcha } from 'captcha-canvas';
-import { GuildMember } from 'discord.js';
 module.exports = {
   id: 'verify',
   async execute(interaction: ChatInputCommandInteraction, client: any) {
@@ -43,8 +43,8 @@ module.exports = {
     if (UsersCode && UsersCode.Code === 'vedifed') {
       interaction.reply({
         content: [
-            `${emojis.error} You are already verified!`,
-            `If you want to verify another account, please contact the server staff.`,
+          `${emojis.error} You are already verified!`,
+          `If you want to verify another account, please contact the server staff.`,
         ].join('\n'),
         ephemeral: true,
       });

@@ -1,5 +1,5 @@
 import { EmbedBuilder } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 import { Event } from '../../../class/builders';
 import { Buttons } from '../../../interface/buttons';
 import { client } from '../../../shulker';
@@ -15,7 +15,7 @@ export default new Event('interactionCreate', async (interaction: any) => {
   const button: Buttons = client.buttons.get(interaction.customId) as Buttons;
   if (!button || button === undefined) return;
 
-  if (button.owner && interaction.user.id !== process.env.OWNERID)
+  if (button.owner && interaction.user.id !== client.config.dashboard.owner_id)
     return interaction.reply({
       embeds: [
         embed.setDescription(

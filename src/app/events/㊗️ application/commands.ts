@@ -1,5 +1,5 @@
 import { EmbedBuilder } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 import { Event } from '../../../class/builders';
 import { client } from '../../../shulker';
 const cooldowns = new Map();
@@ -15,7 +15,7 @@ export default new Event('interactionCreate', async (interaction) => {
     .setThumbnail(client.user?.displayAvatarURL() ?? '')
     .setColor('Red');
 
-  if (command.options?.owner && interaction.user.id !== process.env.OWNERID)
+  if (command.options?.owner && interaction.user.id !== client.config.dashboard.owner_id)
     return interaction.reply({
       embeds: [
         embed.setDescription(

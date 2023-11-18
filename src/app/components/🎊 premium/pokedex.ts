@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, Message } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 import { logWithLabel } from '../../../utils/console';
 
 module.exports = {

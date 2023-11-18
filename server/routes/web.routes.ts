@@ -56,7 +56,7 @@ router.get('/error', (req: Request, res: Response) => {
 router.get('/dashboard', authInspection, async (req: Request, res: Response) => {
   try {
     const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
-    const reviews = client.channels.cache.get(process.env.CHANNELREVIEWS!);
+    const reviews = client.channels.cache.get(client.config.api_client.channel_reviews!);
 
     if (!reviews) return res.send(`<script>alert('Channel not found');</script>`);
     if (!reviews.isTextBased()) return res.send(`<script>alert('Channel is not text based');</script>`);
@@ -95,7 +95,7 @@ router.get('/products', authInspection, async (req: Request, res: Response) => {
   try {
     const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
     const products = await ProductModel.find().sort({ createdAt: -1 }).limit(20);
-    const reviews = client.channels.cache.get(process.env.CHANNELREVIEWS!);
+    const reviews = client.channels.cache.get(client.config.api_client.channel_reviews!);
 
     if (!reviews) return res.send(`<script>alert('Channel not found');</script>`);
     if (!reviews.isTextBased()) return res.send(`<script>alert('Channel is not text based');</script>`);
@@ -132,7 +132,7 @@ router.get('/products', authInspection, async (req: Request, res: Response) => {
 router.get('/add-product', authInspection, devWebMiddleware, async (req: Request, res: Response) => {
   try {
     const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
-    const reviews = client.channels.cache.get(process.env.CHANNELREVIEWS!);
+    const reviews = client.channels.cache.get(client.config.api_client.channel_reviews!);
 
     if (!reviews) return res.send(`<script>alert('Channel not found');</script>`);
     if (!reviews.isTextBased()) return res.send(`<script>alert('Channel is not text based');</script>`);
@@ -168,7 +168,7 @@ router.get('/add-product', authInspection, devWebMiddleware, async (req: Request
 router.get('/analytics', authInspection, devWebMiddleware, async (req: Request, res: Response) => {
   try {
     const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
-    const reviews = client.channels.cache.get(process.env.CHANNELREVIEWS!);
+    const reviews = client.channels.cache.get(client.config.api_client.channel_reviews!);
 
     if (!reviews) return res.send(`<script>alert('Channel not found');</script>`);
     if (!reviews.isTextBased()) return res.send(`<script>alert('Channel is not text based');</script>`);
@@ -228,7 +228,7 @@ router.get('/analytics', authInspection, devWebMiddleware, async (req: Request, 
 router.get('/policies', authInspection, async (req: Request, res: Response) => {
   try {
     const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
-    const reviews = client.channels.cache.get(process.env.CHANNELREVIEWS!);
+    const reviews = client.channels.cache.get(client.config.api_client.channel_reviews!);
 
     if (!reviews) return res.send(`<script>alert('Channel not found');</script>`);
     if (!reviews.isTextBased()) return res.send(`<script>alert('Channel is not text based');</script>`);
@@ -264,7 +264,7 @@ router.get('/policies', authInspection, async (req: Request, res: Response) => {
 
 router.get('/aplications', authInspection, async (req: Request, res: Response) => {
   const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
-  const reviews = client.channels.cache.get(process.env.CHANNELREVIEWS!);
+  const reviews = client.channels.cache.get(client.config.api_client.channel_reviews!);
 
   if (!reviews) return res.send(`<script>alert('Channel not found');</script>`);
   if (!reviews.isTextBased()) return res.send(`<script>alert('Channel is not text based');</script>`);
@@ -309,12 +309,12 @@ router.get('/aplications', authInspection, async (req: Request, res: Response) =
 
 router.get('/economy', authInspection, async (req: Request, res: Response) => {
   const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
-  const reviews = client.channels.cache.get(process.env.CHANNELREVIEWS!);
+  const reviews = client.channels.cache.get(client.config.api_client.channel_reviews!);
 
   if (!reviews) return res.send(`<script>alert('Channel not found');</script>`);
   if (!reviews.isTextBased()) return res.send(`<script>alert('Channel is not text based');</script>`);
   const msgReviews = await reviews?.messages.fetch({ limit: 5 });
-  const guild = client.guilds.cache.get(process.env.GUILDID!);
+  const guild = client.guilds.cache.get(client.config.general.guild_id!);
   const total = await user.find();
   const userData = total.map((user) => {
     const member = guild?.members.cache.get(user.userID!);
@@ -360,7 +360,7 @@ router.get('/economy', authInspection, async (req: Request, res: Response) => {
 
 router.get('/cdn', authInspection, customerWebMiddleware, async (req: Request, res: Response) => {
   const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
-  const reviews = client.channels.cache.get(process.env.CHANNELREVIEWS!);
+  const reviews = client.channels.cache.get(client.config.api_client.channel_reviews!);
 
   if (!reviews) return res.send(`<script>alert('Channel not found');</script>`);
   if (!reviews.isTextBased()) return res.send(`<script>alert('Channel is not text based');</script>`);
@@ -407,12 +407,12 @@ router.get('/cdn', authInspection, customerWebMiddleware, async (req: Request, r
 
 router.get('/notifications', authInspection, devWebMiddleware, async (req: Request, res: Response) => {
   const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
-  const reviews = client.channels.cache.get(process.env.CHANNELREVIEWS!);
+  const reviews = client.channels.cache.get(client.config.api_client.channel_reviews!);
 
   if (!reviews) return res.send(`<script>alert('Channel not found');</script>`);
   if (!reviews.isTextBased()) return res.send(`<script>alert('Channel is not text based');</script>`);
   const msgReviews = await reviews?.messages.fetch({ limit: 5 });
-  const channel = client.channels.cache.get(process.env.CHANNELID!);
+  const channel = client.channels.cache.get(client.config.dashboard.channel_id!);
   if (!channel) return res.send(`<script>alert('Channel not found');</script>`);
   if (!channel.isTextBased()) return res.send(`<script>alert('Channel is not text based');</script>`);
 
@@ -467,7 +467,7 @@ router.get('/notifications', authInspection, devWebMiddleware, async (req: Reque
 
 router.get('/commands', authInspection, async (req: Request, res: Response) => {
   const messages = await MsgModel.find().sort({ createdAt: -1 }).limit(4);
-  const reviews = client.channels.cache.get(process.env.CHANNELREVIEWS!);
+  const reviews = client.channels.cache.get(client.config.api_client.channel_reviews!);
 
   if (!reviews) return res.send(`<script>alert('Channel not found');</script>`);
   if (!reviews.isTextBased()) return res.send(`<script>alert('Channel is not text based');</script>`);

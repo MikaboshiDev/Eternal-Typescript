@@ -22,6 +22,8 @@ import { DiscordTogether } from 'discord-together';
 import { Command } from '../class/builders';
 import paypal from 'paypal-rest-sdk';
 import db from './mongoose';
+import YAML from 'yaml';
+import { readFileSync } from 'fs';
 
 export class Manager extends Client {
   public categories: Collection<string, string[]> = new Collection();
@@ -36,6 +38,7 @@ export class Manager extends Client {
   menus: Collection<unknown, unknown>;
   paypal: typeof paypal;
   giveawaysManager: any;
+  config: any;
   constructor() {
     super({
       failIfNotExists: false,
@@ -73,10 +76,11 @@ export class Manager extends Client {
         Partials.ThreadMember,
       ],
     });
+    this.config = YAML.parse(readFileSync('./config/config.yml', 'utf8'));
     paypal.configure({
-      mode: process.env.PAYPALMODE!,
-      client_id: process.env.paypal_client_id!,
-      client_secret: process.env.PAYPAL_CLIENTSECRET!,
+      mode: this.config.paypal.mode,
+      client_id: this.config.paypal.client_id,
+      client_secret: this.config.paypal.client_secret,
     });
     this.discordTogether = new DiscordTogether(this);
     this.voiceGenerator = new Collection();
@@ -96,7 +100,7 @@ export class Manager extends Client {
   public async start() {
     load();
     ensureConsole();
-    await super.login(process.env.TOKEN!);
+    await super.login(this.config.general.token);
     await components(this);
     await addons(this);
     await deploy();
@@ -106,7 +110,7 @@ export class Manager extends Client {
     await menus(this);
 
     const express = new ExpressServer();
-    const port = process.env.PORT!;
+    const port = this.config.api_client.port;
     express.start(port ? parseInt(port) : 3000);
     db();
   }

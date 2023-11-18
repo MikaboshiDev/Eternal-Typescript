@@ -85,7 +85,7 @@ const deleteProduct = async (req: Request, res: Response) => {
 };
 
 const recomendProduct = async (req: Request, res: Response) => {
-  const channel = client.channels.cache.get(process.env.CHANNELWEB!);
+  const channel = client.channels.cache.get(client.config.api_client.channel_web!);
   if (!channel?.isTextBased()) return res.status(404).json({ message: 'NOT_FOUND' });
 
   channel

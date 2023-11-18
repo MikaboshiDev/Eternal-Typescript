@@ -1,5 +1,5 @@
-import { Embed, EmbedBuilder, Message } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
+import { EmbedBuilder, Message } from 'discord.js';
+import emojis from '../../../../config/json/emojis.json';
 import { logWithLabel } from '../../../utils/console';
 
 module.exports = {
@@ -52,71 +52,72 @@ module.exports = {
           });
         }
         break;
-      case 'recode': {
-        if (message.attachments.size === 0)
-          return message.channel.send({
-            content: [
-              `${emojis.error} You must attach a QR code image to recode!`,
-              `Example: \`${prefix}qrcode recode\``,
-            ].join('\n'),
-          });
+      case 'recode':
+        {
+          if (message.attachments.size === 0)
+            return message.channel.send({
+              content: [
+                `${emojis.error} You must attach a QR code image to recode!`,
+                `Example: \`${prefix}qrcode recode\``,
+              ].join('\n'),
+            });
 
-        const attachment_URL = message.attachments.first()?.url;
-        if (!attachment_URL)
-          return message.channel.send({
-            content: [
-              `${emojis.error} The attached file is not a valid QR code image!`,
-              `Example: \`${prefix}qrcode recode\``,
-            ].join('\n'),
-          });
+          const attachment_URL = message.attachments.first()?.url;
+          if (!attachment_URL)
+            return message.channel.send({
+              content: [
+                `${emojis.error} The attached file is not a valid QR code image!`,
+                `Example: \`${prefix}qrcode recode\``,
+              ].join('\n'),
+            });
 
-        const encoded_URL = encodeURIComponent(attachment_URL);
-        const QR_URL = `https://api.qrserver.com/v1/read-qr-code/?fileurl=${encoded_URL}&outputformat=json`;
+          const encoded_URL = encodeURIComponent(attachment_URL);
+          const QR_URL = `https://api.qrserver.com/v1/read-qr-code/?fileurl=${encoded_URL}&outputformat=json`;
 
-        await fetch(QR_URL)
-          .then((response) => response.json())
-          .then((json) => {
-            if (json[0].symbol[0].data === null)
-              return message.reply({
-                content: [
-                  `${emojis.error} The attached file is not a valid QR code image!`,
-                  `Example: \`${prefix}qrcode recode\``,
-                ].join('\n'),
-              });
+          await fetch(QR_URL)
+            .then((response) => response.json())
+            .then((json) => {
+              if (json[0].symbol[0].data === null)
+                return message.reply({
+                  content: [
+                    `${emojis.error} The attached file is not a valid QR code image!`,
+                    `Example: \`${prefix}qrcode recode\``,
+                  ].join('\n'),
+                });
 
-            if (json[0].symbol[0].data.length >= 1024)
-              return message.reply({
-                content: [
-                  `${emojis.error} The text of the QR code is too long to send in a message!`,
-                  `Example: \`${prefix}qrcode recode\``,
-                ].join('\n'),
-              });
+              if (json[0].symbol[0].data.length >= 1024)
+                return message.reply({
+                  content: [
+                    `${emojis.error} The text of the QR code is too long to send in a message!`,
+                    `Example: \`${prefix}qrcode recode\``,
+                  ].join('\n'),
+                });
 
-            const QRDecodeEmbed = new EmbedBuilder()
-              .addFields({
-                name: '**Results:**',
-                value: `${json[0].symbol[0].data}`,
-              })
-              .setColor('#7289DA')
-              .setThumbnail(attachment_URL)
-              .setTimestamp()
-              .setFooter({
-                text: message.author.tag,
-                iconURL: message.author.displayAvatarURL({ forceStatic: true }),
-              });
+              const QRDecodeEmbed = new EmbedBuilder()
+                .addFields({
+                  name: '**Results:**',
+                  value: `${json[0].symbol[0].data}`,
+                })
+                .setColor('#7289DA')
+                .setThumbnail(attachment_URL)
+                .setTimestamp()
+                .setFooter({
+                  text: message.author.tag,
+                  iconURL: message.author.displayAvatarURL({ forceStatic: true }),
+                });
 
-            message.channel.send({ embeds: [QRDecodeEmbed] }).catch(() => {
-              logWithLabel('error', 'An error occurred while decoding the QR code!');
-              message.channel.send({
-                content: [
-                  `${emojis.error} An error occurred while decoding the QR code!`,
-                  `Example: \`${prefix}qrcode recode\``,
-                ].join('\n'),
+              message.channel.send({ embeds: [QRDecodeEmbed] }).catch(() => {
+                logWithLabel('error', 'An error occurred while decoding the QR code!');
+                message.channel.send({
+                  content: [
+                    `${emojis.error} An error occurred while decoding the QR code!`,
+                    `Example: \`${prefix}qrcode recode\``,
+                  ].join('\n'),
+                });
               });
             });
-          });
-      }
-      break;
+        }
+        break;
     }
   },
 };

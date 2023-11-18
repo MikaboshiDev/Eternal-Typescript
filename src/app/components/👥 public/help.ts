@@ -7,7 +7,7 @@ import {
   StringSelectMenuBuilder,
 } from 'discord.js';
 import { readdirSync } from 'fs';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 import packages from '../../../../package.json';
 module.exports = {
   name: 'help',

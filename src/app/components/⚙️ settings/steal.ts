@@ -1,7 +1,7 @@
-import { ChannelType, EmbedBuilder, Message, MessageReaction, User, GuildEmoji } from 'discord.js';
-import { logWithLabel } from '../../../utils/console';
-import emojis from '../../../../config/emojis.json';
 import axios from 'axios';
+import { EmbedBuilder, GuildEmoji, Message, MessageReaction, User } from 'discord.js';
+import emojis from '../../../../config/json/emojis.json';
+import { logWithLabel } from '../../../utils/console';
 
 module.exports = {
   name: 'steal',

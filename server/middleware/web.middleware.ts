@@ -13,7 +13,7 @@ interface User {
 }
 
 const checkGuildAndMember = (req: Request, res: Response, next: NextFunction, requiredRoleId: string) => {
-  const guild = client.guilds.cache.get(process.env.GUILDID!);
+  const guild = client.guilds.cache.get(client.config.general.guild_id!);
   if (!guild) return res.send(`<script>alert('Guild not found!');</script>`);
   const member = guild?.members.cache.get((req.user as User).id);
   if (!member) return res.send(`<script>alert('Member not found!');</script>`);
@@ -23,11 +23,11 @@ const checkGuildAndMember = (req: Request, res: Response, next: NextFunction, re
 };
 
 const devWebMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  checkGuildAndMember(req, res, next, process.env.DEVELOPERID!);
+  checkGuildAndMember(req, res, next, client.config.dashboard.developer_id!);
 };
 
 const customerWebMiddleware = (req: Request, res: Response, next: NextFunction) => {
-  checkGuildAndMember(req, res, next, process.env.CUSTOMERSID!);
+  checkGuildAndMember(req, res, next, client.config.dashboard.customer_id!);
 };
 
 export { customerWebMiddleware, devWebMiddleware };

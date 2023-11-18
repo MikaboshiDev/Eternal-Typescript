@@ -7,7 +7,7 @@ import {
   StringSelectMenuBuilder,
   TextChannel,
 } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 import { Command } from '../../../class/builders';
 import DB from '../../../models/tickets/setup';
 export default new Command(

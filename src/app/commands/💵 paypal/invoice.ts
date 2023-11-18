@@ -39,8 +39,8 @@ export default new Command(
 
     let invoiceObject = {
       merchant_info: {
-        email: process.env.email_paypal,
-        business_name: process.env.paypal_bussines,
+        email: client.config.paypal.email,
+        business_name: client.config.paypal.bussines,
       },
       items: [
         {

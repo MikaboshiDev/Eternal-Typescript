@@ -2,6 +2,7 @@ import { WebhookClient, EmbedBuilder } from 'discord.js';
 import { logWithLabel } from '../src/utils/console';
 import { stripIndent } from 'common-tags';
 import axios from 'axios';
+import { config } from '../src/utils/config';
 
 module.exports = (client: any) => {
   async function postStats() {
@@ -26,8 +27,8 @@ module.exports = (client: any) => {
     request
       .then((response: any) => {
         const webhook = new WebhookClient({
-          id: process.env.WEBHOOK_ID!,
-          token: process.env.WEBHOOK_TOKEN!,
+          id: config.systems.webhook_id!,
+          token: config.systems.webhook_token!,
         });
 
         const data = stripIndent`
@@ -59,8 +60,8 @@ module.exports = (client: any) => {
   }
 
   setInterval(() => {
-    logWithLabel("websocket", `Posting stats to ${process.env.WEBHOOK_ID}`);
-    if (process.env.WEBHOOK_ID === "" || process.env.WEBHOOK_TOKEN === "") {
+    logWithLabel("websocket", `Posting stats to ${config.systems.webhook_id}`);
+    if (config.systems.webhhok_id === "" || config.systems.webhook_token === "") {
         logWithLabel("error", "No webhook id or token found in .env file");
         return;
     }

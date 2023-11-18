@@ -1,7 +1,7 @@
-import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
-import SuggestionSetup from '../../../models/questions/setups';
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } from 'discord.js';
+import emojis from '../../../../config/json/emojis.json';
 import Suggestions from '../../../models/questions/quest';
-import emojis from '../../../../config/emojis.json';
+import SuggestionSetup from '../../../models/questions/setups';
 
 module.exports = {
   id: 'suggestModal',

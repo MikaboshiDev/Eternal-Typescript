@@ -1,6 +1,6 @@
 import canvas, { createCanvas, loadImage } from 'canvas';
 import { AttachmentBuilder, EmbedBuilder, Message } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 import model from '../../../models/servers/economy';
 
 module.exports = {

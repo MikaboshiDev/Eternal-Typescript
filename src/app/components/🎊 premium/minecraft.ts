@@ -1,6 +1,6 @@
-import emojis from '../../../../config/emojis.json';
 import { EmbedBuilder, Message } from 'discord.js';
 import fetch from 'node-fetch';
+import emojis from '../../../../config/json/emojis.json';
 import { logWithLabel } from '../../../utils/console';
 
 module.exports = {

@@ -1,10 +1,9 @@
 import { EmbedBuilder, TextChannel } from 'discord.js';
-import { logWithLabel } from '../../../utils/console';
-import emojis from '../../../../config/emojis.json';
-import { Event } from '../../../class/builders';
-import { client } from '../../../shulker';
-import model from '../../../models/guild';
 import moment from 'moment';
+import emojis from '../../../../config/json/emojis.json';
+import { Event } from '../../../class/builders';
+import model from '../../../models/guild';
+import { client } from '../../../shulker';
 
 export default new Event('voiceStateUpdate', async (oldState, newState) => {
   const data = await model.findOne({ guildId: newState.guild.id });
@@ -12,7 +11,6 @@ export default new Event('voiceStateUpdate', async (oldState, newState) => {
 
   const log_channel = newState.guild.channels.cache.get(data.channels?.log?.channel as string);
   if (!log_channel) return;
-  
 
   const oldChannel = oldState.channel;
   const newChannel = newState.channel;

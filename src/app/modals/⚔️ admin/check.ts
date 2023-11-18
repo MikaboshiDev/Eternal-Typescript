@@ -1,7 +1,7 @@
-import { ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
-import model from '../../../models/servers/check';
+import { EmbedBuilder } from 'discord.js';
+import emojis from '../../../../config/json/emojis.json';
 import guild from '../../../models/guild';
+import model from '../../../models/servers/check';
 
 module.exports = {
   id: 'captcha-model',
@@ -25,13 +25,14 @@ module.exports = {
         ].join('\n'),
       });
 
-    if (dataRole.roleMember == null) return interaction.reply({
+    if (dataRole.roleMember == null)
+      return interaction.reply({
         content: [
-            `${emojis.error} **${interaction.member.user.username}**, the server does not have a role to assign!`,
-            `please try again later`,
+          `${emojis.error} **${interaction.member.user.username}**, the server does not have a role to assign!`,
+          `please try again later`,
         ].join('\n'),
-    }); 
-    
+      });
+
     const UserID = UsersCode.Id ? (UsersCode.Id as string) : null;
     if (UserID !== interaction.member.id)
       return interaction.reply({

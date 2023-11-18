@@ -46,7 +46,8 @@
         "superagent": "^8.1.2",
         "swagger-jsdoc": "^6.2.8",
         "swagger-ui-express": "^5.0.0",
-        "winston": "^3.10.0"
+        "winston": "^3.10.0",
+        "yaml": "^2.3.4"
     },
     "description": "discord bot written in typescript for support in different areas of a discord server",
     "devDependencies": {

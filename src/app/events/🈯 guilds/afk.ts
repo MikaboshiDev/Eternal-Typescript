@@ -1,9 +1,7 @@
-import { logWithLabel } from '../../../utils/console';
-import emojis from '../../../../config/emojis.json';
+import { EmbedBuilder } from 'discord.js';
+import emojis from '../../../../config/json/emojis.json';
 import { Event } from '../../../class/builders';
 import model from '../../../models/servers/afk';
-import { client } from '../../../shulker';
-import { EmbedBuilder } from 'discord.js';
 
 export default new Event('messageCreate', async (message) => {
   try {

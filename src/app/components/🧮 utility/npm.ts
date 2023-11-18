@@ -2,7 +2,7 @@ import { stripIndent } from 'common-tags';
 import { EmbedBuilder, Message } from 'discord.js';
 import moment from 'moment';
 import fetch from 'node-fetch';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 import { logWithLabel } from '../../../utils/console';
 
 module.exports = {

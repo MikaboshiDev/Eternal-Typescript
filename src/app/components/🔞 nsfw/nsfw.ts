@@ -1,7 +1,6 @@
-import { ChannelType, EmbedBuilder, Message } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
-import superagent from 'superagent';
 import akaneko from 'akaneko';
+import { EmbedBuilder, Message } from 'discord.js';
+import superagent from 'superagent';
 import { animeApi } from '../../../functions/tools/httpRequest';
 
 module.exports = {

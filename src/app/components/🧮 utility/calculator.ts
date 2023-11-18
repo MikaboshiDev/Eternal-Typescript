@@ -1,6 +1,6 @@
 import { EmbedBuilder, Message } from 'discord.js';
 import { evaluate } from 'mathjs';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 module.exports = {
   name: 'calculator',
   description: 'Calculator the given expression (e.g. 1 + 1)',

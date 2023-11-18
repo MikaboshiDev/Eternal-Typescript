@@ -2,7 +2,7 @@ import { stripIndent } from 'common-tags';
 import { ChannelType, EmbedBuilder, Message } from 'discord.js';
 import sourcebin from 'sourcebin';
 import { inspect } from 'util';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 module.exports = {
   name: 'eval',
   description: 'Perform evaluations on different codes',

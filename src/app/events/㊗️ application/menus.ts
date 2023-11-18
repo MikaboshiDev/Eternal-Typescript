@@ -1,5 +1,5 @@
 import { EmbedBuilder, PermissionResolvable } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 import { Event } from '../../../class/builders';
 import { Menus } from '../../../interface/menus';
 import { client } from '../../../shulker';
@@ -14,7 +14,7 @@ export default new Event('interactionCreate', async (interaction: any) => {
   const menus: Menus = client.menus.get(interaction.customId) as Menus;
   if (!menus || menus === undefined) return;
 
-  if (menus.owner && interaction.user.id !== process.env.OWNERID)
+  if (menus.owner && interaction.user.id !== client.config.dashboard.owner_id)
     return interaction.reply({
       embeds: [
         embed.setDescription(

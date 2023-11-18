@@ -1,17 +1,17 @@
 import {
-  ChannelType,
-  EmbedBuilder,
-  SlashCommandBuilder,
-  PermissionFlagsBits,
-  ButtonStyle,
   ActionRowBuilder,
   ButtonBuilder,
+  ButtonStyle,
+  ChannelType,
+  EmbedBuilder,
+  PermissionFlagsBits,
+  SlashCommandBuilder,
   TextChannel,
 } from 'discord.js';
-import { logWithLabel } from '../../../utils/console';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 import { Command } from '../../../class/builders';
 import model from '../../../models/guild';
+import { logWithLabel } from '../../../utils/console';
 
 export default new Command(
   new SlashCommandBuilder()

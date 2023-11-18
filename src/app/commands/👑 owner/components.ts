@@ -1,8 +1,8 @@
-import { EmbedBuilder, SlashCommandBuilder, PermissionFlagsBits } from 'discord.js';
-import { logWithLabel } from '../../../utils/console';
-import emojis from '../../../../config/emojis.json';
+import { EmbedBuilder, PermissionFlagsBits, SlashCommandBuilder } from 'discord.js';
+import emojis from '../../../../config/json/emojis.json';
 import { Command } from '../../../class/builders';
 import guild from '../../../models/guild';
+import { logWithLabel } from '../../../utils/console';
 export default new Command(
   new SlashCommandBuilder()
     .setName('components')

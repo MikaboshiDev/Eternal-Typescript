@@ -1,7 +1,7 @@
-import { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction } from "discord.js";
-import SuggestionSetup from '../../../models/questions/setups';
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, EmbedBuilder } from 'discord.js';
+import emojis from '../../../../config/json/emojis.json';
 import Suggestions from '../../../models/questions/quest';
-import emojis from "../../../../config/emojis.json";
+import SuggestionSetup from '../../../models/questions/setups';
 
 module.exports = {
   id: 'Delete',
@@ -71,7 +71,7 @@ module.exports = {
         ephemeral: true,
       });
 
-    if (!member?.roles.cache.find((r: { id: string | undefined; }) => r.id === SuggestionSetupDB.ManagerRole))
+    if (!member?.roles.cache.find((r: { id: string | undefined }) => r.id === SuggestionSetupDB.ManagerRole))
       return i.reply({
         content: [
           `${emojis.error} **Warning:** You don't have the permission to do this!`,

@@ -1,6 +1,6 @@
 import { ChannelType, EmbedBuilder, PermissionFlagsBits, SlashCommandBuilder, TextChannel } from 'discord.js';
 import ms from 'ms';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 import { Command } from '../../../class/builders';
 import { logWithLabel } from '../../../utils/console';
 

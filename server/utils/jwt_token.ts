@@ -1,5 +1,6 @@
 import { sign, verify } from 'jsonwebtoken';
-const secret_jwt = process.env.JWTSECRET || 'token.101010101';
+import { config } from '../../src/utils/config';
+const secret_jwt = config.api_client.jwtsecret || 'token.101010101';
 
 const signToken = (id: string) => {
   const jwt = sign({ id }, secret_jwt, {

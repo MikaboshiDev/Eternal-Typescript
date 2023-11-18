@@ -1,15 +1,9 @@
-import { logWithLabel } from '../src/utils/console';
+import emojis from '../config/json/emojis.json';
 import model from '../src/models/servers/economy';
-import emojis from '../config/emojis.json';
-import client from '../src/models/client';
+import { logWithLabel } from '../src/utils/console';
 
 module.exports = (_client: any) => {
-  _client.balance = async (
-    userid: any,
-    count: number,
-    action: any,
-    message: any
-  ) => {
+  _client.balance = async (userid: any, count: number, action: any, message: any) => {
     try {
       const data = await model.findOne({ userID: userid });
       if (!data || data.money < 0) {

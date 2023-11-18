@@ -1,5 +1,5 @@
 import { EmbedBuilder, Message } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 
 import moment from 'moment';
 module.exports = {

@@ -1,19 +1,18 @@
 import axios from 'axios';
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 
 const Api_Url = 'https://discord.com/api/v10';
 
 module.exports = {
   id: 'premium_automod_modal',
   async execute(interaction: any, client: any) {
-    const value = interaction.fields.getTextInputValue;
-    ('premium_automod_modal_id');
+    const value = interaction.fields.getTextInputValue('premium_automod_modal_id');
     const response = await axios({
       method: 'get',
       url: `${Api_Url}/guilds/${interaction.guild?.id}/auto-moderation/rules/${value}`,
       headers: {
-        Authorization: `Bot ${process.env.TOKEN}`,
+        Authorization: `Bot ${client.config.general.token}`,
         'Content-Type': 'application/json',
       },
     });
@@ -59,7 +58,7 @@ module.exports = {
           method: 'delete',
           url: `${Api_Url}/guilds/${interaction.guild?.id}/auto-moderation/rules/${value}`,
           headers: {
-            Authorization: `Bot ${process.env.TOKEN}`,
+            Authorization: `Bot ${client.config.general.token}`,
             'Content-Type': 'application/json',
           },
         });

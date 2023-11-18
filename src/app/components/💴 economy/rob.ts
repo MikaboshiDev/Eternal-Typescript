@@ -1,5 +1,5 @@
 import { Message } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 import { ensureEconomyExists } from '../../../functions/modules/servers';
 import model from '../../../models/servers/economy';
 

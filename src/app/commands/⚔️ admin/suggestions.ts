@@ -1,5 +1,5 @@
 import { ChannelType, PermissionFlagsBits, SlashCommandBuilder } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 import { Command } from '../../../class/builders';
 import Suggestions from '../../../models/questions/quest';
 import SuggestionSetup from '../../../models/questions/setups';

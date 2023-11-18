@@ -1,8 +1,6 @@
 import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
-import { logWithLabel } from '../../../utils/console';
 import { Command } from '../../../class/builders';
 import guildDatas from '../../../models/counter/guild';
-import emojis from '../../../../config/emojis.json';
 import userDatas from '../../../models/counter/user';
 import userGuildDatas from '../../../models/counter/userGuild';
 export default new Command(
@@ -269,45 +267,65 @@ export default new Command(
           return await interaction.reply({ embeds: [embed] });
         }
         break;
-      case 'server': {
-        const page = interaction.options.getNumber('page');
+      case 'server':
+        {
+          const page = interaction.options.getNumber('page');
 
-        const guildData = await guildDatas.findOne({ id: interaction.guild.id });
+          const guildData = await guildDatas.findOne({ id: interaction.guild.id });
 
-        if (!guildData) {
-          return await interaction.reply('❌ The counting channel is not setuped in this guild.');
-        }
-
-        const userGuildData = await userGuildDatas.find({ server: interaction.guild.id }).sort({ score: -1 });
-        const userGuildScore = await guildDatas.findOne({
-          id: interaction.user.id,
-          server: interaction.guild.id,
-        });
-
-        if (!userGuildData) {
-          return await interaction.reply(`No user available in this server..`);
-        }
-
-        const embed = new EmbedBuilder().setTitle('🏆 Server Leaderboard').setColor('#2f3136').setTimestamp();
-
-        if (userGuildScore) {
-          const rank = userGuildData.findIndex((b) => b.id === interaction.user.id);
-
-          embed.setDescription(`> ***#${rank + 1}*** **${interaction.user.username}**`);
-        }
-
-        if (page) {
-          const pageNum = 10 * page - 10;
-          if (userGuildData.length < pageNum) {
-            return await interaction.reply({ content: `❌ Unable to find page no **${page}**.` });
+          if (!guildData) {
+            return await interaction.reply('❌ The counting channel is not setuped in this guild.');
           }
+
+          const userGuildData = await userGuildDatas.find({ server: interaction.guild.id }).sort({ score: -1 });
+          const userGuildScore = await guildDatas.findOne({
+            id: interaction.user.id,
+            server: interaction.guild.id,
+          });
+
+          if (!userGuildData) {
+            return await interaction.reply(`No user available in this server..`);
+          }
+
+          const embed = new EmbedBuilder().setTitle('🏆 Server Leaderboard').setColor('#2f3136').setTimestamp();
+
+          if (userGuildScore) {
+            const rank = userGuildData.findIndex((b) => b.id === interaction.user.id);
+
+            embed.setDescription(`> ***#${rank + 1}*** **${interaction.user.username}**`);
+          }
+
+          if (page) {
+            const pageNum = 10 * page - 10;
+            if (userGuildData.length < pageNum) {
+              return await interaction.reply({ content: `❌ Unable to find page no **${page}**.` });
+            }
+            if (userGuildData.length >= 11) {
+              embed.setFooter({
+                text: `page ${page} of ${Math.ceil(userGuildData.length / 10)}`,
+              });
+            }
+
+            for (const user of userGuildData.splice(pageNum, 10)) {
+              const index = userGuildData.findIndex((b) => b.id == user.id);
+              embed.addFields({
+                name: `${
+                  index + 1 === 1 ? '🥇' : `${index + 1 === 2 ? '🥈' : `${index + 1 === 3 ? '🥉' : `#${index + 1}`}`}`
+                } ${user.name}`,
+                value: `> Score: ${user.score}`,
+              });
+            }
+
+            return await interaction.reply({ embeds: [embed] });
+          }
+
           if (userGuildData.length >= 11) {
             embed.setFooter({
-              text: `page ${page} of ${Math.ceil(userGuildData.length / 10)}`,
+              text: `page 1 of ${Math.ceil(userGuildData.length / 10)}`,
             });
           }
 
-          for (const user of userGuildData.splice(pageNum, 10)) {
+          for (const user of userGuildData.slice(0, 10)) {
             const index = userGuildData.findIndex((b) => b.id == user.id);
             embed.addFields({
               name: `${
@@ -316,28 +334,9 @@ export default new Command(
               value: `> Score: ${user.score}`,
             });
           }
-
           return await interaction.reply({ embeds: [embed] });
         }
-
-        if (userGuildData.length >= 11) {
-          embed.setFooter({
-            text: `page 1 of ${Math.ceil(userGuildData.length / 10)}`,
-          });
-        }
-
-        for (const user of userGuildData.slice(0, 10)) {
-          const index = userGuildData.findIndex((b) => b.id == user.id);
-          embed.addFields({
-            name: `${
-              index + 1 === 1 ? '🥇' : `${index + 1 === 2 ? '🥈' : `${index + 1 === 3 ? '🥉' : `#${index + 1}`}`}`
-            } ${user.name}`,
-            value: `> Score: ${user.score}`,
-          });
-        }
-        return await interaction.reply({ embeds: [embed] });
-      }
-      break;
+        break;
     }
   }
 );

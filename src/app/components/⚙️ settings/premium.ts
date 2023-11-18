@@ -1,5 +1,5 @@
-import { ChannelType, EmbedBuilder, Message } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
+import { EmbedBuilder, Message } from 'discord.js';
+import emojis from '../../../../config/json/emojis.json';
 import model from '../../../models/guild';
 import { logWithLabel } from '../../../utils/console';
 

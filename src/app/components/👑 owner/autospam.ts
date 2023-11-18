@@ -5,7 +5,7 @@ import {
   EmbedBuilder,
   Message,
 } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 import { logWithLabel } from '../../../utils/console';
 const Api_Url = 'https://discord.com/api/v10';
 

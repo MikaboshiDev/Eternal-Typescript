@@ -1,5 +1,5 @@
 import { EmbedBuilder, Message, User } from 'discord.js';
-import emojis from '../../../config/emojis.json';
+import emojis from '../../../config/json/emojis.json';
 import model from '../../models/servers/economy';
 
 export async function economyData(client: any, message: Message, user: User) {
@@ -26,7 +26,6 @@ export async function economyData(client: any, message: Message, user: User) {
     return sendErrorMessage(message, user, errorMessage);
   }
 }
-
 
 function sendErrorMessage(message: any, user: any, description: any) {
   return message.channel.send({

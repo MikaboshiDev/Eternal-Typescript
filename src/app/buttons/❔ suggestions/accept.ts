@@ -1,11 +1,9 @@
-import emojis from '../../../../config//emojis.json';
 import {
-  EmbedBuilder,
+  ActionRowBuilder,
+  ChatInputCommandInteraction,
+  ModalBuilder,
   TextInputBuilder,
   TextInputStyle,
-  ActionRowBuilder,
-  ModalBuilder,
-  ChatInputCommandInteraction,
 } from 'discord.js';
 
 module.exports = {

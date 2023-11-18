@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { EmbedBuilder, Message } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 
 function replaceParam(string: string, message: { guild: { id: any }; author: { id: any }; channel: { id: any } }) {
   return string
@@ -68,7 +68,7 @@ module.exports = {
             channel: { id: message.channel.id },
           }),
         headers: {
-          Authorization: `Bot ${process.env.TOKEN}`,
+          Authorization: `Bot ${client.config.general.token}`,
           'Content-Type': 'application/json',
         },
         data: body ? JSON.parse(body) : undefined,

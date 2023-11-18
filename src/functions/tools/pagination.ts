@@ -1,5 +1,5 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, MessageComponentInteraction } from 'discord.js';
-import emojis from '../../../config/emojis.json';
+import emojis from '../../../config/json/emojis.json';
 export async function pagination(
   client: any,
   message: any,

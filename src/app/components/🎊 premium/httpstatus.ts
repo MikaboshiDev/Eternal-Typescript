@@ -1,6 +1,6 @@
-import emojis from '../../../../config/emojis.json';
 import { EmbedBuilder, Message } from 'discord.js';
 import { STATUS_CODES } from 'http';
+import emojis from '../../../../config/json/emojis.json';
 
 module.exports = {
   name: 'httpstatus',

@@ -1,5 +1,5 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, TextChannel } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 import { Event } from '../../../class/builders';
 import { findClosestCommand } from '../../../functions/modules/locations';
 import { ensureEconomyExists, ensureGuildExists } from '../../../functions/modules/servers';
@@ -69,7 +69,7 @@ export default new Event('messageCreate', async (message) => {
     .setThumbnail(client.user?.displayAvatarURL() ?? '')
     .setColor('Red');
 
-  if (command.owner && message.author.id !== process.env.OWNERID!)
+  if (command.owner && message.author.id !== client.config.dashboard.owner_id)
     return message.reply({
       embeds: [
         embed.setDescription(

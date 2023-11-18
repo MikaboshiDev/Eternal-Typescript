@@ -1,5 +1,5 @@
 import { EmbedBuilder, InteractionType } from 'discord.js';
-import emojis from '../../../../config/emojis.json';
+import emojis from '../../../../config/json/emojis.json';
 import { Event } from '../../../class/builders';
 import { Modals } from '../../../interface/modals';
 import { client } from '../../../shulker';
@@ -14,7 +14,7 @@ export default new Event('interactionCreate', async (interaction: any) => {
   const modals: Modals = client.modals.get(interaction.customId) as Modals;
   if (!modals || modals === undefined) return;
 
-  if (modals.owner && interaction.user.id !== process.env.OWNERID)
+  if (modals.owner && interaction.user.id !== client.config.dashboard.owner_id)
     return interaction.reply({
       embeds: [
         embed.setDescription(

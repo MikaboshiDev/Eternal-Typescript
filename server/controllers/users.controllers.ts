@@ -4,7 +4,7 @@ import { client } from '../../src/shulker';
 
 const postApelation = async (req: Request, res: Response) => {
   const { user, user_id, razon, images } = req.body;
-  const guild = client.guilds.cache.get(process.env.GUILDID!);
+  const guild = client.guilds.cache.get(client.config.general.guild_id!);
   const member = guild?.members.cache.get(user_id!);
 
   if (!user_id || !user || !razon || !images) return res.status(400).json({ message: 'missing data' });
@@ -16,7 +16,7 @@ const postApelation = async (req: Request, res: Response) => {
     .create({
       name: `apelation-${user_id}`,
       type: ChannelType.GuildText,
-      parent: process.env.APELATIONS,
+      parent: client.config.api_client.apelations!,
       topic: `apelation of ${user_id}`,
       permissionOverwrites: [
         {
@@ -55,14 +55,14 @@ const postApelation = async (req: Request, res: Response) => {
 
 const postReport = async (req: Request, res: Response) => {
   const { username, userid, report } = req.body;
-  const guild = client.guilds.cache.get(process.env.GUILDID!);
+  const guild = client.guilds.cache.get(client.config.general.guild_id!);
   const member = guild?.members.cache.get(userid!);
 
   if (!username || !userid || !report) return res.status(400).json({ message: 'missing data' });
   if (!client.users.cache.get(userid)) return res.status(400).json({ message: 'the user does not exist' });
   if (!guild?.members.cache.get(userid)) return res.status(400).json({ message: 'the user is not in the server' });
 
-  const channel = client.channels.cache.get(process.env.REPORTS!);
+  const channel = client.channels.cache.get(client.config.api_client.reports!);
   if (!channel) return res.status(400).json({ message: 'the channel does not exist' });
   if (channel.isTextBased()) {
     const embed = new EmbedBuilder()
