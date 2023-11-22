@@ -1,0 +1,42 @@
+#Name archive config => config.yml
+
+general:
+  token: ""
+  db: ""
+  guild_id: ""
+  webhook_faild: ""
+  apikey: ""
+
+dashboard:
+  client_id: ""
+  client_secret: ""
+  callback: "http://localhost:3000/auth/login"
+  owner_id: ""
+  #website#
+  channel_id: ""
+  developer_id: ""
+  customer_id: ""
+
+api_client:
+  jwtsecret: ''
+  channel_web: ""
+  channel_reviews: ""
+  port: 3000
+  websocket: 3001
+  #endpoints#
+  apelations: ''
+  reports: ''
+
+paypal:
+  mode: "sandbox"
+  client_id: ''
+  client_secret: ''
+
+  #config#
+  email: ""
+  bussines: ""
+
+systems:
+  rooms_id: ''
+  webhook_id: ''
+  webhook_token: ''
