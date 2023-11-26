@@ -1,8 +1,8 @@
 import { EmbedBuilder } from 'discord.js';
 import emojis from '../../../../config/json/emojis.json';
 import { Event } from '../../../class/builders';
-import { Buttons } from '../../../interface/buttons';
 import { client } from '../../../shulker';
+import { Buttons } from '../../../../global';
 
 export default new Event('interactionCreate', async (interaction: any) => {
   if (!interaction.isButton()) return;

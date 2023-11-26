@@ -1,10 +1,10 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, TextChannel } from 'discord.js';
 import emojis from '../../../../config/json/emojis.json';
 import { Event } from '../../../class/builders';
+import { Command } from '../../../../global';
 import { findClosestCommand } from '../../../functions/modules/locations';
 import { ensureEconomyExists, ensureGuildExists } from '../../../functions/modules/servers';
 import { validCode } from '../../../functions/tools/messagesData';
-import { Command } from '../../../interface/commands';
 import guild from '../../../models/guild';
 import { client } from '../../../shulker';
 

@@ -8,7 +8,7 @@ import {
   MessageCreateOptions,
   MessagePayload,
 } from 'discord.js';
-import { GameOptions, GameRocks } from '../../interface/gamecord';
+import { GameOptions, GameRocks } from '../../../global';
 import { logWithLabel } from '../../utils/console';
 
 const possible_words = [

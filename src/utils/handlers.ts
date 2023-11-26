@@ -34,6 +34,11 @@ async function load() {
       }
     }
   }
+
+      for (const file of readdirSync('./src/structure/poruEvent/').filter((f) => f.endsWith('.ts'))) {
+        const poruEvent = require(`../structure/poruEvent/${file}`).event;
+        client.poru.on(poruEvent.name, poruEvent.run.bind(null, client));
+      }
 }
 
 async function deploy() {

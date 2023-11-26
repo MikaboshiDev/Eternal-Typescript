@@ -39,6 +39,7 @@ export class Manager extends Client {
   paypal: typeof paypal;
   giveawaysManager: any;
   config: any;
+  poru: any;
   constructor() {
     super({
       failIfNotExists: false,

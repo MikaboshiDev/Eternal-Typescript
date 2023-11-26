@@ -1,4 +1,4 @@
-import { Giveaway } from '../../interface/giveaways';
+import { Giveaway } from '../../../global';
 import mongoose, { Mixed } from 'mongoose';
 
 const giveawaySchema = new mongoose.Schema<Giveaway>(
