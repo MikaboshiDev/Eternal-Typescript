@@ -81,12 +81,12 @@
   "homepage": "http://www.night-support.xyz/",
   "keywords": [],
   "license": "ISC",
-  "main": "shards.js",
+  "main": "src/shulker.ts",
   "name": "temple-discord-bot",
   "readme": "README.md",
   "scripts": {
     "build": "tsc",
-    "dev": "ts-node-dev src/shards.ts",
+    "dev": "ts-node-dev src/shulker.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "version": "0.0.1"
