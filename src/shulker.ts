@@ -15,24 +15,17 @@ client.start().then(() => {
 
 const nodes: Node[] = [
   {
-    name: 'Froxy - Server 1',
-    host: '31.220.78.45',
-    port: 7001,
-    password: 'froxymusic',
+    name: '',
+    host: '',
+    port: 3000,
+    password: '',
     secure: false,
-  },
-  {
-    name: 'Froxy - Server 2',
-    host: 'the-net.loves-genshin.lol',
-    port: 2333,
-    password: 'luxurydev.eu',
-    secure: false,
-  },
+  }
 ];
 
 const pluginSpotify: any = new Spotify({
-  clientID: process.env.SPOTIFY_CLIENT_ID,
-  clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+  clientID: client.config.spotify.clientID,
+  clientSecret: client.config.spotify.clientSecret,
 });
 
 const poruOptions: PoruOptions = {
