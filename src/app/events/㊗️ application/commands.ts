@@ -1,7 +1,7 @@
 import { EmbedBuilder } from 'discord.js';
 import emojis from '../../../../config/json/emojis.json';
-import { Event } from '../../../class/builders';
 import { client } from '../../../shulker';
+import { Event } from '../../../structure/builders';
 const cooldowns = new Map();
 
 export default new Event('interactionCreate', async (interaction) => {

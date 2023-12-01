@@ -1,4 +1,4 @@
-import { Event } from '../../../class/builders';
+import { Event } from '../../../structure/builders';
 
 export default new Event('threadCreate', async (thread) => {
   if (thread.joinable && !thread.joined) return await thread.join();

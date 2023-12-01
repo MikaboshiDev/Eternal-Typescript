@@ -1,8 +1,8 @@
 import { EmbedBuilder, Guild, TextChannel } from 'discord.js';
 import emojis from '../../../../config/json/emojis.json';
-import { Event } from '../../../class/builders';
 import model from '../../../models/guild';
 import { client } from '../../../shulker';
+import { Event } from '../../../structure/builders';
 
 export default new Event('inviteCreate', async (invite) => {
   if (!invite.guild) return;

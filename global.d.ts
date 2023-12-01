@@ -1,5 +1,7 @@
 import { PermissionResolvable } from 'discord.js';
 import { Message } from 'discord.js';
+import { JwtPayload } from 'jsonwebtoken';
+import { Request } from 'express';
 import { Manager } from "./src/structure/client";
 
 export interface Buttons {
@@ -146,4 +148,49 @@ export interface Node {
 export interface PoruEvent {
   name: string;
   run: (client: Manager, eventOne?: any, eventTwo?: any) => void;
+}
+
+export interface Auth {
+  email: string;
+  password: string;
+}
+
+export interface User extends Auth {
+  name: string;
+}
+
+export interface Storage {
+  fileName: string;
+  path: string;
+  idUser: string;
+}
+
+export interface RequestExt extends Request {
+  user?: JwtPayload | { id: string };
+}
+
+export interface IUser extends Document {
+  username: string;
+  user_id: number;
+  email: string;
+  products: Array<string>;
+  warnings: number;
+  banned: boolean;
+  data_guild: Array<{
+    username: string;
+    user_id: number;
+    sanctions: Array<string>;
+    commands: Array<string>;
+  }>;
+}
+
+export interface IProduct extends Document {
+  name: string;
+  id: number;
+  price: number;
+  description: string;
+  image: string;
+  category: string;
+  quantity: number;
+  date: Date;
 }

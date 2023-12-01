@@ -35,9 +35,9 @@
               document.body.removeChild(fileInput);
 
               var formData = new FormData();
-              formData.append('file', file); 
+              formData.append('file', file);
 
-              fetch('/upload', {
+              fetch('/config/upload', {
                 method: 'POST',
                 body: formData,
               })
@@ -139,7 +139,7 @@
         const formData = new FormData();
         formData.append('file', file);
 
-        fetch(`/upload`, {
+        fetch(`/config/upload`, {
           method: 'POST',
           body: formData,
         })

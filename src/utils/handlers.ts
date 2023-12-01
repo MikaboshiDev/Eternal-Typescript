@@ -1,11 +1,11 @@
 import { ClientEvents, REST, Routes } from 'discord.js';
 import fs from 'fs';
 import { readdirSync } from 'node:fs';
-import { Command, Event } from '../class/builders';
 import { loadFiles } from '../functions/tools/globArchives';
 import { client } from '../shulker';
-import { logWithLabel } from './console';
+import { Command, Event } from '../structure/builders';
 import { config } from './config';
+import { logWithLabel } from './console';
 
 const pathCommands = './src/app/commands/';
 const pathEvents = './src/app/events/';
@@ -34,11 +34,6 @@ async function load() {
       }
     }
   }
-
-      for (const file of readdirSync('./src/structure/poruEvent/').filter((f) => f.endsWith('.ts'))) {
-        const poruEvent = require(`../structure/poruEvent/${file}`).event;
-        client.poru.on(poruEvent.name, poruEvent.run.bind(null, client));
-      }
 }
 
 async function deploy() {

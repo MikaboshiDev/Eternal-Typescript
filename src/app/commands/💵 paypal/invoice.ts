@@ -1,6 +1,6 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
+import { Command } from '../../../structure/builders';
 import { logWithLabel } from '../../../utils/console';
-import { Command } from '../../../class/builders';
 
 export default new Command(
   new SlashCommandBuilder()

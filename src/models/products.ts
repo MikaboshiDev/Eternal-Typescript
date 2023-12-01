@@ -1,5 +1,5 @@
 import { Schema, model } from 'mongoose';
-import IProduct from '../../server/interface/products.interface';
+import { IProduct } from '../../global';
 const product = new Schema<IProduct>({
   name: { type: String, required: true },
   id: { type: Number, required: true, unique: true },

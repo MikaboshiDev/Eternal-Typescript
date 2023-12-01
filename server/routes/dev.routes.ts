@@ -19,6 +19,7 @@ import { devMiddlware } from '../middleware/auth.middleware';
 import { checkJwt } from '../middleware/session.middlware';
 import { Router } from 'express';
 const router = Router();
+
 /**
  * @openapi
  * /api/v1/status:

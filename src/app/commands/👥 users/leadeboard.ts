@@ -1,8 +1,8 @@
 import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
-import { Command } from '../../../class/builders';
 import guildDatas from '../../../models/counter/guild';
 import userDatas from '../../../models/counter/user';
 import userGuildDatas from '../../../models/counter/userGuild';
+import { Command } from '../../../structure/builders';
 export default new Command(
   new SlashCommandBuilder()
     .setName('leaderboard')

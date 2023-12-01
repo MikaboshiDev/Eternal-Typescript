@@ -1,18 +1,6 @@
-import {
-  AttachmentBuilder,
-  SlashCommandBuilder,
-  ChannelType,
-  EmbedBuilder,
-  PermissionFlagsBits,
-  ChatInputCommandInteraction,
-  GuildMember,
-  PermissionResolvable,
-} from 'discord.js';
-import { Rank } from 'canvacord';
-import User from '../../../models/ranking/schema';
+import { ChannelType, EmbedBuilder, GuildMember, PermissionFlagsBits, SlashCommandBuilder } from 'discord.js';
 import ChannelDB from '../../../models/ranking/channel';
-import { logWithLabel } from '../../../utils/console';
-import { Command } from '../../../class/builders';
+import { Command } from '../../../structure/builders';
 
 export default new Command(
   new SlashCommandBuilder()

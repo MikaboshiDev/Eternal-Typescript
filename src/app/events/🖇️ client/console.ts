@@ -1,6 +1,5 @@
 import { createLogger, format, transports } from 'winston';
-import { logWithLabel } from '../../../utils/console';
-import { Event } from '../../../class/builders';
+import { Event } from '../../../structure/builders';
 
 const rn = new Date();
 const date = `logs-${rn.getMonth() + 1}-${rn.getDate()}-${rn.getFullYear()}.log`;

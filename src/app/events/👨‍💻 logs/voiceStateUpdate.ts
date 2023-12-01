@@ -1,9 +1,9 @@
 import { EmbedBuilder, TextChannel } from 'discord.js';
 import moment from 'moment';
 import emojis from '../../../../config/json/emojis.json';
-import { Event } from '../../../class/builders';
 import model from '../../../models/guild';
 import { client } from '../../../shulker';
+import { Event } from '../../../structure/builders';
 
 export default new Event('voiceStateUpdate', async (oldState, newState) => {
   const data = await model.findOne({ guildId: newState.guild.id });

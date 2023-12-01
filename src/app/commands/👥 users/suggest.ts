@@ -1,7 +1,7 @@
 import { ActionRowBuilder, ModalBuilder, SlashCommandBuilder, TextInputBuilder, TextInputStyle } from 'discord.js';
 import emojis from '../../../../config/json/emojis.json';
-import { Command } from '../../../class/builders';
 import SuggestionSetup from '../../../models/questions/setups';
+import { Command } from '../../../structure/builders';
 
 export default new Command(
   new SlashCommandBuilder().setDMPermission(false).setName('question').setDescription('👥 Give a idea for a server'),

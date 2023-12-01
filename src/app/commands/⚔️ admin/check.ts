@@ -9,8 +9,8 @@ import {
   TextChannel,
 } from 'discord.js';
 import emojis from '../../../../config/json/emojis.json';
-import { Command } from '../../../class/builders';
 import model from '../../../models/guild';
+import { Command } from '../../../structure/builders';
 import { logWithLabel } from '../../../utils/console';
 
 export default new Command(

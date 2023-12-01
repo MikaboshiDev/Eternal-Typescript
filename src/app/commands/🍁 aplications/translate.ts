@@ -1,19 +1,9 @@
-import {
-  EmbedBuilder,
-  SlashCommandBuilder,
-  ContextMenuCommandBuilder,
-  ApplicationCommandType,
-  ColorResolvable,
-} from 'discord.js';
 import translate from '@iamtraction/google-translate';
-import { logWithLabel } from '../../../utils/console';
-import { Command } from '../../../class/builders';
+import { ApplicationCommandType, ContextMenuCommandBuilder, EmbedBuilder } from 'discord.js';
+import { Command } from '../../../structure/builders';
 
 export default new Command(
-  new ContextMenuCommandBuilder()
-    .setName('translate')
-    .setType(ApplicationCommandType.Message)
-    .setDMPermission(false),
+  new ContextMenuCommandBuilder().setName('translate').setType(ApplicationCommandType.Message).setDMPermission(false),
   async (client, interaction: any) => {
     try {
       const { channel, targetId } = interaction;

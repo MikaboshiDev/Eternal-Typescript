@@ -1,10 +1,10 @@
 const url =
   'https://wallpapertag.com/wallpaper/full/e/c/6/477550-most-popular-hubble-ultra-deep-field-wallpaper-1920x1200.jpg';
-import { AttachmentBuilder, SlashCommandBuilder, EmbedBuilder, GuildMember } from 'discord.js';
+import { Rank } from 'canvacord';
+import { AttachmentBuilder, EmbedBuilder, GuildMember, SlashCommandBuilder } from 'discord.js';
 import ChannelDB from '../../../models/ranking/channel';
 import User from '../../../models/ranking/schema';
-import { Command } from '../../../class/builders';
-import { Rank } from 'canvacord';
+import { Command } from '../../../structure/builders';
 
 export default new Command(
   new SlashCommandBuilder()

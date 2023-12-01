@@ -1,6 +1,6 @@
 import { ActivityType } from 'discord.js';
-import { Event } from '../../../class/builders';
 import { client } from '../../../shulker';
+import { Event } from '../../../structure/builders';
 import { logWithLabel } from '../../../utils/console';
 
 const os = require('node:os');

@@ -1,6 +1,6 @@
 import { EmbedBuilder, SlashCommandBuilder } from 'discord.js';
-import { Command } from '../../../class/builders';
 import model from '../../../models/products';
+import { Command } from '../../../structure/builders';
 
 export default new Command(
   new SlashCommandBuilder().setName('products').setDescription('👥 Show all products in the api database'),

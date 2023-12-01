@@ -1,6 +1,5 @@
-import { EmbedBuilder, SlashCommandBuilder, ContextMenuCommandBuilder, ApplicationCommandType } from 'discord.js';
-import { logWithLabel } from '../../../utils/console';
-import { Command } from '../../../class/builders';
+import { ApplicationCommandType, ContextMenuCommandBuilder, EmbedBuilder } from 'discord.js';
+import { Command } from '../../../structure/builders';
 
 export default new Command(
   new ContextMenuCommandBuilder().setName('getAvatar').setType(ApplicationCommandType.User).setDMPermission(false),

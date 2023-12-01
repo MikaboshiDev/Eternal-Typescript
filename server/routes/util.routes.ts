@@ -14,19 +14,19 @@
 # If you want to know more about the bot, you can visit our website.
 */
 
-import model_products from '../../src/models/products';
-import { logWithLabel } from '../../src/utils/console';
 import { Request, Response, Router } from 'express';
-import model from '../../src/models/client';
-import { client } from '../../src/shulker';
-import { upload } from '../utils/upload';
-const router = Router();
-import path from 'path';
 import fs from 'fs';
+import path from 'path';
+import model from '../../src/models/client';
+import model_products from '../../src/models/products';
+import { client } from '../../src/shulker';
+import { logWithLabel } from '../../src/utils/console';
+import { upload } from '../utils/config/upload';
+const router = Router();
 
 router.get('/transcript/:id', (req: Request, res: Response) => {
   const id = req.params.id;
-  const filePath = `./upload/transcripts/ticket-${id}.html`;
+  const filePath = `./config/upload/transcripts/ticket-${id}.html`;
   const fileExist = fs.existsSync(filePath);
   if (!fileExist) return res.send(`Ticket with ID ${id} doesn't exist.`);
   let fileToSend = fs.readFileSync(filePath, 'utf8');
@@ -35,7 +35,7 @@ router.get('/transcript/:id', (req: Request, res: Response) => {
 
 router.get('/transcript/:id/download', (req: Request, res: Response) => {
   const id = req.params.id;
-  const filePath = `./upload/transcripts/ticket-${id}.html`;
+  const filePath = `./config/upload/transcripts/ticket-${id}.html`;
   const fileExist = fs.existsSync(filePath);
   if (!fileExist) return res.send(`Ticket with ID ${id} doesn't exist.`);
   let fileToSend = fs.readFileSync(filePath, 'utf8');
@@ -45,7 +45,7 @@ router.get('/transcript/:id/download', (req: Request, res: Response) => {
 router.get('/download/:file', async (req: Request, res: Response) => {
   try {
     const file = req.params.file;
-    const directoryPath = ['./upload/logs', './upload/archives', './upload/transcripts'];
+    const directoryPath = ['./config/upload/logs', './config/upload/archives', './config/upload/transcripts'];
     let filePath = '';
 
     for (const directory of directoryPath) {
@@ -75,7 +75,7 @@ router.get('/download/:file', async (req: Request, res: Response) => {
 router.delete('/delete/:file', async (req: Request, res: Response) => {
   try {
     const file = req.params.file;
-    const directoryPath = ['./src/logs', './upload/archives', './upload/transcripts'];
+    const directoryPath = ['./src/logs', './config/upload/archives', './config/upload/transcripts'];
     let filePath = '';
 
     for (const directory of directoryPath) {
@@ -164,7 +164,7 @@ router.post('/products/add-product', async (req: Request, res: Response) => {
   }
 });
 
-router.get('/upload', upload.single('fileToUpload'), async (req: Request, res: Response) => {
+router.post('/config/upload', upload.single('fileToUpload'), async (req: Request, res: Response) => {
   if (!req.file) return res.status(400).json({ message: 'BAD_REQUEST' });
   return res.status(200).json({ message: 'OK', data: req.file });
 });

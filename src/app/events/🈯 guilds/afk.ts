@@ -1,7 +1,7 @@
 import { EmbedBuilder } from 'discord.js';
 import emojis from '../../../../config/json/emojis.json';
-import { Event } from '../../../class/builders';
 import model from '../../../models/servers/afk';
+import { Event } from '../../../structure/builders';
 
 export default new Event('messageCreate', async (message) => {
   try {

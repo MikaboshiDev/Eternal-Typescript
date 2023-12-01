@@ -1,8 +1,8 @@
 import { EmbedBuilder, InteractionType } from 'discord.js';
 import emojis from '../../../../config/json/emojis.json';
-import { Event } from '../../../class/builders';
-import { client } from '../../../shulker';
 import { Modals } from '../../../../global';
+import { client } from '../../../shulker';
+import { Event } from '../../../structure/builders';
 
 export default new Event('interactionCreate', async (interaction: any) => {
   if (interaction.type !== InteractionType.ModalSubmit) return;

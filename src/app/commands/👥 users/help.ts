@@ -1,6 +1,6 @@
 import { ActionRowBuilder, EmbedBuilder, SlashCommandBuilder, StringSelectMenuBuilder } from 'discord.js';
-import { Command } from '../../../class/builders';
 import fs from 'fs';
+import { Command } from '../../../structure/builders';
 
 export default new Command(
   new SlashCommandBuilder().setName('help').setDescription('👥 Sends the command list!').setDMPermission(false),

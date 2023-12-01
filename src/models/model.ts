@@ -1,5 +1,5 @@
-import IUser from '../../server/interface/model.interface';
 import mongoose from 'mongoose';
+import { IUser } from '../../global';
 
 const model = new mongoose.Schema({
   username: { type: String, default: '' },

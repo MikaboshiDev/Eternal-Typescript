@@ -1,5 +1,5 @@
-import { Storage } from '../../server/interface/upload.interface';
 import { Schema, Types, model, Model } from 'mongoose';
+import { Storage } from '../../global';
 
 const StorageSchema = new Schema<Storage>(
   {

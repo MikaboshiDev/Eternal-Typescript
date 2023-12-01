@@ -1,5 +1,5 @@
-import { Event } from '../../../class/builders';
 import MsgModel from '../../../models/messages';
+import { Event } from '../../../structure/builders';
 import { config } from '../../../utils/config';
 import { logWithLabel } from '../../../utils/console';
 

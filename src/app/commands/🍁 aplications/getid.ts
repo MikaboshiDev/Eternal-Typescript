@@ -1,6 +1,5 @@
-import { ContextMenuCommandBuilder, EmbedBuilder, SlashCommandBuilder, ApplicationCommandType } from 'discord.js';
-import { logWithLabel } from '../../../utils/console';
-import { Command } from '../../../class/builders';
+import { ApplicationCommandType, ContextMenuCommandBuilder, EmbedBuilder } from 'discord.js';
+import { Command } from '../../../structure/builders';
 
 export default new Command(
   new ContextMenuCommandBuilder().setName('getID').setType(ApplicationCommandType.User).setDMPermission(false),
@@ -14,7 +13,7 @@ export default new Command(
         embed
           .setTitle(`${interaction.targetUser.username}'s ID`)
           .setDescription(`This user's ID is **${targetId}**.`)
-          .setColor("Green")
+          .setColor('Green')
           .setTimestamp(),
       ],
       ephemeral: true,

@@ -42,7 +42,6 @@
     "passport": "^0.6.0",
     "passport-discord": "^0.1.4",
     "paypal-rest-sdk": "^1.8.1",
-    "poru": "^4.2.2",
     "poru-spotify": "^2.0.2",
     "sourcebin": "^5.0.0",
     "superagent": "^8.1.2",

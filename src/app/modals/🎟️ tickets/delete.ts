@@ -125,7 +125,7 @@ module.exports = {
     setTimeout(() => channel.delete().then(() => DB.deleteOne({ ChannelID: channel.id })), 5 * 1000);
     const nombreArchivo = `transcript-${interaction.channel.id}-${data.TicketID}.html`;
     const attachmentURL = transcript.setFile.toString();
-    const rutaGuardar = './upload/transcripts/';
+    const rutaGuardar = './config/upload/transcripts/';
 
     const rutaCompleta = `${rutaGuardar}${nombreArchivo}`;
     axios({

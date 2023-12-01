@@ -173,7 +173,7 @@ router.get('/analytics', authInspection, devWebMiddleware, async (req: Request, 
     if (!reviews) return res.send(`<script>alert('Channel not found');</script>`);
     if (!reviews.isTextBased()) return res.send(`<script>alert('Channel is not text based');</script>`);
     const msgReviews = await reviews?.messages.fetch({ limit: 5 });
-    const directoryPath = './upload/logs';
+    const directoryPath = './config/upload/logs';
     async function getFiles() {
       return new Promise((resolve, reject) => {
         fs.readdir(directoryPath, (err: any, files: any[]) => {
@@ -365,7 +365,7 @@ router.get('/cdn', authInspection, customerWebMiddleware, async (req: Request, r
   if (!reviews) return res.send(`<script>alert('Channel not found');</script>`);
   if (!reviews.isTextBased()) return res.send(`<script>alert('Channel is not text based');</script>`);
   const msgReviews = await reviews?.messages.fetch({ limit: 5 });
-  const path = './upload/archives';
+  const path = './config/upload/archives';
   fs.readdir(path, (err, files) => {
     if (err) return console.error(err);
     const data = files.map((file) => {

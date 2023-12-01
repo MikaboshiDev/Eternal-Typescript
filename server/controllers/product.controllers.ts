@@ -2,12 +2,11 @@ import { EmbedBuilder } from 'discord.js';
 import { Request, Response } from 'express';
 import fs from 'node:fs';
 import path from 'node:path';
+import { RequestExt, Storage } from '../../global';
 import model from '../../src/models/products';
 import { client } from '../../src/shulker';
 import { logWithLabel } from '../../src/utils/console';
-import { RequestExt } from '../interface/req.interface';
-import { Storage } from '../interface/upload.interface';
-import { registerUpload } from '../service/upload.service';
+import { registerUpload } from '../service/config/upload.service';
 
 const getProducts = async (req: Request, res: Response) => {
   const data = await model.find();
@@ -139,7 +138,7 @@ const getFile = async (req: RequestExt, res: Response) => {
 
 const getFiles = async (req: Request, res: Response) => {
   try {
-    const folderPath = './upload';
+    const folderPath = './config/upload';
     fs.readdir(folderPath, (err, files) => {
       if (err) {
         logWithLabel('error', `The folder could not be read: ${err}`);

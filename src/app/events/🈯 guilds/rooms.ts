@@ -1,8 +1,8 @@
 import { ChannelType } from 'discord.js';
-import { Event } from '../../../class/builders';
 import { client } from '../../../shulker';
-import { logWithLabel } from '../../../utils/console';
+import { Event } from '../../../structure/builders';
 import { config } from '../../../utils/config';
+import { logWithLabel } from '../../../utils/console';
 
 export default new Event('voiceStateUpdate', async (oldState, newState) => {
   const { member, guild } = newState;

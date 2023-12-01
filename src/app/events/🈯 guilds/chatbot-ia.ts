@@ -1,10 +1,10 @@
 import { Message } from 'discord.js';
 import OpenAI from 'openai';
 import emojis from '../../../../config/json/emojis.json';
-import { Event } from '../../../class/builders';
 import model from '../../../models/guild';
-import { logWithLabel } from '../../../utils/console';
+import { Event } from '../../../structure/builders';
 import { config } from '../../../utils/config';
+import { logWithLabel } from '../../../utils/console';
 
 export default new Event('messageCreate', async (message: Message) => {
   try {

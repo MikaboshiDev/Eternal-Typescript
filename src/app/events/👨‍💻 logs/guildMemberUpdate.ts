@@ -1,8 +1,6 @@
 import { EmbedBuilder, TextChannel } from 'discord.js';
-import { logWithLabel } from '../../../utils/console';
-import { Event } from '../../../class/builders';
-import { client } from '../../../shulker';
 import model from '../../../models/guild';
+import { Event } from '../../../structure/builders';
 
 export default new Event('guildMemberUpdate', async (oldMember, newMember) => {
   const data = await model.findOne({ guildId: newMember.guild.id });

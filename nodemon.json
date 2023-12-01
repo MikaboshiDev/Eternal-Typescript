@@ -1,5 +1,0 @@
-{
-  "ignore": ["*.tsconfig.json", "**/docs/**", "**/.vscode/**"],
-  "verbose": true,
-  "watch": ["src", "server", "addons", "config", ".gitignore"]
-}

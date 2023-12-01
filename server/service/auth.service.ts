@@ -1,8 +1,7 @@
 import { encrypt, verified } from '../utils/bcrypt';
-import { Auth } from '../interface/auth.interface';
-import { User } from '../interface/user.interface';
 import { signToken } from '../utils/jwt_token';
 import UserModel from '../../src/models/auth';
+import { Auth, User } from '../../global';
 
 const registerNewUser = async ({ email, password, name }: User) => {
   const checkIs = await UserModel.findOne({ email: email });

@@ -1,5 +1,5 @@
-import { Event } from '../../../class/builders';
 import { client } from '../../../shulker';
+import { Event } from '../../../structure/builders';
 
 export default new Event('interactionCreate', async (interaction: any) => {
   if (interaction.isContextMenuCommand()) {

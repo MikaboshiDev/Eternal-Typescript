@@ -1,5 +1,5 @@
 import { ChannelType, EmbedBuilder, SlashCommandBuilder } from 'discord.js';
-import { Command } from '../../../class/builders';
+import { Command } from '../../../structure/builders';
 
 import { stripIndent } from 'common-tags';
 import moment from 'moment';

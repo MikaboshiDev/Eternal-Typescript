@@ -1,7 +1,7 @@
-import multer, { diskStorage } from 'multer';
 import { Request } from 'express';
+import multer, { diskStorage } from 'multer';
 
-const PATH_STORAGE = `${process.cwd()}/upload`;
+const PATH_STORAGE = `${process.cwd()}/config/upload`;
 
 const storage = diskStorage({
   destination(req: Request, file: Express.Multer.File, cb: any) {

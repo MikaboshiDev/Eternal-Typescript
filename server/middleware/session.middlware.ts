@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
-import { RequestExt } from '../interface/req.interface';
 import { logWithLabel } from '../../src/utils/console';
 import { verifyToken } from '../utils/jwt_token';
+import { RequestExt } from '../../global';
 
 const checkJwt = (req: RequestExt, res: Response, next: NextFunction) => {
   try {
