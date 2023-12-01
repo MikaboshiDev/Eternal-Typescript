@@ -1,8 +1,8 @@
-import { Authdelete, loginUser, registerNewUser } from '../service/auth.service';
-import { enviarCorreo } from '../../src/structure/nodemailer';
-import { apiError } from '../../src/utils/errors';
 import { Request, Response } from 'express';
 import model from '../../src/models/model';
+import { Authdelete, loginUser, registerNewUser } from '../service/auth.service';
+import { apiError } from '../utils/errors';
+import { enviarCorreo } from '../utils/nodemailer';
 
 const registerCtrl = async ({ body }: Request, res: Response) => {
   const response = await registerNewUser(body);
@@ -65,4 +65,4 @@ const authLogout = async (req: Request, res: Response) => {
   });
 };
 
-export { registerCtrl, loginCtrl, deleteAuths, getUser, postUser, authLogout };
+export { authLogout, deleteAuths, getUser, loginCtrl, postUser, registerCtrl };

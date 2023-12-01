@@ -21,7 +21,7 @@ import model from '../../src/models/client';
 import model_products from '../../src/models/products';
 import { client } from '../../src/shulker';
 import { logWithLabel } from '../../src/utils/console';
-import { upload } from '../utils/config/upload';
+import { upload } from '../utils/upload';
 const router = Router();
 
 router.get('/transcript/:id', (req: Request, res: Response) => {
@@ -164,7 +164,7 @@ router.post('/products/add-product', async (req: Request, res: Response) => {
   }
 });
 
-router.post('/config/upload', upload.single('fileToUpload'), async (req: Request, res: Response) => {
+router.post('/upload', upload.single('fileToUpload'), async (req: Request, res: Response) => {
   if (!req.file) return res.status(400).json({ message: 'BAD_REQUEST' });
   return res.status(200).json({ message: 'OK', data: req.file });
 });

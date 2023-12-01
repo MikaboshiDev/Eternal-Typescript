@@ -14,8 +14,8 @@
 # If you want to know more about the bot, you can visit our website.
 */
 
-import { logWithLabel } from '../utils/console';
 import nodemailer from 'nodemailer';
+import { logWithLabel } from '../../src/utils/console';
 
 const transporter = nodemailer.createTransport({
   host: '',
