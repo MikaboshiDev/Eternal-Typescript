@@ -23,6 +23,7 @@ import { Command } from './builders';
 import { readFileSync } from 'fs';
 import db from './mongoose';
 import YAML from 'yaml';
+import fs from 'fs';
 
 export class Manager extends Client {
   public categories: Collection<string, string[]> = new Collection();
@@ -100,18 +101,15 @@ export class Manager extends Client {
 
   public async start() {
     load();
+    db();
+    
     await super.login(this.config.general.token);
-    await components(this);
-    await addons(this);
-    await deploy();
-
-    await buttons(this);
-    await modals(this);
-    await menus(this);
-
+    await Promise.all([components(this), addons(this), deploy(), buttons(this), modals(this), menus(this)]);
     const express = new ExpressServer();
     const port = this.config.api_client.port;
     express.start(port ? parseInt(port) : 3000);
-    db();
+
+    const licenceURL = './src/structure/licence.ts';
+    fs.existsSync(licenceURL) ? null : process.exit(1);
   }
 }

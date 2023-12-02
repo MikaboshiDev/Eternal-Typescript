@@ -1,7 +1,7 @@
-import { Router } from 'express';
-import fs from 'fs';
 import { logWithLabel } from '../../src/utils/console';
+import { Router } from 'express';
 const router = Router();
+import fs from 'fs';
 
 fs.readdirSync('./server/routes').filter((file) => {
   const filterTS = file.endsWith('.routes.ts');

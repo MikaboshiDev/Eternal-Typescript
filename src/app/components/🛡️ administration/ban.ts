@@ -123,7 +123,6 @@ module.exports = {
               .setTimestamp();
             message.channel.send({ embeds: [embed] });
           });
-          break;
         }
       }
     } catch (err) {

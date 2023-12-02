@@ -1,8 +1,8 @@
 import { PermissionResolvable } from 'discord.js';
-import { Message } from 'discord.js';
-import { JwtPayload } from 'jsonwebtoken';
-import { Request } from 'express';
 import { Manager } from "./src/structure/client";
+import { JwtPayload } from 'jsonwebtoken';
+import { Message } from 'discord.js';
+import { Request } from 'express';
 
 export interface Buttons {
   id: string;

@@ -34,7 +34,7 @@ Project collaborators and people who helped develop it.
   <tr>
     <td align="center">
       <a href="https://docs.night-support.xyz/" target="_blank">
-      <img src="https://cdn.discordapp.com/avatars/679560282929889331/180096fa674371d22e5a72bf1d9ebf35.webp" width="100px;" alt=""/><br /><sub><b>Horus</b></sub></a><br />
+      <img src="https://cdn.discordapp.com/avatars/679560282929889331/1a2e081dc18b2c0ba4a1c2ceae2a3dbd.webp" width="100px;" alt=""/><br /><sub><b>Horus</b></sub></a><br />
       <a href="https://bit.ly/nightdashboard" title="Code">💻</a></td>
     <td align="center">
       <a href="https://tienda.demonscraft.live/" target="_blank">

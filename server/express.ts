@@ -64,7 +64,7 @@ export class ExpressServer {
     this.app.set('views', path.join(__dirname, 'views'));
     const staticDirs = ['css', 'js', 'fonts', 'images', 'svg'];
 
-    staticDirs.forEach((dir) => {
+    staticDirs.forEach((dir : string) => {
       const staticPath = path.join(__dirname, `views/public/${dir}`);
       this.app.use(`/${dir}`, express.static(staticPath));
     });

@@ -6,6 +6,7 @@ general:
   guild_id: ""
   webhook_faild: ""
   apikey: ""
+  licence: ""
 
 dashboard:
   client_id: ""

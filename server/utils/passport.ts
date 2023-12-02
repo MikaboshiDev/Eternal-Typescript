@@ -1,4 +1,3 @@
-import 'dotenv/config';
 import passport from 'passport';
 import { Strategy } from 'passport-discord';
 import { config } from '../../src/utils/config';
