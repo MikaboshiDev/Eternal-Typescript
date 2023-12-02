@@ -12,7 +12,6 @@ type Labels =
   | 'paypal'
   | 'discord'
   | 'addons'
-  | 'poru';
 
 const labels: Record<Labels, string> = {
   error: '[ERROR]'.red,
@@ -27,7 +26,6 @@ const labels: Record<Labels, string> = {
   routes: '[ROUTES]'.white,
   websocket: '[WEBSOCKET]'.gray,
   addons: '[ADDONS]'.blue,
-  poru: '[PORU]'.red,
 };
 
 function logWithLabel(label: Labels, message: string) {

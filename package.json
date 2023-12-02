@@ -42,7 +42,6 @@
     "passport": "^0.6.0",
     "passport-discord": "^0.1.4",
     "paypal-rest-sdk": "^1.8.1",
-    "poru-spotify": "^2.0.2",
     "sourcebin": "^5.0.0",
     "superagent": "^8.1.2",
     "swagger-jsdoc": "^6.2.8",
@@ -80,12 +79,12 @@
   "homepage": "http://www.night-support.xyz/",
   "keywords": [],
   "license": "ISC",
-  "main": "src/shulker.ts",
+  "main": "src/shards.js",
   "name": "temple-discord-bot",
   "readme": "README.md",
   "scripts": {
     "build": "tsc",
-    "dev": "ts-node-dev src/shulker.ts",
+    "dev": "ts-node-dev src/shards.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "version": "0.0.1"
