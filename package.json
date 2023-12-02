@@ -1,5 +1,5 @@
 {
-  "author": "Api Manager",
+  "author": "Night Development",
   "bugs": {
     "url": "https://github.com/MikaboshiDev/BotTypescript/issues"
   },
@@ -79,13 +79,13 @@
   "homepage": "http://www.night-support.xyz/",
   "keywords": [],
   "license": "ISC",
-  "main": "src/shards.js",
-  "name": "temple-discord-bot",
+  "main": "src/shulker.ts",
+  "name": "Manager Bot",
   "readme": "README.md",
   "scripts": {
     "build": "tsc",
-    "dev": "ts-node-dev src/shards.ts",
+    "dev": "ts-node-dev src/shulker.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "0.0.1"
+  "version": "0.0.2"
 }

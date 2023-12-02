@@ -1,6 +1,7 @@
 import { Message } from 'discord.js';
 import emojis from '../../../../config/json/emojis.json';
-import { economyData } from '../../../functions/tools/economyFunction';
+import { economyData } from '../../../utils/functions';
+
 import model from '../../../models/servers/economy';
 
 module.exports = {

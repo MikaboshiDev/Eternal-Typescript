@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 import emojis from '../../../../config/json/emojis.json';
-import { ensureEconomyExists } from '../../../functions/modules/servers';
+import { ensureEconomyExists } from '../../../functions/servers';
 import model from '../../../models/servers/economy';
 
 module.exports = {

@@ -1,6 +1,6 @@
-import { logWithLabel } from '../../utils/console';
-import path from 'node:path';
 import { glob } from 'glob';
+import path from 'node:path';
+import { logWithLabel } from '../utils/console';
 
 async function deleteCachedFile(file: string) {
   const filePath = path.resolve(file);

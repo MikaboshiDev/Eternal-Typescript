@@ -16,7 +16,6 @@
 
 import { addons, buttons, components, deploy, load, menus, modals } from '../utils/handlers';
 import { Client, Collection, GatewayIntentBits, Options, Partials } from 'discord.js';
-import { ensureConsole } from '../functions/modules/servers';
 import { ExpressServer } from '../../server/express';
 import { DiscordTogether } from 'discord-together';
 import paypal from 'paypal-rest-sdk';
@@ -101,7 +100,6 @@ export class Manager extends Client {
 
   public async start() {
     load();
-    ensureConsole();
     await super.login(this.config.general.token);
     await components(this);
     await addons(this);

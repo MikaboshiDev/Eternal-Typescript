@@ -1,12 +1,12 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder, TextChannel } from 'discord.js';
 import emojis from '../../../../config/json/emojis.json';
 import { Command } from '../../../../global';
-import { findClosestCommand } from '../../../functions/modules/locations';
-import { ensureEconomyExists, ensureGuildExists } from '../../../functions/modules/servers';
-import { validCode } from '../../../functions/tools/messagesData';
+import { findClosestCommand } from '../../../functions/locations';
+import { ensureEconomyExists, ensureGuildExists } from '../../../functions/servers';
 import guild from '../../../models/guild';
 import { client } from '../../../shulker';
 import { Event } from '../../../structure/builders';
+import { validCode } from '../../../utils/functions';
 
 export default new Event('messageCreate', async (message) => {
   if (message.author.bot || !message.guild || !message.channel) return;

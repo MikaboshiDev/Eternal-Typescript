@@ -8,8 +8,8 @@ import {
   MessageCreateOptions,
   MessagePayload,
 } from 'discord.js';
-import { GameOptions, GameRocks } from '../../../global';
-import { logWithLabel } from '../../utils/console';
+import { GameOptions, GameRocks } from '../../global';
+import { logWithLabel } from '../utils/console';
 
 const possible_words = [
   'medicine',

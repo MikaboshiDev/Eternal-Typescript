@@ -1,5 +1,5 @@
 import { Message } from 'discord.js';
-import { pagination } from '../../../functions/tools/pagination';
+import { pagination } from '../../../functions/pagination';
 import model from '../../../models/servers/economy';
 
 const medallas: { [key: number]: string | undefined } = {

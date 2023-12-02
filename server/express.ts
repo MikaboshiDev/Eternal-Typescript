@@ -14,7 +14,7 @@
 # If you want to know more about the bot, you can visit our website.
 */
 
-import swaggerSetup from '../src/functions/modules/swaggers';
+import swaggerSetup from '../src/functions/swaggers';
 import { logWithLabel } from '../src/utils/console';
 import { passport } from './utils/passport';
 import swaggerUi from 'swagger-ui-express';

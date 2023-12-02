@@ -1,7 +1,7 @@
 import { ClientEvents, REST, Routes } from 'discord.js';
 import fs from 'fs';
 import { readdirSync } from 'node:fs';
-import { loadFiles } from '../functions/tools/globArchives';
+import { loadFiles } from '../functions/glob';
 import { client } from '../shulker';
 import { Command, Event } from '../structure/builders';
 import { config } from './config';

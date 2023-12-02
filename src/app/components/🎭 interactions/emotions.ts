@@ -1,7 +1,7 @@
 import { AttachmentBuilder, EmbedBuilder, Message } from 'discord.js';
 import neko from 'nekos.life';
 import emojis from '../../../../config/json/emojis.json';
-import { animeApi } from '../../../functions/tools/httpRequest';
+import { animeApi } from '../../../utils/functions';
 
 module.exports = {
   name: 'emotions',

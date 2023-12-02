@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 import emojis from '../../../../config/json/emojis.json';
-import { HangmanGame, RPSGame, SnakeGame, TicTacToe } from '../../../functions/tools/gamecordClass';
+import { HangmanGame, RPSGame, SnakeGame, TicTacToe } from '../../../functions/gamecord';
 
 module.exports = {
   name: 'gamecord',

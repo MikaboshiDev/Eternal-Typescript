@@ -1,7 +1,7 @@
 import akaneko from 'akaneko';
 import { EmbedBuilder, Message } from 'discord.js';
 import superagent from 'superagent';
-import { animeApi } from '../../../functions/tools/httpRequest';
+import { animeApi } from '../../../utils/functions';
 
 module.exports = {
   name: 'nsfw',
