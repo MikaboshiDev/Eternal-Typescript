@@ -18,7 +18,7 @@ import { GiveawaysManager, Giveaway } from 'discord-giveaways';
 import giveawayModel from '../src/models/systems/giveaways';
 
 module.exports = (client: any) => {
-  /*const GiveawayManagerWithOwnDatabase = class extends GiveawaysManager {
+  const GiveawayManagerWithOwnDatabase = class extends GiveawaysManager {
     async getAllGiveaways() {
       const giveaways = await giveawayModel.find().lean().exec();
       return giveaways as unknown as Giveaway<any>[]; 
@@ -49,5 +49,5 @@ module.exports = (client: any) => {
     },
   });
 
-  client.giveawaysManager = manager;*/
+  client.giveawaysManager = manager;
 };

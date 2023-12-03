@@ -15,7 +15,7 @@
 */
 
 import { addons, buttons, components, deploy, load, menus, modals } from '../utils/handlers';
-import { Client, Collection, GatewayIntentBits, Options, Partials } from 'discord.js';
+import { Client, Collection, EmbedBuilder, GatewayIntentBits, Options, Partials } from 'discord.js';
 import { ExpressServer } from '../../server/express';
 import { DiscordTogether } from 'discord-together';
 import paypal from 'paypal-rest-sdk';
@@ -40,6 +40,7 @@ export class Manager extends Client {
   giveawaysManager: any;
   config: any;
   poru: any;
+  embed: ({ title, description, status }: { title: string; description: string; status: boolean }) => EmbedBuilder;
   constructor() {
     super({
       failIfNotExists: false,
@@ -83,8 +84,18 @@ export class Manager extends Client {
       client_id: this.config.paypal.client_id,
       client_secret: this.config.paypal.client_secret,
     });
-
-    this.discordTogether = new DiscordTogether(this);
+    (this.embed = ({ title, description, status }) => {
+      return new EmbedBuilder()
+        .setTitle(title)
+        .setDescription(description)
+        .setColor(status == true ? 'Green' : 'Red')
+        .setFooter({
+          text: `Manager ${this.user?.username}`,
+          iconURL: this.user?.displayAvatarURL({ forceStatic: true }),
+        })
+        .setTimestamp();
+    }),
+      (this.discordTogether = new DiscordTogether(this));
     this.voiceGenerator = new Collection();
     this.precommands = new Collection();
     this.categories = new Collection();
@@ -102,7 +113,7 @@ export class Manager extends Client {
   public async start() {
     load();
     db();
-    
+
     await super.login(this.config.general.token);
     await Promise.all([components(this), addons(this), deploy(), buttons(this), modals(this), menus(this)]);
     const express = new ExpressServer();
