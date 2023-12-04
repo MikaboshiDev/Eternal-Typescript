@@ -25,7 +25,7 @@ dashboard:
 
 Estos son los datos básicos para poder prender el Bot de manera correcta los demás datos que se piden en el archivo de configuración son necesarios para los demás sistemas pero no son indispensables así que con solo estos datos puedes disfrutar del Bot.
 
-Para poder tener soporte de este complemento necesitas 2 cosas: La licencia que se te da cuando la solicitas en el servidor de soporte y que tus datos estén guardados en el API LOGIN.
+Para poder tener soporte de este complemento necesitas 2 cosas: La licencia que se te da cuando la solicitas en el servidor de soporte y que tus datos estén guardados en el <mark style="background-color:orange;">API LOGIN</mark>.
 
 
 
