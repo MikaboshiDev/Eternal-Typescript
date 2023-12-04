@@ -11,6 +11,7 @@
 * [🥳 Api Client](discord/api-client/README.md)
   * [Registro y Login](discord/api-client/registro-y-login.md)
   * [Permisos](discord/api-client/permisos.md)
+  * [Productos](discord/api-client/productos.md)
 
 ## SOLIDWORK
 
