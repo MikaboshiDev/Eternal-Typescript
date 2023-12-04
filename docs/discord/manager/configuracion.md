@@ -29,7 +29,7 @@ Para poder tener soporte de este complemento necesitas 2 cosas: La licencia que 
 
 
 
-{% swagger method="post" path="localhost:3000/api/v1/auth/register" baseUrl="http://" summary="Petición para registrar un perfil dentro de la API CLIENT" %}
+{% swagger method="post" path="localhost:3000/api/auth/register" baseUrl="http://" summary="Petición para registrar un perfil dentro de la API CLIENT" %}
 {% swagger-description %}
 
 {% endswagger-description %}
@@ -52,6 +52,24 @@ Tu perfil dentro de API CLIENT fue creado de forma exitosa y guardado dentro de 
 
 {% swagger-response status="500: Internal Server Error" description="El servidor no a respondido" %}
 En caso de un error de servidor contactar al desarrollador responsable para que se le de solucion lo antes posible
+{% endswagger-response %}
+{% endswagger %}
+
+{% swagger method="post" path="" baseUrl="http://localhost:3000/api/auth/login" summary="Petición para loguearte dentro de la API" fullWidth="false" %}
+{% swagger-description %}
+
+{% endswagger-description %}
+
+{% swagger-parameter in="body" name="email" type="String" required="true" %}
+Email con el que te registraste dentro de la api
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="password" type="String" required="true" %}
+Contraseña de tu perfil
+{% endswagger-parameter %}
+
+{% swagger-response status="200: OK" description="JWT token regresado" %}
+
 {% endswagger-response %}
 {% endswagger %}
 
