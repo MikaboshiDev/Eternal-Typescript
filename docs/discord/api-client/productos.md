@@ -82,7 +82,7 @@ Nuevo precio a asignar del producto
 {% endswagger-parameter %}
 
 {% swagger-parameter in="body" name="description" type="String" %}
-Descripcion del producto
+Descripción del producto
 {% endswagger-parameter %}
 
 {% swagger-parameter in="body" name="category" type="String" %}
@@ -100,5 +100,73 @@ Nueva imagen
 {% swagger-response status="500: Internal Server Error" description="Error al actualizar el producto" %}
 
 {% endswagger-response %}
+{% endswagger %}
+
+{% swagger method="delete" path="" baseUrl="http://localhost:3000/api/products/:id/delete" summary="Elimina uno de los productos registrados" %}
+{% swagger-description %}
+
+{% endswagger-description %}
+
+{% swagger-parameter in="header" name="Token" type="String" required="true" %}
+Token de login anteriormente dado
+{% endswagger-parameter %}
+
+{% swagger-parameter in="header" name="User-id" type="String" %}
+ID de usuario dentro del servidor de discord
+{% endswagger-parameter %}
+
+{% swagger-parameter in="path" name="id" type="String" required="true" %}
+ID del producto que deseas eliminar
+{% endswagger-parameter %}
+
+{% swagger-response status="200: OK" description="Producto eliminado con éxito de la base de datos" %}
+
+{% endswagger-response %}
+
+{% swagger-response status="404: Not Found" description="No se encontró un producto con esa ID" %}
+
+{% endswagger-response %}
+
+{% swagger-response status="500: Internal Server Error" description="Error al intentar eliminar el producto" %}
+
+{% endswagger-response %}
+{% endswagger %}
+
+{% swagger method="post" path="" baseUrl="http://localhost:3000/api/products/create" summary="Crea un nuevo producto dentro de la API " %}
+{% swagger-description %}
+
+{% endswagger-description %}
+
+{% swagger-parameter in="body" name="name" type="String" required="true" %}
+Nombre del producto
+{% endswagger-parameter %}
+
+{% swagger-parameter in="header" name="Token" type="String" required="true" %}
+Token de login anteriormente dado
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="id" type="String" required="true" %}
+ID de reconocimiento de el producto
+{% endswagger-parameter %}
+
+{% swagger-parameter in="header" name="User-id" type="String" required="true" %}
+ID de usuario dentro del servidor de discord
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="price" type="Number" required="true" %}
+Precio de mercado
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="description" type="String" required="true" %}
+Descripción del producto&#x20;
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="image" type="String" %}
+URL de la imagen de ilustración
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="category" type="String" %}
+Categoría de clasificacion
+{% endswagger-parameter %}
 {% endswagger %}
 

@@ -1,6 +1,7 @@
 # Table of contents
 
 * [🔮 Night Support Server](README.md)
+  * [Licencias](night-support-server/licencias.md)
 
 ## Discord
 
