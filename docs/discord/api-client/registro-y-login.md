@@ -6,7 +6,7 @@ description: Registro y Login dentro de el API CLIENT
 
 Bueno como ya  te abras dado cuenta debes de registrarte la primera vez que usas o ingresas a esta API esto debido a protocolos de seguridad del cliente.
 
-<figure><img src="../../.gitbook/assets/Captura de pantalla 2023-09-08 120750.png" alt=""><figcaption></figcaption></figure>
+> El registro y logueo dentro del cliente es obligatorio cada que accedas a alguna de las funciones mencionadas en esta documentación
 
 El entorno de la WEB y de la API son zonas diferentes por lo que no funcionan del todo igual, explicándolo mejor si tienes roles de desarrollador en la web pero no se te asignaron igual en la API CLIENT no podrás acceder a los sitios de desarrollador.
 
