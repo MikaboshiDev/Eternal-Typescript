@@ -123,23 +123,5 @@ module.exports = {
 
     interaction.reply({ embeds: [embed] });
     setTimeout(() => channel.delete().then(() => DB.deleteOne({ ChannelID: channel.id })), 5 * 1000);
-    const nombreArchivo = `transcript-${interaction.channel.id}-${data.TicketID}.html`;
-    const attachmentURL = transcript.setFile.toString();
-    const rutaGuardar = './config/upload/transcripts/';
-
-    const rutaCompleta = `${rutaGuardar}${nombreArchivo}`;
-    axios({
-      url: attachmentURL,
-      responseType: 'stream',
-    }).then((response) => {
-      response.data
-        .pipe(fs.createWriteStream(rutaCompleta))
-        .on('finish', () => {
-          logWithLabel('discord', `The archive was saved successfully in ${rutaCompleta}`);
-        })
-        .on('error', (err: any) => {
-          logWithLabel('discord', `Error saving file: ${err}`);
-        });
-    });
   },
 };
