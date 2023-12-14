@@ -1,0 +1,2 @@
+# 👾 Seguidor de Lineal
+

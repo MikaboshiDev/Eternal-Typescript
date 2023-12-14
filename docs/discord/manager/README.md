@@ -1,5 +1,9 @@
 ---
-description: Bot Manager para Servidores de Discord
+description: >-
+  Bot Manager para Servidores de Discord con +50 comandos y +14 funciones
+  comprobadas para el control de los usuarios y la interacción de la comunidad.
+cover: ../../.gitbook/assets/wallhaven-858lz1.png
+coverY: 0
 ---
 
 # 😁 Manager
@@ -9,6 +13,8 @@ Manager TS, es un Bot desarrollado para los servidores de discord con el fin de 
 {% hint style="info" %}
 El soporte para este proyecto se realiza mediante el servidor de discord por ticket o por API del creador
 {% endhint %}
+
+El proyecto es de código abierto y se encuentra tanto en BuildByBit y GitHub aun que igual lo puedes encontrar dentro de mi pagina web o el cliente.
 
 ## &#x20;                                                         EQUIPO
 
