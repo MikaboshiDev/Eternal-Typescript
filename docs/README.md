@@ -1,5 +1,8 @@
 ---
-description: Soporte de Proyectos Relacionados al Servidor y Creadores
+description: >-
+  Soporte de Proyectos Relacionados al Servidor y Creadores aquí podrás
+  encontrar paginas web, diseños en SolidWorks, bots de discord (Whatsapp,
+  Twitch, Discord), proyectos electromecánicos.
 cover: .gitbook/assets/wallhaven-jxl31y.png
 coverY: 0
 ---

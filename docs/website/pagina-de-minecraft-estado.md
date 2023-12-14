@@ -2,6 +2,8 @@
 description: >-
   Pagina web con HTML, CSS y JS relacionada a servidores de minecraft, estado
   del servidor, rangos y temple.
+cover: ../.gitbook/assets/wallhaven-kxr861.jpg
+coverY: 0
 ---
 
 # 👽 Pagina de Minecraft Estado
@@ -142,6 +144,4 @@ Los rangos se editan a partir del documento HTML ya que actualmente no existe so
       </div>
 ```
 
-Este es un ejemplo de la estructura de uno de los contenedores de los rangos en la pagina web. Esto es una plantilla no una pagina oficial
-
-{% @github-files/github-code-block url="https://github.com/MikaboshiDev/Web-Minecraft" %}
+Este es un ejemplo de la estructura de uno de los contenedores de los rangos en la pagina web. Esto es una plantilla no una[ pagina oficial](https://github.com/MikaboshiDev/Web-Minecraft)

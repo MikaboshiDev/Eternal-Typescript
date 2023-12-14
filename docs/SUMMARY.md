@@ -9,10 +9,10 @@
   * [Contenido](discord/manager/contenido.md)
   * [Configuración](discord/manager/configuracion.md)
   * [Copilar JS](discord/manager/copilar-js.md)
-* [🥳 Api-Rest Cliente](discord/api-rest-cliente/README.md)
-  * [Registro y Login](discord/api-rest-cliente/registro-y-login.md)
-  * [Permisos](discord/api-rest-cliente/permisos.md)
-  * [Productos](discord/api-rest-cliente/productos.md)
+* [🥳 Api-Rest Cliente](discord/api-client/README.md)
+  * [Registro y Login](discord/api-client/registro-y-login.md)
+  * [Permisos](discord/api-client/permisos.md)
+  * [Productos](discord/api-client/productos.md)
 
 ## SOLIDWORK
 
