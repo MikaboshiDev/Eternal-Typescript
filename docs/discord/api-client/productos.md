@@ -56,6 +56,8 @@ ID del producto que vas solicitar
 
 ### Privadas
 
+Son end points a los que solo usuarios de nivel administrador pueden acceder o usuarios con rol de dueño o co-dueño dentro del servidor de discord
+
 {% swagger method="put" path="" baseUrl="http://localhost:3000/api/products/:id/update" summary="Actualiza los datos de alguno de los productos dentro de la DB" %}
 {% swagger-description %}
 Se requieren permisos de desarrollador para esta petición dentro del headers

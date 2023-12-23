@@ -37,3 +37,31 @@ Al momento de hacer el logueo dentro la API te dará dos cosas:
 
 1. Contraseña: Tu contraseña será encriptada para evitar robos o suplantación de datos
 2. Token: Se te genera un token único que podrás usar para acceder a los demás sitios de la api
+
+
+
+{% swagger method="post" path="" baseUrl="http://localhost:3000/api/auth/register" summary="Realizar registro dentro del cliente de la aplicacion" %}
+{% swagger-description %}
+
+{% endswagger-description %}
+
+{% swagger-parameter in="body" name="email" type="String" required="true" %}
+Email con el que te quieres registrar
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="password" type="String" required="true" %}
+Contraseña para tu perfil&#x20;
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="name" type="String" required="true" %}
+Nombre de identificacion
+{% endswagger-parameter %}
+
+{% swagger-response status="200: OK" description="Perfil guardado correctamente" %}
+
+{% endswagger-response %}
+
+{% swagger-response status="500: Internal Server Error" description="Error de parte del servidor" %}
+
+{% endswagger-response %}
+{% endswagger %}

@@ -17,6 +17,8 @@
 ## SOLIDWORK
 
 * [🥶 Bomba de Engranajes](solidwork/bomba-de-engranajes.md)
+* [😈 Garra Mecanica](solidwork/garra-mecanica.md)
+* [🤬 Cadena Piñón](solidwork/cadena-pinon.md)
 
 ## ELECTRONICA
 
