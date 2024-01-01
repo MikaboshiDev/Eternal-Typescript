@@ -74,3 +74,65 @@ Contraseña de tu perfil
 {% endswagger %}
 
 Si aun no tienes esos datos, no se te dará soporte del proyecto con sus futuras actualizaciones, por eso recuerda pedirlos con tiempo.
+
+### Registro de Aplicacion
+
+Como ya hemos comentado se tiene que registrar la aplicación dentro de la web de control para esto se hace uso de la api de desarrollador mediante un metodo POST.
+
+```typescript
+import { EmbedBuilder, WebhookClient } from "discord.js";
+import { logWithLabel } from "../src/utils/console";
+import { Night } from "../src/structure/client";
+import emojis from "../config/json/emojis.json";
+import { stripIndent } from "common-tags";
+import axios from "axios";
+
+module.exports = async (client: Night) => {
+   const webhook = new WebhookClient({
+      token: "",
+      id: "",
+   });
+
+   const config = client.config.dashboard;
+   setInterval(methodPost, 100000); //300000 = 5min
+
+   async function methodPost() {
+      try {
+         const response = await axios({
+            method: "POST",
+            url: `http://${config.ip}:${config.port}/aplications/${client.user?.id}`,
+            headers: {
+               "Content-Type": "application/json",
+            },
+            data: {
+               username: client.user?.username,
+               image: client.user?.displayAvatarURL({ forceStatic: true, extension: "png", size: 1024 }),
+               description: "Bot aplication the hosting automata",
+               supportServer: "https://discord.gg/8zWzUEX",
+               prefix: "!",
+               website: "https://www.night-support.xyz/",
+               licence: client.config.discord.licence,
+               owner: client.users.cache.get(client.config.discord.ownerId)?.id,
+               invite: `https://discord.com/oauth2/authorize?client_id=${client.user?.id}&scope=bot&permissions=8`,
+               keywords: [],
+            },
+         })
+            .then((res) => {
+               console.log(res);
+            })
+            .catch((err) => {
+               logWithLabel("error", `${err}`);
+               console.error(err);
+            });
+      } catch (error) {
+         logWithLabel("error", `${error}`);
+         console.error(error);
+      }
+   }
+};
+```
+
+{% code lineNumbers="true" fullWidth="false" %}
+```typescript
+```
+{% endcode %}
