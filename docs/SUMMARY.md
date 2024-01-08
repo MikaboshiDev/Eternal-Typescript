@@ -13,6 +13,7 @@
   * [Registro y Login](discord/api-client/registro-y-login.md)
   * [Permisos](discord/api-client/permisos.md)
   * [Productos](discord/api-client/productos.md)
+  * [Tickets](discord/api-rest-cliente/tickets.md)
 
 ## SOLIDWORK
 
