@@ -10,7 +10,7 @@ Existen 7 end points relacionados a los productos de la WEB y la API, dos de ell
 
 ### Publicas
 
-{% swagger method="get" path="" baseUrl="http://localhost:3000/api/user/:id/add-product" summary="Agrega tus nuevos productos para que sean procesados por el desarrollador" %}
+{% swagger method="post" path="" baseUrl="http://localhost:3000/api/user/:id/add-product" summary="Agrega tus nuevos productos para que sean procesados por el desarrollador" %}
 {% swagger-description %}
 
 {% endswagger-description %}
