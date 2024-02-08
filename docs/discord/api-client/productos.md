@@ -10,6 +10,48 @@ Existen 7 end points relacionados a los productos de la WEB y la API, dos de ell
 
 ### Publicas
 
+{% swagger method="get" path="" baseUrl="http://localhost:3000/api/user/:id/add-product" summary="Agrega tus nuevos productos para que sean procesados por el desarrollador" %}
+{% swagger-description %}
+
+{% endswagger-description %}
+
+{% swagger-parameter in="body" name="id" type="String" required="true" %}
+ID del producto que se va a desarrollar o ya se entrego
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="name" type="String" required="true" %}
+Nombre del producto
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="category" type="String" required="true" %}
+Categoria a la que pertenece
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="description" type="String" required="true" %}
+descripcion de uso y del producto
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="download" type="String" required="true" %}
+link de descarga del mismo en mega o otros sistemas de subida
+{% endswagger-parameter %}
+
+{% swagger-parameter in="body" name="image" type="String" %}
+imagen del producto para ilustrar
+{% endswagger-parameter %}
+
+{% swagger-parameter in="path" name="id" type="Number" %}
+Id del usuario que hace la peticion
+{% endswagger-parameter %}
+
+{% swagger-response status="201: Created" description="Producto agregado a su perfil de usuario" %}
+
+{% endswagger-response %}
+
+{% swagger-response status="500: Internal Server Error" description="Error del servidor" %}
+
+{% endswagger-response %}
+{% endswagger %}
+
 {% swagger method="get" path="" baseUrl="http://localhost:3000/api/products/:id" summary="Obtén la información de uno de los productos por medio de su ID" %}
 {% swagger-description %}
 
