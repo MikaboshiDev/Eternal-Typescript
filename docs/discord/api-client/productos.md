@@ -10,6 +10,84 @@ Existen 7 end points relacionados a los productos de la WEB y la API, dos de ell
 
 ### Publicas
 
+Los endpoints públicos de los productos y licencias son para que el usuario pueda interactuar con su perfil de registro y haga peticiones de desarrollo gratuitas.
+
+Ejemplo de una petición POST de como agregar un producto a tu perfil por medio de **CURL**
+
+```concurnas
+curl -X POST \
+  http://localhost:3000/api/user/123/add-product \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "id": "123",
+    "name": "Nombre del Producto",
+    "category": "Categoria del Producto",
+    "description": "Descripción del Producto",
+    "image": "URL_de_la_imagen", //opcional
+    "download": "URL_de_descarga"
+  }'
+
+```
+
+Este es un ejemplo de como lo puedes hacer de manera rápida y sencilla en caso, de que quieras hacerlo por código como JavaScript o algún otro lenguaje seria de la siguiente forma
+
+### JavaScript Petición
+
+```javascript
+const axios = require('axios');
+
+const url = 'http://localhost:3000/api/user/123/add-product'; // Reemplaza '123' con el ID real
+const data = {
+  id: '123', // Reemplaza '123' con el ID real
+  name: 'Nombre del Producto',
+  category: 'Categoria del Producto',
+  description: 'Descripción del Producto',
+  image: 'URL_de_la_imagen',
+  download: 'URL_de_descarga'
+};
+
+axios.post(url, data)
+  .then(response => {
+    console.log('Respuesta del servidor:', response.data);
+  })
+  .catch(error => {
+    console.error('Error al realizar la solicitud:', error);
+  });
+
+```
+
+### Python Petición
+
+```python
+import requests
+
+url = 'http://localhost:3000/api/user/123/add-product'  # Reemplaza '123' con el ID real
+data = {
+    'id': '123',  # Reemplaza '123' con el ID real
+    'name': 'Nombre del Producto',
+    'category': 'Categoria del Producto',
+    'description': 'Descripción del Producto',
+    'image': 'URL_de_la_imagen',
+    'download': 'URL_de_descarga'
+}
+
+response = requests.post(url, json=data)
+
+if response.status_code == 200:
+    print('La solicitud se completó exitosamente.')
+    print('Respuesta del servidor:', response.json())
+else:
+    print('Error al realizar la solicitud:')
+    print('Código de estado:', response.status_code)
+    print('Contenido de la respuesta:', response.text)
+```
+
+### URL Endpoints
+
+#### Agregar Producto
+
+Al agregar un producto a tu perfil se hace el análisis si este producto ya se te entrego y se convalida, en caso contrario se considera como petición de desarrollo por lo que se mantendrá en espera hasta obtener respuesta de los desarrolladores por ticket.
+
 {% swagger method="post" path="" baseUrl="http://localhost:3000/api/user/:id/add-product" summary="Agrega tus nuevos productos para que sean procesados por el desarrollador" %}
 {% swagger-description %}
 
@@ -51,6 +129,10 @@ Id del usuario que hace la peticion
 
 {% endswagger-response %}
 {% endswagger %}
+
+#### Información Productos
+
+Obtén la información del producto del que estés interesado con tan solo su id de registro, desde un solo producto a toda la lista guardada en el momento
 
 {% swagger method="get" path="" baseUrl="http://localhost:3000/api/products/:id" summary="Obtén la información de uno de los productos por medio de su ID" %}
 {% swagger-description %}
@@ -99,6 +181,10 @@ ID del producto que vas solicitar
 ### Privadas
 
 Son end points a los que solo usuarios de nivel administrador pueden acceder o usuarios con rol de dueño o co-dueño dentro del servidor de discord
+
+#### URL Productos
+
+Estas son url para los desarrolladores ya que modifican y interactúan directamente con los schema de los productos originales, por lo que se necesita un permiso de desarrollador o una licencia temporal para poder interactuar con ellos&#x20;
 
 {% swagger method="put" path="" baseUrl="http://localhost:3000/api/products/:id/update" summary="Actualiza los datos de alguno de los productos dentro de la DB" %}
 {% swagger-description %}

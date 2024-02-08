@@ -66,7 +66,7 @@ Nombre de identificacion
 {% endswagger-response %}
 {% endswagger %}
 
-El registro de el usuario es permanente por lo que no deberás hacerlo de nuevo, sin embargo deberás loguearte cada 1hr de tiempo ya que el token es temporal
+El registro de el usuario es permanente por lo que no deberás hacerlo de nuevo, sin embargo deberás loguearte cada 1hr de tiempo ya que el token es temporal, este token se coloca en los <mark style="color:orange;">bearer token</mark>
 
 ```json
 {
