@@ -10,6 +10,24 @@ coverY: 0
 
 Este proyecto se define como una interfaz de programación de aplicaciones (API) diseñada para ofrecer funcionalidades de gestión de productos, procesamiento de pagos, supervisión de usuarios, manejo de solicitudes web, atención al cliente, y otras características adicionales.
 
-{% hint style="danger" %}
-Este recurso es sumamente inestable así que no se recomienda su uso en el sector de producción actualmente.
+{% hint style="info" %}
+Este recurso es un producto que se brinda como servicio publico por lo para mas información de las funciones posibles vista el siguiente url [Documentacion Api](http://www.night-support.xyz/documentation)
 {% endhint %}
+
+### Rendimiento
+
+| Parametro           | Rendimiento  | Especificaciones |
+| ------------------- | ------------ | ---------------- |
+| Ping API            | 10ms - 120ms |                  |
+| Memory Usage        | 111.94 MB    |                  |
+| Node.js Version     |              | v17.5.0          |
+| Average RAM Usage   | 106.8%       |                  |
+| Latency Api Discord | 77ms - 200ms |                  |
+| Version API         |              | v0.0.3-alpha     |
+
+### Base de Datos
+
+| Parametro | Especificaciones |
+| --------- | ---------------- |
+| Versión   | v8.1.3           |
+| Latency   | 0ms - 10ms       |

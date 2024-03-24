@@ -6,9 +6,10 @@
 ## Api Rest
 
 * [Api-Rest IA](api-rest/api-rest-ia/README.md)
-  * [Comienzo](api-rest/api-rest-ia/comienzo.md)
+  * [Empezando](api-rest/api-rest-ia/empezando.md)
   * [Permisos](api-rest/api-rest-ia/permisos.md)
   * [Tickets](api-rest/api-rest-ia/tickets.md)
+  * [Integración IA](api-rest/api-rest-ia/integracion-ia.md)
 
 ## Discord
 
@@ -24,5 +25,4 @@
 ## Mas
 
 * [Versiones](mas/versiones.md)
-* [Acerca](mas/acerca.md)
 * [Términos y Usos](mas/terminos-y-usos.md)

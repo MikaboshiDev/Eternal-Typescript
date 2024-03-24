@@ -2,7 +2,7 @@
 description: Registro y Login dentro del cliente
 ---
 
-# Comienzo
+# Empezando
 
 Bueno como ya  te abras dado cuenta debes de registrarte la primera vez que usas o ingresas a esta API esto debido a protocolos de seguridad del cliente.
 
@@ -17,7 +17,7 @@ Al momento de autenticarse dentro de la API, el sistema proporcionará dos eleme
 
 ### Registro
 
-## Realizar registro dentro del cliente de la aplicación
+## Realizar registro dentro del cliente
 
 <mark style="color:green;">`POST`</mark> `http://localhost:3000/api/auth/register`
 
