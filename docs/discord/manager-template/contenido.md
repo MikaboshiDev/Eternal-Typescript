@@ -11,24 +11,24 @@ Actualmente el Bot se encuentra en su versión 0.0.2 con el siguiente contenido 
 ### &#x20;                                              Sistemas Integrados.
 
 * [x] Sistema de sorteos (start, reroll, stop, edit).
-* [x] Sistema de sugerencias.
-* [ ] Sistema de Tickets. (en revisión por posibles errores INESTABLE)
-* [x] Sistema de Logs.
-* [x] Sistema de Verificación.
-* [x] Sistema de Conteo Custom (top, status, rank).
-* [ ] Sistema de Auto moderación. (en revisión por posibles errores INESTABLE)
+* [x] Sistema de sugerencias
+* [ ] Sistema de Tickets. (en revisión por posibles errores)
+* [x] Sistema de Logs
+* [x] Sistema de Verificación
+* [x] Sistema de Conteo Custom (top, status, rank)
+* [ ] Sistema de Auto moderación. (en revisión por posibles errores)
 
 ### &#x20;                                             Comandos y Eventos.
 
-* [x] Comandos de Diversiones (slap, happy, kill etc...).
+* [x] Comandos de Diversiones (slap, happy, kill etc).
 * [x] Comandos de Nsfw.
-* [ ] Comandos de Minecraft. (en revisión INESTABLE)
+* [ ] Comandos de Minecraft. (en revisión)
 * [x] Comandos de Economía.
 * [x] Comandos de Utilidad Múltiple.
-* [ ] Sistema AFK. (en revisión INESTABLE)
+* [ ] Sistema AFK. (en revisión)
 * [x] Soporte para Comandos de Aplicacion.
 
-También cuenta con una Dashboard en su versión 0.0.1 BETA con soporte para gran cantidad de funciones del Bot de discord como lo son.
+También cuenta con una Dashboard en su versión `0.0.1` con soporte para gran cantidad de funciones del Bot de discord como lo son.
 
 * Control de varios bots por medio de la web.
 * Estado Automático del Bot.
@@ -42,4 +42,4 @@ A continuación algunas imágenes de todas las funciones mencionadas del Bot act
 
 ### &#x20;                                                          Sistema de Correos.
 
-Se tiene implementado un sistema de correos cuando se realiza su primer registro dentro de nuestros recursos, en su caso el Bot <mark style="background-color:orange;">Manager TS</mark> tiene su propio sistema de notificaciones por correo personal esto sucede cuando te registras o ingresas dentro de su <mark style="background-color:orange;">API CLIENT</mark>&#x20;
+Se tiene implementado un sistema de correos cuando se realiza su primer registro dentro de nuestros recursos, en su caso el Bot <mark style="background-color:orange;">Manager</mark> tiene su propio sistema de notificaciones por correo personal esto sucede cuando te registras o ingresas dentro de su <mark style="background-color:orange;">Api Cliente</mark>&#x20;

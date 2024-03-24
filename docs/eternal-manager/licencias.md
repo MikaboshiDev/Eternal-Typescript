@@ -10,4 +10,4 @@ Estas licencias son sumamente opcionales es posible removerlas, pero en caso no 
 
 <figure><img src="../.gitbook/assets/Captura de pantalla 2023-12-04 110759.png" alt=""><figcaption></figcaption></figure>
 
-Estas licencias las puedes solicitar mediante el servidor de discord o mediante servicio WEB en el siguiente enlace [Night Support Server.](http://www.night-support.xyz/)
+Estas licencias las puedes solicitar mediante el servidor de discord o mediante servicio WEB en el siguiente enlace [Eternal Manager](broken-reference)

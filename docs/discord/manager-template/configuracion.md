@@ -25,7 +25,7 @@ dashboard:
 
 Estos son los datos básicos para poder prender el Bot de manera correcta los demás datos que se piden en el archivo de configuración son necesarios para los demás sistemas pero no son indispensables así que con solo estos datos puedes disfrutar del Bot.
 
-Para poder tener soporte de este complemento necesitas 2 cosas: La licencia que se te da cuando la solicitas en el servidor de soporte y que tus datos estén guardados en el <mark style="background-color:orange;">API LOGIN</mark>.
+Para poder tener soporte de este complemento necesitas 2 cosas: La licencia que se te da cuando la solicitas en el servidor de soporte y que tus datos estén guardados en el <mark style="background-color:orange;">Api</mark>.
 
 
 
@@ -43,7 +43,7 @@ Para poder tener soporte de este complemento necesitas 2 cosas: La licencia que 
 
 {% tabs %}
 {% tab title="201: Created Tu perfil dentro de API CLIENT." %}
-Tu perfil dentro de API CLIENT fue creado de forma exitosa y guardado dentro de la base de datos
+Tu perfil dentro de Api Cliente fue creado de forma exitosa y guardado dentro de la base de datos
 {% endtab %}
 
 {% tab title="500: Internal Server Error El servidor no a respondido" %}

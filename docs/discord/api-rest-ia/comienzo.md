@@ -1,23 +1,23 @@
 ---
-description: Registro y Login dentro de el API CLIENT
+description: Registro y Login dentro del cliente
 ---
 
-# Registro y Login
+# Comienzo
 
 Bueno como ya  te abras dado cuenta debes de registrarte la primera vez que usas o ingresas a esta API esto debido a protocolos de seguridad del cliente.
 
 > El registro y logueo dentro del cliente es obligatorio cada que accedas a alguna de las funciones mencionadas en esta documentación
 
-El entorno de la WEB y de la API son zonas diferentes por lo que no funcionan del todo igual, explicándolo mejor si tienes roles de desarrollador en la web pero no se te asignaron igual en la API CLIENT no podrás acceder a los sitios de desarrollador.
+El entorno de la Web y de la Api son zonas diferentes por lo que no funcionan del todo igual, explicándolo mejor si tienes roles de desarrollador en la web pero no se te asignaron igual en el cliente no podrás acceder a los sitios de desarrollador.
 
-Al momento de hacer el logueo dentro la API te dará dos cosas:
+Al momento de hacer el logueo dentro la Api te dará dos cosas:
 
 1. Contraseña: Tu contraseña será encriptada para evitar robos o suplantación de datos
 2. Token: Se te genera un token único que podrás usar para acceder a los demás sitios de la api
 
 ### Registro
 
-## Realizar registro dentro del cliente de la aplicacion
+## Realizar registro dentro del cliente de la aplicación
 
 <mark style="color:green;">`POST`</mark> `http://localhost:3000/api/auth/register`
 
