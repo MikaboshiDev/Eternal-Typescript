@@ -8,12 +8,12 @@ Bueno como ya  te abras dado cuenta debes de registrarte la primera vez que usas
 
 > El registro y logueo dentro del cliente es obligatorio cada que accedas a alguna de las funciones mencionadas en esta documentación
 
-El entorno de la Web y de la Api son zonas diferentes por lo que no funcionan del todo igual, explicándolo mejor si tienes roles de desarrollador en la web pero no se te asignaron igual en el cliente no podrás acceder a los sitios de desarrollador.
+En este contexto, es importante destacar que el entorno web y el entorno de la API constituyen zonas distintas, cada una con sus propias peculiaridades de funcionamiento. Es crucial comprender que los roles de desarrollo asignados en el entorno web pueden diferir de aquellos asignados en el cliente, lo que implica que el acceso a recursos específicos puede variar en función de los roles asignados.
 
-Al momento de hacer el logueo dentro la Api te dará dos cosas:
+Al momento de autenticarse dentro de la API, el sistema proporcionará dos elementos esenciales:
 
-1. Contraseña: Tu contraseña será encriptada para evitar robos o suplantación de datos
-2. Token: Se te genera un token único que podrás usar para acceder a los demás sitios de la api
+1. **Contraseña encriptada**: La contraseña del usuario se encriptará utilizando técnicas de seguridad adecuadas para mitigar riesgos de robo o suplantación de identidad.
+2. **Token único**: Se generará un token único para el usuario autenticado. Este token servirá como una credencial de acceso autorizada que habilitará al usuario para interactuar con otros sitios y servicios dentro de la API, garantizando un nivel adicional de seguridad y control de acceso.
 
 ### Registro
 
@@ -39,7 +39,9 @@ Al momento de hacer el logueo dentro la Api te dará dos cosas:
 {% endtab %}
 {% endtabs %}
 
-El registro de el usuario es permanente por lo que no deberás hacerlo de nuevo, sin embargo deberás loguearte cada 1hr de tiempo ya que el token es temporal, este token se coloca en los <mark style="color:orange;">bearer token</mark>
+El registro de usuarios es persistente, lo que significa que no es necesario realizarlo repetidamente. Sin embargo, para mantener la sesión activa y garantizar la seguridad, se requiere un proceso de inicio de sesión periódico. En este caso, el token de autenticación generado tiene una duración temporal, expirando cada hora.
+
+Es importante destacar que este token temporal debe ser incluido en los encabezados de las solicitudes HTTP, específicamente en el campo "Bearer Token". De este modo, se asegura la autorización adecuada para acceder a los recursos protegidos dentro de la API.
 
 ```json
 {
@@ -77,7 +79,7 @@ El registro de el usuario es permanente por lo que no deberás hacerlo de nuevo,
 {% endtab %}
 {% endtabs %}
 
-Esto es lo que genera el token de registro que es temporal, se pide en la mayoría de end points de la api excepto de las url de uso general
+El token de registro, siendo temporal, es generado mediante un proceso específico dentro del sistema. Este token es requerido para la mayoría de los puntos finales (Endpoints) de la API, excluyendo aquellos destinados a operaciones de uso general. Su función es garantizar la autenticación y autorización adecuadas al interactuar con los recursos protegidos dentro del sistema.
 
 ```json
 {

@@ -8,7 +8,7 @@ coverY: 0
 
 # Api-Rest IA
 
-Este proyecto es una Api con funciones de control de productos, pagos, monitoreo de usuarios, peticiones web, soporte y entre otras mas.
+Este proyecto se define como una interfaz de programación de aplicaciones (API) diseñada para ofrecer funcionalidades de gestión de productos, procesamiento de pagos, supervisión de usuarios, manejo de solicitudes web, atención al cliente, y otras características adicionales.
 
 {% hint style="danger" %}
 Este recurso es sumamente inestable así que no se recomienda su uso en el sector de producción actualmente.

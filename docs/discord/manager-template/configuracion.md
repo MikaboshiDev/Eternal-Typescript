@@ -23,9 +23,14 @@ dashboard:
   callback: "" #URL de regreso en la dashboard
 ```
 
-Estos son los datos básicos para poder prender el Bot de manera correcta los demás datos que se piden en el archivo de configuración son necesarios para los demás sistemas pero no son indispensables así que con solo estos datos puedes disfrutar del Bot.
+Estos son los datos básicos necesarios para iniciar correctamente el bot. Otros detalles requeridos en el archivo de configuración son útiles para otros sistemas pero no son indispensables. Con solo estos datos, puedes comenzar a disfrutar del bot.
 
-Para poder tener soporte de este complemento necesitas 2 cosas: La licencia que se te da cuando la solicitas en el servidor de soporte y que tus datos estén guardados en el <mark style="background-color:orange;">Api</mark>.
+Para recibir soporte adicional para este complemento, necesitarás dos elementos:
+
+1. **Licencia:** La licencia se proporciona cuando la solicitas en nuestro servidor de soporte. Esta licencia te otorga acceso a un soporte preferencial.
+2. **Datos almacenados en el API:** Asegúrate de que tus datos estén correctamente guardados en nuestro API para garantizar un funcionamiento sin problemas y una integración adecuada con el Bot.
+
+Una vez que tengas estos dos elementos en su lugar, estarás listo para aprovechar al máximo el bot y recibir soporte si es necesario.
 
 
 
@@ -72,7 +77,10 @@ Si aun no tienes esos datos, no se te dará soporte del proyecto con sus futuras
 
 ### Registro de Aplicacion
 
-Como ya hemos comentado se tiene que registrar la aplicación dentro de la web de control para esto se hace uso de la api de desarrollador mediante un metodo POST.
+\
+Para registrar la aplicación dentro de nuestra web de control, se utiliza la API de desarrollador a través de un método POST. Este método permite enviar los datos necesarios para el registro de la aplicación. Es importante proporcionar la información requerida de manera precisa para asegurar un registro exitoso.
+
+A continuación, se presenta un ejemplo básico del cuerpo de la solicitud POST que se enviaría a la API de desarrollador para registrar la aplicación:
 
 ```typescript
 import { EmbedBuilder, WebhookClient } from "discord.js";

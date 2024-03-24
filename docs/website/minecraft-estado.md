@@ -6,21 +6,21 @@ cover: ../.gitbook/assets/wallhaven-kxr861.jpg
 coverY: 0
 ---
 
-# Pagina de Minecraft Estado
+# Minecraft Estado
 
 Esta es una pagina en 3 lenguajes HTML, CSS y JS que muestra el estado del servidor, rangos, términos y condiciones, y por ultimo políticas.
 
 <figure><img src="../.gitbook/assets/Captura de pantalla 2023-11-09 185634.png" alt=""><figcaption></figcaption></figure>
 
-La configuración de la pagina es sencilla ya que se trata de un temple muy sencillo, se necesitan dos datos, el token de un Bot u cuenta de discord y los datos del servidor de minecraft.
+La configuración de la página es directa, ya que implica un diseño de plantilla muy simple. Se requieren dos conjuntos de datos: el token de un Bot o cuenta de Discord, y los detalles del servidor de Minecraft.
 
 ## Configuración
 
-Ejemplos de la configuración de la pagina de minecraft
+Ejemplos de configuración para la página de Minecraft:
 
-### Servers
+### **Servidores**
 
-La pagina muestra un estado del servidor web y de el servidor de discord a partir de la api de DISCORD por lo cual se necesita un token para acceder a estos datos.
+La página exhibe el estado del servidor web y del servidor de Discord utilizando la API de Discord. Por lo tanto, se precisa un token de acceso para obtener estos datos a través de la API.
 
 ```javascript
 axios({
@@ -43,11 +43,11 @@ axios({
     });
 ```
 
-El token de un Bot y cuenta de discord es necesario para acceder a estos datos según la documentación de la [api de discord](https://discord.com/developers/docs)
+Para acceder a los datos del servidor web y del servidor de Discord a través de la API de Discord, se requiere el token de un bot o una cuenta de Discord. Este token es esencial para autenticar las solicitudes y obtener los datos necesarios.
 
-### Minecraft
+## **Minecraft**
 
-La configuracion del servidor de minecraft es incluso mas sencilla ya que solo se necesita la ip y puerto del servidor.
+La configuración del servidor de Minecraft es aún más simple, ya que solo se necesitan la dirección IP y el puerto del servidor. Estos detalles permiten a la página acceder y mostrar el estado del servidor de Minecraft de manera efectiva.
 
 ```javascript
 const playerData = {
