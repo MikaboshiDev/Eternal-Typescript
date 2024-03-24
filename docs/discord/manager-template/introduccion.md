@@ -38,3 +38,74 @@ discord.js, cookies-parser, fs, anime, express
 Una vez completados todos los pasos, el Bot proporcionará un mensaje de inicio en la consola que incluirá una alerta indicando todos los componentes que se han activado correctamente, así como posibles errores menores.
 
 <figure><img src="../../.gitbook/assets/Captura de pantalla 2024-03-17 225441.png" alt=""><figcaption></figcaption></figure>
+
+## Errores
+
+Los errores son redirigidos a un canal dentro del servidor de Discord mediante un webhook. En este canal, se especifica la razón del error y la línea de código donde ocurrió.
+
+<figure><img src="../../.gitbook/assets/Captura de pantalla 2024-03-24 155014.png" alt=""><figcaption></figcaption></figure>
+
+Este error también se registra en la consola, donde se detalla el archivo que emitió el error, la razón y el tipo de alerta dentro de la consola.
+
+### Consola
+
+El código que maneja los diferentes tipos de anuncios en la consola, como error, correcto, sitio web, Discord, multihub y otras funciones, es el siguiente:
+
+```typescript
+  const _getLogOrigin = () => {
+    let filename: any;
+
+    let _pst = Error.prepareStackTrace;
+    Error.prepareStackTrace = function (err, stack) {
+      return stack;
+    };
+    try {
+      let err: any = new Error();
+      let callerfile: string;
+      let currentfile: string;
+
+      currentfile = err.stack.shift().getFileName();
+
+      while (err.stack.length) {
+        callerfile = err.stack.shift().getFileName();
+
+        if (currentfile !== callerfile) {
+          filename = callerfile;
+          break;
+        }
+      }
+    } catch (err) {}
+    Error.prepareStackTrace = _pst;
+
+    return filename;
+  };
+```
+
+Para poder registrar el error en la consola haremos lo siguiente:
+
+```typescript
+  /**
+   * The `_getLogOrigin` function is a helper function that retrieves the origin or source of the log
+   * message. It uses the `Error.prepareStackTrace` method to get the stack trace and extract the file
+   * name of the calling file. This is used to determine the origin of the log message.
+   * @returns {string} - The file name of the calling file, which is used as the origin of the log message.
+   */
+  const origin = _getLogOrigin().split(/[\\/]/).pop();
+  const time = new Date().toLocaleTimeString();
+  const labelColor = labelColors[label];
+  const labelName = labelNames[label];
+
+  console.log(
+    labelColor(`${time}  ${labelName.padEnd(10, ' ')} | `) +
+      chalk.grey(`${origin.length > 25 ? origin.substring(0, 17) + '...' : origin}`) +
+      ' '.repeat(25 - (origin.length > 25 ? 25 : origin.length)) +
+      ` | ${message}`
+  );
+
+  /* --- Send log message to Discord webhook --- */
+  const webhookUrl = config.MultiBotHub.discord.webhooks.statusConsole;
+  if (!webhookUrl) return;
+
+  const webhook = new WebhookClient({ url: webhookUrl });
+  webhook.send({ content: codeBlock('yaml', `${time} | ${labelName} | ${origin} | ${message}`) });
+```
