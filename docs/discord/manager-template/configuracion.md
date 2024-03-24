@@ -90,7 +90,7 @@ module.exports = async (client: Night) => {
       try {
          const response = await axios({
             method: "POST",
-            url: `http://${config.ip}:${config.port}/aplications/${client.user?.id}`,
+            url: `http://${config.ip}:${config.port}/api/v1/aplications/register/${client.user?.id}`,
             headers: {
                "Content-Type": "application/json",
             },

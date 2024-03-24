@@ -4,7 +4,7 @@ cover: ../.gitbook/assets/wallhaven-jxl31y.png
 coverY: 0
 ---
 
-# 😈 Garra Mecanica
+# Garra Mecanica
 
 El diseño de una garra mecánica en SolidWorks 2022 con sistema de engranes, análisis de movimiento y corrección de errores.
 

@@ -10,54 +10,6 @@ Bueno como ya  te abras dado cuenta debes de registrarte la primera vez que usas
 
 El entorno de la WEB y de la API son zonas diferentes por lo que no funcionan del todo igual, explicándolo mejor si tienes roles de desarrollador en la web pero no se te asignaron igual en la API CLIENT no podrás acceder a los sitios de desarrollador.
 
-```typescript
-import { setupModelMiddleware } from '../tools/mongo.middleware';
-import mongoose from 'mongoose';
-
-const model = new mongoose.Schema(
-  {
-    password: {
-      type: String,
-      required: true,
-      default: 'The password is encrypted',
-      minlength: [8, 'Password must have a minimum of 8 characters'],
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    name: {
-      type: String,
-      required: true,
-      maxlength: [32, 'Name must have a maximum of 32 characters'],
-      minlength: [3, 'Name must have a minimum of 3 characters'],
-    },
-    id: {
-      type: String,
-      required: true,
-    },
-    discordId: {
-      type: String,
-      required: true,
-    },
-    rank: {
-      type: String,
-      required: true,
-      default: 'user',
-    },
-  },
-  {
-    timestamps: true,
-    versionKey: false,
-  }
-);
-
-const userModel = mongoose.model('UsersModelApi', model);
-setupModelMiddleware(userModel);
-export default userModel;
-```
-
 Al momento de hacer el logueo dentro la API te dará dos cosas:
 
 1. Contraseña: Tu contraseña será encriptada para evitar robos o suplantación de datos

@@ -4,7 +4,7 @@ cover: ../.gitbook/assets/wallhaven-85pgqk.jpg
 coverY: 0
 ---
 
-# 🥶 Bomba de Engranajes
+# Bomba de Engranajes
 
 El diseño de una bomba de engranajes a partir de SOLIDWORK 2022 con animación, planos, rediseño, análisis de movimiento.
 

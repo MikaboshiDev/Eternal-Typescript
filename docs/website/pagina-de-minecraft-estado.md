@@ -6,7 +6,7 @@ cover: ../.gitbook/assets/wallhaven-kxr861.jpg
 coverY: 0
 ---
 
-# 👽 Pagina de Minecraft Estado
+# Pagina de Minecraft Estado
 
 Esta es una pagina en 3 lenguajes HTML, CSS y JS que muestra el estado del servidor, rangos, términos y condiciones, y por ultimo políticas.
 

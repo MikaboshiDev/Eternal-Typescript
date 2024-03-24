@@ -4,7 +4,7 @@ description: Permisos y Requisitos para Endpoints de la API
 
 # Permisos
 
-En varios end points se te pedirá tu <mark style="background-color:orange;">DISCORD PROFILE ID</mark> de usuario de discord o tu <mark style="background-color:orange;">TOKEN</mark> de logueo esto para verificar si estas dentro del servidor o si estas registrado dentro de nuestro cliente.
+En varios end points se te pedirá tu API KEY para poder validar la carga de permisos dentro de el cliente, lo que es por default es el TOKEN que se obtiene en el login cada 1hr
 
 ```typescript
 import axios from "axios";
@@ -13,7 +13,7 @@ import { id } from "common-tags";
 
 async function requestURL() {
 	const response = await axios({
-		url: "http://localhost:3000/api/v1/products/create-product",
+		url: "http://localhost:3000/api/v1/products/create",
 		method: "POST",
 		data: {
 			name: "test",
@@ -29,7 +29,7 @@ async function requestURL() {
 		headers: {
 			"Content-Type": "application/json",
 			"Authorization": `Bearer ${localStorage.getItem("token")}`,
-			"User-id": `${localStorage.getItem("id")}`,
+			"api-key": `<api key>`,
 		},
 	});
 
@@ -49,58 +49,8 @@ Los Endpoints son las rutas dentro de la Website y de la api a las que tienes ac
 
 Estas funciones se controlan de dos formas, dentro la web se controlan a partir de tus roles dentro del servidor de discord.
 
-<figure><img src="../../.gitbook/assets/Captura de pantalla 2023-12-22 160059.png" alt=""><figcaption></figcaption></figure>
-
 #### Api Client
 
 Aquí la cosa es muy diferente ya que no importan tus roles dentro del servidor de discord, lo que se cuenta son las características dentro del perfil creado en tu primera vez interactuando con la aplicación.
-
-```typescript
-import mongoose from 'mongoose';
-import { setupModelMiddleware } from '../tools/mongo.middleware';
-
-const model = new mongoose.Schema(
-  {
-    password: {
-      type: String,
-      required: true,
-      default: 'The password is encrypted',
-      minlength: [8, 'Password must have a minimum of 8 characters'],
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
-    name: {
-      type: String,
-      required: true,
-      maxlength: [32, 'Name must have a maximum of 32 characters'],
-      minlength: [3, 'Name must have a minimum of 3 characters'],
-    },
-    id: {
-      type: String,
-      required: true,
-    },
-    discordId: {
-      type: String,
-      required: true,
-    },
-    rank: {
-      type: String,
-      required: true,
-      default: 'user',
-    },
-  },
-  {
-    timestamps: true,
-    versionKey: false,
-  }
-);
-
-const userModel = mongoose.model('UsersModelApi', model);
-setupModelMiddleware(userModel);
-export default userModel;
-```
 
 A la hora de registrarte por defecto entraras como usuario así que tendrás limitaciones dentro de las funciones, con el tiempo se mejoran la clasificación de rangos en dos ramas mas que son customer y desarrollador&#x20;

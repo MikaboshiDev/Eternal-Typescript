@@ -4,7 +4,7 @@ cover: ../.gitbook/assets/wallhaven-1ppld1.jpg
 coverY: 0
 ---
 
-# 🤬 Cadena Piñón
+# Cadena Piñón
 
 El diseño de este mecanismo se realiza con 2 engranajes normalizados por la norma ANSI y una cadena ensamblada en una relación de posición.
 

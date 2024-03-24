@@ -5,25 +5,30 @@
 
 ## Discord
 
-* [😁 Manager Témplate](discord/manager-template/README.md)
+* [Manager Témplate](discord/manager-template/README.md)
   * [Contenido](discord/manager-template/contenido.md)
   * [Configuración](discord/manager-template/configuracion.md)
   * [Copilador](discord/manager-template/copilador.md)
-* [🥳 Api-Rest IA](discord/api-rest-ia/README.md)
+* [Api-Rest IA](discord/api-rest-ia/README.md)
   * [Registro y Login](discord/api-rest-ia/registro-y-login.md)
   * [Permisos](discord/api-rest-ia/permisos.md)
   * [Tickets](discord/api-rest-ia/tickets.md)
 
 ## SOLIDWORK
 
-* [🥶 Bomba de Engranajes](solidwork/bomba-de-engranajes.md)
-* [😈 Garra Mecanica](solidwork/garra-mecanica.md)
-* [🤬 Cadena Piñón](solidwork/cadena-pinon.md)
+* [Bomba de Engranajes](solidwork/bomba-de-engranajes.md)
+* [Garra Mecanica](solidwork/garra-mecanica.md)
+* [Cadena Piñón](solidwork/cadena-pinon.md)
 
 ## ELECTRONICA
 
-* [👾 Seguidor de Lineal](electronica/seguidor-de-lineal.md)
+* [Seguidor de Lineal](electronica/seguidor-de-lineal.md)
 
 ## Website
 
-* [👽 Pagina de Minecraft Estado](website/pagina-de-minecraft-estado.md)
+* [Pagina de Minecraft Estado](website/pagina-de-minecraft-estado.md)
+
+## Mas
+
+* [Versiones](mas/versiones.md)
+* [Acerca](mas/acerca.md)
