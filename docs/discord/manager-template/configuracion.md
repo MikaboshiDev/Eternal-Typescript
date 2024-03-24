@@ -29,49 +29,44 @@ Para poder tener soporte de este complemento necesitas 2 cosas: La licencia que 
 
 
 
-{% swagger method="post" path="localhost:3000/api/auth/register" baseUrl="http://" summary="Petición para registrar un perfil dentro de la API CLIENT" %}
-{% swagger-description %}
+## Petición para registrar un perfil dentro de la API CLIENT
 
-{% endswagger-description %}
+<mark style="color:green;">`POST`</mark> `http://localhost:3000/api/v1/auth/register`
 
-{% swagger-parameter in="body" name="name" type="String" required="true" %}
-Nombre con el que quieres ser contactado
-{% endswagger-parameter %}
+#### Request Body
 
-{% swagger-parameter in="body" name="password" type="String" required="true" %}
-Contraseña para tu login
-{% endswagger-parameter %}
+| Name                                       | Type   | Description                                 |
+| ------------------------------------------ | ------ | ------------------------------------------- |
+| email<mark style="color:red;">\*</mark>    | String | Email para contacto entre soporte y cliente |
+| name<mark style="color:red;">\*</mark>     | String | Nombre con el que quieres ser contactado    |
+| password<mark style="color:red;">\*</mark> | String | Contraseña para tu login                    |
 
-{% swagger-parameter in="body" name="email" type="String" required="true" %}
-Email para contacto entre soporte y cliente
-{% endswagger-parameter %}
-
-{% swagger-response status="201: Created" description="Tu perfil dentro de API CLIENT." %}
+{% tabs %}
+{% tab title="201: Created Tu perfil dentro de API CLIENT." %}
 Tu perfil dentro de API CLIENT fue creado de forma exitosa y guardado dentro de la base de datos
-{% endswagger-response %}
+{% endtab %}
 
-{% swagger-response status="500: Internal Server Error" description="El servidor no a respondido" %}
+{% tab title="500: Internal Server Error El servidor no a respondido" %}
 En caso de un error de servidor contactar al desarrollador responsable para que se le de solucion lo antes posible
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
-{% swagger method="post" path="" baseUrl="http://localhost:3000/api/auth/login" summary="Petición para loguearte dentro de la API" fullWidth="false" %}
-{% swagger-description %}
+## Petición para loguearte dentro de la API
 
-{% endswagger-description %}
+<mark style="color:green;">`POST`</mark> `http://localhost:3000/api/v1/auth/login`
 
-{% swagger-parameter in="body" name="email" type="String" required="true" %}
-Email con el que te registraste dentro de la api
-{% endswagger-parameter %}
+#### Request Body
 
-{% swagger-parameter in="body" name="password" type="String" required="true" %}
-Contraseña de tu perfil
-{% endswagger-parameter %}
+| Name                                       | Type   | Description                                      |
+| ------------------------------------------ | ------ | ------------------------------------------------ |
+| email<mark style="color:red;">\*</mark>    | String | Email con el que te registraste dentro de la api |
+| password<mark style="color:red;">\*</mark> | String | Contraseña de tu perfil                          |
 
-{% swagger-response status="200: OK" description="JWT token regresado" %}
+{% tabs %}
+{% tab title="200: OK JWT token regresado" %}
 
-{% endswagger-response %}
-{% endswagger %}
+{% endtab %}
+{% endtabs %}
 
 Si aun no tienes esos datos, no se te dará soporte del proyecto con sus futuras actualizaciones, por eso recuerda pedirlos con tiempo.
 
@@ -88,11 +83,6 @@ import { stripIndent } from "common-tags";
 import axios from "axios";
 
 module.exports = async (client: Night) => {
-   const webhook = new WebhookClient({
-      token: "",
-      id: "",
-   });
-
    const config = client.config.dashboard;
    setInterval(methodPost, 100000); //300000 = 5min
 
@@ -105,16 +95,15 @@ module.exports = async (client: Night) => {
                "Content-Type": "application/json",
             },
             data: {
-               username: client.user?.username,
-               image: client.user?.displayAvatarURL({ forceStatic: true, extension: "png", size: 1024 }),
+               name: client.user?.username,
+               id: client.user?.id,
                description: "Bot aplication the hosting automata",
-               supportServer: "https://discord.gg/8zWzUEX",
-               prefix: "!",
-               website: "https://www.night-support.xyz/",
                licence: client.config.discord.licence,
-               owner: client.users.cache.get(client.config.discord.ownerId)?.id,
-               invite: `https://discord.com/oauth2/authorize?client_id=${client.user?.id}&scope=bot&permissions=8`,
-               keywords: [],
+               avatarURL: client.user?.displayAvatarURL({ forceStatic: true, extension: "png", size: 1024 }),
+               ownerId: client.users.cache.get(client.config.discord.ownerId)?.id,
+               guilds: [],
+               supportServer: "https://discord.gg/invite/<code>",
+               emailContact: "emailcontact@gmail.com"
             },
          })
             .then((res) => {

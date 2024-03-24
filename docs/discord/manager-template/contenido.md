@@ -38,8 +38,6 @@ También cuenta con una Dashboard en su versión 0.0.1 BETA con soporte para gra
 
 A continuación algunas imágenes de todas las funciones mencionadas del Bot actualmente:
 
-<figure><img src="../../.gitbook/assets/Captura de pantalla 2023-09-16 080051.png" alt=""><figcaption></figcaption></figure>
-
 <figure><img src="../../.gitbook/assets/Captura de pantalla 2023-09-15 001846.png" alt=""><figcaption></figcaption></figure>
 
 ### &#x20;                                                          Sistema de Correos.

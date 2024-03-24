@@ -1,19 +1,18 @@
 # Table of contents
 
-* [🔮 Night Support Server](README.md)
-  * [Licencias](night-support-server/licencias.md)
+* [🔮 Manager Supports](README.md)
+  * [Licencias](manager-supports/licencias.md)
 
 ## Discord
 
-* [😁 Manager](discord/manager/README.md)
-  * [Contenido](discord/manager/contenido.md)
-  * [Configuración](discord/manager/configuracion.md)
-  * [Copilar JS](discord/manager/copilar-js.md)
-* [🥳 Api-Rest Cliente](discord/api-client/README.md)
-  * [Registro y Login](discord/api-client/registro-y-login.md)
-  * [Permisos](discord/api-client/permisos.md)
-  * [Productos](discord/api-client/productos.md)
-  * [Tickets](discord/api-rest-cliente/tickets.md)
+* [😁 Manager Témplate](discord/manager-template/README.md)
+  * [Contenido](discord/manager-template/contenido.md)
+  * [Configuración](discord/manager-template/configuracion.md)
+  * [Copilador](discord/manager-template/copilador.md)
+* [🥳 Api-Rest IA](discord/api-rest-ia/README.md)
+  * [Registro y Login](discord/api-rest-ia/registro-y-login.md)
+  * [Permisos](discord/api-rest-ia/permisos.md)
+  * [Tickets](discord/api-rest-ia/tickets.md)
 
 ## SOLIDWORK
 

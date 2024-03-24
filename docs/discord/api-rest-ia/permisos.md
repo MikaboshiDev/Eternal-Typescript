@@ -13,15 +13,18 @@ import { id } from "common-tags";
 
 async function requestURL() {
 	const response = await axios({
-		url: "http://localhost:3000/api/products/create",
+		url: "http://localhost:3000/api/v1/products/create-product",
 		method: "POST",
 		data: {
 			name: "test",
-			price: 123,
-			description: "test",
-			category: "test",
-			countInStock: 123,
-			imageUrl: "test",
+			id: "SYE2-DUE2-E833-DWU2-EF9F",
+			description: "",
+			price: 30,
+			dowloadLink: "",
+			imageURL: "",
+			category: "",
+			supportEnabled: false,
+			creatorId: ""
 		},
 		headers: {
 			"Content-Type": "application/json",
@@ -53,28 +56,51 @@ Estas funciones se controlan de dos formas, dentro la web se controlan a partir 
 Aquí la cosa es muy diferente ya que no importan tus roles dentro del servidor de discord, lo que se cuenta son las características dentro del perfil creado en tu primera vez interactuando con la aplicación.
 
 ```typescript
-import { Schema, Types, model, Model } from "mongoose";
+import mongoose from 'mongoose';
+import { setupModelMiddleware } from '../tools/mongo.middleware';
 
-const UserSchema = new Schema(
-	{
-		password: { type: String, default: "Sin registrar" },
-		email: { type: String, required: true, unique: true },
-		blacklist: Boolean,
-		licences: { type: Array },
-		rank: { type: String, default: "user" },
-		name: { type: String, required: true },
-		id: { type: String, required: true },
-		products: { type: Array },
-		invoice: { type: Array },
-		rangos: { type: Array },
-	},
-	{
-		timestamps: true,
-		versionKey: false,
-	},
+const model = new mongoose.Schema(
+  {
+    password: {
+      type: String,
+      required: true,
+      default: 'The password is encrypted',
+      minlength: [8, 'Password must have a minimum of 8 characters'],
+    },
+    email: {
+      type: String,
+      required: true,
+      unique: true,
+    },
+    name: {
+      type: String,
+      required: true,
+      maxlength: [32, 'Name must have a maximum of 32 characters'],
+      minlength: [3, 'Name must have a minimum of 3 characters'],
+    },
+    id: {
+      type: String,
+      required: true,
+    },
+    discordId: {
+      type: String,
+      required: true,
+    },
+    rank: {
+      type: String,
+      required: true,
+      default: 'user',
+    },
+  },
+  {
+    timestamps: true,
+    versionKey: false,
+  }
 );
-const UserModel = model("User-model", UserSchema);
-export default UserModel;
+
+const userModel = mongoose.model('UsersModelApi', model);
+setupModelMiddleware(userModel);
+export default userModel;
 ```
 
-A la hora de registrarte por defecto entraras como usuario asi que tendrás limitaciones dentro de las funciones, con el tiempo se mejoran la clasificación de rangos en dos ramas mas que son customer y desarrollador&#x20;
+A la hora de registrarte por defecto entraras como usuario así que tendrás limitaciones dentro de las funciones, con el tiempo se mejoran la clasificación de rangos en dos ramas mas que son customer y desarrollador&#x20;
