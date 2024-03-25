@@ -34,4 +34,4 @@ Este recurso es un producto que se brinda como servicio publico por lo para mas 
 
 ### Ilustración
 
-<figure><img src="../../.gitbook/assets/Captura de pantalla 2024-03-25 083716.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Captura de pantalla 2024-03-25 140553.png" alt=""><figcaption></figcaption></figure>
