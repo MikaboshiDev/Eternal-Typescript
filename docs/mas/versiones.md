@@ -20,6 +20,8 @@ description: >-
 * `Add`: Inteligencia artificial en el sub-cliente de discord
 * `Remove`:  Comandos no relacionados a las funciones del cliente en Discord y Whatsapp.
 * `Fix`: Controladores de la API de productos y aplicaciones
+* `Add`: Área de monitoreo de estado de los servidores
+* `Add`: Estimacion de peticiones y control de resultados en Express
 
 ### `v0.0.2`
 
