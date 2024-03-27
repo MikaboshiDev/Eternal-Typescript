@@ -21,7 +21,7 @@ description: >-
 * `Remove`:  Comandos no relacionados a las funciones del cliente en Discord y Whatsapp.
 * `Fix`: Controladores de la API de productos y aplicaciones
 * `Add`: Área de monitoreo de estado de los servidores
-* `Add`: Estimacion de peticiones y control de resultados en Express
+* `Add`: Estimación de peticiones y control de resultados en Express
 
 ### `v0.0.2`
 
@@ -36,3 +36,7 @@ description: >-
 * `Fix`: Error de transcripciones de los tickets del Bot
 * `Add`: Agregado de comandos de anime como, series random, anime, mangas, autores&#x20;
 * `Add`: Apartado de animes dentro de la Dashboard
+
+{% hint style="danger" %}
+Las actualizaciones de este proyecto se encuentran congeladas desde `Marzo 24, 2024` si necesitas soporte de versiones inferiores ingresa a nuestro [discord](http://discord.night-support.xyz)
+{% endhint %}
