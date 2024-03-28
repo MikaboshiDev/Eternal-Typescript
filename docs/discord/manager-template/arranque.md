@@ -2,7 +2,7 @@
 description: Introducción a la configuración y arranque del Bot una vez descargado
 ---
 
-# Introducción
+# Arranque
 
 Una vez que obtienes el source del Bot lo que queda es configurar su archivo principal para eso dirígete a [Configuracion](configuracion.md) una vez configurado tenemos dos opciones.
 
@@ -14,7 +14,7 @@ npm run build
 
 Después de ejecutar el comando `tsc`, será necesario editar varios archivos para ajustar los términos del código, de modo que la aplicación lea archivos con extensión `.js` en lugar de `.ts`. Aunque este cambio no provoca errores en el arranque, deshabilitará algunas funciones del cliente. Por lo tanto, es recomendable realizar este ajuste para garantizar el correcto funcionamiento de la aplicación.
 
-## Arranque
+## Dependencias
 
 Una vez que se haya compilado el código, podemos proceder con el arranque del bot siguiendo dos pasos sencillos.
 
@@ -35,7 +35,13 @@ discord.js, cookies-parser, fs, anime, express
 
 ## Encendido
 
+```
+npm run dev
+```
+
 Una vez completados todos los pasos, el Bot proporcionará un mensaje de inicio en la consola que incluirá una alerta indicando todos los componentes que se han activado correctamente, así como posibles errores menores.
+
+#### Ejemplo:
 
 <figure><img src="../../.gitbook/assets/Captura de pantalla 2024-03-17 225441.png" alt=""><figcaption></figcaption></figure>
 
@@ -109,3 +115,7 @@ Para poder registrar el error en la consola haremos lo siguiente:
   const webhook = new WebhookClient({ url: webhookUrl });
   webhook.send({ content: codeBlock('yaml', `${time} | ${labelName} | ${origin} | ${message}`) });
 ```
+
+{% hint style="danger" %}
+Método Actualizado `Marzo 28, 2024` en [Eternal-Support](../../paquetes/eternal-support.md)
+{% endhint %}

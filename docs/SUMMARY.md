@@ -8,16 +8,21 @@
 * [Introducción](api-rest/introduccion.md)
 * [Api-Rest IA](api-rest/api-rest-ia/README.md)
   * [Empezando](api-rest/api-rest-ia/empezando.md)
+  * [Referencias](api-rest/api-rest-ia/referencias.md)
+  * [Integración](api-rest/api-rest-ia/integracion.md)
   * [Permisos](api-rest/api-rest-ia/permisos.md)
-  * [Tickets](api-rest/api-rest-ia/tickets.md)
-  * [Integración IA](api-rest/api-rest-ia/integracion-ia.md)
+  * [EndPoints](http://www.night-support.xyz/documentation)
 
 ## Discord
 
 * [Manager Témplate](discord/manager-template/README.md)
-  * [Introducción](discord/manager-template/introduccion.md)
   * [Contenido](discord/manager-template/contenido.md)
+  * [Arranque](discord/manager-template/arranque.md)
   * [Configuración](discord/manager-template/configuracion.md)
+
+## Paquetes
+
+* [Eternal Support](paquetes/eternal-support.md)
 
 ## Website
 
@@ -25,9 +30,8 @@
 
 ## Mas
 
-* [Versiones](mas/versiones.md)
+* [Versiones](mas/versiones/README.md)
+  * [Api-Rest IA](mas/versiones/api-rest-ia.md)
+  * [Manager Templete](mas/versiones/manager-templete.md)
+  * [Eternal Support](mas/versiones/eternal-support.md)
 * [Términos y Usos](mas/terminos-y-usos.md)
-
-***
-
-* [Referencias](http://www.night-support.xyz/documentation)

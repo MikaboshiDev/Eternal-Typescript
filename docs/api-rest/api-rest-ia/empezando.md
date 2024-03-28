@@ -15,9 +15,9 @@ Al momento de autenticarse dentro de la API, el sistema proporcionará dos eleme
 1. **Contraseña encriptada**: La contraseña del usuario se encriptará utilizando técnicas de seguridad adecuadas para mitigar riesgos de robo o suplantación de identidad.
 2. **Token único**: Se generará un token único para el usuario autenticado. Este token servirá como una credencial de acceso autorizada que habilitará al usuario para interactuar con otros sitios y servicios dentro de la API, garantizando un nivel adicional de seguridad y control de acceso.
 
-### Registro
+## Registro
 
-## Realizar registro dentro del cliente
+### Realizar registro dentro del cliente
 
 <mark style="color:green;">`POST`</mark> `http://localhost:3000/api/auth/register`
 
@@ -56,9 +56,9 @@ Es importante destacar que este token temporal debe ser incluido en los encabeza
 }
 ```
 
-### Login
+## Login
 
-## Realiza un logueo del usuario para un token de registro temporal de 1hr
+### Realiza un logueo del usuario para un token de registro temporal de 1hr
 
 <mark style="color:green;">`POST`</mark> `http://localhost:3000/api/auth/login`
 

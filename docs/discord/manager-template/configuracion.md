@@ -75,7 +75,7 @@ En caso de un error de servidor contactar al desarrollador responsable para que 
 
 Si aun no tienes esos datos, no se te dará soporte del proyecto con sus futuras actualizaciones, por eso recuerda pedirlos con tiempo.
 
-### Registro de Aplicacion
+## Registro de Aplicacion
 
 \
 Para registrar la aplicación dentro de nuestra web de control, se utiliza la API de desarrollador a través de un método POST. Este método permite enviar los datos necesarios para el registro de la aplicación. Es importante proporcionar la información requerida de manera precisa para asegurar un registro exitoso.
@@ -129,7 +129,6 @@ module.exports = async (client: Night) => {
 };
 ```
 
-{% code lineNumbers="true" fullWidth="false" %}
-```typescript
-```
-{% endcode %}
+{% hint style="danger" %}
+Método Actualizado `Marzo 28, 2024` en [Eternal-Support](../../paquetes/eternal-support.md#utilidades)
+{% endhint %}
