@@ -6,6 +6,19 @@ description: Control de Versiones de el proyecto
 
 ## Log
 
+### `v0.0.3`
+
+> Marzo 28, 2024
+
+* `Add`: Métodos de Rate Limit y Suspensión
+* `Add`: Estado de la petición según el código de uso
+* `Add`: Estudio de numero de peticiones, tiempo de respuesta y rendimiento general
+* `Add`: Actualización de la documentación
+* `Remove`: Funciones con las librerías de nekos.life, akaneko y con las funciones de LogWitchConsole, Mongoose Middleware
+* `Fix`: Arreglo con eternal-support dentro de las funciones removidas
+* `Fix`: Actualización del Middleware de desarrollador agregando dos métodos de entrada
+* `Add`: Documentación del código
+
 ### `v0.0.3-alpha` <a href="#v0.0.3-alpha" id="v0.0.3-alpha"></a>
 
 > Marzo 24, 2024
