@@ -243,6 +243,26 @@ const neko = new NekoClient();
 neko.catText().then((catText) => console.log(catText));
 ```
 
+### Anti Crash
+
+Función de soporte ante errores del cliente y de la aplicación de discord, envia los errroes y el motivo a un canal dentro del mismo servidor
+
+```typescript
+import { antiCrash, logWithLabel } from 'eternal-support';
+import { WebhookClient } from "discord.js";
+
+const webhook = new WebhookClient({ url: "" });
+await antiCrash({webhook: webhook, client: this })
+```
+
+### Handlers
+
+Hendler para los comandos de las aplicaciones como Discord, Whatsapp y los Endpoints de la Api, por medio de un path y un tipo de extensión.
+
+{% hint style="warning" %}
+Esta herramienta se sigue comprobando su función hasta el momento de la ultima actualización de esta documentación `Marzo 29, 2024`
+{% endhint %}
+
 ## Ejemplos
 
 ```typescript

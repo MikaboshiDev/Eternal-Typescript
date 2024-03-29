@@ -6,6 +6,17 @@ description: Control de Versiones del proyecto Eternal Support
 
 ## Log
 
+### `v0.0.6`
+
+> Marzo 29, 2024
+
+* `Fix`: Tipos de funciones para compatibilidad
+* `Add`: Función de soporte para errores del cliente de discord y general
+* `Fix`: Clase de ApiTools arreglada
+* `Add`: Handlers para comandos de Whatsapp y Api
+* `Add`: Test de las funciones y clases dentro de la librería
+* `Fix`: Respuesta de las funciones de anime y manga
+
 ### `v0.0.4`
 
 > Marzo 28, 2024

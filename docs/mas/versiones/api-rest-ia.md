@@ -14,7 +14,7 @@ description: Control de Versiones de el proyecto
 * `Add`: Estado de la petición según el código de uso
 * `Add`: Estudio de numero de peticiones, tiempo de respuesta y rendimiento general
 * `Add`: Actualización de la documentación
-* `Remove`: Funciones con las librerías de nekos.life, akaneko y con las funciones de LogWitchConsole, Mongoose Middleware
+* `Remove`: Funciones con las librerías de nekos.life, akaneko y con las funciones.
 * `Fix`: Arreglo con eternal-support dentro de las funciones removidas
 * `Fix`: Actualización del Middleware de desarrollador agregando dos métodos de entrada
 * `Add`: Documentación del código
