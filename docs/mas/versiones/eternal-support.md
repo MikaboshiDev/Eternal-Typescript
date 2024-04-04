@@ -6,6 +6,22 @@ description: Control de Versiones del proyecto Eternal Support
 
 ## Log
 
+### `v0.0.7-alpha`
+
+> Abril 04, 2024
+
+* `Remove`: Obtención de jugadores de los servidores de minecraft
+* `Remove`: Handlers de express, whatsapp-web.js y discord.js
+
+### `v0.0.7`
+
+> Abril 04, 2024
+
+* `Add`: Estado de servidores de minecraft (java / bedrock)
+* `Fix`: Error de petición HTTP a la api de night supports
+* `Fix`: Error de obtención de imágenes de nekos.life y akaneko api
+* `Add`: Documentación del código TS de la librería y agregado de reglas de eslint
+
 ### `v0.0.6`
 
 > Marzo 29, 2024

@@ -147,6 +147,40 @@ akaneko.nsfw.maid().then((imageURL) => {
 })
 ```
 
+### Minecraft Estado
+
+Estado de servidores de minecraft tanto java como bedrock por medio de una clase compatible con JavaScript y typeScript
+
+{% tabs %}
+{% tab title="JavaScript" %}
+```javascript
+import { mcStatus } from 'eternal-support';
+const client = new mcStatus("java", "play.hypixel.net");
+client.getStatus().then((response) => {
+  console.log(response);
+});
+```
+{% endtab %}
+
+{% tab title="TypeScript" %}
+```typescript
+import { mcStatus } from 'eternal-support';
+const client = new mcStatus("java", "play.hypixel.net");
+client.getStatus().then((response: AxiosResponse) => {
+  console.log(response);
+});
+```
+{% endtab %}
+{% endtabs %}
+
+#### Errores
+
+Se declara el tipo de servidor al cual estas haciendo la petición en dos tipos (bedrock, java) en caso de agregar otro valor aparte de los ya definidos se da error. `Error: Invalid type of Minecraft server provided.`
+
+#### Respuesta
+
+La solicitud de estado del servidor se hace por medio de peticiones `HTTP`, por lo tanto se devuelve false en caso de un estado diferente a `200 (OK)`
+
 ## Utilidades
 
 1. Obtención de imágenes de anime y Nsfw.
