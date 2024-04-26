@@ -4,7 +4,11 @@ description: >-
   por si misma.
 ---
 
-# Integración IA
+# Integración
+
+{% hint style="warning" %}
+La incorporación de el modelado IA del cliente, esta en mantenimiento para mejores métodos de aprendizaje y asesoramiento
+{% endhint %}
 
 Este sistema presenta una integración fluida con una variedad de modelos de inteligencia artificial (IA), que abarcan las siguientes funcionalidades:
 
