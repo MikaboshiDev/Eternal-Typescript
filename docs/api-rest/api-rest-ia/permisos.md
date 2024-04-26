@@ -13,7 +13,7 @@ import { id } from "common-tags";
 
 async function requestURL() {
 	const response = await axios({
-		url: "http://localhost:3000/api/v1/products/create",
+		url: "http://api.night-support.xyz/api/v1/products/create",
 		method: "POST",
 		data: {
 			name: "test",

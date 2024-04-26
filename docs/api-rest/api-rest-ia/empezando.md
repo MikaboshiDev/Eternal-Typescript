@@ -19,7 +19,7 @@ Al momento de autenticarse dentro de la API, el sistema proporcionará dos eleme
 
 ### Realizar registro dentro del cliente
 
-<mark style="color:green;">`POST`</mark> `http://localhost:3000/api/auth/register`
+<mark style="color:green;">`POST`</mark> `http://api.night-support.xyz/api/auth/register`
 
 #### Request Body
 
@@ -46,7 +46,7 @@ Es importante destacar que este token temporal debe ser incluido en los encabeza
 ```json
 {
   "password": "$2a$08$BDjR4rpsYwTJzPKvI6l8v.1t10MY/8MfCC3TFa8TVpnT274ONMw7W",
-  "email": "luisantonio200386@gmail.com",
+  "email": "",
   "name": "Luis Antonio Porras Hernandez",
   "id": "6afcb364-c44b-47d2-8cd5-ec339684fd06",
   "rank": "user",
@@ -60,7 +60,7 @@ Es importante destacar que este token temporal debe ser incluido en los encabeza
 
 ### Realiza un logueo del usuario para un token de registro temporal de 1hr
 
-<mark style="color:green;">`POST`</mark> `http://localhost:3000/api/auth/login`
+<mark style="color:green;">`POST`</mark> `http://api.night-support.xyz/api/auth/login`
 
 #### Request Body
 

@@ -40,7 +40,7 @@ La API siempre devolverá un objeto JSON. La respuesta tendrá la siguiente estr
 }
 ```
 
-## Errors
+## Errores
 
 Si se produce un error, la API devolverá un objeto JSON con la siguiente estructura dependiendo del tipo de error:
 
@@ -74,7 +74,7 @@ Si se produce un error, la API devolverá un objeto JSON con la siguiente estruc
 Aun que existe una documentación de estos mismos dentro de la Api aquí te explicare cuales son públicos y cuales requieren de un token de acceso o rol de desarrollador dentro de el perfil.
 
 ```
-http://www.night-support.xyz/api/v1/
+http://api.night-support.xyz/api/v1/
 ```
 
 ### Públicos
