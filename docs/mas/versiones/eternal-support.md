@@ -6,6 +6,13 @@ description: Control de Versiones del proyecto Eternal Support
 
 ## Log
 
+### `v1.0.0`
+
+* `Add:` Clase de utilidades privadas para Eternal IA
+* `Remove:` ApiTools se removió por errores de funcionamiento base
+* `Fix:` Corregido error de anime y mangas
+* `Add:` Logueo por medio de archivo .log dentro de la función anti crash
+
 ### `v0.0.7-alpha`
 
 > Abril 04, 2024

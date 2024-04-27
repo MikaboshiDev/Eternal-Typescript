@@ -6,7 +6,7 @@ description: >-
 
 # Eternal Support
 
-Eternal-Support es una biblioteca de soporte, que agrega funciones y solicitudes útiles a bibliotecas como nekos.life y akaneko, su objetivo es la optimización de los recursos de trabajo.
+`Eternal-Support` es una biblioteca de soporte, que agrega funciones y solicitudes útiles a bibliotecas como nekos.life y akaneko, su objetivo es la optimización de los recursos de trabajo.
 
 ## Contenido
 
@@ -186,71 +186,7 @@ La solicitud de estado del servidor se hace por medio de peticiones `HTTP`, por 
 1. Obtención de imágenes de anime y Nsfw.
 2. Petición a Apis publicas de los animes mas recomendados, búsquedas y obtenciones random.
 3. Logueo en consola.
-4. Registro de aplicación y obtención de las mismas (Api Privada).
-5. Estado de bases de datos de Mongoose.
-
-### Api Tools
-
-Es una clase de el paquete que ayuda en el control y registro de aplicaciones (bots), esto para mejorar y facilitar el registro de los bots relacionados con eternal-manager
-
-#### `POST`
-
-Registro de la aplicación dentro de la web
-
-```typescript
-import { ApiTools, logWithLabel } from 'eternal-support';
-import { DiscordBot } from '../structure/clientApp';
-
-module.exports = (client: DiscordBot) => {
-setInterval(registerApp, 300000); // 5 minutes
-  function registerApp() {
-    const res = new ApiTools('<api privada>', client);
-    res
-      .postAppWeb({
-        description: 'Api-rest IA, control project focused on the manipulation of products, servers.',
-        iconURL: client.user?.displayAvatarURL({ forceStatic: true, extension: 'png' }) as any,
-        ownerId: "",
-        licence: 'MIT',
-        email: '',
-        supportServer: '',
-      })
-      .then((data) => {
-      return data;  
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  } 
-};
-```
-
-#### `GET ID`
-
-```typescript
-import { ApiTools, logWithLabel } from 'eternal-support';
-import { DiscordBot } from '../structure/clientApp';
-
-async function request(id: number){
-   const res = new ApiTools('<api privada>', client);
-   return res.getAppWeb({ id })
-}
-
-request();
-```
-
-#### `GETS`
-
-```typescript
-import { ApiTools, logWithLabel } from 'eternal-support';
-import { DiscordBot } from '../structure/clientApp';
-
-async function request(){
-   const res = new ApiTools('<api privada>', client);
-   return res.getAppsWeb()
-}
-
-request();
-```
+4. Estado de bases de datos de Mongoose.
 
 ### Neko
 
@@ -279,23 +215,36 @@ neko.catText().then((catText) => console.log(catText));
 
 ### Anti Crash
 
-Función de soporte ante errores del cliente y de la aplicación de discord, envia los errroes y el motivo a un canal dentro del mismo servidor
+Función de soporte ante errores del cliente y de la aplicación de discord, envía los errores y el motivo a un canal dentro del mismo servidor
+
+{% hint style="info" %}
+Ahora guardar un archivo `.log` dentro del path que especifiques dentro de la función
+{% endhint %}
 
 ```typescript
 import { antiCrash, logWithLabel } from 'eternal-support';
 import { WebhookClient } from "discord.js";
 
 const webhook = new WebhookClient({ url: "" });
-await antiCrash({webhook: webhook, client: this })
+await antiCrash({webhook: webhook, client: this, path: "./logs" })
 ```
 
-### Handlers
+### Tools Hub
 
-Hendler para los comandos de las aplicaciones como Discord, Whatsapp y los Endpoints de la Api, por medio de un path y un tipo de extensión.
+> Funcion Privada de Eternal IA, nose garantiza funcionamiento fuera de ellos
 
-{% hint style="warning" %}
-Esta herramienta se sigue comprobando su función hasta el momento de la ultima actualización de esta documentación `Marzo 29, 2024`
-{% endhint %}
+Clase con funciones de Mongoose y licencias personales, esto se agrego con el fin de ahorrar recursos y código dentro de los proyectos de ETERNAL HUB.
+
+```typescript
+import { discordApp } from '../../apps/discord/app';
+import { toolsHub } from 'eternal-support';
+import { config } from './configuration';
+
+const licenceUrl = 'http://78.108.218.183:25507/api/client';
+const apiUrl = 'http://api.night-support.xyz/v1';
+const databaseUrl = config.database;
+const tools = new toolsHub(databaseUrl, licenceUrl, apiUrl, discordApp);
+```
 
 ## Ejemplos
 
@@ -309,37 +258,26 @@ request();
 ```
 
 ```typescript
-import { ApiTools, logWithLabel } from 'eternal-support';
-import { DiscordBot } from '../structure/clientApp';
-
-module.exports = (client: DiscordBot) => {
-setInterval(registerApp, 300000); // 5 minutes
-  function registerApp() {
-    const res = new ApiTools('<api privada>', client);
-    res
-      .postAppWeb({
-        description: 'Api-rest IA, control project focused on the manipulation of products, servers.',
-        iconURL: client.user?.displayAvatarURL({ forceStatic: true, extension: 'png' }) as any,
-        ownerId: "",
-        licence: 'MIT',
-        email: '',
-        supportServer: '',
-      })
-      .then((data) => {
-      return data;  
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  } 
-};
-```
-
-```typescript
 import { anime, manga } from "eternal-support";
 async function request() {
   console.log(await manga.mangaSearch(1246))
 }
 
 request();
+```
+
+```typescript
+import { logWithLabel } from 'eternal-support';
+logWithLabel('info', 'Hello World');
+```
+
+```typescript
+import { mobileWallpapers } from 'eternal-support';
+async function getMobileWallpapers() {
+  const mobileWallpapers = await mobileWallpapers();
+  console.log(mobileWallpapers);
+}
+
+getMobileWallpapers();
+
 ```
