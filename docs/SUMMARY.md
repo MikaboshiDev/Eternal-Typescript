@@ -7,11 +7,12 @@
 
 * [Introducción](api-rest/introduccion.md)
 * [Api-Rest IA](api-rest/api-rest-ia/README.md)
-  * [Empezando](api-rest/api-rest-ia/empezando.md)
-  * [Referencias](api-rest/api-rest-ia/referencias.md)
+  * [Introducción](api-rest/api-rest-ia/introduccion.md)
+  * [Referencias](api-rest/api-rest-ia/referencias/README.md)
+    * [Aplicaciones.](api-rest/api-rest-ia/referencias/aplicaciones..md)
+    * [Productos](api-rest/api-rest-ia/referencias/productos.md)
   * [Integración](api-rest/api-rest-ia/integracion.md)
   * [Permisos](api-rest/api-rest-ia/permisos.md)
-  * [EndPoints](http://www.night-support.xyz/documentation)
 
 ## Discord
 
