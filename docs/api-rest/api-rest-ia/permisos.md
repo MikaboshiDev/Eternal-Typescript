@@ -29,7 +29,7 @@ async function requestURL() {
 		headers: {
 			"Content-Type": "application/json",
 			"Authorization": `Bearer ${localStorage.getItem("token")}`,
-			"api-key": `<api key>`,
+			"Secret-Auth": `<api key>`,
 		},
 	});
 

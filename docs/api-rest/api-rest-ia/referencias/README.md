@@ -74,87 +74,8 @@ Si se produce un error, la API devolverá un objeto JSON con la siguiente estruc
 Aun que existe una documentación de estos mismos dentro de la Api aquí te explicare cuales son públicos y cuales requieren de un token de acceso o rol de desarrollador dentro de el perfil.
 
 ```
-http://api.night-support.xyz/api/v1/
+http://api.night-support.xyz/v1/
 ```
-
-### Públicos
-
-#### `GET /products`
-
-<details>
-
-<summary>Lista de productos guardados dentro de la base de datos</summary>
-
-* `200`: Productos obtenidos dentro de la lista
-
-```json
-{
- status: true,
- message: "Products retrieved successfully",
- elements: 10,
- data: [
-  {
-  "_id": {
-    "$oid": "65dd78a38447ac9adbea59e9"
-  },
-  "name": "Product 1",
-  "id": "f67a203a-2855-4d3b-bd70-4433b8834f5a",
-  "description": "Product 1 description here",
-  "price": 100,
-  "downloadLink": "http://www.example.com/download-link",
-  "category": "Category 1",
-  "supportEnabled": false,
-  "createdAt": {
-    "$date": "2024-02-27T05:52:35.716Z"
-  },
-  "updatedAt": {
-    "$date": "2024-02-27T05:52:35.716Z"
-  },
-  "imageURL": "https://cdn.discordapp.com/attachments/1209282955998920755/1219163586879033474/imagenes-de-animes-para-fondos11-e1662485577778.jpg?ex=660a4d92&is=65f7d892&hm=14b8911764270b7e7136fa1192d3dcacb11964ad92575500759214136319bda9&"
-}
- ]
-}
-```
-
-</details>
-
-#### `GET /products/:id`
-
-<details>
-
-<summary>Información del producto mediante de la ID</summary>
-
-* `200`: Producto obtenido por medio de su id
-
-```json
-{
- status: true,
- message: "Product found in the database",
- data: {
-  {
-  "_id": {
-    "$oid": "65dd78a38447ac9adbea59e9"
-  },
-  "name": "Product 1",
-  "id": "f67a203a-2855-4d3b-bd70-4433b8834f5a",
-  "description": "Product 1 description here",
-  "price": 100,
-  "downloadLink": "http://www.example.com/download-link",
-  "category": "Category 1",
-  "supportEnabled": false,
-  "createdAt": {
-    "$date": "2024-02-27T05:52:35.716Z"
-  },
-  "updatedAt": {
-    "$date": "2024-02-27T05:52:35.716Z"
-  },
-  "imageURL": "https://cdn.discordapp.com/attachments/1209282955998920755/1219163586879033474/imagenes-de-animes-para-fondos11-e1662485577778.jpg?ex=660a4d92&is=65f7d892&hm=14b8911764270b7e7136fa1192d3dcacb11964ad92575500759214136319bda9&"
-}
- }
-}
-```
-
-</details>
 
 ### Privados
 

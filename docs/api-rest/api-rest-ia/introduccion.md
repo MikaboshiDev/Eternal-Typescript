@@ -2,7 +2,7 @@
 description: Registro y Login dentro del cliente
 ---
 
-# Empezando
+# Introducción
 
 Bueno como ya  te abras dado cuenta debes de registrarte la primera vez que usas o ingresas a esta API esto debido a protocolos de seguridad del cliente.
 
@@ -15,11 +15,11 @@ Al momento de autenticarse dentro de la API, el sistema proporcionará dos eleme
 1. **Contraseña encriptada**: La contraseña del usuario se encriptará utilizando técnicas de seguridad adecuadas para mitigar riesgos de robo o suplantación de identidad.
 2. **Token único**: Se generará un token único para el usuario autenticado. Este token servirá como una credencial de acceso autorizada que habilitará al usuario para interactuar con otros sitios y servicios dentro de la API, garantizando un nivel adicional de seguridad y control de acceso.
 
-## Registro
+URL: `http://api.night-support.xyz/v1`
 
-### Realizar registro dentro del cliente
+### Primer Registro de Perfil
 
-<mark style="color:green;">`POST`</mark> `http://api.night-support.xyz/api/auth/register`
+<mark style="color:green;">`POST`</mark> `/auth/register`
 
 #### Request Body
 
@@ -47,20 +47,18 @@ Es importante destacar que este token temporal debe ser incluido en los encabeza
 {
   "password": "$2a$08$BDjR4rpsYwTJzPKvI6l8v.1t10MY/8MfCC3TFa8TVpnT274ONMw7W",
   "email": "",
-  "name": "Luis Antonio Porras Hernandez",
+  "name": "",
   "id": "6afcb364-c44b-47d2-8cd5-ec339684fd06",
   "rank": "user",
   "_id": "65dd76d5af9e7ad305a2f41b",
   "createdAt": "2024-02-27T05:44:54.011Z",
   "updatedAt": "2024-02-27T05:44:54.011Z"
-}
+api
 ```
 
-## Login
+### Logueo Temporal (1hr)
 
-### Realiza un logueo del usuario para un token de registro temporal de 1hr
-
-<mark style="color:green;">`POST`</mark> `http://api.night-support.xyz/api/auth/login`
+<mark style="color:green;">`POST`</mark> `/auth/login`
 
 #### Request Body
 
@@ -87,8 +85,8 @@ El token de registro, siendo temporal, es generado mediante un proceso específi
   "user": {
     "_id": "65dd76d5af9e7ad305a2f41b",
     "password": "$2a$08$BDjR4rpsYwTJzPKvI6l8v.1t10MY/8MfCC3TFa8TVpnT274ONMw7W",
-    "email": "luisantonio200386@gmail.com",
-    "name": "Luis Antonio Porras Hernandez",
+    "email": "",
+    "name": "",
     "id": "6afcb364-c44b-47d2-8cd5-ec339684fd06",
     "rank": "user",
     "createdAt": "2024-02-27T05:44:54.011Z",
@@ -96,3 +94,74 @@ El token de registro, siendo temporal, es generado mediante un proceso específi
   }
 }
 ```
+
+### Lista de Url's
+
+<mark style="color:green;">`POST`</mark> `/endpoints`
+
+Lista de Url's de la api
+
+**Headers**
+
+| Name         | Value              |
+| ------------ | ------------------ |
+| Content-Type | `application/json` |
+
+**Response**
+
+{% tabs %}
+{% tab title="200" %}
+```json
+{
+  "message": "ENDPOINTS LIST",
+  "data": {
+    "tools": {
+      "health": "/v1/health",
+      "emojis": "/v1/tools/emojis/download",
+      "files": "/v1/tools/files",
+      "fileDownload": "/v1/tools/files/:name",
+      "fileUpload": "/v1/tools/files/upload"
+    },
+    "apps": {
+      "applications": "/v1/aplications",
+      "applicationById": "/v1/aplications/:id",
+      "applicationUpdate": "/v1/aplications/:id",
+      "applicationDelete": "/v1/aplications/:id",
+      "applicationCreate": "/v1/aplications/:id"
+    },
+    "products": {
+      "products": "/v1/products",
+      "productById": "/v1/products/:id",
+      "productUpdate": "/v1/products/:id",
+      "productDelete": "/v1/products/:id",
+      "productCreate": "/v1/products"
+    },
+    "users": {
+      "users": "/v1/users",
+      "userById": "/v1/users/:id",
+      "userUpdate": "/v1/users/:id",
+      "userDelete": "/v1/users/:id"
+    },
+    "auth": {
+      "login": "/v1/auth/login",
+      "register": "/v1/auth/register",
+      "delete": "/v1/auth/delete",
+      "profile": "/v1/auth/profile/:id"
+    },
+    "init": {
+      "welcome": "/v1",
+      "anime": "/v1/anime/:id",
+      "manga": "/v1/manga/:id"
+    }
+  }
+```
+{% endtab %}
+
+{% tab title="400" %}
+```json
+{
+  "error": "Invalid request"
+}
+```
+{% endtab %}
+{% endtabs %}
