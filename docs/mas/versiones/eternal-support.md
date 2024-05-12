@@ -6,7 +6,34 @@ description: Control de Versiones del proyecto Eternal Support
 
 ## Log
 
+### `v1.0.4`
+
+> Mayo 12, 2024
+
+* `Fix`: Arreglo en las funciones de anime y manga en general
+* `Add`: Registro de errores por medio de archivos .log
+* `Fix`: Cambio en el nombre de las propiedades del Nsfw y Anime
+* `Remove`: Clase de utilidades de minecraft
+* `Add`: Middlwares para api rest de blacklist y morgan
+* `Add`: Funciones de discord bots (comandos de texto, obtención de archivos y control de errores por express)
+
+{% hint style="warning" %}
+En la versión 1.0.5 hay un error de typescript que cuenta como un dato inexistente response.data dentro de la petición a la api, esto se arregla definiendo como un dato cualquiera a response.
+
+Este error no existe en JavaScript
+
+```typescript
+import { animeClient, mangaClient } from 'eternal-support';
+const response: any = await animeClient.random();
+console.log(response.data)
+```
+{% endhint %}
+
+
+
 ### `v1.0.0`
+
+> Abril 20, 2024
 
 * `Add:` Clase de utilidades privadas para Eternal IA
 * `Remove:` ApiTools se removió por errores de funcionamiento base

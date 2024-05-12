@@ -32,7 +32,7 @@
 ## Mas
 
 * [Versiones](mas/versiones/README.md)
-  * [Api-Rest IA](mas/versiones/api-rest-ia.md)
+  * [Api-Rest Hub](mas/versiones/api-rest-hub.md)
   * [Manager Templete](mas/versiones/manager-templete.md)
   * [Eternal Support](mas/versiones/eternal-support.md)
 * [Términos y Usos](mas/terminos-y-usos.md)

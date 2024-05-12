@@ -2,9 +2,22 @@
 description: Control de Versiones de el proyecto
 ---
 
-# Api-Rest IA
+# Api-Rest Hub
 
 ## Log
+
+### v0.0.5
+
+> Mayo 12, 2024
+
+* `Fix`: Error de las test dentro de el backend
+* `Add`: Mejora en la presentación de servicios y productos dentro de la web
+* `Add`: Optimización del código fuente
+* `Add`: Logueo de errores por .log con la librería eternal support
+* `Remove`: Función del anticrash y funcion de relación de comandos en discord bot
+* `Add`: Actualización de eternal Support
+* `Remove`: Mensajes de consola del backend y el hub.
+* `Add`: Mejora de la estructura del cliente
 
 ### `v0.0.3`
 

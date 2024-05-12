@@ -23,9 +23,9 @@ Te listare las funciones de la librería según la versión en la que la misma s
 Estas funciones son dedicadas para la búsqueda de anime en [Animelist](https://myanimelist.net/) por medio de un cliente externo para el consumo de su Api de forma mas rápida,
 
 ```typescript
-import { anime, manga } from "eternal-support";
+import { animeClient, mangaClient } from "eternal-support";
 async function request() {
-  console.log(await anime.animeSearch(1246))
+  console.log(await animeClient.animeSearch(1246))
 }
 
 request();
@@ -42,9 +42,9 @@ request();
 Como abras notado son las mismas funciones del [Anime](eternal-support.md#anime) sin embargo orientadas a la búsqueda de manga de la misma plataforma
 
 ```typescript
-import { anime, manga } from "eternal-support";
+import { animeClient, mangaClient } from "eternal-support";
 async function request() {
-  console.log(await manga.mangaSearch(1246))
+  console.log(await mangaClient.mangaSearch(1246))
 }
 
 request();
@@ -147,40 +147,6 @@ akaneko.nsfw.maid().then((imageURL) => {
 })
 ```
 
-### Minecraft Estado
-
-Estado de servidores de minecraft tanto java como bedrock por medio de una clase compatible con JavaScript y typeScript
-
-{% tabs %}
-{% tab title="JavaScript" %}
-```javascript
-import { mcStatus } from 'eternal-support';
-const client = new mcStatus("java", "play.hypixel.net");
-client.getStatus().then((response) => {
-  console.log(response);
-});
-```
-{% endtab %}
-
-{% tab title="TypeScript" %}
-```typescript
-import { mcStatus } from 'eternal-support';
-const client = new mcStatus("java", "play.hypixel.net");
-client.getStatus().then((response: AxiosResponse) => {
-  console.log(response);
-});
-```
-{% endtab %}
-{% endtabs %}
-
-#### Errores
-
-Se declara el tipo de servidor al cual estas haciendo la petición en dos tipos (bedrock, java) en caso de agregar otro valor aparte de los ya definidos se da error. `Error: Invalid type of Minecraft server provided.`
-
-#### Respuesta
-
-La solicitud de estado del servidor se hace por medio de peticiones `HTTP`, por lo tanto se devuelve false en caso de un estado diferente a `200 (OK)`
-
 ## Utilidades
 
 1. Obtención de imágenes de anime y Nsfw.
@@ -233,34 +199,37 @@ await antiCrash({webhook: webhook, client: this, path: "./logs" })
 
 > Funcion Privada de Eternal IA, nose garantiza funcionamiento fuera de ellos
 
-Clase con funciones de Mongoose y licencias personales, esto se agrego con el fin de ahorrar recursos y código dentro de los proyectos de ETERNAL HUB.
+Clase con funciones de Mongoose y licencias personales, esto se agrego con el fin de ahorrar recursos y código dentro de los proyectos cuenta con las siguientes funciones.
+
+* Logueo de Errores (Webhook y Logs)
+* Conexión a base de datos Mongoose
+* Peticion de Licencias
 
 ```typescript
 import { discordApp } from '../../apps/discord/app';
 import { toolsHub } from 'eternal-support';
 import { config } from './configuration';
 
-const licenceUrl = 'http://78.108.218.183:25507/api/client';
-const apiUrl = 'http://api.night-support.xyz/v1';
+const webhook = 'Url de un webhook de discord';
 const databaseUrl = config.database;
-const tools = new toolsHub(databaseUrl, licenceUrl, apiUrl, discordApp);
+const tools = new ToolsHub(database, webhook, './files/logs', discordApp);
 ```
 
 ## Ejemplos
 
 ```typescript
-import { nsfw stw } from "eternal-support";
+import { AkanekoNsfw, AkanekoStw } from "eternal-support";
 async function request() {
-  console.log(await nsfw.doujin())
+  console.log(await AkanekoNsfw.doujin())
 }
 
 request();
 ```
 
 ```typescript
-import { anime, manga } from "eternal-support";
+import { animeClient, mangaClient } from "eternal-support";
 async function request() {
-  console.log(await manga.mangaSearch(1246))
+  console.log(await mangaClient.search(1246))
 }
 
 request();
@@ -269,6 +238,9 @@ request();
 ```typescript
 import { logWithLabel } from 'eternal-support';
 logWithLabel('info', 'Hello World');
+
+//custom properties
+logWithLabel('custom', 'Hello World', "message");
 ```
 
 ```typescript
