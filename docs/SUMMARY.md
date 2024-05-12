@@ -6,13 +6,13 @@
 ## Api Rest
 
 * [Introducción](api-rest/introduccion.md)
-* [Api-Rest IA](api-rest/api-rest-ia/README.md)
-  * [Introducción](api-rest/api-rest-ia/introduccion.md)
-  * [Referencias](api-rest/api-rest-ia/referencias/README.md)
-    * [Aplicaciones.](api-rest/api-rest-ia/referencias/aplicaciones..md)
-    * [Productos](api-rest/api-rest-ia/referencias/productos.md)
-  * [Integración](api-rest/api-rest-ia/integracion.md)
-  * [Permisos](api-rest/api-rest-ia/permisos.md)
+* [Api-Rest HUB](api-rest/api-rest-hub/README.md)
+  * [Introducción](api-rest/api-rest-hub/introduccion.md)
+  * [Referencias](api-rest/api-rest-hub/referencias/README.md)
+    * [Aplicaciones.](api-rest/api-rest-hub/referencias/aplicaciones..md)
+    * [Productos](api-rest/api-rest-hub/referencias/productos.md)
+  * [Integración](api-rest/api-rest-hub/integracion.md)
+  * [Permisos](api-rest/api-rest-hub/permisos.md)
 
 ## Discord
 
