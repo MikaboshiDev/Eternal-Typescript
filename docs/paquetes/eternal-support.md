@@ -183,17 +183,9 @@ neko.catText().then((catText) => console.log(catText));
 
 Función de soporte ante errores del cliente y de la aplicación de discord, envía los errores y el motivo a un canal dentro del mismo servidor
 
-{% hint style="info" %}
-Ahora guardar un archivo `.log` dentro del path que especifiques dentro de la función
+{% hint style="danger" %}
+Ahora integrada por default dentro de la clase [`Tools`](eternal-support.md#tools-hub)
 {% endhint %}
-
-```typescript
-import { antiCrash, logWithLabel } from 'eternal-support';
-import { WebhookClient } from "discord.js";
-
-const webhook = new WebhookClient({ url: "" });
-await antiCrash({webhook: webhook, client: this, path: "./logs" })
-```
 
 ### Tools Hub
 
