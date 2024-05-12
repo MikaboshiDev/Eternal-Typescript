@@ -6,15 +6,15 @@ description: Control de Versiones de el proyecto
 
 ## Log
 
-### v0.0.5
+### `v0.0.5`
 
 > Mayo 12, 2024
 
 * `Fix`: Error de las test dentro de el backend
 * `Add`: Mejora en la presentación de servicios y productos dentro de la web
 * `Add`: Optimización del código fuente
-* `Add`: Logueo de errores por .log con la librería eternal support
-* `Remove`: Función del anticrash y funcion de relación de comandos en discord bot
+* `Add`: Logueo de errores por .log con la librería eternal Support
+* `Remove`: Función del anticrash y función de relación de comandos en discord bot
 * `Add`: Actualización de eternal Support
 * `Remove`: Mensajes de consola del backend y el hub.
 * `Add`: Mejora de la estructura del cliente
