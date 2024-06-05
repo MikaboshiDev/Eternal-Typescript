@@ -11,6 +11,7 @@
   * [Referencias](api-rest/api-rest-hub/referencias/README.md)
     * [Aplicaciones.](api-rest/api-rest-hub/referencias/aplicaciones..md)
     * [Productos](api-rest/api-rest-hub/referencias/productos.md)
+    * [Publicas](api-rest/api-rest-hub/referencias/publicas.md)
   * [Integración](api-rest/api-rest-hub/integracion.md)
   * [Permisos](api-rest/api-rest-hub/permisos.md)
 
