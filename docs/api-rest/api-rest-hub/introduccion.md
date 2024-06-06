@@ -29,6 +29,18 @@ URL: `http://api.night-support.xyz/v1`
 | password<mark style="color:red;">\*</mark> | String | Contraseña para tu perfil             |
 | name<mark style="color:red;">\*</mark>     | String | Nombre de identificacion              |
 
+```bsl
+curl -X POST http://api.night-support.xyz/api/v1/auth/register \
+     -H "Content-Type: application/json" \
+     -d '{
+           "email": "example@example.com",
+           "password": "yourpassword",
+           "name": "Your Name",
+           "discordId": "yourDiscordId"
+         }'
+
+```
+
 {% tabs %}
 {% tab title="200: OK Perfil guardado correctamente" %}
 
@@ -66,6 +78,16 @@ api
 | ------------------------------------------ | ------ | ---------------------------------------------- |
 | email<mark style="color:red;">\*</mark>    | String | Correo con el que te registraste anteriormente |
 | password<mark style="color:red;">\*</mark> | String | Contraseña del perfil                          |
+
+```bsl
+curl -X POST http://api.night-support.xyz/api/v1/auth/login \
+     -H "Content-Type: application/json" \
+     -d '{
+           "email": "example@example.com",
+           "password": "yourpassword"
+         }'
+
+```
 
 {% tabs %}
 {% tab title="200: OK Usuario logueado token jwt generado" %}
