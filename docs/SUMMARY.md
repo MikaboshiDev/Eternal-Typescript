@@ -2,25 +2,26 @@
 
 * [Eternal Manager](README.md)
   * [Licencias](eternal-manager/licencias.md)
+  * [Hosting](eternal-manager/hosting.md)
 
 ## Api Rest
 
 * [Introducción](api-rest/introduccion.md)
-* [Api-Rest HUB](api-rest/api-rest-hub/README.md)
-  * [Introducción](api-rest/api-rest-hub/introduccion.md)
-  * [Referencias](api-rest/api-rest-hub/referencias/README.md)
-    * [Aplicaciones.](api-rest/api-rest-hub/referencias/aplicaciones..md)
-    * [Productos](api-rest/api-rest-hub/referencias/productos.md)
-    * [Publicas](api-rest/api-rest-hub/referencias/publicas.md)
-  * [Integración](api-rest/api-rest-hub/integracion.md)
-  * [Permisos](api-rest/api-rest-hub/permisos.md)
+* [Api-Rest](api-rest/api-rest/README.md)
+  * [Introducción](api-rest/api-rest/introduccion.md)
+  * [Referencias](api-rest/api-rest/referencias/README.md)
+    * [Aplicaciones.](api-rest/api-rest/referencias/aplicaciones..md)
+    * [Productos](api-rest/api-rest/referencias/productos.md)
+    * [Publicas](api-rest/api-rest/referencias/publicas.md)
+  * [Integración](api-rest/api-rest/integracion.md)
+  * [Permisos](api-rest/api-rest/permisos.md)
 
 ## Discord
 
-* [Manager Témplate](discord/manager-template/README.md)
-  * [Contenido](discord/manager-template/contenido.md)
-  * [Arranque](discord/manager-template/arranque.md)
-  * [Configuración](discord/manager-template/configuracion.md)
+* [Discord Bot](discord/discord-bot/README.md)
+  * [Contenido](discord/discord-bot/contenido.md)
+  * [Arranque](discord/discord-bot/arranque.md)
+  * [Configuración](discord/discord-bot/configuracion.md)
 
 ## Paquetes
 
@@ -33,7 +34,7 @@
 ## Mas
 
 * [Versiones](mas/versiones/README.md)
-  * [Api-Rest Hub](mas/versiones/api-rest-ia.md)
-  * [Manager Templete](mas/versiones/manager-templete.md)
+  * [Api-Rest](mas/versiones/api-rest.md)
+  * [Discord Bot](mas/versiones/discord-bot.md)
   * [Eternal Support](mas/versiones/eternal-support.md)
 * [Términos y Usos](mas/terminos-y-usos.md)

@@ -8,6 +8,10 @@ description: >-
 
 `Eternal-Support` es una biblioteca de soporte, que agrega funciones y solicitudes útiles a bibliotecas como nekos.life y akaneko, su objetivo es la optimización de los recursos de trabajo.
 
+{% hint style="warning" %}
+Se actualizo gran cantidad de nombres de las funciones y las clases que contiene esta librería debido a un error de sintaxis encontrado al momento de hacer peticiones HTTP, por lo que se recomienda actualizar a la versión 1.0.8
+{% endhint %}
+
 ## Contenido
 
 Te listare las funciones de la librería según la versión en la que la misma se encuentre en estos momentos que revises la documentación:
@@ -23,9 +27,9 @@ Te listare las funciones de la librería según la versión en la que la misma s
 Estas funciones son dedicadas para la búsqueda de anime en [Animelist](https://myanimelist.net/) por medio de un cliente externo para el consumo de su Api de forma mas rápida,
 
 ```typescript
-import { animeClient, mangaClient } from "eternal-support";
+import { Anime, Manga } from "eternal-support";
 async function request() {
-  console.log(await animeClient.animeSearch(1246))
+  console.log(await Anime.animeSearch(1246))
 }
 
 request();
@@ -42,9 +46,9 @@ request();
 Como abras notado son las mismas funciones del [Anime](eternal-support.md#anime) sin embargo orientadas a la búsqueda de manga de la misma plataforma
 
 ```typescript
-import { animeClient, mangaClient } from "eternal-support";
+import { Anime, Manga } from "eternal-support";
 async function request() {
-  console.log(await mangaClient.mangaSearch(1246))
+  console.log(await Manga.mangaSearch(1246))
 }
 
 request();
@@ -199,29 +203,29 @@ Clase con funciones de Mongoose y licencias personales, esto se agrego con el fi
 
 ```typescript
 import { discordApp } from '../../apps/discord/app';
-import { toolsHub } from 'eternal-support';
 import { config } from './configuration';
+import { Tools } from 'eternal-support';
 
-const webhook = 'Url de un webhook de discord';
+const webhook = 'URL'; //URL de tu webhook
 const databaseUrl = config.database;
-const tools = new ToolsHub(database, webhook, './files/logs', discordApp);
+const tools = new Tools(database, webhook, './files/logs', discordApp);
 ```
 
 ## Ejemplos
 
 ```typescript
-import { AkanekoNsfw, AkanekoStw } from "eternal-support";
+import { Nsfw, Stw } from "eternal-support";
 async function request() {
-  console.log(await AkanekoNsfw.doujin())
+  console.log(await Nsfw.doujin())
 }
 
 request();
 ```
 
 ```typescript
-import { animeClient, mangaClient } from "eternal-support";
+import { Anime, Manga } from "eternal-support";
 async function request() {
-  console.log(await mangaClient.search(1246))
+  console.log(await Manga.search(1246))
 }
 
 request();
@@ -244,4 +248,57 @@ async function getMobileWallpapers() {
 
 getMobileWallpapers();
 
+```
+
+`getGithubData` acomoda y optimiza la busqueda de perfiles de github por medio de peticiones http, incluye informacion de los seguidores y repositorios publicos del usuario
+
+```typescript
+//Nueva version 1.0.8 GithubData
+import { getGithubData } from 'eternal-support';
+async function GithubUser(username: string) {
+  const res = await getGithubData(username);
+  return res;
+}
+
+GithubUser();
+```
+
+### Discord Logger
+
+con el fin de no tener que crear mil archivos diferentes de los eventos de discord, `Logger` se encarga de loguear los eventos de discord en un canal especifico, en este caso el canal es `Id channel server discord` y los eventos a loguear son:
+
+* AutoModerationActionExecution
+* MessageUpdate
+* AutoModerationRuleCreate
+* GuildMemberRemove
+* GuildMemberAdd
+* ChannelDelete
+* ChannelCreate
+* GuildEmojiCreate
+* GuildRoleCreate
+* GuildRoleDelete
+* GuildRoleUpdate
+* InviteCreate
+* InviteDelete
+* MessageDelete
+
+```typescript
+const logger = new Logger(
+  'Id channel server discord',
+  [
+    'AutoModerationActionExecution',
+    'MessageUpdate',
+    'AutoModerationRuleCreate',
+    'GuildMemberRemove',
+    'GuildMemberAdd',
+    'ChannelDelete',
+    'ChannelCreate',
+    'GuildEmojiCreate',
+    'GuildRoleCreate',
+    'GuildRoleDelete',
+    'GuildRoleUpdate',
+    'InviteCreate',
+  ],
+  client
+);
 ```

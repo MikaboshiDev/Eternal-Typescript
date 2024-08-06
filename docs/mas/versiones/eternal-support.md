@@ -6,6 +6,14 @@ description: Control de Versiones del proyecto Eternal Support
 
 ## Log
 
+### `v1.0.9`
+
+> Agosto 05, 2024
+
+* `Fix`: Se arreglaron todos los errores y se renombraron funciones de la `v1.0.4` en adelante
+* `Add`: Se agrego `GithubData` que acomoda y resume la informacion de un perfil de github por medio de la api
+* `Add`: `DiscordLogger` una forma rapida de añadir logs a tu servidor
+
 ### `v1.0.4`
 
 > Mayo 12, 2024
