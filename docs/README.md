@@ -1,8 +1,8 @@
 ---
 description: >-
-  Soporte de Proyectos Relacionados al Servidor y Creadores aquí podrás
-  encontrar paginas web, diseños en SolidWorks, bots de discord (Whatsapp,
-  Twitch, Discord), proyectos electromecánicos.
+  Soporte de proyectos realizados por parte del equipo, desde aplicaciones hasta
+  programas y scripts. Este proyecto fue resultado del tiempo libre de los
+  creadores
 cover: .gitbook/assets/wallhaven-1plww9.jpg
 coverY: 0
 ---
