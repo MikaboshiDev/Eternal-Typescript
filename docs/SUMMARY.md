@@ -1,13 +1,12 @@
 # Table of contents
 
-* [Eternal Manager](README.md)
-  * [Licencias](eternal-manager/licencias.md)
-  * [Hosting](eternal-manager/hosting.md)
+* [Pixel Docs.](README.md)
+  * [Hosting](pixel-docs./hosting.md)
 
 ## Api Rest
 
 * [Introducción](api-rest/introduccion.md)
-* [Api-Rest](api-rest/api-rest/README.md)
+* [Api Rest](api-rest/api-rest/README.md)
   * [Introducción](api-rest/api-rest/introduccion.md)
   * [Referencias](api-rest/api-rest/referencias/README.md)
     * [Aplicaciones.](api-rest/api-rest/referencias/aplicaciones..md)
@@ -34,7 +33,7 @@
 ## Mas
 
 * [Versiones](mas/versiones/README.md)
-  * [Api-Rest](mas/versiones/api-rest.md)
+  * [Api Rest](mas/versiones/api-rest.md)
   * [Discord Bot](mas/versiones/discord-bot.md)
   * [Eternal Support](mas/versiones/eternal-support.md)
 * [Términos y Usos](mas/terminos-y-usos.md)

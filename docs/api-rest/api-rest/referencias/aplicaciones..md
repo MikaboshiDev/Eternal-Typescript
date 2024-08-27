@@ -4,7 +4,7 @@ description: Url's para acceso de las aplicaciones registradas dentro de el clie
 
 # Aplicaciones.
 
-* URL: `http://api.night-support.xyz/v1`
+* URL: `http://api.hiroshi-dev.me/v1`
 * TOKEN: `"Authorization": "Bearer " + process.env.API_KEY`
 * DEVELOPER: `"Secret-Auth": process.env.SECRET_AUTH`
 

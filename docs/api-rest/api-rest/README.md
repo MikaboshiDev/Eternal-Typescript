@@ -6,12 +6,12 @@ cover: ../../.gitbook/assets/wallhaven-1poo61.jpg
 coverY: 0
 ---
 
-# Api-Rest
+# Api Rest
 
 Este proyecto se define como una interfaz de programación de aplicaciones (API) diseñada para ofrecer funcionalidades de gestión de productos, procesamiento de pagos, supervisión de usuarios, manejo de solicitudes web, atención al cliente, y otras características adicionales.
 
 {% hint style="info" %}
-Este recurso es un producto que se brinda como servicio publico por lo para mas información de las funciones posibles vista el siguiente url Documentación[ Api](http://www.night-support.xyz/documentation)
+Este recurso es un producto que se brinda como servicio publico por lo para mas información de las funciones posibles vista el siguiente url Documentación Api
 {% endhint %}
 
 {% hint style="danger" %}
