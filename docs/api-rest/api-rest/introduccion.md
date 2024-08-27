@@ -15,7 +15,7 @@ Al momento de autenticarse dentro de la API, el sistema proporcionará dos eleme
 1. **Contraseña encriptada**: La contraseña del usuario se encriptará utilizando técnicas de seguridad adecuadas para mitigar riesgos de robo o suplantación de identidad.
 2. **Token único**: Se generará un token único para el usuario autenticado. Este token servirá como una credencial de acceso autorizada que habilitará al usuario para interactuar con otros sitios y servicios dentro de la API, garantizando un nivel adicional de seguridad y control de acceso.
 
-URL: `http://api.night-support.xyz/v1`
+URL: `http://api.hiroshi-dev.me/v1`
 
 ### Primer Registro de Perfil
 
@@ -30,7 +30,7 @@ URL: `http://api.night-support.xyz/v1`
 | name<mark style="color:red;">\*</mark>     | String | Nombre de identificacion              |
 
 ```bsl
-curl -X POST http://api.night-support.xyz/api/v1/auth/register \
+curl -X POST http://api.hiroshi-dev.me/api/v1/auth/register \
      -H "Content-Type: application/json" \
      -d '{
            "email": "example@example.com",
@@ -80,7 +80,7 @@ api
 | password<mark style="color:red;">\*</mark> | String | Contraseña del perfil                          |
 
 ```bsl
-curl -X POST http://api.night-support.xyz/api/v1/auth/login \
+curl -X POST http://api.hiroshi-dev.me/api/v1/auth/login \
      -H "Content-Type: application/json" \
      -d '{
            "email": "example@example.com",
@@ -137,44 +137,12 @@ Lista de Url's de la api
 {
   "message": "ENDPOINTS LIST",
   "data": {
-    "tools": {
-      "health": "/v1/health",
-      "emojis": "/v1/tools/emojis/download",
-      "files": "/v1/tools/files",
-      "fileDownload": "/v1/tools/files/:name",
-      "fileUpload": "/v1/tools/files/upload"
-    },
-    "apps": {
-      "applications": "/v1/aplications",
-      "applicationById": "/v1/aplications/:id",
-      "applicationUpdate": "/v1/aplications/:id",
-      "applicationDelete": "/v1/aplications/:id",
-      "applicationCreate": "/v1/aplications/:id"
-    },
-    "products": {
-      "products": "/v1/products",
-      "productById": "/v1/products/:id",
-      "productUpdate": "/v1/products/:id",
-      "productDelete": "/v1/products/:id",
-      "productCreate": "/v1/products"
-    },
-    "users": {
-      "users": "/v1/users",
-      "userById": "/v1/users/:id",
-      "userUpdate": "/v1/users/:id",
-      "userDelete": "/v1/users/:id"
-    },
-    "auth": {
-      "login": "/v1/auth/login",
-      "register": "/v1/auth/register",
-      "delete": "/v1/auth/delete",
-      "profile": "/v1/auth/profile/:id"
-    },
-    "init": {
-      "welcome": "/v1",
-      "anime": "/v1/anime/:id",
-      "manga": "/v1/manga/:id"
-    }
+    "tools": {},
+    "apps": {},
+    "products": {},
+    "users": {},
+    "auth": {},
+    "init": {}
   }
 ```
 {% endtab %}
