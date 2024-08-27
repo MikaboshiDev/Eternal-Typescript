@@ -1,5 +1,7 @@
 ---
 description: Términos y Usos de los proyectos mencionados en esta documentación.
+cover: ../.gitbook/assets/wallhaven-o5xp95.jpg
+coverY: 0
 ---
 
 # Términos y Usos

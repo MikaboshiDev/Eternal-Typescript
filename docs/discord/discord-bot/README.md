@@ -2,8 +2,6 @@
 description: >-
   Bot Manager para Servidores de Discord con +50 comandos y +14 funciones
   comprobadas para el control de los usuarios y la interacción de la comunidad.
-cover: ../../.gitbook/assets/wallhaven-858lz1.png
-coverY: 0
 ---
 
 # Discord Bot

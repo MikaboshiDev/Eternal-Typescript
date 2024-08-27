@@ -2,8 +2,6 @@
 description: >-
   Pagina web con HTML, CSS y JS relacionada a servidores de minecraft, estado
   del servidor, rangos y temple.
-cover: ../.gitbook/assets/wallhaven-kxr861.jpg
-coverY: 0
 ---
 
 # Minecraft Estado
