@@ -6,14 +6,14 @@
 ## Api Rest
 
 * [Introducción](api-rest/introduccion.md)
-* [Api Rest](api-rest/api-rest/README.md)
-  * [Introducción](api-rest/api-rest/introduccion.md)
-  * [Referencias](api-rest/api-rest/referencias/README.md)
-    * [Aplicaciones.](api-rest/api-rest/referencias/aplicaciones..md)
-    * [Productos](api-rest/api-rest/referencias/productos.md)
-    * [Publicas](api-rest/api-rest/referencias/publicas.md)
-  * [Integración](api-rest/api-rest/integracion.md)
-  * [Permisos](api-rest/api-rest/permisos.md)
+* [Hub API](api-rest/hub-api/README.md)
+  * [Introducción](api-rest/hub-api/introduccion.md)
+  * [Referencias](api-rest/hub-api/referencias/README.md)
+    * [Aplicaciones.](api-rest/hub-api/referencias/aplicaciones..md)
+    * [Productos](api-rest/hub-api/referencias/productos.md)
+    * [Publicas](api-rest/hub-api/referencias/publicas.md)
+  * [Integración](api-rest/hub-api/integracion.md)
+  * [Permisos](api-rest/hub-api/permisos.md)
 
 ## Discord
 
@@ -33,7 +33,7 @@
 ## Mas
 
 * [Versiones](mas/versiones/README.md)
-  * [Api Rest](mas/versiones/api-rest.md)
+  * [Hub API](mas/versiones/hub-api.md)
   * [Discord Bot](mas/versiones/discord-bot.md)
   * [Eternal Support](mas/versiones/eternal-support.md)
 * [Términos y Usos](mas/terminos-y-usos.md)
