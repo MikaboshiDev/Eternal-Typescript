@@ -27,7 +27,9 @@
   * [Extensiones](discord/advance-asistent/extensiones.md)
   * [Utils](discord/advance-asistent/utils/README.md)
     * [Variables](discord/advance-asistent/utils/variables.md)
-  * [Docker](discord/advance-asistent/docker.md)
+    * [Docker](discord/advance-asistent/utils/docker.md)
+    * [Commitlint](discord/advance-asistent/utils/commitlint.md)
+    * [Eslint](discord/advance-asistent/utils/eslint.md)
 
 ## Paquetes
 

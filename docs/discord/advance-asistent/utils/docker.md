@@ -9,7 +9,7 @@ Este archivo `Dockerfile` define la configuración necesaria para ejecutar una a
 ## Dockerfile
 
 ```dockerfile
-dockerfileCopiar código# Usa la imagen oficial de Node.js, versión 21.7.3
+# Usa la imagen oficial de Node.js, versión 21.7.3
 FROM node:21.7.3
 
 # Establece el directorio de trabajo dentro del contenedor
@@ -63,7 +63,7 @@ Para construir y ejecutar el contenedor con este `Dockerfile`, sigue estos pasos
 En la terminal, navega al directorio donde se encuentra el `Dockerfile` y ejecuta el siguiente comando:
 
 ```bash
-bashCopiar códigodocker build -t mi-bot-node .
+docker build -t mi-bot-node .
 ```
 
 Esto creará una imagen Docker llamada `mi-bot-node` basada en el archivo `Dockerfile`.
@@ -73,7 +73,7 @@ Esto creará una imagen Docker llamada `mi-bot-node` basada en el archivo `Docke
 Una vez que la imagen esté construida, puedes ejecutar el contenedor utilizando el siguiente comando:
 
 ```bash
-bashCopiar códigodocker run -d -p 3000:3000 mi-bot-node
+docker run -d -p 3000:3000 mi-bot-node
 ```
 
 Esto ejecutará el contenedor en segundo plano (`-d`) y mapeará el puerto 3000 del contenedor al puerto 3000 del host (`-p 3000:3000`).
@@ -83,7 +83,7 @@ Esto ejecutará el contenedor en segundo plano (`-d`) y mapeará el puerto 3000 
 Para asegurarte de que el contenedor esté en ejecución, utiliza el comando:
 
 ```bash
-bashCopiar códigodocker ps
+docker ps
 ```
 
 Este comando mostrará una lista de contenedores en ejecución, incluida tu aplicación.
@@ -95,7 +95,7 @@ Este comando mostrará una lista de contenedores en ejecución, incluida tu apli
 El archivo está escrito para usar la versión `3.9` de Docker Compose, lo que indica que se está utilizando una versión moderna del sistema. Docker Compose es una herramienta que permite definir y ejecutar aplicaciones en contenedores con múltiples servicios interconectados.
 
 ```yaml
-yamlCopiar códigoversion: '3.9'
+version: '3.9'
 ```
 
 Esto especifica la versión de Docker Compose que estamos usando. Si bien la versión `3.9` es una de las más recientes, asegúrate de que tu versión de Docker lo soporte.
@@ -109,7 +109,7 @@ Dentro de la clave `services`, se definen los diferentes contenedores que compon
 #### **Servicio `pixelapp`**
 
 ```yaml
-yamlCopiar códigoservices:
+services:
   pixelapp:
     build:
       context: .
@@ -153,7 +153,7 @@ yamlCopiar códigoservices:
 #### **Servicio `mongodb`**
 
 ```yaml
-yamlCopiar código  mongodb:
+mongodb:
     image: mongo:6.0
     ports:
       - "27017:27017"
@@ -185,7 +185,7 @@ yamlCopiar código  mongodb:
 ### Volúmenes
 
 ```yaml
-yamlCopiar códigovolumes:
+volumes:
   mongodb_data:
 ```
 
@@ -194,7 +194,7 @@ Aquí se define el volumen `mongodb_data`, que es donde se almacenarán los dato
 **Ejemplo**: Si deseas almacenar los datos en una ubicación específica de tu máquina, puedes hacer esto:
 
 ```yaml
-yamlCopiar códigovolumes:
+volumes:
   mongodb_data:
     driver: local
     driver_opts:
@@ -212,13 +212,13 @@ Esto haría que los datos se almacenen en una carpeta local (`/path/to/your/data
 Para iniciar estos servicios, solo necesitas correr el siguiente comando en la terminal desde el directorio donde está tu archivo `docker-compose.yml`:
 
 ```bash
-bashCopiar códigodocker-compose up
+docker-compose up
 ```
 
 Esto levantará ambos servicios (tu aplicación y MongoDB). Si solo quieres que los servicios se ejecuten en segundo plano, puedes usar:
 
 ```bash
-bashCopiar códigodocker-compose up -d
+docker-compose up -d
 ```
 
 ***
@@ -228,7 +228,7 @@ bashCopiar códigodocker-compose up -d
 * **Agregando un servicio de Redis**: Si más adelante necesitas usar Redis para cachear datos, podrías agregarlo fácilmente así:
 
 ```yaml
-yamlCopiar código  redis:
+redis:
     image: redis:alpine
     ports:
       - "6379:6379"
