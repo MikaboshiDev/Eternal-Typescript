@@ -21,6 +21,12 @@
   * [Contenido](discord/discord-bot/contenido.md)
   * [Arranque](discord/discord-bot/arranque.md)
   * [Configuración](discord/discord-bot/configuracion.md)
+* [Advance Asistent](discord/advance-asistent/README.md)
+  * [Configuración](discord/advance-asistent/configuracion.md)
+  * [Clases](discord/advance-asistent/clases.md)
+  * [Extensiones](discord/advance-asistent/extensiones.md)
+  * [Utils](discord/advance-asistent/utils/README.md)
+    * [Variables](discord/advance-asistent/utils/variables.md)
 
 ## Paquetes
 
