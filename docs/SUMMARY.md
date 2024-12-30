@@ -1,7 +1,13 @@
 # Table of contents
 
-* [Pixel Proyects.](README.md)
+* [Introduccion](README.md)
+
+## Recursos
+
+* [Source Bin](recursos/source-bin.md)
 
 ## Mas
 
-* [Términos y Usos](mas/terminos-y-usos.md)
+* [API Documentation](https://panel.hiroshi-dev.me/api/v1/docs/)
+* [Licencias](https://licences.hiroshi-dev.me/)
+* [Panel ](https://panel.hiroshi-dev.me/web/welcome)
