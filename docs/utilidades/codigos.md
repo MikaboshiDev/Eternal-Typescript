@@ -2,7 +2,7 @@
 description: Recurso de copa y pega código para compartir con mas usuarios
 ---
 
-# Source Bin
+# Códigos
 
 <figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
 
@@ -18,7 +18,7 @@ Para guardar una vez ya tengas tu codigo, id y nombre del mismo solamente debes 
 
 **Formato:**
 
-`https://panel.hiroshi-dev.me/web/source/view/{tu codigo}`
+`https://panel.hiroshi-dev.me/web/sources/{tu codigo}`
 
 la persona que vea o entre a tu link vera el codigo que les compartes aparte del nombre, id y formato del mismo, esto permite que tambien el otro usuario pueda editarlo desde su lado y guardarlo de nuevo
 
