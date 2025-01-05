@@ -23,3 +23,9 @@
 * [Términos y Condiciones](otros/terminos-y-condiciones.md)
 * [Versiones](otros/versiones/README.md)
   * [Asistente](otros/versiones/asistente.md)
+
+## Tutoriales
+
+* [Bot de Discord usando Docker](tutoriales/bot-de-discord-usando-docker.md)
+* [Bot de Discord en Replit](tutoriales/bot-de-discord-en-replit.md)
+* [Bot de Discord en Linux](tutoriales/bot-de-discord-en-linux.md)
