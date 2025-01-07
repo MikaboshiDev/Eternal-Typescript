@@ -5,6 +5,7 @@
 ## Librerias&#x20;
 
 * [Pixel Handlers](librerias/pixel-handlers.md)
+* [Asistente](librerias/asistente.md)
 
 ## Utilidades
 
@@ -14,9 +15,10 @@
 
 ## Tutoriales
 
-* [Bot de Discord usando Docker](tutoriales/bot-de-discord-usando-docker.md)
-* [Bot de Discord en Replit](tutoriales/bot-de-discord-en-replit.md)
-* [Bot de Discord en Linux](tutoriales/bot-de-discord-en-linux.md)
+* [Bots de Discord](tutoriales/bots-de-discord/README.md)
+  * [Docker](tutoriales/bots-de-discord/docker.md)
+  * [Replit](tutoriales/bots-de-discord/replit.md)
+  * [Linux](tutoriales/bots-de-discord/linux.md)
 
 ## Mas
 

@@ -56,3 +56,33 @@ description: >-
 * `Delete`: dependencia de quick.db; agregar funcionalidad de paginación en embeds&#x20;
 * `Fix`: manejo de errores en el modal y actualizar rutas; agregar nuevas variables de entorno&#x20;
 * `Resume`: el middleware de autenticación eliminando la verificación de encabezados&#x20;
+
+## 0.0.14
+
+`01 Enero de 2025`
+
+{% hint style="warning" %}
+Informacion de cambios en la version `0.0.15`
+{% endhint %}
+
+## 0.0.15
+
+`01 Enero de 2025`
+
+* `Fix`: .gitignore para incluir nuevas exclusiones y eliminar archivo obsoleto&#x20;
+* `Fix`: configuraciones de eslint y tsconfig; agregar soporte para Jest y mejorar manejo de errores&#x20;
+* `Fix`: rutas de API de PayPal y mejorar la estructura de rutas; ajustar nombre de ruta y eliminar código innecesario&#x20;
+* `Add`: nuevos módulos y tipos para nhentai; actualizar configuraciones y dependencias
+* `Delete`: archivos de documentación obsoletos y actualizar configuraciones de eslint
+* `Fix`: import paths for BotClient to improve module structure
+* `Rebuild`: estructura de módulos y actualizar tipos; eliminar archivos obsoletos
+
+## 0.0.16
+
+`06 Enero de 2025`
+
+* `Fix`: enlaces en la documentación para reflejar la nueva estructura de archivos
+* `Add`: documentación para nuevas clases y funciones en varios módulos&#x20;
+* `Add`: documentación para nuevos módulos y funciones; eliminar archivos obsoletos y actualizar configuraciones de exclusión en tsconfig&#x20;
+* `Add`: pruebas unitarias para nuevos módulos y funciones; mejorar la cobertura de código
+* `Rebuild`: configuración de entorno centralizada y eliminar dependencias innecesarias&#x20;
