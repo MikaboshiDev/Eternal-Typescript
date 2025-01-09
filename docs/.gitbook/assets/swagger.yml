@@ -1,0 +1,921 @@
+openapi: "3.0.0"
+info:
+  title: "Asistent API"
+  description: |
+    Asistent API is a RESTful API that allows you to interact with the Bot Asistent platform.
+    You can use this API to manage your account and interact with the Bot Asistent platform.
+    This API is built with Node.js, Express.js, and MongoDB.
+
+    This API is built by Hiroshi.
+    You can find more info about this API in the documentation.
+    You can find the documentation in the following link: [Bot Asistent API Documentation](https://docs.hiroshi-dev.me)
+
+    This API is built for educational purposes.
+    You can find the source code in the following link: [Bot Asistent API Source Code](  )
+  version: "0.0.1"
+  contact:
+    name: "Hiroshi"
+    email: "contact@hiroshi-dev.me"
+    url: "https://docs.hiroshi-dev.me"
+  termsOfService: "https://docs.hiroshi-dev.me/mas/terminos-y-usos"
+  license:
+    name: "MIT"
+    url: "https://opensource.org/licenses/MIT"
+  servers:
+    - url: "http://localhost:{port}/api/v1"
+      description: "Development server"
+      variables:
+        port:
+          enum: ["3000", "3001", "3002", "3003"]
+          default: "3000"
+          description: "Development server port"
+    - url: "{protocol}://{environment}.hiroshi-dev.me/api/v1"
+      description: "Production server"
+      variables:
+        protocol:
+          enum: ["http", "https"]
+          default: "https"
+          description: "Production server protocol"
+        environment:
+          enum: ["api", "panel", "web"]
+          default: "panel"
+          description: "Production server environment"
+  externalDocs:
+    url: "https://docs.hiroshi-dev.me"
+    description: "Find more info here about Bot Asistent API"
+security:
+  - bearerAuth: []
+  - ApiKeyAuth: []
+  - basicAuth: []
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+    basicAuth:
+      type: http
+      scheme: basic
+  schemas:
+    error:
+      description: "Error response"
+      type: object
+      properties:
+        message:
+          type: string
+        details:
+          type: string
+    register:
+      type: object
+      properties:
+        email:
+          type: string
+        name:
+          type: string
+        discord:
+          type: string
+        id:
+          type: string
+    login:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+        name:
+          type: string
+        discordId:
+          type: string
+        token:
+          type: string
+paths:
+  /auth/{id}:
+    get:
+      operationId: getUserData
+      tags:
+        - Auth
+      security:
+        - bearerAuth: []
+      description: Retrieve user data from the API using the provided JWT token.
+      summary: Get user data from the API.
+      parameters:
+        - name: id
+          in: path
+          description: ID of the user to retrieve.
+          required: true
+          schema:
+            type: string
+            example: "userId123"
+        - name: Authorization
+          in: header
+          description: JWT token for authentication.
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: User data retrieved successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: "userId123"
+                  discord:
+                    type: string
+                    example: "123456789"
+                  name:
+                    type: string
+                    example: "John Doe"
+                  createdAt:
+                    type: string
+                    format: date-time
+                    example: "2024-08-30T14:53:44.077Z"
+                  rol:
+                    type: string
+                    example: "user"
+                  email:
+                    type: string
+                    example: "user@example.com"
+                  password:
+                    type: string
+                    example: "hashed-password"
+                required:
+                  - id
+                  - discord
+                  - name
+                  - createdAt
+                  - rol
+                  - email
+                  - password
+        400:
+          description: Bad request due to invalid parameters or token.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+  /auth/register:
+    post:
+      operationId: registerUser
+      tags:
+        - Auth
+      security: []
+      description: Register a new user in the API and generate a JWT token.
+      summary: Register a user in the API.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: "user@example.com"
+                password:
+                  type: string
+                  example: "secure-password"
+                name:
+                  type: string
+                  example: "John Doe"
+                discord:
+                  type: string
+                  example: "123456789"
+      responses:
+        200:
+          description: User registered successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/register"
+              example:
+                id: "userId123"
+                email: "user@example.com"
+                name: "John Doe"
+                discord: "123456789"
+        400:
+          description: Bad request due to invalid input data.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                status: false
+                message: "Invalid request parameters"
+                data: "Email already exists"
+  /auth/login:
+    post:
+      operationId: loginUser
+      tags:
+        - Auth
+      security: []
+      description: Authenticate a user and return a JWT token for subsequent requests.
+      summary: Login a user in the API.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: "user@example.com"
+                password:
+                  type: string
+                  example: "secure-password"
+      responses:
+        200:
+          description: User logged in successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/login"
+              example:
+                id: "userId123"
+                email: "user@example.com"
+                name: "John Doe"
+                discord: "123456789"
+                token: "jwt-token-123"
+        400:
+          description: Bad request due to invalid credentials.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                status: false
+                message: "Invalid email or password"
+                data: null
+  /devs/cryptobots:
+    get:
+      summary: Get all bots for crypto from the database
+      description: Retrieve all crypto bots from the database and return the total count and the list of bots.
+      tags:
+        - Devs
+      responses:
+        200:
+          description: All crypto bots from the database
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      count:
+                        type: number
+                        example: 5
+                      bots:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: "cld8h89qw0000pmp59ts0b89d"
+                            enabled:
+                              type: boolean
+                              example: true
+                            token:
+                              type: string
+                              example: "some-unique-token"
+                            coinId:
+                              type: string
+                              example: "bitcoin"
+                            preferred:
+                              type: string
+                              example: "BTC"
+                            frequency:
+                              type: integer
+                              example: 10
+                            symbol:
+                              type: string
+                              example: "$"
+                            separator:
+                              type: string
+                              example: "-"
+                            createdAt:
+                              type: string
+                              format: date-time
+                              example: "2024-12-28T12:34:56Z"
+                            updatedAt:
+                              type: string
+                              format: date-time
+                              example: "2024-12-29T14:23:45Z"
+        404:
+          description: Bots not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    nullable: true
+                    example: null
+                  errors:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: "Bots not found"
+                      date:
+                        type: string
+                        format: date-time
+                        example: "2024-12-28T12:34:56Z"
+      security:
+        - TokenApi: []
+        - RoleDevs: []
+  /devs/orders:
+    get:
+      summary: Get all orders from the database
+      description: Retrieve all orders from the database and return the total count and the list of orders.
+      tags:
+        - Devs
+      responses:
+        200:
+          description: All orders from the database
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      count:
+                        type: number
+                        example: 10
+                      orders:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: "cld8h89qw0000pmp59ts0b89d"
+                            image:
+                              type: string
+                              example: "https://example.com/image.jpg"
+                            name:
+                              type: string
+                              example: "Product Name"
+                            userId:
+                              type: string
+                              example: "user123"
+                            number:
+                              type: integer
+                              example: 12345
+                            price:
+                              type: integer
+                              example: 2000
+                            quantity:
+                              type: integer
+                              example: 5
+                            metode:
+                              type: string
+                              example: "Credit Card"
+                            info:
+                              type: string
+                              example: "Additional order information"
+                            date:
+                              type: string
+                              format: date-time
+                              example: "2024-12-28T12:34:56Z"
+                            status:
+                              type: string
+                              example: "Pending"
+        404:
+          description: Orders not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    nullable: true
+                    example: null
+                  errors:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: "Orders not found"
+                      date:
+                        type: string
+                        format: date-time
+                        example: "2024-12-28T12:34:56Z"
+      security:
+        - TokenApi: []
+        - RoleDevs: []
+  /devs/sources:
+    get:
+      summary: Get all sources from the database
+      description: Get all sources from the database and return the total count of sources.
+      tags:
+        - Devs
+      responses:
+        200:
+          description: All sources from the database
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      count:
+                        type: number
+                        example: 1
+                      sources:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: "source123"
+                            name:
+                              type: string
+                              example: "Source Name"
+        404:
+          description: Sources not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    nullable: true
+                    example: null
+                  errors:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: "Sources not found"
+                      date:
+                        type: string
+                        format: date-time
+                        example: "2024-12-28T12:34:56Z"
+      security:
+        - TokenApi: []
+        - RoleDevs: []
+  /devs/orders/{id}:
+    delete:
+      summary: Delete an order
+      description: Delete a specific order by its ID from the database.
+      tags:
+        - Orders
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the order to delete.
+          schema:
+            type: string
+            example: "cld8h89qw0000pmp59ts0b89d"
+      responses:
+        200:
+          description: Order successfully deleted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: "Order deleted"
+                      order:
+                        $ref: '#/components/schemas/Order'
+                  errors:
+                    type: object
+                    nullable: true
+                    example: null
+        404:
+          description: Order not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    nullable: true
+                    example: null
+                  errors:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: "Order not found"
+                      date:
+                        type: string
+                        format: date-time
+                        example: "2024-12-30T22:30:00Z"
+        500:
+          description: Server error.
+      security:
+        - TokenApi: []
+        - RoleDevs: []
+    put:
+      summary: Edit an order
+      description: Update the status of a specific order by its ID.
+      tags:
+        - Orders
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the order to edit.
+          schema:
+            type: string
+            example: "cld8h89qw0000pmp59ts0b89d"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  description: New status of the order.
+                  enum: [pending, approved, rejected]
+                  example: "approved"
+      responses:
+        200:
+          description: Order successfully updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: "Order updated"
+                      order:
+                        $ref: '#/components/schemas/Order'
+                  errors:
+                    type: object
+                    nullable: true
+                    example: null
+        404:
+          description: Order not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    nullable: true
+                    example: null
+                  errors:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: "Order not found"
+                      date:
+                        type: string
+                        format: date-time
+                        example: "2024-12-30T22:30:00Z"
+        500:
+          description: Server error.
+      security:
+        - TokenApi: []
+        - RoleDevs: []
+  /devs/cryptobots/{token}:
+    delete:
+      summary: Delete a crypto bot
+      description: Delete a specific crypto bot by its token from the database.
+      tags:
+        - Crypto Bots
+      parameters:
+        - name: token
+          in: path
+          required: true
+          description: Token of the crypto bot to delete.
+          schema:
+            type: string
+            example: "some-unique-token"
+      responses:
+        200:
+          description: Crypto bot successfully deleted.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: "Bot deleted"
+                      bot:
+                        $ref: '#/components/schemas/BotCrypto'
+                  errors:
+                    type: object
+                    nullable: true
+                    example: null
+        404:
+          description: Bot not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    nullable: true
+                    example: null
+                  errors:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: "Bot not found"
+                      date:
+                        type: string
+                        format: date-time
+                        example: "2024-12-30T22:30:00Z"
+        500:
+          description: Server error.
+      security:
+        - TokenApi: []
+        - RoleDevs: []
+    put:
+      summary: Edit a crypto bot
+      description: Update the enabled status of a specific crypto bot by its token.
+      tags:
+        - Crypto Bots
+      parameters:
+        - name: token
+          in: path
+          required: true
+          description: Token of the crypto bot to edit.
+          schema:
+            type: string
+            example: "some-unique-token"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                  description: New enabled status of the bot.
+                  example: true
+      responses:
+        200:
+          description: Crypto bot successfully updated.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: "Bot updated"
+                      bot:
+                        $ref: '#/components/schemas/BotCrypto'
+                  errors:
+                    type: object
+                    nullable: true
+                    example: null
+        404:
+          description: Bot not found.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    nullable: true
+                    example: null
+                  errors:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: "Bot not found"
+                      date:
+                        type: string
+                        format: date-time
+                        example: "2024-12-30T22:30:00Z"
+        500:
+          description: Server error.
+      security:
+        - TokenApi: []
+        - RoleDevs: []
+  /home:
+    get:
+      summary: Server latency and server status
+      description: Returns a welcome message and server status including platform and port.
+      tags:
+        - Home
+      responses:
+        200:
+          description: Welcome message and server status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Welcome to the API!"
+                  client:
+                    type: object
+                    properties:
+                      port:
+                        type: string
+                        example: "3000"
+                      platform:
+                        type: string
+                        example: "win32"
+                      ram:
+                        type: number
+                        example: 100
+                      uptime:
+                        type: number
+                        example: 100
+            application/xml:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Welcome to the API!"
+                  client:
+                    type: object
+                    properties:
+                      port:
+                        type: string
+                        example: "3000"
+                      platform:
+                        type: string
+                        example: "win32"
+                      ram:
+                        type: number
+                        example: 100
+                      uptime:
+                        type: number
+                        example: 100
+        500:
+          description: Error getting server status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+        - bearerAuth: []
+  /sources/{id}:
+    get:
+      summary: View code content from the source bin
+      description: Retrieve the code content stored in the source bin using a unique ID.
+      tags:
+        - Source
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The unique ID of the code content
+          schema:
+            type: string
+            example: "5f7b7b7b7b7b7b7b7b7b7b7b"
+      responses:
+        200:
+          description: Code content retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Code content retrieved successfully"
+                  content:
+                    type: string
+                    example: "console.log('Hello World')"
+                  language:
+                    type: string
+                    example: "javascript"
+                  title:
+                    type: string
+                    example: "Hello World"
+        500:
+          description: Error retrieving code content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /sources:
+    post:
+      summary: Add code to the source bin and get a unique ID
+      description: Add code to the source bin and get a unique ID to view the code later.
+      tags:
+        - Source
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  description: The code content to be added to the source bin.
+                  example: "console.log('Hello World')"
+                language:
+                  type: string
+                  description: The language of the code content.
+                  example: "javascript"
+                title:
+                  type: string
+                  description: The title of the code content.
+                  example: "Hello World"
+      responses:
+        200:
+          description: Code added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Code added successfully"
+                  id:
+                    type: string
+                    description: The unique ID of the code content.
+                    example: "5f7b7b7b7b7b7b7b7b7b7b7b"
+        500:
+          description: Error adding code to the source bin
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /nekotina/nsfw/{type}:
+    get:
+      summary: Get a nsfw image from the Nekotina API
+      description: Retrieve a nsfw image from the Nekotina API using the specified type.
+      tags:
+        - Nekotina
+      parameters:
+        - in: path
+          name: type
+          required: true
+          description: The type of nsfw image to retrieve.
+          schema:
+            type: string
+            example: "hentai"
+      responses:
+        200:
+          description: Nsfw image retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Nsfw image retrieved successfully"
+                  url:
+                    type: string
+                    example: "https://nekotina.com/nsfw/hentai.jpg"
+        500:
+          description: Error retrieving nsfw image
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'

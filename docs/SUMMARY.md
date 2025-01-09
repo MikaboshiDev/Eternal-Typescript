@@ -5,7 +5,11 @@
 ## Librerias&#x20;
 
 * [Pixel Handlers](librerias/pixel-handlers.md)
-* [Asistente](librerias/asistente.md)
+* [Asistente](librerias/asistente/README.md)
+  * [Clases](librerias/asistente/clases.md)
+  * [Api Rest](librerias/asistente/api-rest.md)
+  * [Complementos](librerias/asistente/complementos.md)
+  * [Módulos](librerias/asistente/modulos.md)
 
 ## Utilidades
 
