@@ -6,6 +6,7 @@
 
 * [Pixel Handlers](librerias/pixel-handlers.md)
 * [Asistente](librerias/asistente/README.md)
+  * [Introducción](librerias/asistente/introduccion.md)
   * [Clases](librerias/asistente/clases.md)
   * [Api Rest](librerias/asistente/api-rest.md)
   * [Complementos](librerias/asistente/complementos.md)
@@ -13,6 +14,9 @@
     * [Economía](librerias/asistente/modulos/economia.md)
     * [Animelist](librerias/asistente/modulos/animelist.md)
     * [Nhentai](librerias/asistente/modulos/nhentai.md)
+  * [Bots](librerias/asistente/bots/README.md)
+    * [Discord](librerias/asistente/bots/discord.md)
+    * [Whatsapp](librerias/asistente/bots/whatsapp.md)
 
 ## Utilidades
 

@@ -30,6 +30,6 @@ configuracion de la tienda
 
 ## Ejemplos
 
-<figure><img src="../../../.gitbook/assets/image.png" alt=""><figcaption><p>sistema de economía</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (3).png" alt=""><figcaption><p>sistema de economía</p></figcaption></figure>
 
-<figure><img src="../../../.gitbook/assets/image (1).png" alt=""><figcaption><p>sistema de economia</p></figcaption></figure>
+<figure><img src="../../../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>sistema de economia</p></figcaption></figure>

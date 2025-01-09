@@ -4,7 +4,7 @@ description: Recurso de copa y pega código para compartir con mas usuarios
 
 # Códigos
 
-<figure><img src="../.gitbook/assets/image (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/image (3) (1).png" alt=""><figcaption></figcaption></figure>
 
 Comparte y edita texto desde la misma pagina web, esto ayuda mucho para las personas que necesitan compartir algun codigo o necesitan ayuda con un usuario&#x20;
 
