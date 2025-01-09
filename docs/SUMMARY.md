@@ -9,7 +9,10 @@
   * [Clases](librerias/asistente/clases.md)
   * [Api Rest](librerias/asistente/api-rest.md)
   * [Complementos](librerias/asistente/complementos.md)
-  * [Módulos](librerias/asistente/modulos.md)
+  * [Módulos](librerias/asistente/modulos/README.md)
+    * [Economía](librerias/asistente/modulos/economia.md)
+    * [Animelist](librerias/asistente/modulos/animelist.md)
+    * [Nhentai](librerias/asistente/modulos/nhentai.md)
 
 ## Utilidades
 
