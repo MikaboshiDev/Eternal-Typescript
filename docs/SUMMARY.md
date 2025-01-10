@@ -6,8 +6,8 @@
 
 * [Pixel Handlers](librerias/pixel-handlers.md)
 * [Asistente](librerias/asistente/README.md)
-  * [Introducción](librerias/asistente/introduccion.md)
-  * [Clases](librerias/asistente/clases.md)
+  * [Introducción](librerias/asistente/introduccion/README.md)
+    * [Instalación](librerias/asistente/introduccion/instalacion.md)
   * [Api Rest](librerias/asistente/api-rest.md)
   * [Complementos](librerias/asistente/complementos.md)
   * [Módulos](librerias/asistente/modulos/README.md)
