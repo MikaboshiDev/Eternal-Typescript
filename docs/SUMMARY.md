@@ -5,19 +5,22 @@
 ## Librerias&#x20;
 
 * [Pixel Handlers](librerias/pixel-handlers.md)
-* [Asistente](librerias/asistente/README.md)
-  * [Introducción](librerias/asistente/introduccion/README.md)
-    * [Instalación](librerias/asistente/introduccion/instalacion.md)
-  * [Api Rest](librerias/asistente/api-rest.md)
-  * [Complementos](librerias/asistente/complementos.md)
-  * [Módulos](librerias/asistente/modulos/README.md)
-    * [Economía](librerias/asistente/modulos/economia.md)
-    * [Animelist](librerias/asistente/modulos/animelist.md)
-    * [Nhentai](librerias/asistente/modulos/nhentai.md)
-  * [Bots](librerias/asistente/bots/README.md)
-    * [Discord](librerias/asistente/bots/discord.md)
-    * [Whatsapp](librerias/asistente/bots/whatsapp.md)
-* [Eternal Hub](librerias/eternal-hub.md)
+
+## Proyectos
+
+* [Asistente](proyectos/asistente/README.md)
+  * [Introducción](proyectos/asistente/introduccion/README.md)
+    * [Instalación](proyectos/asistente/introduccion/instalacion.md)
+  * [Api Rest](proyectos/asistente/api-rest.md)
+  * [Complementos](proyectos/asistente/complementos.md)
+  * [Módulos](proyectos/asistente/modulos/README.md)
+    * [Economía](proyectos/asistente/modulos/economia.md)
+    * [Animelist](proyectos/asistente/modulos/animelist.md)
+    * [Nhentai](proyectos/asistente/modulos/nhentai.md)
+  * [Bots](proyectos/asistente/bots/README.md)
+    * [Discord](proyectos/asistente/bots/discord.md)
+    * [Whatsapp](proyectos/asistente/bots/whatsapp.md)
+* [Eternal Hub](proyectos/eternal-hub.md)
 
 ## Utilidades
 
