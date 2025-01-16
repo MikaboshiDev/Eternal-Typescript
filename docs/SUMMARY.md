@@ -17,6 +17,7 @@
   * [Bots](librerias/asistente/bots/README.md)
     * [Discord](librerias/asistente/bots/discord.md)
     * [Whatsapp](librerias/asistente/bots/whatsapp.md)
+* [Eternal Hub](librerias/eternal-hub.md)
 
 ## Utilidades
 
