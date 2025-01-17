@@ -34,6 +34,8 @@
   * [Docker](tutoriales/bots-de-discord/docker.md)
   * [Replit](tutoriales/bots-de-discord/replit.md)
   * [Linux](tutoriales/bots-de-discord/linux.md)
+* [Ejecución y Instalación en Python](tutoriales/ejecucion-y-instalacion-en-python.md)
+* [Bot de discord con  typescript](tutoriales/bot-de-discord-con-typescript.md)
 
 ## Mas
 
