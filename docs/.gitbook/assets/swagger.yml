@@ -12,7 +12,7 @@ info:
 
     This API is built for educational purposes.
     You can find the source code in the following link: [Bot Asistent API Source Code](  )
-  version: "0.0.1"
+  version: "0.1.1-alpha"
   contact:
     name: "Hiroshi"
     email: "contact@hiroshi-dev.me"
@@ -21,28 +21,6 @@ info:
   license:
     name: "MIT"
     url: "https://opensource.org/licenses/MIT"
-  servers:
-    - url: "http://localhost:{port}/api/v1"
-      description: "Development server"
-      variables:
-        port:
-          enum: ["3000", "3001", "3002", "3003"]
-          default: "3000"
-          description: "Development server port"
-    - url: "{protocol}://{environment}.hiroshi-dev.me/api/v1"
-      description: "Production server"
-      variables:
-        protocol:
-          enum: ["http", "https"]
-          default: "https"
-          description: "Production server protocol"
-        environment:
-          enum: ["api", "panel", "web"]
-          default: "panel"
-          description: "Production server environment"
-  externalDocs:
-    url: "https://docs.hiroshi-dev.me"
-    description: "Find more info here about Bot Asistent API"
 security:
   - bearerAuth: []
   - ApiKeyAuth: []
@@ -93,7 +71,82 @@ components:
           type: string
         token:
           type: string
+    order:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "cld8h89qw0000pmp59ts0b89d"
+        image:
+          type: string
+          example: "https://example.com/image.jpg"
+        name:
+          type: string
+          example: "Product Name"
+        userId:
+          type: string
+          example: "user123"
+        number:
+          type: integer
+          example: 12345
+        price:
+          type: integer
+          example: 2000
+        quantity:
+          type: integer
+          example: 5
+        metode:
+          type: string
+          example: "Credit Card"
+        info:
+          type: string
+          example: "Additional order information"
+        date:
+          type: string
+          format: date-time
+          example: "2024-12-28T12:34:56Z"
+        status:
+          type: string
+          example: "Pending"
+    botcrypto:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "cld8h89qw0000pmp59ts0b89d"
+        enabled:
+          type: boolean
+          example: true
+        token:
+          type: string
+          example: "some-unique-token"
+        coinId:
+          type: string
+          example: "bitcoin"
+        preferred:
+          type: string
+          example: "BTC"
+        frequency:
+          type: integer
+          example: 10
+        symbol:
+          type: string
+          example: "$"
+        separator:
+          type: string
+          example: "-"
+        createdAt:
+          type: string
+          format: date-time
+          example: "2024-12-28T12:34:56Z"
+        updatedAt:
+          type: string
+          format: date-time
+          example: "2024-12-29T14:23:45Z"
 paths:
+
+###### AUTH ROUTES #######
+
   /auth/{id}:
     get:
       operationId: getUserData
@@ -254,12 +307,15 @@ paths:
                 status: false
                 message: "Invalid email or password"
                 data: null
+
+####### DEV ROUTES #######
+
   /devs/cryptobots:
     get:
       summary: Get all bots for crypto from the database
       description: Retrieve all crypto bots from the database and return the total count and the list of bots.
       tags:
-        - Devs
+        - Crypto
       responses:
         200:
           description: All crypto bots from the database
@@ -340,7 +396,7 @@ paths:
       summary: Get all orders from the database
       description: Retrieve all orders from the database and return the total count and the list of orders.
       tags:
-        - Devs
+        - Orders
       responses:
         200:
           description: All orders from the database
@@ -418,12 +474,12 @@ paths:
       security:
         - TokenApi: []
         - RoleDevs: []
-  /devs/sources:
+  /devs-tools/sources:
     get:
       summary: Get all sources from the database
       description: Get all sources from the database and return the total count of sources.
       tags:
-        - Devs
+        - Sources
       responses:
         200:
           description: All sources from the database
@@ -502,7 +558,7 @@ paths:
                         type: string
                         example: "Order deleted"
                       order:
-                        $ref: '#/components/schemas/Order'
+                        $ref: '#/components/schemas/order'
                   errors:
                     type: object
                     nullable: true
@@ -573,7 +629,7 @@ paths:
                         type: string
                         example: "Order updated"
                       order:
-                        $ref: '#/components/schemas/Order'
+                        $ref: '#/components/schemas/order'
                   errors:
                     type: object
                     nullable: true
@@ -609,7 +665,7 @@ paths:
       summary: Delete a crypto bot
       description: Delete a specific crypto bot by its token from the database.
       tags:
-        - Crypto Bots
+        - Crypto
       parameters:
         - name: token
           in: path
@@ -633,7 +689,7 @@ paths:
                         type: string
                         example: "Bot deleted"
                       bot:
-                        $ref: '#/components/schemas/BotCrypto'
+                        $ref: '#/components/schemas/botcrypto'
                   errors:
                     type: object
                     nullable: true
@@ -668,7 +724,7 @@ paths:
       summary: Edit a crypto bot
       description: Update the enabled status of a specific crypto bot by its token.
       tags:
-        - Crypto Bots
+        - Crypto
       parameters:
         - name: token
           in: path
@@ -703,7 +759,7 @@ paths:
                         type: string
                         example: "Bot updated"
                       bot:
-                        $ref: '#/components/schemas/BotCrypto'
+                        $ref: '#/components/schemas/botcrypto'
                   errors:
                     type: object
                     nullable: true
@@ -734,12 +790,238 @@ paths:
       security:
         - TokenApi: []
         - RoleDevs: []
+  /devs-tools/stats:
+    get:
+      summary: Get API statistics
+      description: Retrieve the statistics of the API including the number of requests, responses, errors, and more.
+      tags:
+        - Stats
+      security:
+        - TokenApi: []
+        - RoleDevs: []
+      responses:
+        200:
+          description: API statistics retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  startts:
+                    type: number
+                    example: 1501647865959
+                  all:
+                    type: object
+                    properties:
+                      requests:
+                        type: number
+                        example: 7
+                      responses:
+                        type: number
+                        example: 7
+                      errors:
+                        type: number
+                        example: 3
+                      info:
+                        type: number
+                        example: 0
+                      success:
+                        type: number
+                        example: 3
+                      redirect:
+                        type: number
+                        example: 1
+                      client_error:
+                        type: number
+                        example: 2
+                      server_error:
+                        type: number
+                        example: 1
+                      total_time:
+                        type: number
+                        example: 510
+                      max_time:
+                        type: number
+                        example: 502
+                      avg_time:
+                        type: number
+                        example: 72.85714285714286
+                      total_req_clength:
+                        type: number
+                        example: 0
+                      max_req_clength:
+                        type: number
+                        example: 0
+                      avg_req_clength:
+                        type: number
+                        example: 0
+                      total_res_clength:
+                        type: number
+                        example: 692
+                      max_res_clength:
+                        type: number
+                        example: 510
+                      avg_res_clength:
+                        type: number
+                        example: 98
+                      req_rate:
+                        type: number
+                        example: 1.0734549915657108
+                      err_rate:
+                        type: number
+                        example: 0.4600521392424475
+                  sys:
+                    type: object
+                    properties:
+                      rss:
+                        type: number
+                        example: 59768832
+                      heapTotal:
+                        type: number
+                        example: 36700160
+                      heapUsed:
+                        type: number
+                        example: 20081776
+                      external:
+                        type: number
+                        example: 5291923
+                      cpu:
+                        type: number
+                        example: 0
+                  name: 
+                    type: string
+                    example: "Bot Asistent API"
+                  version:
+                    type: string
+                    example: "0.0.1"
+                  hostname:
+                    type: string
+                    example: "localhost"
+                  ip:
+                    type: string
+                    example: "0.0.0.0"
+        400:
+          description: Error retrieving API statistics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /devs-tools/tasks:
+    get:
+      operationId: getTasks
+      tags:
+        - Tasks
+      security:
+        - TokenApi: []
+        - RoleDevs: []
+      responses:
+        200:
+          description: "Get tasks list from the database"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                    example: 5
+                  tasks:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: "cld8h89qw0000pmp59ts0b89d"
+                        userId:
+                          type: string
+                          example: "1121121121121"
+                        guildId:
+                          type: string
+                          example: "1121121121121"
+                        taskId:
+                          type: integer
+                          example: 2
+                        content:
+                          type: string
+                          example: "work in the hostname"
+                        status:
+                          type: boolean
+                          example: false
+                        createdAt:
+                          type: string
+                          format: date-time
+                          example: "2024-12-28T12:34:56Z"
+                        updatedAt:
+                          type: string
+                          format: date-time
+                          example: "2024-12-29T14:23:45Z"
+        400:
+          description: "Tasks not found in the database"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: string
+                    example: "not found tasks database"
+  /devs-tools/bot/reload:
+    post:
+      operationId: reloadBot
+      tags:
+        - Bot
+      security:
+        - TokenApi: []
+        - RoleDevs: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                bot:
+                  type: string
+                  example: "discord"
+      responses:
+        200:
+          description: "Bot reloaded successfully"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                    example: "Bot reloaded successfully"
+                  errors:
+                    type: string
+                    nullable: true
+                    example: null
+        400:
+          description: "Bot not reloaded"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: string
+                    example: "not reloaded bot"
+                  data:
+                    type: string
+                    nullable: true
+                    example: null
+
+###### PUBLIC ROUTES #####
+
   /home:
     get:
       summary: Server latency and server status
       description: Returns a welcome message and server status including platform and port.
       tags:
-        - Home
+        - Stats
       responses:
         200:
           description: Welcome message and server status
@@ -799,12 +1081,12 @@ paths:
                 $ref: '#/components/schemas/error'
       security:
         - bearerAuth: []
-  /sources/{id}:
+  /home/sources/{id}:
     get:
       summary: View code content from the source bin
       description: Retrieve the code content stored in the source bin using a unique ID.
       tags:
-        - Source
+        - Sources
       parameters:
         - in: path
           name: id
@@ -839,12 +1121,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-  /sources:
+  /home/sources:
     post:
       summary: Add code to the source bin and get a unique ID
       description: Add code to the source bin and get a unique ID to view the code later.
       tags:
-        - Source
+        - Sources
       requestBody:
         required: true
         content:
@@ -885,23 +1167,78 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-  /nekotina/nsfw/{type}:
-    get:
-      summary: Get a nsfw image from the Nekotina API
-      description: Retrieve a nsfw image from the Nekotina API using the specified type.
+  /home/nekohub/animelist:
+    post:
+      summary: "Add animelist link to the database"
+      description: "Add anime link in the animelist Discord server"
       tags:
         - Nekotina
-      parameters:
-        - in: path
-          name: type
-          required: true
-          description: The type of nsfw image to retrieve.
-          schema:
-            type: string
-            example: "hentai"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                channelId:
+                  type: string
+                roleId:
+                  type: string
+                createThread:
+                  type: boolean
+                guildId:
+                  type: string
       responses:
         200:
-          description: Nsfw image retrieved successfully
+          description: "Announcements will now be made"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        channelId:
+                          type: string
+                        anilistId:
+                          type: string
+                        pingRole:
+                          type: string
+                        createThreads:
+                          type: boolean
+                        threadArchiveTime:
+                          type: string
+                        completed:
+                          type: boolean
+        400:
+          description: "Client server error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: string
+                  data:
+                    type: string
+  /home/role-list:
+    get:
+      summary: "Get all roles from the Discord server"
+      description: "Get all roles from the Discord server"
+      tags:
+        - Stats
+      responses:
+        200:
+          description: "Get all roles from the Discord server"
           content:
             application/json:
               schema:
@@ -909,12 +1246,87 @@ paths:
                 properties:
                   message:
                     type: string
-                    example: "Nsfw image retrieved successfully"
+                    example: "Roles retrieved successfully"
+                  roles:
+                    type: array
+                    items:
+                      type: string
+                      example: ["Admin", "Moderator", "User"]
+        400:
+          description: "Client server error"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: string
+                  data:
+                    type: string
+                    nullable: true
+                    example: null
+
+######## IA ROUTES #######
+
+  /home/ia/generate:
+    post:
+      summary: Generate a new AI response
+      description: Generate a new AI response using the provided input text.
+      tags:
+        - IA
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                prompt:
+                  type: string
+                  description: The input text to generate the AI response.
+                  example: "Hello, how are you?"
+      responses:
+        200:
+          description: AI response generated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: string
+                    example: "I'm fine, thank you!"
+        500:
+          description: Error generating AI response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+  /home/ia/info:
+    get:
+      summary: Get information about the AI model
+      description: Retrieve information about the AI model including the name, version, and description.
+      tags:
+        - IA
+      responses:
+        200:
+          description: AI model information retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  model:
+                    type: string
+                    example: "GPT-3"
+                  systemInstruction:
+                    type: string
+                    example: "The asistent API is a RESTful API that allows you to interact with the Bot Asistent platform."
                   url:
                     type: string
-                    example: "https://nekotina.com/nsfw/hentai.jpg"
+                    example: "https://docs.hiroshi-dev.me"
         500:
-          description: Error retrieving nsfw image
+          description: Error retrieving AI model information
           content:
             application/json:
               schema:

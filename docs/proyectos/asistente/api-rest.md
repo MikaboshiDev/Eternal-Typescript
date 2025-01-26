@@ -8,6 +8,22 @@ description: >-
 
 
 
+{% swagger src="../../.gitbook/assets/swagger.yml" path="/home/ia/info" method="get" %}
+[swagger.yml](../../.gitbook/assets/swagger.yml)
+{% endswagger %}
+
+{% swagger src="../../.gitbook/assets/swagger.yml" path="/home/ia/generate" method="post" %}
+[swagger.yml](../../.gitbook/assets/swagger.yml)
+{% endswagger %}
+
+{% swagger src="../../.gitbook/assets/swagger.yml" path="/home/role-list" method="get" %}
+[swagger.yml](../../.gitbook/assets/swagger.yml)
+{% endswagger %}
+
+{% swagger src="../../.gitbook/assets/swagger.yml" path="/home/nekohub/animelist" method="post" %}
+[swagger.yml](../../.gitbook/assets/swagger.yml)
+{% endswagger %}
+
 {% swagger src="../../.gitbook/assets/swagger.yml" path="/auth/{id}" method="get" %}
 [swagger.yml](../../.gitbook/assets/swagger.yml)
 {% endswagger %}
@@ -28,7 +44,7 @@ description: >-
 [swagger.yml](../../.gitbook/assets/swagger.yml)
 {% endswagger %}
 
-{% swagger src="../../.gitbook/assets/swagger.yml" path="/devs/sources" method="get" %}
+{% swagger src="../../.gitbook/assets/swagger.yml" path="/devs-tools/sources" method="get" %}
 [swagger.yml](../../.gitbook/assets/swagger.yml)
 {% endswagger %}
 
@@ -48,18 +64,26 @@ description: >-
 [swagger.yml](../../.gitbook/assets/swagger.yml)
 {% endswagger %}
 
+{% swagger src="../../.gitbook/assets/swagger.yml" path="/devs-tools/stats" method="get" %}
+[swagger.yml](../../.gitbook/assets/swagger.yml)
+{% endswagger %}
+
+{% swagger src="../../.gitbook/assets/swagger.yml" path="/devs-tools/tasks" method="get" %}
+[swagger.yml](../../.gitbook/assets/swagger.yml)
+{% endswagger %}
+
+{% swagger src="../../.gitbook/assets/swagger.yml" path="/devs-tools/bot/reload" method="post" %}
+[swagger.yml](../../.gitbook/assets/swagger.yml)
+{% endswagger %}
+
+{% swagger src="../../.gitbook/assets/swagger.yml" path="/home/sources/{id}" method="get" %}
+[swagger.yml](../../.gitbook/assets/swagger.yml)
+{% endswagger %}
+
+{% swagger src="../../.gitbook/assets/swagger.yml" path="/home/sources" method="post" %}
+[swagger.yml](../../.gitbook/assets/swagger.yml)
+{% endswagger %}
+
 {% swagger src="../../.gitbook/assets/swagger.yml" path="/home" method="get" %}
-[swagger.yml](../../.gitbook/assets/swagger.yml)
-{% endswagger %}
-
-{% swagger src="../../.gitbook/assets/swagger.yml" path="/sources/{id}" method="get" %}
-[swagger.yml](../../.gitbook/assets/swagger.yml)
-{% endswagger %}
-
-{% swagger src="../../.gitbook/assets/swagger.yml" path="/sources" method="post" %}
-[swagger.yml](../../.gitbook/assets/swagger.yml)
-{% endswagger %}
-
-{% swagger src="../../.gitbook/assets/swagger.yml" path="/nekotina/nsfw/{type}" method="get" %}
 [swagger.yml](../../.gitbook/assets/swagger.yml)
 {% endswagger %}
