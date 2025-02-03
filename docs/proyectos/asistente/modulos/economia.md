@@ -4,6 +4,10 @@ description: Economía dentro del proyecto desde balance hasta el cambio de dato
 
 # Economía
 
+{% hint style="warning" %}
+El modulo separado de la `economia` se agrego de forma predeterminada a la aplicacion de discord desde el dia `03- 02- 2025`
+{% endhint %}
+
 Un sistema que implementa un sistema económico, lo que permite a los propietarios de servidores crear una moneda virtual para su comunidad. El bot realiza un seguimiento del saldo de cada usuario y les permite ganar y gastar la moneda a través de una variedad de comandos.
 
 El proyecto ofrece varias opciones de personalización, como ajustar la tasa a la que los usuarios pueden ganar moneda y configurar artículos personalizados para comprar con la moneda virtual.

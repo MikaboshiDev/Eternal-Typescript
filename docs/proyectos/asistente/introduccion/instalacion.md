@@ -53,7 +53,15 @@ En el código agregamos el obfuscador por lo que tienes los siguientes comandos 
 1. `npm run obfuscate`: Este comando obfusca codo el proyecto, para evitar el robo  del código por parte de terceros igual puedes ejecutar `node obfuscate.js`
 2. `npm run start:dev` : Inicializa el proyecto es un fase de desarrollo dándote logs del debug y otros eventos dentro del cliente.
 3. `npm  run build`: Copila el código de ts a js para su producción.
+{% endstep %}
 
+{% step %}
+### API Module Development
 
+Este es el segundo addon dentro de el proyecto PIXEL ASSISTENT es una versión modificada de el asistente que proporciona acceso a todos los addons, modulos y funciones en desarrollo del handler bajo diferentes tipos de arquitectura para mejorar la escalabilidad.
+
+<figure><img src="../../../.gitbook/assets/image (6).png" alt=""><figcaption></figcaption></figure>
+
+Este addon tiene soporte permanente ya que esta conectado a la instancia de desarrollo dentro del contenedor `03 - 02 - 2025`
 {% endstep %}
 {% endstepper %}
