@@ -50,7 +50,7 @@ Antes que nada una vez adquirido el addon el código pasa a ser de tu sub propie
 
 En el código agregamos el obfuscador por lo que tienes los siguientes comandos para poder utilizar:
 
-1. `npm run obfuscate`: Este comando obfusca codo el proyecto, para evitar el robo  del código por parte de terceros igual puedes ejecutar `node obfuscate.js`
+1. `npm run obfuscate`: Este comando obfusca codo el proyecto, para evitar el robo  del código por parte de terceros igual puedes ejecutar `node obfuscate.js` <mark style="color:red;">`deprecated`</mark>
 2. `npm run start:dev` : Inicializa el proyecto es un fase de desarrollo dándote logs del debug y otros eventos dentro del cliente.
 3. `npm  run build`: Copila el código de ts a js para su producción.
 {% endstep %}

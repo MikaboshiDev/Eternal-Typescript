@@ -53,7 +53,7 @@ son dos archivos los que se deben de configurar de momento dentro de las version
 
 * `.env`: archivo de configuracion principal
 * `config.yml`: configuracion secundaria desde webhooks y permisos
-* `src/utils/variables` (solo si quieres cambiar rutas dentro del proyecto de estos cambios el staff no se hace responsable de errores)
+* `src/utils/variables` (solo si quieres cambiar rutas dentro del proyecto de estos cambios el staff no se hace responsable de errores) <mark style="color:red;">`deprecated`</mark>
 {% endstep %}
 
 {% step %}

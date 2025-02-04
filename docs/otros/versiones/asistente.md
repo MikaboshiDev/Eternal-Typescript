@@ -86,3 +86,40 @@ Informacion de cambios en la version `0.0.15`
 * `Add`: documentación para nuevos módulos y funciones; eliminar archivos obsoletos y actualizar configuraciones de exclusión en tsconfig&#x20;
 * `Add`: pruebas unitarias para nuevos módulos y funciones; mejorar la cobertura de código
 * `Rebuild`: configuración de entorno centralizada y eliminar dependencias innecesarias&#x20;
+
+{% hint style="success" %}
+Publicación de la version de desarrollo del asistente dentro de la plataforma de Built
+{% endhint %}
+
+## 0.0.20
+
+`03 Febrero de 2025`
+
+* `Fix`: manejo de rutas y configuración; eliminar registros obsoletos y mejorar la gestión de archivos en WhatsApp; agregar nuevas configuraciones en el archivo de configuración
+* `Add`: configuración de ecosistema y mejorar la gestión de nombres en el bot; actualizar dependencias y optimizar mensajes de log
+* `Add`: configuración de GitBook y nuevas interfaces; actualizar esquema de tareas y emojis; mejorar manejo de interacciones en menús
+* `Add`: configuración de GitBook; eliminar archivo de configuración obsoleto y mejorar manejo de errores en la API; actualizar referencias en el código
+* `Delete`: archivos obsoletos de tipos y configuraciones de bibliotecas; limpiar el código y optimizar la estructura del proyecto&#x20;
+* `Delete`: archivos obsoletos, agregar nuevas rutas y mejorar la gestión de configuraciones; optimizar el manejo de errores y permisos&#x20;
+* `Rebuild`: la gestión de rutas y configuraciones; agregar webhooks para errores y consola; eliminar configuraciones obsoletas; optimizar carga de comandos y eventos&#x20;
+
+### 0.0.21-alpha
+
+`03 Febrero de 2025`
+
+* `Add`: configuraciones de husky, eslint y prettier; añadir mixins y funciones SCSS; eliminar archivos obsoletos&#x20;
+* `Add`: configuraciones de husky, eslint y prettier; añadir mixins y funciones SCSS; implementar manejo de errores en Express
+* `Add`: documentación para los comandos de economía y otros módulos&#x20;
+* `Add`: módulo de verificación con captcha y actualizar configuración del bot&#x20;
+* `Add`: nombre al bot y actualizar configuraciones; eliminar documentación obsoleta
+* `Add`: ofuscación de código y actualizar comandos de ranking con imágenes adjuntas&#x20;
+* `Add`: sistema de ranking y economía; actualizar dependencias y eliminar código obsoleto&#x20;
+* `Delete`: subproyectos obsoletos y actualizar configuración de tickets con tiempo de creación
+* `Add`: documentación a las funciones utilitarias y modelo Doujinshi
+* `Add`: documentación inicial para varios módulos y clases&#x20;
+* `Delete`: archivos README obsoletos de la documentación
+* `Add`: sistema de economía con comandos de saldo y pago; agregar eventos y utilidades&#x20;
+
+<figure><img src="../../.gitbook/assets/Captura de pantalla 2025-02-03 123721.png" alt=""><figcaption><p>Swagger Administrator</p></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/Captura de pantalla 2025-02-03 124758.png" alt=""><figcaption><p>IA Gemini Api Generate</p></figcaption></figure>
