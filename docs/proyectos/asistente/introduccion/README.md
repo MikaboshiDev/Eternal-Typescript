@@ -61,13 +61,4 @@ son dos archivos los que se deben de configurar de momento dentro de las version
 
 Si lo podemos hacer nosotros si abres un ticket dentro del servidor de discord sin embargo ya que es un servicio gratuito esto o puede ser rapido o ser lento dende del desarrollador
 {% endstep %}
-
-{% step %}
-### Por que se publico el proyecto si  esta en sus fases beta
-
-Tenemos dos razones para eso las cuales son las siguientes:
-
-* Queremos ver si hay errores dentro de lo que se lleva desarrollado y ver que preferencias tienen los usuarios en cuento a temas de bots, paginas etc etc
-* Queremos desarrollar el proyecto de la forma mas sencilla para los usuarios y esa forma solo se consigue sabiendo la opinión de ellos mismo
-{% endstep %}
 {% endstepper %}
